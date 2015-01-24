@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "80C3B06C1A70506A0004CBDE"
-               BuildableName = "FacebookProfileViewerTests.xctest"
-               BlueprintName = "FacebookProfileViewerTests"
+               BlueprintIdentifier = "803313561A74660100E54701"
+               BuildableName = "FacebookProfileViewerClassesTests.xctest"
+               BlueprintName = "FacebookProfileViewerClassesTests"
                ReferencedContainer = "container:FacebookProfileViewer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +46,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "80C3B06C1A70506A0004CBDE"
-               BuildableName = "FacebookProfileViewerTests.xctest"
-               BlueprintName = "FacebookProfileViewerTests"
+               BlueprintIdentifier = "803313561A74660100E54701"
+               BuildableName = "FacebookProfileViewerClassesTests.xctest"
+               BlueprintName = "FacebookProfileViewerClassesTests"
                ReferencedContainer = "container:FacebookProfileViewer.xcodeproj">
             </BuildableReference>
          </TestableReference>

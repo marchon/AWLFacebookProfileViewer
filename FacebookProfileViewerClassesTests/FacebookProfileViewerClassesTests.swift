@@ -1,15 +1,15 @@
 //
-//  FacebookProfileViewerTests.swift
-//  FacebookProfileViewerTests
+//  FacebookProfileViewerClassesTests.swift
+//  FacebookProfileViewerClassesTests
 //
-//  Created by Vlad Gorlov on 21.01.15.
+//  Created by Vlad Gorlov on 25.01.15.
 //  Copyright (c) 2015 WaveLabs. All rights reserved.
 //
 
 import UIKit
 import XCTest
 
-class FacebookProfileViewerTests: XCTestCase {
+class FacebookProfileViewerClassesTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

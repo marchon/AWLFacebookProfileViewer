@@ -5,6 +5,9 @@ https://developers.facebook.com/tools/debug/
 # Getting user info
 curl -v -d @access_token.txt https://graph.facebook.com/me -G | python -mjson.tool
 
+# Prifile picture
+curl -v -d @access_token.txt -d "redirect=false&type=square&width=100&height=100"  https://graph.facebook.com/me/picture -G | python -mjson.tool
+
 # Checking Permissions
 # @see Permissions with Facebook Login (https://developers.facebook.com/docs/facebook-login/permissions/v2.2)
 curl -v -d @access_token.txt https://graph.facebook.com/me/permissions -G | python -mjson.tool

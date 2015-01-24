@@ -7,26 +7,78 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		803313521A74660100E54701 /* FacebookProfileViewerClasses.h in Headers */ = {isa = PBXBuildFile; fileRef = 803313511A74660100E54701 /* FacebookProfileViewerClasses.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		803313581A74660100E54701 /* FacebookProfileViewerClasses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */; };
+		803313611A74660100E54701 /* FacebookProfileViewerClassesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803313601A74660100E54701 /* FacebookProfileViewerClassesTests.swift */; };
+		803313641A74660100E54701 /* FacebookProfileViewerClasses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */; };
+		803313651A74660100E54701 /* FacebookProfileViewerClasses.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		803313771A74661500E54701 /* FacebookProfileViewerUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 803313761A74661500E54701 /* FacebookProfileViewerUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		803313891A74661500E54701 /* FacebookProfileViewerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803313721A74661500E54701 /* FacebookProfileViewerUI.framework */; };
+		8033138A1A74661500E54701 /* FacebookProfileViewerUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803313721A74661500E54701 /* FacebookProfileViewerUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		80C3B05B1A70506A0004CBDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05A1A70506A0004CBDE /* AppDelegate.swift */; };
 		80C3B05E1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05C1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld */; };
 		80C3B0601A70506A0004CBDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05F1A70506A0004CBDE /* ViewController.swift */; };
 		80C3B0631A70506A0004CBDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0611A70506A0004CBDE /* Main.storyboard */; };
 		80C3B0651A70506A0004CBDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0641A70506A0004CBDE /* Images.xcassets */; };
 		80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0661A70506A0004CBDE /* LaunchScreen.xib */; };
-		80C3B0741A70506A0004CBDE /* FacebookProfileViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B0731A70506A0004CBDE /* FacebookProfileViewerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		80C3B06E1A70506A0004CBDE /* PBXContainerItemProxy */ = {
+		803313591A74660100E54701 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80C3B04D1A70506A0004CBDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8033134C1A74660100E54701;
+			remoteInfo = FacebookProfileViewerClasses;
+		};
+		8033135B1A74660100E54701 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 80C3B04D1A70506A0004CBDE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 80C3B0541A70506A0004CBDE;
 			remoteInfo = FacebookProfileViewer;
 		};
+		803313621A74660100E54701 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80C3B04D1A70506A0004CBDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8033134C1A74660100E54701;
+			remoteInfo = FacebookProfileViewerClasses;
+		};
+		803313871A74661500E54701 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80C3B04D1A70506A0004CBDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 803313711A74661500E54701;
+			remoteInfo = FacebookProfileViewerUI;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8033136B1A74660100E54701 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8033138A1A74661500E54701 /* FacebookProfileViewerUI.framework in Embed Frameworks */,
+				803313651A74660100E54701 /* FacebookProfileViewerClasses.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FacebookProfileViewerClasses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		803313501A74660100E54701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		803313511A74660100E54701 /* FacebookProfileViewerClasses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FacebookProfileViewerClasses.h; sourceTree = "<group>"; };
+		803313571A74660100E54701 /* FacebookProfileViewerClassesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacebookProfileViewerClassesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8033135F1A74660100E54701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		803313601A74660100E54701 /* FacebookProfileViewerClassesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookProfileViewerClassesTests.swift; sourceTree = "<group>"; };
+		803313721A74661500E54701 /* FacebookProfileViewerUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FacebookProfileViewerUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		803313751A74661500E54701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		803313761A74661500E54701 /* FacebookProfileViewerUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FacebookProfileViewerUI.h; sourceTree = "<group>"; };
 		80C3B0551A70506A0004CBDE /* FacebookProfileViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookProfileViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C3B0591A70506A0004CBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80C3B05A1A70506A0004CBDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -35,34 +87,101 @@
 		80C3B0621A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80C3B0641A70506A0004CBDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80C3B0671A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		80C3B06D1A70506A0004CBDE /* FacebookProfileViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacebookProfileViewerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		80C3B0721A70506A0004CBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		80C3B0731A70506A0004CBDE /* FacebookProfileViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookProfileViewerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		80C3B0521A70506A0004CBDE /* Frameworks */ = {
+		803313491A74660100E54701 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		80C3B06A1A70506A0004CBDE /* Frameworks */ = {
+		803313541A74660100E54701 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803313581A74660100E54701 /* FacebookProfileViewerClasses.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8033136E1A74661500E54701 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80C3B0521A70506A0004CBDE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				803313891A74661500E54701 /* FacebookProfileViewerUI.framework in Frameworks */,
+				803313641A74660100E54701 /* FacebookProfileViewerClasses.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8033134E1A74660100E54701 /* FacebookProfileViewerClasses */ = {
+			isa = PBXGroup;
+			children = (
+				803313511A74660100E54701 /* FacebookProfileViewerClasses.h */,
+				8033134F1A74660100E54701 /* Supporting Files */,
+			);
+			path = FacebookProfileViewerClasses;
+			sourceTree = "<group>";
+		};
+		8033134F1A74660100E54701 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				803313501A74660100E54701 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8033135D1A74660100E54701 /* FacebookProfileViewerClassesTests */ = {
+			isa = PBXGroup;
+			children = (
+				803313601A74660100E54701 /* FacebookProfileViewerClassesTests.swift */,
+				8033135E1A74660100E54701 /* Supporting Files */,
+			);
+			path = FacebookProfileViewerClassesTests;
+			sourceTree = "<group>";
+		};
+		8033135E1A74660100E54701 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8033135F1A74660100E54701 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		803313731A74661500E54701 /* FacebookProfileViewerUI */ = {
+			isa = PBXGroup;
+			children = (
+				803313761A74661500E54701 /* FacebookProfileViewerUI.h */,
+				803313741A74661500E54701 /* Supporting Files */,
+			);
+			path = FacebookProfileViewerUI;
+			sourceTree = "<group>";
+		};
+		803313741A74661500E54701 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				803313751A74661500E54701 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		80C3B04C1A70506A0004CBDE = {
 			isa = PBXGroup;
 			children = (
 				80C3B0571A70506A0004CBDE /* FacebookProfileViewer */,
-				80C3B0701A70506A0004CBDE /* FacebookProfileViewerTests */,
+				8033134E1A74660100E54701 /* FacebookProfileViewerClasses */,
+				8033135D1A74660100E54701 /* FacebookProfileViewerClassesTests */,
+				803313731A74661500E54701 /* FacebookProfileViewerUI */,
 				80C3B0561A70506A0004CBDE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -71,7 +190,9 @@
 			isa = PBXGroup;
 			children = (
 				80C3B0551A70506A0004CBDE /* FacebookProfileViewer.app */,
-				80C3B06D1A70506A0004CBDE /* FacebookProfileViewerTests.xctest */,
+				8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */,
+				803313571A74660100E54701 /* FacebookProfileViewerClassesTests.xctest */,
+				803313721A74661500E54701 /* FacebookProfileViewerUI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -90,18 +211,83 @@
 			path = FacebookProfileViewer;
 			sourceTree = "<group>";
 		};
-		80C3B0701A70506A0004CBDE /* FacebookProfileViewerTests */ = {
-			isa = PBXGroup;
-			children = (
-				80C3B0731A70506A0004CBDE /* FacebookProfileViewerTests.swift */,
-				80C3B0721A70506A0004CBDE /* Info.plist */,
-			);
-			path = FacebookProfileViewerTests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		8033134A1A74660100E54701 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				803313521A74660100E54701 /* FacebookProfileViewerClasses.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8033136F1A74661500E54701 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				803313771A74661500E54701 /* FacebookProfileViewerUI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		8033134C1A74660100E54701 /* FacebookProfileViewerClasses */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8033136A1A74660100E54701 /* Build configuration list for PBXNativeTarget "FacebookProfileViewerClasses" */;
+			buildPhases = (
+				803313481A74660100E54701 /* Sources */,
+				803313491A74660100E54701 /* Frameworks */,
+				8033134A1A74660100E54701 /* Headers */,
+				8033134B1A74660100E54701 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FacebookProfileViewerClasses;
+			productName = FacebookProfileViewerClasses;
+			productReference = 8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		803313561A74660100E54701 /* FacebookProfileViewerClassesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8033136C1A74660100E54701 /* Build configuration list for PBXNativeTarget "FacebookProfileViewerClassesTests" */;
+			buildPhases = (
+				803313531A74660100E54701 /* Sources */,
+				803313541A74660100E54701 /* Frameworks */,
+				803313551A74660100E54701 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8033135A1A74660100E54701 /* PBXTargetDependency */,
+				8033135C1A74660100E54701 /* PBXTargetDependency */,
+			);
+			name = FacebookProfileViewerClassesTests;
+			productName = FacebookProfileViewerClassesTests;
+			productReference = 803313571A74660100E54701 /* FacebookProfileViewerClassesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		803313711A74661500E54701 /* FacebookProfileViewerUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8033138B1A74661500E54701 /* Build configuration list for PBXNativeTarget "FacebookProfileViewerUI" */;
+			buildPhases = (
+				8033136D1A74661500E54701 /* Sources */,
+				8033136E1A74661500E54701 /* Frameworks */,
+				8033136F1A74661500E54701 /* Headers */,
+				803313701A74661500E54701 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FacebookProfileViewerUI;
+			productName = FacebookProfileViewerUI;
+			productReference = 803313721A74661500E54701 /* FacebookProfileViewerUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		80C3B0541A70506A0004CBDE /* FacebookProfileViewer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80C3B0771A70506A0004CBDE /* Build configuration list for PBXNativeTarget "FacebookProfileViewer" */;
@@ -109,33 +295,18 @@
 				80C3B0511A70506A0004CBDE /* Sources */,
 				80C3B0521A70506A0004CBDE /* Frameworks */,
 				80C3B0531A70506A0004CBDE /* Resources */,
+				8033136B1A74660100E54701 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				803313631A74660100E54701 /* PBXTargetDependency */,
+				803313881A74661500E54701 /* PBXTargetDependency */,
 			);
 			name = FacebookProfileViewer;
 			productName = FacebookProfileViewer;
 			productReference = 80C3B0551A70506A0004CBDE /* FacebookProfileViewer.app */;
 			productType = "com.apple.product-type.application";
-		};
-		80C3B06C1A70506A0004CBDE /* FacebookProfileViewerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 80C3B07A1A70506A0004CBDE /* Build configuration list for PBXNativeTarget "FacebookProfileViewerTests" */;
-			buildPhases = (
-				80C3B0691A70506A0004CBDE /* Sources */,
-				80C3B06A1A70506A0004CBDE /* Frameworks */,
-				80C3B06B1A70506A0004CBDE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				80C3B06F1A70506A0004CBDE /* PBXTargetDependency */,
-			);
-			name = FacebookProfileViewerTests;
-			productName = FacebookProfileViewerTests;
-			productReference = 80C3B06D1A70506A0004CBDE /* FacebookProfileViewerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -146,12 +317,18 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = WaveLabs;
 				TargetAttributes = {
-					80C3B0541A70506A0004CBDE = {
+					8033134C1A74660100E54701 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
-					80C3B06C1A70506A0004CBDE = {
+					803313561A74660100E54701 = {
 						CreatedOnToolsVersion = 6.1.1;
 						TestTargetID = 80C3B0541A70506A0004CBDE;
+					};
+					803313711A74661500E54701 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					80C3B0541A70506A0004CBDE = {
+						CreatedOnToolsVersion = 6.1.1;
 					};
 				};
 			};
@@ -169,12 +346,35 @@
 			projectRoot = "";
 			targets = (
 				80C3B0541A70506A0004CBDE /* FacebookProfileViewer */,
-				80C3B06C1A70506A0004CBDE /* FacebookProfileViewerTests */,
+				8033134C1A74660100E54701 /* FacebookProfileViewerClasses */,
+				803313561A74660100E54701 /* FacebookProfileViewerClassesTests */,
+				803313711A74661500E54701 /* FacebookProfileViewerUI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8033134B1A74660100E54701 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		803313551A74660100E54701 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		803313701A74661500E54701 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80C3B0531A70506A0004CBDE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -185,16 +385,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		80C3B06B1A70506A0004CBDE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		803313481A74660100E54701 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
+		803313531A74660100E54701 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				803313611A74660100E54701 /* FacebookProfileViewerClassesTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8033136D1A74661500E54701 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80C3B0511A70506A0004CBDE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -205,21 +420,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		80C3B0691A70506A0004CBDE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				80C3B0741A70506A0004CBDE /* FacebookProfileViewerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		80C3B06F1A70506A0004CBDE /* PBXTargetDependency */ = {
+		8033135A1A74660100E54701 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8033134C1A74660100E54701 /* FacebookProfileViewerClasses */;
+			targetProxy = 803313591A74660100E54701 /* PBXContainerItemProxy */;
+		};
+		8033135C1A74660100E54701 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 80C3B0541A70506A0004CBDE /* FacebookProfileViewer */;
-			targetProxy = 80C3B06E1A70506A0004CBDE /* PBXContainerItemProxy */;
+			targetProxy = 8033135B1A74660100E54701 /* PBXContainerItemProxy */;
+		};
+		803313631A74660100E54701 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8033134C1A74660100E54701 /* FacebookProfileViewerClasses */;
+			targetProxy = 803313621A74660100E54701 /* PBXContainerItemProxy */;
+		};
+		803313881A74661500E54701 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 803313711A74661500E54701 /* FacebookProfileViewerUI */;
+			targetProxy = 803313871A74661500E54701 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -243,6 +465,122 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		803313661A74660100E54701 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FacebookProfileViewerClasses/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		803313671A74660100E54701 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = FacebookProfileViewerClasses/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		803313681A74660100E54701 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FacebookProfileViewerClassesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FacebookProfileViewer.app/FacebookProfileViewer";
+			};
+			name = Debug;
+		};
+		803313691A74660100E54701 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FacebookProfileViewerClassesTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FacebookProfileViewer.app/FacebookProfileViewer";
+			};
+			name = Release;
+		};
+		8033138C1A74661500E54701 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = FacebookProfileViewerUI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8033138D1A74661500E54701 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = FacebookProfileViewerUI/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		80C3B0751A70506A0004CBDE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -340,43 +678,33 @@
 			};
 			name = Release;
 		};
-		80C3B07B1A70506A0004CBDE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = FacebookProfileViewerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FacebookProfileViewer.app/FacebookProfileViewer";
-			};
-			name = Debug;
-		};
-		80C3B07C1A70506A0004CBDE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = FacebookProfileViewerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FacebookProfileViewer.app/FacebookProfileViewer";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8033136A1A74660100E54701 /* Build configuration list for PBXNativeTarget "FacebookProfileViewerClasses" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				803313661A74660100E54701 /* Debug */,
+				803313671A74660100E54701 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8033136C1A74660100E54701 /* Build configuration list for PBXNativeTarget "FacebookProfileViewerClassesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				803313681A74660100E54701 /* Debug */,
+				803313691A74660100E54701 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8033138B1A74661500E54701 /* Build configuration list for PBXNativeTarget "FacebookProfileViewerUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8033138C1A74661500E54701 /* Debug */,
+				8033138D1A74661500E54701 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		80C3B0501A70506A0004CBDE /* Build configuration list for PBXProject "FacebookProfileViewer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -391,15 +719,6 @@
 			buildConfigurations = (
 				80C3B0781A70506A0004CBDE /* Debug */,
 				80C3B0791A70506A0004CBDE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		80C3B07A1A70506A0004CBDE /* Build configuration list for PBXNativeTarget "FacebookProfileViewerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				80C3B07B1A70506A0004CBDE /* Debug */,
-				80C3B07C1A70506A0004CBDE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
