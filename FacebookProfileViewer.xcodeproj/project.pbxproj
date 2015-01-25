@@ -15,6 +15,9 @@
 		803313771A74661500E54701 /* FacebookProfileViewerUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 803313761A74661500E54701 /* FacebookProfileViewerUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803313891A74661500E54701 /* FacebookProfileViewerUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803313721A74661500E54701 /* FacebookProfileViewerUI.framework */; };
 		8033138A1A74661500E54701 /* FacebookProfileViewerUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803313721A74661500E54701 /* FacebookProfileViewerUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		803313941A7467EB00E54701 /* PersistenceStoreProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803313931A7467EB00E54701 /* PersistenceStoreProvider.swift */; };
+		803313961A74687A00E54701 /* PersistenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803313951A74687A00E54701 /* PersistenceStore.swift */; };
+		8033139E1A746AE600E54701 /* FacebookEndpointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */; };
 		80C3B05B1A70506A0004CBDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05A1A70506A0004CBDE /* AppDelegate.swift */; };
 		80C3B05E1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05C1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld */; };
 		80C3B0601A70506A0004CBDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05F1A70506A0004CBDE /* ViewController.swift */; };
@@ -79,6 +82,9 @@
 		803313721A74661500E54701 /* FacebookProfileViewerUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FacebookProfileViewerUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803313751A74661500E54701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		803313761A74661500E54701 /* FacebookProfileViewerUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FacebookProfileViewerUI.h; sourceTree = "<group>"; };
+		803313931A7467EB00E54701 /* PersistenceStoreProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceStoreProvider.swift; sourceTree = "<group>"; };
+		803313951A74687A00E54701 /* PersistenceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceStore.swift; sourceTree = "<group>"; };
+		8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEndpointManager.swift; sourceTree = "<group>"; };
 		80C3B0551A70506A0004CBDE /* FacebookProfileViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookProfileViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C3B0591A70506A0004CBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80C3B05A1A70506A0004CBDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,34 +134,21 @@
 			isa = PBXGroup;
 			children = (
 				803313511A74660100E54701 /* FacebookProfileViewerClasses.h */,
-				8033134F1A74660100E54701 /* Supporting Files */,
-			);
-			path = FacebookProfileViewerClasses;
-			sourceTree = "<group>";
-		};
-		8033134F1A74660100E54701 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
+				8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */,
+				803313931A7467EB00E54701 /* PersistenceStoreProvider.swift */,
+				803313951A74687A00E54701 /* PersistenceStore.swift */,
 				803313501A74660100E54701 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = FacebookProfileViewerClasses;
 			sourceTree = "<group>";
 		};
 		8033135D1A74660100E54701 /* FacebookProfileViewerClassesTests */ = {
 			isa = PBXGroup;
 			children = (
 				803313601A74660100E54701 /* FacebookProfileViewerClassesTests.swift */,
-				8033135E1A74660100E54701 /* Supporting Files */,
-			);
-			path = FacebookProfileViewerClassesTests;
-			sourceTree = "<group>";
-		};
-		8033135E1A74660100E54701 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
 				8033135F1A74660100E54701 /* Info.plist */,
 			);
-			name = "Supporting Files";
+			path = FacebookProfileViewerClassesTests;
 			sourceTree = "<group>";
 		};
 		803313731A74661500E54701 /* FacebookProfileViewerUI */ = {
@@ -392,6 +385,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803313941A7467EB00E54701 /* PersistenceStoreProvider.swift in Sources */,
+				8033139E1A746AE600E54701 /* FacebookEndpointManager.swift in Sources */,
+				803313961A74687A00E54701 /* PersistenceStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +464,7 @@
 		803313661A74660100E54701 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -482,6 +479,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -491,6 +489,7 @@
 		803313671A74660100E54701 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -688,6 +687,7 @@
 				803313671A74660100E54701 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8033136C1A74660100E54701 /* Build configuration list for PBXNativeTarget "FacebookProfileViewerClassesTests" */ = {
 			isa = XCConfigurationList;
@@ -696,6 +696,7 @@
 				803313691A74660100E54701 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8033138B1A74661500E54701 /* Build configuration list for PBXNativeTarget "FacebookProfileViewerUI" */ = {
 			isa = XCConfigurationList;
@@ -704,6 +705,7 @@
 				8033138D1A74661500E54701 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		80C3B0501A70506A0004CBDE /* Build configuration list for PBXProject "FacebookProfileViewer" */ = {
 			isa = XCConfigurationList;

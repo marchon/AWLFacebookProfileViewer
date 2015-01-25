@@ -20,20 +20,6 @@
                ReferencedContainer = "container:FacebookProfileViewer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "803313561A74660100E54701"
-               BuildableName = "FacebookProfileViewerClassesTests.xctest"
-               BlueprintName = "FacebookProfileViewerClassesTests"
-               ReferencedContainer = "container:FacebookProfileViewer.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

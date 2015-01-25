@@ -8,29 +8,30 @@
 
 import UIKit
 import XCTest
+import FacebookProfileViewerClasses
 
 class FacebookProfileViewerClassesTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
+
+  func testDownloadUserProfileImage() {
+    var exp = expectationWithDescription("Fetch picture")
+    var manager = FacebookEndpointManager()
+    var fetchTask = manager.fetchUserPictureURLDataTask({(url: String) -> Void in
+      var downloadTask = manager.profilePictureImageDownloadTask(url, success: { (image: UIImage) -> Void in
+        exp.fulfill()
+        },
+        failure: {(error: NSError) -> Void in
+          XCTFail("Should not be called")
+      })
+
+      XCTAssertNotNil(downloadTask)
+      downloadTask?.resume()
+    }, failure: {(error: NSError) -> Void in
+      XCTFail("Should not be called")
+    })
+
+    XCTAssertNotNil(fetchTask)
+    fetchTask?.resume()
+    waitForExpectationsWithTimeout(100, handler: nil)
+  }
+
 }
