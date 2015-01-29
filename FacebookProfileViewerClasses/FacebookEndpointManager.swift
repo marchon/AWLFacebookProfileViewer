@@ -5,44 +5,10 @@
 
 import UIKit
 
-public class FacebookEndpointManager {
+extension FacebookEndpointManager {
 
-  let OperationErrorDomain = "FacebookTaskErrorDomain"
-  enum OperationErrorCode: Int {
-    case ServerError = -101
-    case ResponseDataIsMissed = -102
-    case UnexpectedResponseCode = -103
-    case MissedAttribute = -104
-    case HandleDownloadError = -105
-  }
-
-  var session: NSURLSession
-  var persistenceStore: PersistenceStoreProvider
-
-  public init() {
-    var sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
-    sessionConfig.HTTPAdditionalHeaders = ["Accept": "application/json"]
-    sessionConfig.timeoutIntervalForRequest = 30.0;
-    sessionConfig.timeoutIntervalForResource = 60.0;
-    sessionConfig.HTTPMaximumConnectionsPerHost = 1;
-
-    session = NSURLSession(configuration: sessionConfig)
-    session.sessionDescription = "Facebook Profile Viewer Session"
-
-    persistenceStore = PersistenceStore()
-  }
-
-  // Every element is a string in key=value format
-  class func requestQueryFromParameters(elements: [String]) -> String {
-    if elements.count > 0 {
-      return elements[1..<elements.count].reduce(elements[0], {$0 + "&" + $1})
-    } else {
-      return elements[0]
-    }
-  }
-
-
-  public func fetchUserPictureURLDataTask(success: (url: String) -> Void, failure: (error: NSError) -> Void) -> NSURLSessionDataTask? {
+  public func fetchUserPictureURLDataTask(success: (url: String) -> Void,
+    failure: (error: NSError) -> Void) -> NSURLSessionDataTask? {
 
     var endpointURL: NSURL?
 
@@ -93,7 +59,8 @@ public class FacebookEndpointManager {
     return task
   }
 
-  public func profilePictureImageDownloadTask(URLString: String, success: (image: UIImage) -> Void, failure: (error: NSError) -> Void) -> NSURLSessionDownloadTask? {
+  public func profilePictureImageDownloadTask(URLString: String, success: (image: UIImage) -> Void,
+    failure: (error: NSError) -> Void) -> NSURLSessionDownloadTask? {
     if let url = NSURL(string: URLString) {
       let task = session.downloadTaskWithURL(url, completionHandler: { [weak self] (location: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
 
@@ -111,11 +78,57 @@ public class FacebookEndpointManager {
           failure(error: e)
         }
       })
-
+      
       return task
     }
     return nil
   }
+}
+
+//MARK: -
+
+public class FacebookEndpointManager {
+
+  enum OperationErrorCode: Int {
+    case ServerError = -101
+    case ResponseDataIsMissed = -102
+    case UnexpectedResponseCode = -103
+    case MissedAttribute = -104
+    case HandleDownloadError = -105
+  }
+
+  let OperationErrorDomain = "FacebookTaskErrorDomain"
+
+  var session: NSURLSession
+  var persistenceStore: PersistenceStoreProvider
+
+  //MARK: - Initialization
+
+  public init() {
+    var sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
+    sessionConfig.HTTPAdditionalHeaders = ["Accept": "application/json"]
+    sessionConfig.timeoutIntervalForRequest = 30.0;
+    sessionConfig.timeoutIntervalForResource = 60.0;
+    sessionConfig.HTTPMaximumConnectionsPerHost = 1;
+
+    session = NSURLSession(configuration: sessionConfig)
+    session.sessionDescription = "Facebook Profile Viewer Session"
+
+    persistenceStore = PersistenceStore()
+  }
+
+  //MARK: - Internal Static
+
+  // Every element is a string in key=value format
+  class func requestQueryFromParameters(elements: [String]) -> String {
+    if elements.count > 0 {
+      return elements[1..<elements.count].reduce(elements[0], {$0 + "&" + $1})
+    } else {
+      return elements[0]
+    }
+  }
+
+  //MARK: - Internal
 
   func handleResponse(data: NSData?, response: NSURLResponse?) -> (data: NSDictionary?, error: NSError?) {
     if response is NSHTTPURLResponse {
@@ -158,3 +171,5 @@ public class FacebookEndpointManager {
   }
   
 }
+
+

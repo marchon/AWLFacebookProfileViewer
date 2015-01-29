@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80205E8F1A7996670042E94A /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E8E1A7996670042E94A /* Friend.swift */; };
+		80205E911A7996670042E94A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E901A7996670042E94A /* Post.swift */; };
+		80205E931A7996670042E94A /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E921A7996670042E94A /* Profile.swift */; };
 		803313521A74660100E54701 /* FacebookProfileViewerClasses.h in Headers */ = {isa = PBXBuildFile; fileRef = 803313511A74660100E54701 /* FacebookProfileViewerClasses.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803313581A74660100E54701 /* FacebookProfileViewerClasses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */; };
 		803313611A74660100E54701 /* FacebookProfileViewerClassesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803313601A74660100E54701 /* FacebookProfileViewerClassesTests.swift */; };
@@ -18,9 +21,14 @@
 		803313941A7467EB00E54701 /* PersistenceStoreProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803313931A7467EB00E54701 /* PersistenceStoreProvider.swift */; };
 		803313961A74687A00E54701 /* PersistenceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803313951A74687A00E54701 /* PersistenceStore.swift */; };
 		8033139E1A746AE600E54701 /* FacebookEndpointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */; };
+		807E28631A7A578B005DBF05 /* UserProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 807E28621A7A578B005DBF05 /* UserProfile.xib */; };
+		807E28651A7A57EB005DBF05 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E28641A7A57EB005DBF05 /* UserProfile.swift */; };
+		807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E28661A7A58A3005DBF05 /* NibDesignable.swift */; };
+		807E28691A7A5C94005DBF05 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E28681A7A5C94005DBF05 /* PostsTableViewController.swift */; };
+		807E286B1A7A5CB9005DBF05 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E286A1A7A5CB9005DBF05 /* FriendsTableViewController.swift */; };
 		80C3B05B1A70506A0004CBDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05A1A70506A0004CBDE /* AppDelegate.swift */; };
 		80C3B05E1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05C1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld */; };
-		80C3B0601A70506A0004CBDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05F1A70506A0004CBDE /* ViewController.swift */; };
+		80C3B0601A70506A0004CBDE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05F1A70506A0004CBDE /* MainViewController.swift */; };
 		80C3B0631A70506A0004CBDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0611A70506A0004CBDE /* Main.storyboard */; };
 		80C3B0651A70506A0004CBDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0641A70506A0004CBDE /* Images.xcassets */; };
 		80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0661A70506A0004CBDE /* LaunchScreen.xib */; };
@@ -73,6 +81,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		80205E8E1A7996670042E94A /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		80205E901A7996670042E94A /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		80205E921A7996670042E94A /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FacebookProfileViewerClasses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803313501A74660100E54701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		803313511A74660100E54701 /* FacebookProfileViewerClasses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FacebookProfileViewerClasses.h; sourceTree = "<group>"; };
@@ -85,11 +96,16 @@
 		803313931A7467EB00E54701 /* PersistenceStoreProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceStoreProvider.swift; sourceTree = "<group>"; };
 		803313951A74687A00E54701 /* PersistenceStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceStore.swift; sourceTree = "<group>"; };
 		8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEndpointManager.swift; sourceTree = "<group>"; };
+		807E28621A7A578B005DBF05 /* UserProfile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfile.xib; sourceTree = "<group>"; };
+		807E28641A7A57EB005DBF05 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		807E28661A7A58A3005DBF05 /* NibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
+		807E28681A7A5C94005DBF05 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
+		807E286A1A7A5CB9005DBF05 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		80C3B0551A70506A0004CBDE /* FacebookProfileViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookProfileViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C3B0591A70506A0004CBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80C3B05A1A70506A0004CBDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80C3B05D1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FacebookProfileViewer.xcdatamodel; sourceTree = "<group>"; };
-		80C3B05F1A70506A0004CBDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		80C3B05F1A70506A0004CBDE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		80C3B0621A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80C3B0641A70506A0004CBDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80C3B0671A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -133,11 +149,11 @@
 		8033134E1A74660100E54701 /* FacebookProfileViewerClasses */ = {
 			isa = PBXGroup;
 			children = (
-				803313511A74660100E54701 /* FacebookProfileViewerClasses.h */,
+				807E28611A7A50DC005DBF05 /* Supporting Files */,
+				807E28601A7A50A4005DBF05 /* Core Data */,
 				8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */,
 				803313931A7467EB00E54701 /* PersistenceStoreProvider.swift */,
 				803313951A74687A00E54701 /* PersistenceStore.swift */,
-				803313501A74660100E54701 /* Info.plist */,
 			);
 			path = FacebookProfileViewerClasses;
 			sourceTree = "<group>";
@@ -154,8 +170,12 @@
 		803313731A74661500E54701 /* FacebookProfileViewerUI */ = {
 			isa = PBXGroup;
 			children = (
-				803313761A74661500E54701 /* FacebookProfileViewerUI.h */,
 				803313741A74661500E54701 /* Supporting Files */,
+				807E28661A7A58A3005DBF05 /* NibDesignable.swift */,
+				807E28641A7A57EB005DBF05 /* UserProfile.swift */,
+				807E28621A7A578B005DBF05 /* UserProfile.xib */,
+				807E28681A7A5C94005DBF05 /* PostsTableViewController.swift */,
+				807E286A1A7A5CB9005DBF05 /* FriendsTableViewController.swift */,
 			);
 			path = FacebookProfileViewerUI;
 			sourceTree = "<group>";
@@ -163,7 +183,27 @@
 		803313741A74661500E54701 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				803313761A74661500E54701 /* FacebookProfileViewerUI.h */,
 				803313751A74661500E54701 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		807E28601A7A50A4005DBF05 /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				80205E921A7996670042E94A /* Profile.swift */,
+				80205E901A7996670042E94A /* Post.swift */,
+				80205E8E1A7996670042E94A /* Friend.swift */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		807E28611A7A50DC005DBF05 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				803313501A74660100E54701 /* Info.plist */,
+				803313511A74660100E54701 /* FacebookProfileViewerClasses.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -172,9 +212,9 @@
 			isa = PBXGroup;
 			children = (
 				80C3B0571A70506A0004CBDE /* FacebookProfileViewer */,
+				803313731A74661500E54701 /* FacebookProfileViewerUI */,
 				8033134E1A74660100E54701 /* FacebookProfileViewerClasses */,
 				8033135D1A74660100E54701 /* FacebookProfileViewerClassesTests */,
-				803313731A74661500E54701 /* FacebookProfileViewerUI */,
 				80C3B0561A70506A0004CBDE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -194,7 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				80C3B05A1A70506A0004CBDE /* AppDelegate.swift */,
-				80C3B05F1A70506A0004CBDE /* ViewController.swift */,
+				80C3B05F1A70506A0004CBDE /* MainViewController.swift */,
 				80C3B0611A70506A0004CBDE /* Main.storyboard */,
 				80C3B0641A70506A0004CBDE /* Images.xcassets */,
 				80C3B0661A70506A0004CBDE /* LaunchScreen.xib */,
@@ -365,6 +405,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				807E28631A7A578B005DBF05 /* UserProfile.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,8 +427,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				803313941A7467EB00E54701 /* PersistenceStoreProvider.swift in Sources */,
+				80205E931A7996670042E94A /* Profile.swift in Sources */,
 				8033139E1A746AE600E54701 /* FacebookEndpointManager.swift in Sources */,
 				803313961A74687A00E54701 /* PersistenceStore.swift in Sources */,
+				80205E8F1A7996670042E94A /* Friend.swift in Sources */,
+				80205E911A7996670042E94A /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +447,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				807E28691A7A5C94005DBF05 /* PostsTableViewController.swift in Sources */,
+				807E28651A7A57EB005DBF05 /* UserProfile.swift in Sources */,
+				807E286B1A7A5CB9005DBF05 /* FriendsTableViewController.swift in Sources */,
+				807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80C3B0601A70506A0004CBDE /* ViewController.swift in Sources */,
+				80C3B0601A70506A0004CBDE /* MainViewController.swift in Sources */,
 				80C3B05B1A70506A0004CBDE /* AppDelegate.swift in Sources */,
 				80C3B05E1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld in Sources */,
 			);
@@ -541,6 +589,7 @@
 		8033138C1A74661500E54701 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -555,6 +604,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -564,6 +614,7 @@
 		8033138D1A74661500E54701 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
