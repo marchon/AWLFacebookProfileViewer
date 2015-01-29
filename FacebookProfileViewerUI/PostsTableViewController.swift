@@ -18,7 +18,7 @@ class PostsTableViewController : UITableViewController {
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as UITableViewCell
-    cell.textLabel?.text = "\(indexPath.row)";
+    cell.textLabel?.text = "p: \(indexPath.row)";
     return cell
   }
 

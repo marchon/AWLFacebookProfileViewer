@@ -100,7 +100,10 @@ public class FacebookEndpointManager {
   let OperationErrorDomain = "FacebookTaskErrorDomain"
 
   var session: NSURLSession
-  var persistenceStore: PersistenceStoreProvider
+  private var _persistenceStore: PersistenceStoreProvider
+  public var persistenceStore: PersistenceStoreProvider {
+    return _persistenceStore
+  }
 
   //MARK: - Initialization
 
@@ -114,7 +117,7 @@ public class FacebookEndpointManager {
     session = NSURLSession(configuration: sessionConfig)
     session.sessionDescription = "Facebook Profile Viewer Session"
 
-    persistenceStore = PersistenceStore()
+    _persistenceStore = PersistenceStore()
   }
 
   //MARK: - Internal Static

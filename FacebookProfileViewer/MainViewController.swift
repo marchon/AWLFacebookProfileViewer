@@ -7,9 +7,115 @@
 //
 
 import UIKit
+import CoreData
+
 import FacebookProfileViewerUI
+import FacebookProfileViewerClasses
 
 class MainViewController: UIViewController {
+
+  @IBOutlet weak var bottomView: UIView!
+
+  private var postsViewControoler: UIViewController!
+  private var friendsViewControoler: UIViewController!
+  private var activeControllerType: ChildControllerType!
+  lazy private var backendManager: FacebookEndpointManager = {
+    return FacebookEndpointManager()
+    }()
+
+  var managedObjectContext: NSManagedObjectContext!
+
+  //MARK: - Internal
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    loadChildControllers()
+    fetchProfile()
+  }
+
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    for item in childViewControllers {
+      (item as UIViewController).view.frame = bottomView.bounds
+    }
+  }
+
+  //MARK: - Private
+
+  private func updateProfileInformation(profile: Profile) {
+
+  }
+
+}
+
+//MARK: - Networking
+
+extension MainViewController {
+  private func fetchProfileFromServer() {
+    var fetchTask = backendManager.fetchUserPictureURLDataTask({ [weak self] (url: String) -> Void in
+
+      if let this = self {
+        var downloadTask = this.backendManager.profilePictureImageDownloadTask(url,
+          success: {(image: UIImage) -> Void in
+
+          },
+          failure: {(error: NSError) -> Void in
+            logError(this.removeSensisiveInformationFromError(error))
+          }
+        )
+        downloadTask?.resume()
+      }
+
+      },
+      failure: { [weak self] (error: NSError) -> Void in
+        if let this = self {
+          logError(this.removeSensisiveInformationFromError(error))
+        }
+      }
+    )
+
+    fetchTask?.resume()
+  }
+
+  private func removeSensisiveInformationFromError(error: NSError) -> String {
+    if let token = backendManager.persistenceStore.facebookAccesToken {
+      return error.description.stringByReplacingOccurrencesOfString(token, withString: "TOKEN-WAS-STRIPPED")
+    } else {
+      return error.description
+    }
+  }
+}
+
+//MARK: - Persistence
+
+extension MainViewController {
+
+  private func fetchProfile() {
+    let fetchRequest = NSFetchRequest()
+    let entityName = Profile.description().componentsSeparatedByString(".").last!
+    let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.managedObjectContext)
+    fetchRequest.entity = entityDescription
+
+    var fetchError: NSError?
+    var fetchResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &fetchError)
+
+    if let results = fetchResults {
+      if results.count == 0 { // Profile not yet fetched from server
+        fetchProfileFromServer()
+      } else {
+        var profileRecord = results.first as Profile
+        updateProfileInformation(profileRecord)
+      }
+    } else {
+      logError(fetchError!)
+    }
+  }
+
+}
+
+//MARK: - Child View Controllers
+
+extension MainViewController {
 
   enum ChildControllerType : Int {
     case Posts
@@ -23,23 +129,14 @@ class MainViewController: UIViewController {
     }
   }
 
-  @IBOutlet weak var bottomView: UIView!
-
-  private var postsViewControoler: UIViewController!
-  private var friendsViewControoler: UIViewController!
-  private var activeControllerType: ChildControllerType!
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    loadChildControllers()
-  }
-
   @IBAction func switchBottomView(sender: UISegmentedControl?) {
     let type = ChildControllerType(rawValue: sender?.selectedSegmentIndex ?? 0) ?? ChildControllerType.Posts
     switchToChildViewController(type)
   }
 
-  func loadChildControllers() {
+  //MARK: - Private
+
+  private func loadChildControllers() {
 
     activeControllerType = .Posts
 
@@ -56,14 +153,7 @@ class MainViewController: UIViewController {
     friendsViewControoler.didMoveToParentViewController(self)
   }
 
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-    for item in childViewControllers {
-      (item as UIViewController).view.frame = bottomView.bounds
-    }
-  }
-
-  func switchToChildViewController(type: ChildControllerType) {
+  private func switchToChildViewController(type: ChildControllerType) {
     if type == activeControllerType {
       return // Nothing to do
     }
@@ -71,10 +161,10 @@ class MainViewController: UIViewController {
     let from = type == .Posts ? friendsViewControoler : postsViewControoler
     let to = type == .Posts ? postsViewControoler : friendsViewControoler
 
-//    to.view.frame = from.view.frame
     transitionFromViewController(from, toViewController: to, duration: 0.4, options: UIViewAnimationOptions.allZeros,
       animations: nil, completion: nil)
     activeControllerType = activeControllerType.opposite()
   }
+  
 }
 

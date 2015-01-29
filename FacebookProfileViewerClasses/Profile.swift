@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Profile: NSManagedObject {
+public class Profile: NSManagedObject {
 
     @NSManaged var avatarPicture: NSData
     @NSManaged var userName: String

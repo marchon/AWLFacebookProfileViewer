@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+    if let ctrl = self.window?.rootViewController as? MainViewController {
+      ctrl.managedObjectContext = self.managedObjectContext
+    }
     return true
   }
 

@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-class Post: NSManagedObject {
+public class Post: NSManagedObject {
 
     @NSManaged var text: String
     @NSManaged var image: NSData

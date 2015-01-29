@@ -22,7 +22,7 @@ class FriendsTableViewController : UITableViewController {
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as UITableViewCell
-    cell.textLabel?.text = "\(indexPath.row)";
+    cell.textLabel?.text = "f: \(indexPath.row)";
     return cell
   }
 

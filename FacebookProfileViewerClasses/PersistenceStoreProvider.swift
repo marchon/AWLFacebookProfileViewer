@@ -5,6 +5,6 @@
 
 import Foundation
 
-protocol PersistenceStoreProvider {
+public protocol PersistenceStoreProvider {
    var facebookAccesToken: String? {get set}
 }
