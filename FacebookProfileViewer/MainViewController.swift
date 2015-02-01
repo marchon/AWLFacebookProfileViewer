@@ -15,6 +15,7 @@ import FacebookProfileViewerClasses
 class MainViewController: UIViewController {
 
   @IBOutlet weak var bottomView: UIView!
+  @IBOutlet weak var topView: UserProfile!
 
   private var postsViewControoler: UIViewController!
   private var friendsViewControoler: UIViewController!
@@ -29,14 +30,44 @@ class MainViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+
     loadChildControllers()
-    fetchProfile()
+    if !AppState.UI.shouldShowWelcomeScreen {
+      fetchProfile()
+    }
   }
 
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     for item in childViewControllers {
       (item as UIViewController).view.frame = bottomView.bounds
+    }
+  }
+
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    if AppState.UI.shouldShowWelcomeScreen {
+      AppState.UI.shouldShowWelcomeScreen = false
+      performSegueWithIdentifier("showWelcomeScreen", sender: nil)
+    }
+  }
+
+  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    if segue.identifier == "showWelcomeScreen" {
+      let nc = segue.destinationViewController as UINavigationController
+      let ctrl = nc.viewControllers.first as WelcomeScreenViewController
+      ctrl.canceled = {
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+        })
+      }
+      ctrl.success = { (tokenInfo: (accessToken: String, expiresIn: Int)) -> () in
+        var ps = self.backendManager.persistenceStore
+        ps.facebookAccesToken = tokenInfo.accessToken
+        ps.facebookAccesTokenExpitesIn = tokenInfo.expiresIn
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+          self.fetchProfile()
+        })
+      }
     }
   }
 
@@ -57,7 +88,9 @@ extension MainViewController {
       if let this = self {
         var downloadTask = this.backendManager.profilePictureImageDownloadTask(url,
           success: {(image: UIImage) -> Void in
-
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+              this.topView.profileAvatar.image = image
+            })
           },
           failure: {(error: NSError) -> Void in
             logError(this.removeSensisiveInformationFromError(error))

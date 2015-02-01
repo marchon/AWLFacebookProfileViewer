@@ -56,11 +56,13 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="bottomView" destination="NEU-gB-xkn" id="SZK-FP-prT"/>
+                        <outlet property="topView" destination="c6t-Kr-tvE" id="IVK-9L-duv"/>
+                        <segue destination="djE-6o-e9M" kind="presentation" identifier="showWelcomeScreen" id="wXT-Md-aK9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-231" y="189"/>
+            <point key="canvasLocation" x="-293" y="189"/>
         </scene>
         <!--Posts Table View Controller-->
         <scene sceneID="caR-XA-cnm">
@@ -133,6 +135,104 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="08a-g0-ip9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="482" y="233"/>
+        </scene>
+        <!--Login Screen View Controller-->
+        <scene sceneID="cXL-TJ-N5p">
+            <objects>
+                <viewController id="USC-5o-nec" customClass="LoginScreenViewController" customModule="FacebookProfileViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="R6e-IO-SyZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yky-RH-wsK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UlQ-af-44L">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwi-NC-3jw">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96640527249999997" green="0.55260038810000001" blue="0.75453959599999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="iwi-NC-3jw" secondAttribute="bottom" id="28s-p8-fOS"/>
+                            <constraint firstItem="iwi-NC-3jw" firstAttribute="top" secondItem="UlQ-af-44L" secondAttribute="top" id="BY5-Ah-0D8"/>
+                            <constraint firstAttribute="trailing" secondItem="iwi-NC-3jw" secondAttribute="trailing" id="Ff3-e4-ZVT"/>
+                            <constraint firstItem="Yky-RH-wsK" firstAttribute="top" secondItem="iwi-NC-3jw" secondAttribute="bottom" id="JyV-jc-9K8"/>
+                            <constraint firstItem="iwi-NC-3jw" firstAttribute="leading" secondItem="UlQ-af-44L" secondAttribute="leading" id="Qv0-tA-R2O"/>
+                            <constraint firstItem="iwi-NC-3jw" firstAttribute="top" secondItem="R6e-IO-SyZ" secondAttribute="bottom" id="qf0-gI-z6b"/>
+                            <constraint firstItem="iwi-NC-3jw" firstAttribute="top" secondItem="UlQ-af-44L" secondAttribute="top" id="rNK-F9-jXy"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BY5-Ah-0D8"/>
+                                <exclude reference="qf0-gI-z6b"/>
+                                <exclude reference="JyV-jc-9K8"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="webView" destination="iwi-NC-3jw" id="5AO-Ar-hY5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ON8-mM-H0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="540" y="871"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fb6-Fl-owA">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="djE-6o-e9M" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pN2-bk-B5x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="miA-Vx-7uI">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="5ux-TN-bXN" kind="relationship" relationship="rootViewController" id="dN9-qS-cDR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NqQ-yN-f5u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-293" y="871"/>
+        </scene>
+        <!--Welcome Screen View Controller-->
+        <scene sceneID="yy5-JA-9IN">
+            <objects>
+                <viewController id="5ux-TN-bXN" customClass="WelcomeScreenViewController" customModule="FacebookProfileViewer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k7A-Tq-ccw"/>
+                        <viewControllerLayoutGuide type="bottom" id="iFN-26-uoh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="w5w-zH-S1L">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21W-DC-8QD">
+                                <rect key="frame" x="124" y="309" width="72" height="30"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="USC-5o-nec" kind="custom" identifier="showLoginScreen" customClass="CrossDissolveStoryboardSegue" customModule="FacebookProfileViewerUI" id="Xr3-ou-oI4"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGP-W7-cQ0">
+                                <rect key="frame" x="95" y="144" width="130" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.94060237510199651" blue="0.50899856639544971" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pWN-ib-Awg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7HD-mh-uth" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="125" y="871"/>
         </scene>
     </scenes>
 </document>

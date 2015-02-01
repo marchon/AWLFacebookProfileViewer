@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import FacebookProfileViewerClasses
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if let ctrl = self.window?.rootViewController as? MainViewController {
       ctrl.managedObjectContext = self.managedObjectContext
     }
+
+    logDebug("\(NSBundle.mainBundle().bundleURL)")
+    logDebug("\(self.applicationDocumentsDirectory)")
     return true
   }
 

@@ -6,6 +6,6 @@
 import UIKit
 
 public class UserProfile : NibDesignable {
-   
+   @IBOutlet public weak var profileAvatar: UIImageView!
 }
 

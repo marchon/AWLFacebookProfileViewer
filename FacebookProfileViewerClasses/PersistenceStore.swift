@@ -6,13 +6,35 @@
 import Foundation
 
 class PersistenceStore: PersistenceStoreProvider {
-  
+
+  enum UserDefaultsKeys : String {
+    case FacebookAccessToken = "ua.com.wavelabs.FacebookAccessToken"
+    case FacebookAccessTokenExpitesIn = "ua.com.wavelabs.FacebookAccessTokenExpitesIn"
+  }
+
   var facebookAccesToken: String? {
     get {
-      return "CAAV6VKtEA90BAEPFtbvLo2NlbRUJsnAI8fNt5devgjy1sLT7nFNlTUaBPdo4xbZBG44Qh6Rk4nSJS5WBOZAq5A8TzmyKIY5JIjBPQbbKqZBVddXkNAggdfoVLeZC2kWSPqcmdpgAY98vpKdBeZBbtW81rswu5L72qiPOikEDnja4UTVgTOa3ZAhZB3t81HDI8wQ6MUK5xKU58vB9fqcGfRY"
+      return NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.FacebookAccessToken.rawValue)
     }
     set {
-      // Nothing to do for now
+      if let value = newValue {
+        NSUserDefaults.standardUserDefaults().setObject(value, forKey: UserDefaultsKeys.FacebookAccessToken.rawValue)
+      } else {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeys.FacebookAccessToken.rawValue)
+      }
+    }
+  }
+
+  var facebookAccesTokenExpitesIn: Int? {
+    get {
+      return NSUserDefaults.standardUserDefaults().integerForKey(UserDefaultsKeys.FacebookAccessTokenExpitesIn.rawValue)
+    }
+    set {
+      if let value = newValue {
+        NSUserDefaults.standardUserDefaults().setInteger(value, forKey: UserDefaultsKeys.FacebookAccessTokenExpitesIn.rawValue)
+      } else {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeys.FacebookAccessTokenExpitesIn.rawValue)
+      }
     }
   }
 }

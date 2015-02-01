@@ -18,7 +18,7 @@ extension FacebookEndpointManager {
         "width=100",
         "height=100",
         "access_token=\(accesToken)"]
-      var query = FacebookEndpointManager.requestQueryFromParameters(queryElements)
+      var query = NSURL.requestQueryFromParameters(queryElements)
       endpointURL = NSURL(string: "https://graph.facebook.com/me/picture?\(query)")
     }
 
@@ -69,6 +69,7 @@ extension FacebookEndpointManager {
             if let data = NSData(contentsOfURL: location) {
               if let image = UIImage(data: data) {
                 success(image: image)
+                return
               }
             }
           }
@@ -118,17 +119,6 @@ public class FacebookEndpointManager {
     session.sessionDescription = "Facebook Profile Viewer Session"
 
     _persistenceStore = PersistenceStore()
-  }
-
-  //MARK: - Internal Static
-
-  // Every element is a string in key=value format
-  class func requestQueryFromParameters(elements: [String]) -> String {
-    if elements.count > 0 {
-      return elements[1..<elements.count].reduce(elements[0], {$0 + "&" + $1})
-    } else {
-      return elements[0]
-    }
   }
 
   //MARK: - Internal

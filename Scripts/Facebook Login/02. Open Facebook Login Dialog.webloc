@@ -3,8 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>URL</key>
-	<string>https://www.facebook.com/dialog/oauth?client_id=1541878952756189&amp;redirect_uri=http://127.0.0.1:8888&amp;scope=public_profile,email,user_friends,user_birthday,user_hometown,user_friends,user_work_history,user_about_me,user_photos,publish_actions,read_stream&amp;response_type=token</string>
+	<string>https://www.facebook.com/dialog/oauth?client_id=666485263474653&amp;redirect_uri=http://127.0.0.1:8888&amp;scope=public_profile,email,user_friends,user_birthday,user_hometown,user_friends,user_work_history,user_about_me,user_photos,publish_actions,read_stream&amp;response_type=token</string>
 	<key>URL_</key>
-	<string>https://www.facebook.com/dialog/oauth?client_id=1541878952756189&amp;redirect_uri=http://127.0.0.1:8888&amp;scope=public_profile,email,user_friends,read_stream&amp;response_type=token</string>
+	<string>https://www.facebook.com/dialog/oauth?client_id=666485263474653&amp;redirect_uri=http://127.0.0.1:8888&amp;scope=public_profile,email,user_friends,read_stream&amp;response_type=token</string>
 </dict>
 </plist>
