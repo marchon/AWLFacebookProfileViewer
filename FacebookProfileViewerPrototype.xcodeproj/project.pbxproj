@@ -8,22 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		80C3B02D1A704E3D0004CBDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B02C1A704E3D0004CBDE /* AppDelegate.swift */; };
-		80C3B02F1A704E3D0004CBDE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B02E1A704E3D0004CBDE /* ViewController.swift */; };
+		80C3B02F1A704E3D0004CBDE /* ViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B02E1A704E3D0004CBDE /* ViewControllers.swift */; };
 		80C3B0321A704E3D0004CBDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0301A704E3D0004CBDE /* Main.storyboard */; };
 		80C3B0341A704E3D0004CBDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0331A704E3D0004CBDE /* Images.xcassets */; };
 		80C3B0371A704E3D0004CBDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0351A704E3D0004CBDE /* LaunchScreen.xib */; };
 		80C3B07E1A705C050004CBDE /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B07D1A705C050004CBDE /* Media.xcassets */; };
+		80CFEE8E1A7E832000D47E62 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFEE8D1A7E832000D47E62 /* Button.swift */; };
+		80CFEE901A7E86E400D47E62 /* StoryboardSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFEE8F1A7E86E400D47E62 /* StoryboardSegues.swift */; };
+		80CFEE931A7E881E00D47E62 /* GenericNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFEE921A7E881E00D47E62 /* GenericNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		80C3B0271A704E3D0004CBDE /* FacebookProfileViewerPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookProfileViewerPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C3B02B1A704E3D0004CBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80C3B02C1A704E3D0004CBDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		80C3B02E1A704E3D0004CBDE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		80C3B02E1A704E3D0004CBDE /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
 		80C3B0311A704E3D0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80C3B0331A704E3D0004CBDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80C3B0361A704E3D0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80C3B07D1A705C050004CBDE /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		80CFEE8D1A7E832000D47E62 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		80CFEE8F1A7E86E400D47E62 /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
+		80CFEE921A7E881E00D47E62 /* GenericNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericNavigationController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +62,26 @@
 		80C3B0291A704E3D0004CBDE /* FacebookProfileViewerPrototype */ = {
 			isa = PBXGroup;
 			children = (
-				80C3B02C1A704E3D0004CBDE /* AppDelegate.swift */,
-				80C3B02E1A704E3D0004CBDE /* ViewController.swift */,
+				80CFEE911A7E86F200D47E62 /* Supporting files */,
+				80C3B02E1A704E3D0004CBDE /* ViewControllers.swift */,
 				80C3B0301A704E3D0004CBDE /* Main.storyboard */,
 				80C3B0351A704E3D0004CBDE /* LaunchScreen.xib */,
 				80C3B0331A704E3D0004CBDE /* Images.xcassets */,
 				80C3B07D1A705C050004CBDE /* Media.xcassets */,
-				80C3B02B1A704E3D0004CBDE /* Info.plist */,
 			);
 			path = FacebookProfileViewerPrototype;
+			sourceTree = "<group>";
+		};
+		80CFEE911A7E86F200D47E62 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				80C3B02B1A704E3D0004CBDE /* Info.plist */,
+				80C3B02C1A704E3D0004CBDE /* AppDelegate.swift */,
+				80CFEE8D1A7E832000D47E62 /* Button.swift */,
+				80CFEE8F1A7E86E400D47E62 /* StoryboardSegues.swift */,
+				80CFEE921A7E881E00D47E62 /* GenericNavigationController.swift */,
+			);
+			name = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +155,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80C3B02F1A704E3D0004CBDE /* ViewController.swift in Sources */,
+				80C3B02F1A704E3D0004CBDE /* ViewControllers.swift in Sources */,
+				80CFEE8E1A7E832000D47E62 /* Button.swift in Sources */,
+				80CFEE931A7E881E00D47E62 /* GenericNavigationController.swift in Sources */,
+				80CFEE901A7E86E400D47E62 /* StoryboardSegues.swift in Sources */,
 				80C3B02D1A704E3D0004CBDE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

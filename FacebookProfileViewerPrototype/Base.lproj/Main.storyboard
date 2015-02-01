@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="zae-1b-LEN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EO5-Ao-Drd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Posts View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="FacebookProfileViewerPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="PostsViewController" customModule="FacebookProfileViewerPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -19,28 +19,46 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Posts" translatesAutoresizingMaskIntoConstraints="NO" id="Bbx-lr-hY8">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjQ-uP-5kE">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjQ-uP-5kE" customClass="Button" customModule="FacebookProfileViewerPrototype" customModuleProvider="target">
                                 <rect key="frame" x="165" y="193" width="150" height="23"/>
                                 <color key="backgroundColor" red="0.96640527249999997" green="0.55260038810000001" blue="0.75453959599999998" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Euc-0t-rkB" kind="show" id="oKY-ds-pPJ"/>
+                                    <segue destination="Euc-0t-rkB" kind="custom" customClass="SwitchStoryboardSegue" customModule="FacebookProfileViewerPrototype" customModuleProvider="target" id="oKY-ds-pPJ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="253" y="245"/>
+            <point key="canvasLocation" x="-561" y="951"/>
         </scene>
-        <!--View Controller-->
+        <!--Generic Navigation Controller-->
+        <scene sceneID="UYa-bB-Gg3">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="EO5-Ao-Drd" customClass="GenericNavigationController" customModule="FacebookProfileViewerPrototype" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="feK-S3-rBW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zae-1b-LEN" kind="relationship" relationship="rootViewController" id="ogm-2s-UZZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3YY-kc-tYw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-977" y="245"/>
+        </scene>
+        <!--Welcome View Controller-->
         <scene sceneID="m6i-Cz-zKV">
             <objects>
-                <viewController id="zae-1b-LEN" sceneMemberID="viewController">
+                <viewController id="zae-1b-LEN" customClass="WelcomeViewController" customModule="FacebookProfileViewerPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TD5-CR-pZk"/>
                         <viewControllerLayoutGuide type="bottom" id="Ztr-t0-ZB7"/>
@@ -52,29 +70,32 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Welcome" translatesAutoresizingMaskIntoConstraints="NO" id="ogg-hg-Rdw">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRj-DS-A0l">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YRj-DS-A0l" customClass="Button" customModule="FacebookProfileViewerPrototype" customModuleProvider="target">
                                 <rect key="frame" x="104" y="408" width="113" height="35"/>
-                                <color key="backgroundColor" red="0.96640527249999997" green="0.55260038810000001" blue="0.75453959599999998" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.96640527249999997" green="0.55260038810000001" blue="0.75453959599999998" alpha="0.57999999999999996" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="U9U-yH-9eD" kind="show" id="RWq-lh-RHP"/>
+                                    <segue destination="U9U-yH-9eD" kind="presentation" modalTransitionStyle="coverVertical" id="RWq-lh-RHP"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationItem key="navigationItem" id="OB5-zU-Y3f"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="custom" identifier="showPosts" customClass="CrossDissolveStoryboardSegue" customModule="FacebookProfileViewerPrototype" customModuleProvider="target" id="eZD-9S-gPj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4R4-lH-iqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-548" y="245"/>
+            <point key="canvasLocation" x="-561" y="245"/>
         </scene>
-        <!--View Controller-->
+        <!--Friends View Controller-->
         <scene sceneID="3c6-IA-VgM">
             <objects>
-                <viewController id="Euc-0t-rkB" sceneMemberID="viewController">
+                <viewController id="Euc-0t-rkB" customClass="FriendsViewController" customModule="FacebookProfileViewerPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fMs-kb-uwg"/>
                         <viewControllerLayoutGuide type="bottom" id="rbH-Ur-snb"/>
@@ -83,28 +104,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Posts" translatesAutoresizingMaskIntoConstraints="NO" id="LTa-Q5-9fF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Friends" translatesAutoresizingMaskIntoConstraints="NO" id="LTa-Q5-9fF">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h6-HN-eGF">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9h6-HN-eGF" customClass="Button" customModule="FacebookProfileViewerPrototype" customModuleProvider="target">
                                 <rect key="frame" x="6" y="194" width="150" height="22"/>
                                 <color key="backgroundColor" red="0.96640527249999997" green="0.55260038810000001" blue="0.75453959599999998" alpha="0.56000000000000005" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="tbz-vH-jlP" kind="unwind" identifier="switch" unwindAction="unwindToPosts:" id="0dA-0N-nQP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFS-GH-lnI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="tbz-vH-jlP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="649" y="245"/>
+            <point key="canvasLocation" x="-148" y="951"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="YYa-e5-fzi">
             <objects>
-                <viewController id="U9U-yH-9eD" sceneMemberID="viewController">
+                <viewController id="U9U-yH-9eD" customClass="LoginViewController" customModule="FacebookProfileViewerPrototype" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ilZ-4u-BSt"/>
                         <viewControllerLayoutGuide type="bottom" id="OpG-aW-hlN"/>
@@ -116,14 +142,14 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Login" translatesAutoresizingMaskIntoConstraints="NO" id="aZ4-f5-qkB">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSg-5t-aZM">
-                                <rect key="frame" x="104" y="388" width="113" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSg-5t-aZM" customClass="Button" customModule="FacebookProfileViewerPrototype" customModuleProvider="target">
+                                <rect key="frame" x="104" y="337" width="113" height="50"/>
                                 <color key="backgroundColor" red="0.96640527249999997" green="0.55260038810000001" blue="0.75453959599999998" alpha="0.70999999999999996" colorSpace="calibratedRGB"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="vXZ-lx-hvc" kind="show" id="GSM-Tf-CgE"/>
+                                    <segue destination="m1N-DA-ZS1" kind="unwind" unwindAction="unwindToWelcome:" id="o2u-91-1J8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -131,11 +157,13 @@
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x6u-L6-lBN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="m1N-DA-ZS1" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-148" y="245"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Friends" width="320" height="568"/>
         <image name="Login" width="320" height="568"/>
         <image name="Posts" width="320" height="568"/>
         <image name="Welcome" width="320" height="568"/>
