@@ -11,27 +11,52 @@ import XCTest
 import FacebookProfileViewerClasses
 
 class FacebookProfileViewerClassesTests: XCTestCase {
-
+  
   func testDownloadUserProfileImage() {
     var exp = expectationWithDescription("Fetch picture")
     var manager = FacebookEndpointManager()
     var fetchTask = manager.fetchUserPictureURLDataTask({(url: String) -> Void in
-      var downloadTask = manager.profilePictureImageDownloadTask(url, success: { (image: UIImage) -> Void in
-        exp.fulfill()
+      
+      var downloadTask = manager.profilePictureImageDownloadTask(url,
+        success: { (image: UIImage) -> Void in
+          exp.fulfill()
         },
         failure: {(error: NSError) -> Void in
           XCTFail("Should not be called")
-      })
-
+          exp.fulfill()
+        }
+      )
+      
       XCTAssertNotNil(downloadTask)
       downloadTask?.resume()
-    }, failure: {(error: NSError) -> Void in
-      XCTFail("Should not be called")
-    })
-
+      
+      },
+      failure: {(error: NSError) -> Void in
+        XCTFail("Should not be called")
+        exp.fulfill()
+      }
+    )
+    
     XCTAssertNotNil(fetchTask)
     fetchTask?.resume()
     waitForExpectationsWithTimeout(100, handler: nil)
   }
-
+  
+  func testFetchUserProfileInfo() {
+    var exp = expectationWithDescription("Fetch picture")
+    var manager = FacebookEndpointManager()
+    var fetchTask = manager.fetchUserProfileInformationTask(
+      {(json: NSDictionary) -> Void in
+        exp.fulfill()
+      },
+      failure: {(error: NSError) -> Void in
+        XCTFail("Should not be called")
+        exp.fulfill()
+      }
+    )
+    XCTAssertNotNil(fetchTask)
+    fetchTask?.resume()
+    waitForExpectationsWithTimeout(100, handler: nil)
+  }
+  
 }
