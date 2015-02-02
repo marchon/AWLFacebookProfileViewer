@@ -39,6 +39,7 @@
 		C58C7BDC1A7FAF40007E3996 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDA1A7FAF40007E3996 /* FriendsTableViewController.swift */; };
 		C58C7BDD1A7FAF40007E3996 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDB1A7FAF40007E3996 /* PostsTableViewController.swift */; };
 		C58C7BE01A7FB7F1007E3996 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDF1A7FB7F1007E3996 /* Profile.swift */; };
+		C58C7BE81A7FD36E007E3996 /* FacebookProfileLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		C58C7BDA1A7FAF40007E3996 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		C58C7BDB1A7FAF40007E3996 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		C58C7BDF1A7FB7F1007E3996 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookProfileLoadManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */,
 				803313931A7467EB00E54701 /* PersistenceStoreProvider.swift */,
 				803313951A74687A00E54701 /* PersistenceStore.swift */,
+				C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */,
 				80CFEE941A7E947B00D47E62 /* AppState.swift */,
 				807E28721A7AB703005DBF05 /* Logging.swift */,
 				808A363D1A7EA4F100C18EC1 /* NSURL.swift */,
@@ -465,6 +468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C58C7BE81A7FD36E007E3996 /* FacebookProfileLoadManager.swift in Sources */,
 				803313941A7467EB00E54701 /* PersistenceStoreProvider.swift in Sources */,
 				C58C7BE01A7FB7F1007E3996 /* Profile.swift in Sources */,
 				80205E931A7996670042E94A /* ProfileEntity.swift in Sources */,
