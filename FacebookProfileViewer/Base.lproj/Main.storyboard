@@ -67,7 +67,7 @@
         <!--Posts Table View Controller-->
         <scene sceneID="caR-XA-cnm">
             <objects>
-                <tableViewController storyboardIdentifier="postsViewControoler" id="lRh-dj-J6f" customClass="PostsTableViewController" customModule="FacebookProfileViewerUI" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="postsViewControoler" id="lRh-dj-J6f" customClass="PostsTableViewController" customModule="FacebookProfileViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zOn-44-3Jn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -103,7 +103,7 @@
         <!--Friends Table View Controller-->
         <scene sceneID="s9W-nL-ZgK">
             <objects>
-                <tableViewController storyboardIdentifier="friendsViewController" id="azU-qI-VuJ" customClass="FriendsTableViewController" customModule="FacebookProfileViewerUI" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="friendsViewController" id="azU-qI-VuJ" customClass="FriendsTableViewController" customModule="FacebookProfileViewer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8Xa-iS-dm0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

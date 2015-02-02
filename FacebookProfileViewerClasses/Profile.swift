@@ -1,17 +1,17 @@
-//
-//  Profile.swift
-//  FacebookProfileViewer
-//
-//  Created by Vlad Gorlov on 29.01.15.
-//  Copyright (c) 2015 WaveLabs. All rights reserved.
-//
+/// File: Profile.swift
+/// Project: FacebookProfileViewer
+/// Author: Created by Volodymyr Gorlov on 02.02.15.
+/// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import Foundation
-import CoreData
 
-public class Profile: NSManagedObject {
-
-    @NSManaged var avatarPicture: NSData
-    @NSManaged var userName: String
-
+public class Profile {
+  public var avatarPicture = UIImage()
+  public var userName = ""
+  public init() {
+    
+  }
+  public init(entity: ProfileEntity) {
+    avatarPicture = UIImage(data: entity.avatarPicture) ?? UIImage()
+  }
 }

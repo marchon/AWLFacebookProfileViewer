@@ -1,5 +1,5 @@
 //
-//  Friend.swift
+//  ProfileEntity.swift
 //  FacebookProfileViewer
 //
 //  Created by Vlad Gorlov on 29.01.15.
@@ -9,9 +9,9 @@
 import Foundation
 import CoreData
 
-public class Friend: NSManagedObject {
+public class ProfileEntity: NSManagedObject {
 
-    @NSManaged var userName: String
     @NSManaged var avatarPicture: NSData
+    @NSManaged var userName: String
 
 }
