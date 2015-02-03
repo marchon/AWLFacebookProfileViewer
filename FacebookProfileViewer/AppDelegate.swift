@@ -28,9 +28,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if let ctrl = self.window?.rootViewController as? MainViewController {
       ctrl.managedObjectContext = self.managedObjectContext
     }
-    
-    logDebug("\(NSBundle.mainBundle().bundleURL)")
-    logDebug("\(self.applicationDocumentsDirectory)")
+    #if DEBUG
+    logDebug("Main bundle URL: \(NSBundle.mainBundle().bundleURL)")
+    logDebug("Documents directory URL: \(self.applicationDocumentsDirectory)")
+    #endif
     return true
   }
   

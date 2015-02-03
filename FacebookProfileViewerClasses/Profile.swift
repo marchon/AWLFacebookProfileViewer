@@ -6,12 +6,15 @@
 import Foundation
 
 public class Profile {
-  public var avatarPicture = UIImage()
-  public var userName = ""
+  
+  public var avatarPicture: UIImage?
+  public var userName: String?
+  public var hometown: String?
+  
   public init() {
-    
   }
+  
   public init(entity: ProfileEntity) {
-    avatarPicture = UIImage(data: entity.avatarPicture) ?? UIImage()
+    avatarPicture = UIImage(data: entity.avatarPicture)
   }
 }

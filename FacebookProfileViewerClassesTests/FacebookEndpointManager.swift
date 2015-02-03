@@ -1,5 +1,5 @@
 //
-//  FacebookProfileViewerClassesTests.swift
+//  FacebookEndpointManager.swift
 //  FacebookProfileViewerClassesTests
 //
 //  Created by Vlad Gorlov on 25.01.15.
@@ -10,18 +10,19 @@ import UIKit
 import XCTest
 import FacebookProfileViewerClasses
 
-class FacebookProfileViewerClassesTests: XCTestCase {
+class FacebookEndpointManagerTests: XCTestCase {
   
   func testDownloadUserProfileImage() {
     var exp = expectationWithDescription("Fetch picture")
     var manager = FacebookEndpointManager()
-    var fetchTask = manager.fetchUserPictureURLDataTask({(url: String) -> Void in
+    var fetchTask = manager.fetchUserPictureURLTask({(url: String) -> Void in
       
       var downloadTask = manager.profilePictureImageDownloadTask(url,
         success: { (image: UIImage) -> Void in
           exp.fulfill()
         },
         failure: {(error: NSError) -> Void in
+          logError(error)
           XCTFail("Should not be called")
           exp.fulfill()
         }
@@ -33,13 +34,19 @@ class FacebookProfileViewerClassesTests: XCTestCase {
       },
       failure: {(error: NSError) -> Void in
         XCTFail("Should not be called")
+        logError(error)
         exp.fulfill()
       }
     )
     
     XCTAssertNotNil(fetchTask)
-    fetchTask?.resume()
-    waitForExpectationsWithTimeout(100, handler: nil)
+    if let task = fetchTask {
+      task.resume()
+    } else {
+      exp.fulfill()
+    }
+    
+    waitForExpectationsWithTimeout(30, handler: nil)
   }
   
   func testFetchUserProfileInfo() {
@@ -50,13 +57,19 @@ class FacebookProfileViewerClassesTests: XCTestCase {
         exp.fulfill()
       },
       failure: {(error: NSError) -> Void in
+        logError(error)
         XCTFail("Should not be called")
         exp.fulfill()
       }
     )
+    
     XCTAssertNotNil(fetchTask)
-    fetchTask?.resume()
-    waitForExpectationsWithTimeout(100, handler: nil)
+    if let task = fetchTask {
+      task.resume()
+    } else {
+      exp.fulfill()
+    }
+    waitForExpectationsWithTimeout(30, handler: nil)
   }
   
 }

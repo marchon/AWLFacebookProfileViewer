@@ -20,8 +20,8 @@ class MainViewController: UIViewController {
   private var postsViewControoler: UIViewController!
   private var friendsViewControoler: UIViewController!
   private var activeControllerType: ChildControllerType!
-  lazy private var backendManager: FacebookEndpointManager = {
-    return FacebookEndpointManager()
+  lazy private var profileLoadManager: FacebookProfileLoadManager = {
+    return FacebookProfileLoadManager()
     }()
   
   var managedObjectContext: NSManagedObjectContext!
@@ -60,7 +60,7 @@ class MainViewController: UIViewController {
         })
       }
       ctrl.success = { (tokenInfo: (accessToken: String, expiresIn: Int)) -> () in
-        var ps = self.backendManager.persistenceStore
+        var ps = PersistenceStore.sharedInstance()
         ps.facebookAccesToken = tokenInfo.accessToken
         ps.facebookAccesTokenExpitesIn = tokenInfo.expiresIn
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
@@ -75,6 +75,8 @@ class MainViewController: UIViewController {
   private func updateProfileInformation(profile: Profile) {
     dispatch_async(dispatch_get_main_queue(), { () -> Void in
       self.topView.profileAvatar.image = profile.avatarPicture
+      self.topView.userName.text = profile.userName
+      self.topView.hometown.text = profile.hometown
     })
   }
   
@@ -84,35 +86,19 @@ class MainViewController: UIViewController {
 
 extension MainViewController {
   private func fetchProfileFromServer() {
-    var fetchTask = backendManager.fetchUserPictureURLDataTask({ [weak self] (url: String) -> Void in
+    profileLoadManager.fetchUserProfile({ (results: FacebookProfileLoadManager.FetchResults) -> Void in
+      let profile = Profile()
+      profile.avatarPicture = results.avatarImage
+      profile.userName = results.userProfileJson?.valueForKey("name") as? String
+      profile.hometown = results.userProfileJson?.valueForKeyPath("hometown.name") as? String
+      self.updateProfileInformation(profile)
+      }, failure: { (error: NSError) -> Void in
       
-      if let this = self {
-        var downloadTask = this.backendManager.profilePictureImageDownloadTask(url,
-          success: {(image: UIImage) -> Void in
-            let profile = Profile()
-            profile.avatarPicture = image
-            this.updateProfileInformation(profile)
-          },
-          failure: {(error: NSError) -> Void in
-            logError(this.removeSensitiveInformationFromError(error))
-          }
-        )
-        downloadTask?.resume()
-      }
-      
-      },
-      failure: { [weak self] (error: NSError) -> Void in
-        if let this = self {
-          logError(this.removeSensitiveInformationFromError(error))
-        }
-      }
-    )
-    
-    fetchTask?.resume()
+    })
   }
   
   private func removeSensitiveInformationFromError(error: NSError) -> String {
-    if let token = backendManager.persistenceStore.facebookAccesToken {
+    if let token = PersistenceStore.sharedInstance().facebookAccesToken {
       return error.description.stringByReplacingOccurrencesOfString(token, withString: "TOKEN-WAS-STRIPPED")
     } else {
       return error.description

@@ -7,8 +7,8 @@ import UIKit
 
 extension FacebookEndpointManager {
   
-  public func fetchUserPictureURLDataTask(success: (url: String) -> Void,
-    failure: (error: NSError) -> Void) -> NSURLSessionDataTask? {
+  public func fetchUserPictureURLTask(success: (url:String) -> Void,
+    failure: (error:NSError) -> Void) -> NSURLSessionDataTask? {
       
       var endpointURL: NSURL?
       
@@ -27,32 +27,27 @@ extension FacebookEndpointManager {
       }
       
       
-      let task = session.dataTaskWithURL(endpointURL!, completionHandler: {  [weak self] (data: NSData!,
-        response: NSURLResponse!, error: NSError!) -> Void in
+      let task = session.dataTaskWithURL(endpointURL!, completionHandler: {
+        (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
         
-        if let this = self {
-          
-          if error != nil {
-            failure(error: error)
-            return
-          }
-          
-          var result = this.handleResponse(data, response: response)
-          if result.error != nil {
-            failure(error: result.error!)
-            return
-          }
-          
-          if let imageURL: String = result.data?.valueForKeyPath("data.url") as? String {
-            success(url: imageURL)
-          }
-          else {
-            let e = NSError(domain: this.OperationErrorDomain,
-              code: OperationErrorCode.MissedAttribute.rawValue,
-              userInfo: [NSLocalizedFailureReasonErrorKey: "Attribute: data.url"])
-            failure(error: result.error!)
-          }
-          
+        if error != nil {
+          failure(error: error)
+          return
+        }
+        
+        var result = self.handleResponse(data, response: response)
+        if result.error != nil {
+          failure(error: result.error!)
+          return
+        }
+        
+        if let imageURL: String = result.data?.valueForKeyPath("data.url") as? String {
+          success(url: imageURL)
+        } else {
+          let e = NSError(domain: self.OperationErrorDomain,
+            code: OperationErrorCode.MissedAttribute.rawValue,
+            userInfo: [NSLocalizedFailureReasonErrorKey: "Attribute: data.url"])
+          failure(error: result.error!)
         }
       })
       
@@ -60,28 +55,26 @@ extension FacebookEndpointManager {
   }
   
   public func fetchUserProfileInformationTask(
-    success: (json: NSDictionary) -> Void,
-    failure: (error: NSError) -> Void) -> NSURLSessionDataTask? {
-    
-    var endpointURL: NSURL?
-    if let accesToken = persistenceStore.facebookAccesToken {
-      endpointURL = NSURL(string: "https://graph.facebook.com/me?access_token=\(accesToken)")
-    }
-    if endpointURL == nil {
-      return nil
-    }
-    
-    let task = session.dataTaskWithURL(endpointURL!, completionHandler: {  [weak self] (data: NSData!,
-      response: NSURLResponse!, error: NSError!) -> Void in
+    success: (json:NSDictionary) -> Void,
+    failure: (error:NSError) -> Void) -> NSURLSessionDataTask? {
       
-      if let this = self {
+      var endpointURL: NSURL?
+      if let accesToken = persistenceStore.facebookAccesToken {
+        endpointURL = NSURL(string: "https://graph.facebook.com/me?access_token=\(accesToken)")
+      }
+      if endpointURL == nil {
+        return nil
+      }
+      
+      let task = session.dataTaskWithURL(endpointURL!, completionHandler: {
+        (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
         
         if error != nil {
           failure(error: error)
           return
         }
         
-        var result = this.handleResponse(data, response: response)
+        var result = self.handleResponse(data, response: response)
         if result.error != nil {
           failure(error: result.error!)
           return
@@ -89,35 +82,38 @@ extension FacebookEndpointManager {
         
         if let json = result.data {
           success(json: json)
-        }
-        else {
-          let e = NSError(domain: this.OperationErrorDomain,
+        } else {
+          let e = NSError(domain: self.OperationErrorDomain,
             code: OperationErrorCode.MissedAttribute.rawValue,
             userInfo: [NSLocalizedFailureReasonErrorKey: "Attribute: data.url"])
           failure(error: result.error!)
         }
         
-      }
-    })
-    
-    return task
+      })
+      
+      return task
   }
   
-  public func profilePictureImageDownloadTask(URLString: String, success: (image: UIImage) -> Void,
-    failure: (error: NSError) -> Void) -> NSURLSessionDownloadTask? {
+  public func profilePictureImageDownloadTask(URLString: String, success: (image:UIImage) -> Void,
+    failure: (error:NSError) -> Void) -> NSURLSessionDownloadTask? {
       if let url = NSURL(string: URLString) {
-        let task = session.downloadTaskWithURL(url, completionHandler: { [weak self] (location: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
+        let task = session.downloadTaskWithURL(url, completionHandler: {
+          (location: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
           
-          if let this = self {
-            if location != nil {
-              if let data = NSData(contentsOfURL: location) {
-                if let image = UIImage(data: data) {
-                  success(image: image)
-                  return
-                }
+          if error != nil {
+            failure(error: error)
+            return
+          }
+          
+          if location != nil {
+            if let data = NSData(contentsOfURL: location) {
+              if let image = UIImage(data: data) {
+                success(image: image)
+                return
               }
             }
-            let e = NSError(domain: this.OperationErrorDomain,
+            
+            let e = NSError(domain: self.OperationErrorDomain,
               code: OperationErrorCode.HandleDownloadError.rawValue,
               userInfo: [NSLocalizedFailureReasonErrorKey: "Unable to handle downloaded file"])
             failure(error: e)
@@ -145,10 +141,7 @@ public class FacebookEndpointManager {
   let OperationErrorDomain = "FacebookTaskErrorDomain"
   
   var session: NSURLSession
-  private var _persistenceStore: PersistenceStoreProvider
-  public var persistenceStore: PersistenceStoreProvider {
-    return _persistenceStore
-  }
+  private var persistenceStore: PersistenceStoreProvider
   
   //MARK: - Initialization
   
@@ -156,32 +149,32 @@ public class FacebookEndpointManager {
     var sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
     sessionConfig.HTTPAdditionalHeaders = ["Accept": "application/json"]
     sessionConfig.timeoutIntervalForRequest = 30.0;
-    sessionConfig.timeoutIntervalForResource = 60.0;
+    #if TEST
+      sessionConfig.timeoutIntervalForRequest = 5.0;
+    #endif
     sessionConfig.HTTPMaximumConnectionsPerHost = 1;
     
     session = NSURLSession(configuration: sessionConfig)
     session.sessionDescription = "Facebook Profile Viewer Session"
     
-    _persistenceStore = PersistenceStore()
+    persistenceStore = PersistenceStore()
   }
   
   //MARK: - Internal
   
-  func handleResponse(data: NSData?, response: NSURLResponse?) -> (data: NSDictionary?, error: NSError?) {
+  func handleResponse(data: NSData?, response: NSURLResponse?) -> (data:NSDictionary?, error:NSError?) {
     if response is NSHTTPURLResponse {
       let code = (response as NSHTTPURLResponse).statusCode
       if code == 200 {
         return parseJson(data)
-      }
-      else {
+      } else {
         var errorDescription = "Server respond with HTTP code \(code)"
         let e = NSError(domain: OperationErrorDomain,
           code: OperationErrorCode.ServerError.rawValue,
           userInfo: [NSLocalizedFailureReasonErrorKey: errorDescription])
         return (data: nil, error: e)
       }
-    }
-    else {
+    } else {
       let e = NSError(domain: OperationErrorDomain,
         code: OperationErrorCode.UnexpectedResponseCode.rawValue,
         userInfo: [NSLocalizedFailureReasonErrorKey: "Response is not NSHTTPURLResponse"])
@@ -189,7 +182,7 @@ public class FacebookEndpointManager {
     }
   }
   
-  func parseJson(data: NSData?) -> (data: NSDictionary?, error: NSError?) {
+  func parseJson(data: NSData?) -> (data:NSDictionary?, error:NSError?) {
     
     if data == nil {
       let e = NSError(domain: OperationErrorDomain,

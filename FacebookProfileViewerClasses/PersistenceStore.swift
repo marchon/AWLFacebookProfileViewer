@@ -5,14 +5,25 @@
 
 import Foundation
 
-class PersistenceStore: PersistenceStoreProvider {
+public class PersistenceStore: PersistenceStoreProvider {
 
   enum UserDefaultsKeys : String {
     case FacebookAccessToken = "ua.com.wavelabs.FacebookAccessToken"
     case FacebookAccessTokenExpitesIn = "ua.com.wavelabs.FacebookAccessTokenExpitesIn"
   }
+  
+  public class func sharedInstance() -> PersistenceStoreProvider {
+    struct Static {
+      static var onceToken : dispatch_once_t = 0
+      static var instance : PersistenceStore? = nil
+    }
+    dispatch_once(&Static.onceToken) {
+      Static.instance = PersistenceStore()
+    }
+    return Static.instance!
+  }
 
-  var facebookAccesToken: String? {
+  public var facebookAccesToken: String? {
     get {
       return NSUserDefaults.standardUserDefaults().stringForKey(UserDefaultsKeys.FacebookAccessToken.rawValue)
     }
@@ -25,7 +36,7 @@ class PersistenceStore: PersistenceStoreProvider {
     }
   }
 
-  var facebookAccesTokenExpitesIn: Int? {
+  public var facebookAccesTokenExpitesIn: Int? {
     get {
       return NSUserDefaults.standardUserDefaults().integerForKey(UserDefaultsKeys.FacebookAccessTokenExpitesIn.rawValue)
     }

@@ -6,6 +6,8 @@
 import UIKit
 
 public class UserProfile : NibDesignable {
-   @IBOutlet public weak var profileAvatar: UIImageView!
+  @IBOutlet public weak var profileAvatar: UIImageView!
+  @IBOutlet public weak var userName: UILabel!
+  @IBOutlet public weak var hometown: UILabel!
 }
 
