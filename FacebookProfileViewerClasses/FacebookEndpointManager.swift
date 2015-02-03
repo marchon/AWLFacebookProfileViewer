@@ -7,25 +7,53 @@ import UIKit
 
 extension FacebookEndpointManager {
   
+  public func fetchUserPictureURL() -> NSURL? {
+    
+    var endpointURL: NSURL?
+    if let accesToken = persistenceStore.facebookAccesToken {
+      var queryElements = ["redirect=false",
+        "type=square",
+        "width=100",
+        "height=100",
+        "access_token=\(accesToken)"]
+      var query = NSURL.requestQueryFromParameters(queryElements)
+      endpointURL = NSURL(string: "https://graph.facebook.com/me/picture?\(query)")
+    }
+    return endpointURL
+  }
+  
+  public func fetchUserProfileInformationURL() -> NSURL? {
+    var endpointURL: NSURL?
+    if let accesToken = persistenceStore.facebookAccesToken {
+      endpointURL = NSURL(string: "https://graph.facebook.com/me?fields=id,name,hometown,cover&access_token=\(accesToken)")
+    }
+    return endpointURL
+  }
+  
+  public func fetchFriendsURL(cursorAfter: String?) -> NSURL? {
+    var endpointURL: NSURL?
+    if let accesToken = persistenceStore.facebookAccesToken {
+      let fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
+      var urlString = "https://graph.facebook.com/me/taggable_friends?limit=\(fetchLimit)&access_token=\(accesToken)"
+      if let cursor = cursorAfter {
+        urlString += "&after=\(cursor)"
+      }
+      endpointURL = NSURL(string: urlString)
+    }
+    return endpointURL
+  }
+  
+}
+
+extension FacebookEndpointManager {
+  
   public func fetchUserPictureURLTask(success: (url:String) -> Void,
     failure: (error:NSError) -> Void) -> NSURLSessionDataTask? {
       
-      var endpointURL: NSURL?
-      
-      if let accesToken = persistenceStore.facebookAccesToken {
-        var queryElements = ["redirect=false",
-          "type=square",
-          "width=100",
-          "height=100",
-          "access_token=\(accesToken)"]
-        var query = NSURL.requestQueryFromParameters(queryElements)
-        endpointURL = NSURL(string: "https://graph.facebook.com/me/picture?\(query)")
-      }
-      
+      var endpointURL = fetchUserPictureURL()
       if endpointURL == nil {
         return nil
       }
-      
       
       let task = session.dataTaskWithURL(endpointURL!, completionHandler: {
         (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
@@ -58,10 +86,7 @@ extension FacebookEndpointManager {
     success: (json:NSDictionary) -> Void,
     failure: (error:NSError) -> Void) -> NSURLSessionDataTask? {
       
-      var endpointURL: NSURL?
-      if let accesToken = persistenceStore.facebookAccesToken {
-        endpointURL = NSURL(string: "https://graph.facebook.com/me?fields=id,name,hometown,cover&access_token=\(accesToken)")
-      }
+      var endpointURL = fetchUserProfileInformationURL()
       if endpointURL == nil {
         return nil
       }
@@ -98,15 +123,7 @@ extension FacebookEndpointManager {
     success: (json:NSDictionary) -> Void,
     failure: (error:NSError) -> Void) -> NSURLSessionDataTask? {
       
-      var endpointURL: NSURL?
-      if let accesToken = persistenceStore.facebookAccesToken {
-        let fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
-        var urlString = "https://graph.facebook.com/me/taggable_friends?limit=\(fetchLimit)&access_token=\(accesToken)"
-        if let cursor = cursorAfter {
-          urlString += "&after=\(cursor)"
-        }
-        endpointURL = NSURL(string: urlString)
-      }
+      var endpointURL = fetchFriendsURL(cursorAfter)
       if endpointURL == nil {
         return nil
       }
