@@ -17,7 +17,6 @@ class FacebookProfileLoadState {
     case LoadSuccessed = "LoadSuccessed", LoadFailed = "LoadFailed"
   }
 
-
   var stateID: StateIdentifier {
     return .Unknown
   }
@@ -242,9 +241,9 @@ public class FacebookProfileLoadManager {
   }
 
   public func fetchUserProfile(success: (results: FetchResults) -> Void, failure: (error: NSError) -> Void) {
-    self.state.fetchUserProfile(self)
     self.successCallback = success
     self.failureCallback = failure
+    self.state.fetchUserProfile(self)
   }
 }
 

@@ -12,30 +12,40 @@ import FacebookProfileViewerClasses
 
 class FacebookEndpointManagerTests: XCTestCase {
   
+  var expectation: XCTestExpectation!
+  var manager = FacebookEndpointManager()
+  
+  override func setUp() {
+    super.setUp()
+    expectation = expectationWithDescription("Fetch request")
+  }
+  
   func testDownloadUserProfileImage() {
-    var exp = expectationWithDescription("Fetch picture")
-    var manager = FacebookEndpointManager()
     var fetchTask = manager.fetchUserPictureURLTask({(url: String) -> Void in
       
-      var downloadTask = manager.photoDownloadTask(url,
+      var downloadTask = self.manager.photoDownloadTask(url,
         success: { (image: UIImage) -> Void in
-          exp.fulfill()
+          self.expectation.fulfill()
         },
         failure: {(error: NSError) -> Void in
           logError(error)
           XCTFail("Should not be called")
-          exp.fulfill()
+          self.expectation.fulfill()
         }
       )
       
       XCTAssertNotNil(downloadTask)
-      downloadTask?.resume()
+      if let task = downloadTask {
+        task.resume()
+      } else {
+        self.expectation.fulfill()
+      }
       
       },
       failure: {(error: NSError) -> Void in
         XCTFail("Should not be called")
         logError(error)
-        exp.fulfill()
+        self.expectation.fulfill()
       }
     )
     
@@ -43,23 +53,21 @@ class FacebookEndpointManagerTests: XCTestCase {
     if let task = fetchTask {
       task.resume()
     } else {
-      exp.fulfill()
+      expectation.fulfill()
     }
     
     waitForExpectationsWithTimeout(30, handler: nil)
   }
   
   func testFetchUserProfileInfo() {
-    var exp = expectationWithDescription("Fetch picture")
-    var manager = FacebookEndpointManager()
     var fetchTask = manager.fetchUserProfileInformationTask(
       {(json: NSDictionary) -> Void in
-        exp.fulfill()
+        self.expectation.fulfill()
       },
       failure: {(error: NSError) -> Void in
         logError(error)
         XCTFail("Should not be called")
-        exp.fulfill()
+        self.expectation.fulfill()
       }
     )
     
@@ -67,7 +75,28 @@ class FacebookEndpointManagerTests: XCTestCase {
     if let task = fetchTask {
       task.resume()
     } else {
-      exp.fulfill()
+      expectation.fulfill()
+    }
+    waitForExpectationsWithTimeout(30, handler: nil)
+  }
+  
+  func testFetchFriends() {
+    var fetchTask = manager.fetchFriendsTask(nil, success:
+      {(json: NSDictionary) -> Void in
+        self.expectation.fulfill()
+      },
+      failure: {(error: NSError) -> Void in
+        logError(error)
+        XCTFail("Should not be called")
+        self.expectation.fulfill()
+      }
+    )
+    
+    XCTAssertNotNil(fetchTask)
+    if let task = fetchTask {
+      task.resume()
+    } else {
+      expectation.fulfill()
     }
     waitForExpectationsWithTimeout(30, handler: nil)
   }

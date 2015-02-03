@@ -94,7 +94,53 @@ extension FacebookEndpointManager {
       return task
   }
   
-  public func photoDownloadTask(URLString: String, success: (image:UIImage) -> Void,
+  public func fetchFriendsTask(cursorAfter: String?,
+    success: (json:NSDictionary) -> Void,
+    failure: (error:NSError) -> Void) -> NSURLSessionDataTask? {
+      
+      var endpointURL: NSURL?
+      if let accesToken = persistenceStore.facebookAccesToken {
+        let fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
+        var urlString = "https://graph.facebook.com/me/taggable_friends?limit=\(fetchLimit)&access_token=\(accesToken)"
+        if let cursor = cursorAfter {
+          urlString += "&after=\(cursor)"
+        }
+        endpointURL = NSURL(string: urlString)
+      }
+      if endpointURL == nil {
+        return nil
+      }
+      
+      let task = session.dataTaskWithURL(endpointURL!, completionHandler: {
+        (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+        
+        if error != nil {
+          failure(error: error)
+          return
+        }
+        
+        var result = self.handleResponse(data, response: response)
+        if result.error != nil {
+          failure(error: result.error!)
+          return
+        }
+        
+        if let json = result.data {
+          success(json: json)
+        } else {
+          let e = NSError(domain: self.OperationErrorDomain,
+            code: OperationErrorCode.MissedAttribute.rawValue,
+            userInfo: [NSLocalizedFailureReasonErrorKey: "Attribute: data.url"])
+          failure(error: result.error!)
+        }
+        
+      })
+      
+      return task
+  }
+  
+  public func photoDownloadTask(URLString: String,
+    success: (image:UIImage) -> Void,
     failure: (error:NSError) -> Void) -> NSURLSessionDownloadTask? {
       if let url = NSURL(string: URLString) {
         let task = session.downloadTaskWithURL(url, completionHandler: {
@@ -124,6 +170,7 @@ extension FacebookEndpointManager {
       }
       return nil
   }
+  
 }
 
 //MARK: -
