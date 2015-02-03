@@ -60,7 +60,7 @@ extension FacebookEndpointManager {
       
       var endpointURL: NSURL?
       if let accesToken = persistenceStore.facebookAccesToken {
-        endpointURL = NSURL(string: "https://graph.facebook.com/me?access_token=\(accesToken)")
+        endpointURL = NSURL(string: "https://graph.facebook.com/me?fields=id,name,hometown,cover&access_token=\(accesToken)")
       }
       if endpointURL == nil {
         return nil
@@ -94,7 +94,7 @@ extension FacebookEndpointManager {
       return task
   }
   
-  public func profilePictureImageDownloadTask(URLString: String, success: (image:UIImage) -> Void,
+  public func photoDownloadTask(URLString: String, success: (image:UIImage) -> Void,
     failure: (error:NSError) -> Void) -> NSURLSessionDownloadTask? {
       if let url = NSURL(string: URLString) {
         let task = session.downloadTaskWithURL(url, completionHandler: {
@@ -112,12 +112,12 @@ extension FacebookEndpointManager {
                 return
               }
             }
-            
-            let e = NSError(domain: self.OperationErrorDomain,
-              code: OperationErrorCode.HandleDownloadError.rawValue,
-              userInfo: [NSLocalizedFailureReasonErrorKey: "Unable to handle downloaded file"])
-            failure(error: e)
           }
+          
+          let e = NSError(domain: self.OperationErrorDomain,
+            code: OperationErrorCode.HandleDownloadError.rawValue,
+            userInfo: [NSLocalizedFailureReasonErrorKey: "Unable to handle downloaded file"])
+          failure(error: e)
         })
         
         return task
@@ -149,7 +149,7 @@ public class FacebookEndpointManager {
     var sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
     sessionConfig.HTTPAdditionalHeaders = ["Accept": "application/json"]
     sessionConfig.timeoutIntervalForRequest = 30.0;
-    #if TEST
+    #if TEST || DEBUG
       sessionConfig.timeoutIntervalForRequest = 5.0;
     #endif
     sessionConfig.HTTPMaximumConnectionsPerHost = 1;

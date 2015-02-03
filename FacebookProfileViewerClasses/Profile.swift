@@ -10,6 +10,7 @@ public class Profile {
   public var avatarPicture: UIImage?
   public var userName: String?
   public var hometown: String?
+  public var coverPhoto: UIImage?
   
   public init() {
   }

@@ -12,7 +12,8 @@ class FacebookProfileLoadState {
 
   enum StateIdentifier: String {
     case Unknown = "Unknown", Initial = "Initial"
-    case FetchingUserPictureURL = "FetchingUserPictureURL", FetchingUserPictureData = "FetchingUserPictureData", FetchingUserProfileInfo = "FetchingUserProfileInfo"
+    case FetchingUserPictureURL = "FetchingUserPictureURL", FetchingUserPictureData = "FetchingUserPictureData",
+    FetchingUserProfileInfo = "FetchingUserProfileInfo", FetchingUserProfileCoverPhoto = "FetchingUserProfileCoverPhoto"
     case LoadSuccessed = "LoadSuccessed", LoadFailed = "LoadFailed"
   }
 
@@ -101,7 +102,7 @@ class FacebookProfileLoadStateFetchingUserPictureData: FacebookProfileLoadState 
 
   override func performFetchTask(context: FacebookProfileLoadManager) {
     assert(context.fetchResults.avatarImageURLString != nil)
-    var downloadTask = context.backendManager.profilePictureImageDownloadTask(context.fetchResults.avatarImageURLString!,
+    var downloadTask = context.backendManager.photoDownloadTask(context.fetchResults.avatarImageURLString!,
         success: {
           (image: UIImage) -> Void in
           context.fetchResults.avatarImage = image
@@ -132,9 +133,9 @@ class FacebookProfileLoadStateFetchingUserProfileInfo: FacebookProfileLoadState 
     var fetchTask = context.backendManager.fetchUserProfileInformationTask({
       (json: NSDictionary) -> Void in
       context.fetchResults.userProfileJson = json
-      let newState = FacebookProfileLoadStateLoadSuccessed()
+      let newState = FacebookProfileLoadStateFetchingUserProfileCoverPhoto()
       context.state = newState
-      newState.reportSuccess(context)
+      newState.performFetchTask(context)
     }, failure: {
       (error: NSError) -> Void in
       FacebookProfileLoadState.Helper.reportError(context, error: error)
@@ -148,12 +149,43 @@ class FacebookProfileLoadStateFetchingUserProfileInfo: FacebookProfileLoadState 
   }
 }
 
+class FacebookProfileLoadStateFetchingUserProfileCoverPhoto: FacebookProfileLoadState {
+  override var stateID: StateIdentifier {
+    return .FetchingUserProfileCoverPhoto
+  }
+  
+  override func performFetchTask(context: FacebookProfileLoadManager) {
+    let coverPhotoURLString = context.fetchResults.userProfileJson?.valueForKeyPath("cover.source") as? String
+    assert(coverPhotoURLString != nil)
+    var downloadTask = context.backendManager.photoDownloadTask(coverPhotoURLString!,
+      success: {
+        (image: UIImage) -> Void in
+        context.fetchResults.coverPhotoImage = image
+        let newState = FacebookProfileLoadStateLoadSuccessed()
+        context.state = newState
+        newState.reportSuccess(context)
+      },
+      failure: {
+        (error: NSError) -> Void in
+        FacebookProfileLoadState.Helper.reportError(context, error: error)
+      }
+    )
+    
+    if let task = downloadTask {
+      task.resume()
+    } else {
+      FacebookProfileLoadState.Helper.reportUninitializedTaskError(context)
+    }
+  }
+}
+
 class FacebookProfileLoadStateLoadSuccessed: FacebookProfileLoadState {
   override var stateID: StateIdentifier {
     return .LoadSuccessed
   }
 
   override func reportSuccess(context: FacebookProfileLoadManager) {
+    assert(context.fetchResults.isResultsValid)
     context.successCallback(context.fetchResults)
   }
 }
@@ -169,12 +201,20 @@ class FacebookProfileLoadStateLoadFailed: FacebookProfileLoadState {
   }
 }
 
+//MARK: -
+
 public class FacebookProfileLoadManager {
 
   public class FetchResults {
+    
     public var avatarImageURLString: String?
     public var avatarImage: UIImage?
+    public var coverPhotoImage: UIImage?
     public var userProfileJson: NSDictionary?
+    
+    public var isResultsValid: Bool {
+      return avatarImageURLString != nil && avatarImage != nil && coverPhotoImage != nil && userProfileJson != nil
+    }
   }
   var lastOperationError: NSError?
   

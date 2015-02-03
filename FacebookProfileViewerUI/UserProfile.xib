@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserProfile" customModule="FacebookProfileViewerUI" customModuleProvider="target">
             <connections>
+                <outlet property="coverPhoto" destination="OBs-6s-qwB" id="Ili-gd-ouk"/>
                 <outlet property="hometown" destination="EOo-cA-QaJ" id="AnK-LT-F2S"/>
                 <outlet property="profileAvatar" destination="U3S-pA-omX" id="GlJ-Z8-mCC"/>
                 <outlet property="userName" destination="3a6-eJ-GWl" id="ShN-09-lNe"/>
@@ -13,29 +14,38 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="186"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="133"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OBs-6s-qwB">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="133"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U3S-pA-omX">
                     <rect key="frame" x="8" y="8" width="120" height="120"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="John Brown" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3a6-eJ-GWl">
                     <rect key="frame" x="147" y="22" width="143" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Amsterdam, Netherlands" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EOo-cA-QaJ">
-                    <rect key="frame" x="85" y="127" width="191" height="21"/>
+                    <rect key="frame" x="123" y="107" width="191" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.97254908080000002" green="0.54901963470000004" blue="0.047058828179999998" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="0.21587648009999999" green="0.92564046379999998" blue="0.75218505390000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="OBs-6s-qwB" secondAttribute="bottom" id="eoc-3O-6cG"/>
+                <constraint firstItem="OBs-6s-qwB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lEm-sA-2VE"/>
+                <constraint firstItem="OBs-6s-qwB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="m7X-XN-cS1"/>
+                <constraint firstAttribute="trailing" secondItem="OBs-6s-qwB" secondAttribute="trailing" id="mLU-co-I3s"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="362" y="302"/>
+            <point key="canvasLocation" x="362" y="275.5"/>
         </view>
     </objects>
 </document>

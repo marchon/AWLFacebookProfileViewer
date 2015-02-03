@@ -4,12 +4,13 @@ https://developers.facebook.com/tools/debug/
 
 # Getting user info
 curl -v -d @access_token.txt https://graph.facebook.com/me -G | python -mjson.tool
+curl -v -d @access_token.txt https://graph.facebook.com/me?fields=id,name,hometown,cover -G | python -mjson.tool
 
-# Prifile picture
+# Profile picture
 curl -v -d @access_token.txt -d "redirect=false&type=square&width=100&height=100"  https://graph.facebook.com/me/picture -G | python -mjson.tool
 
-# Checking Permissions
-# @see Permissions with Facebook Login (https://developers.facebook.com/docs/facebook-login/permissions/v2.2)
+
+# Checking Permissions. @see Permissions with Facebook Login (https://developers.facebook.com/docs/facebook-login/permissions/v2.2)
 curl -v -d @access_token.txt https://graph.facebook.com/me/permissions -G | python -mjson.tool
 
 # Post message
@@ -20,3 +21,5 @@ curl -v -d @access_token.txt https://graph.facebook.com/me/feed?limit=10 -G | py
 
 # Read friends
 curl -v -d fields=picture,name -d limit=10 -d @access_token.txt https://graph.facebook.com/me/taggable_friends -G | python -mjson.tool
+
+

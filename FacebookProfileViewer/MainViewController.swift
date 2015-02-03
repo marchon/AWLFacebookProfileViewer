@@ -77,6 +77,7 @@ class MainViewController: UIViewController {
       self.topView.profileAvatar.image = profile.avatarPicture
       self.topView.userName.text = profile.userName
       self.topView.hometown.text = profile.hometown
+      self.topView.coverPhoto.image = profile.coverPhoto
     })
   }
   
@@ -91,18 +92,23 @@ extension MainViewController {
       profile.avatarPicture = results.avatarImage
       profile.userName = results.userProfileJson?.valueForKey("name") as? String
       profile.hometown = results.userProfileJson?.valueForKeyPath("hometown.name") as? String
+      profile.coverPhoto = results.coverPhotoImage
       self.updateProfileInformation(profile)
       }, failure: { (error: NSError) -> Void in
-      
+        logError(self.removeSensitiveInformationFromError(error))
     })
   }
   
   private func removeSensitiveInformationFromError(error: NSError) -> String {
-    if let token = PersistenceStore.sharedInstance().facebookAccesToken {
-      return error.description.stringByReplacingOccurrencesOfString(token, withString: "TOKEN-WAS-STRIPPED")
-    } else {
+    #if TEST || DEBUG
       return error.description
-    }
+      #else
+      if let token = PersistenceStore.sharedInstance().facebookAccesToken {
+      return error.description.stringByReplacingOccurrencesOfString(token, withString: "TOKEN-WAS-STRIPPED")
+      } else {
+      return error.description
+      }
+    #endif
   }
 }
 

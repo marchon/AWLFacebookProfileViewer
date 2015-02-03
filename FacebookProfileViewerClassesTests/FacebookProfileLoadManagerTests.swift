@@ -13,9 +13,7 @@ class FacebookProfileLoadManagerTests : XCTestCase {
     var exp = expectationWithDescription("Fetch profile")
     let mngr = FacebookProfileLoadManager()
     mngr.fetchUserProfile( { (results: FacebookProfileLoadManager.FetchResults) -> Void in
-      XCTAssertNotNil(results.avatarImageURLString)
-      XCTAssertNotNil(results.avatarImage)
-      XCTAssertNotNil(results.userProfileJson)
+      XCTAssertTrue(results.isResultsValid)
       exp.fulfill()
       },
       failure: { (error: NSError) -> Void in

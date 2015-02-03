@@ -17,7 +17,7 @@ class FacebookEndpointManagerTests: XCTestCase {
     var manager = FacebookEndpointManager()
     var fetchTask = manager.fetchUserPictureURLTask({(url: String) -> Void in
       
-      var downloadTask = manager.profilePictureImageDownloadTask(url,
+      var downloadTask = manager.photoDownloadTask(url,
         success: { (image: UIImage) -> Void in
           exp.fulfill()
         },
