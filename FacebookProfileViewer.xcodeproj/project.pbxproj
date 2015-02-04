@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		801029051A82679F00D73C54 /* NSDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801029041A82679F00D73C54 /* NSDictionary.swift */; };
 		80205E8F1A7996670042E94A /* FriendEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E8E1A7996670042E94A /* FriendEntity.swift */; };
 		80205E911A7996670042E94A /* PostEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E901A7996670042E94A /* PostEntity.swift */; };
 		80205E931A7996670042E94A /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E921A7996670042E94A /* ProfileEntity.swift */; };
 		803313521A74660100E54701 /* FacebookProfileViewerClasses.h in Headers */ = {isa = PBXBuildFile; fileRef = 803313511A74660100E54701 /* FacebookProfileViewerClasses.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803313581A74660100E54701 /* FacebookProfileViewerClasses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */; };
-		803313611A74660100E54701 /* FacebookEndpointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803313601A74660100E54701 /* FacebookEndpointManager.swift */; };
+		803313611A74660100E54701 /* FacebookEndpointManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803313601A74660100E54701 /* FacebookEndpointManagerTests.swift */; };
 		803313641A74660100E54701 /* FacebookProfileViewerClasses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */; };
 		803313651A74660100E54701 /* FacebookProfileViewerClasses.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		803313771A74661500E54701 /* FacebookProfileViewerUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 803313761A74661500E54701 /* FacebookProfileViewerUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -94,6 +95,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		801029041A82679F00D73C54 /* NSDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDictionary.swift; sourceTree = "<group>"; };
 		80205E8E1A7996670042E94A /* FriendEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendEntity.swift; sourceTree = "<group>"; };
 		80205E901A7996670042E94A /* PostEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEntity.swift; sourceTree = "<group>"; };
 		80205E921A7996670042E94A /* ProfileEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 		803313511A74660100E54701 /* FacebookProfileViewerClasses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FacebookProfileViewerClasses.h; sourceTree = "<group>"; };
 		803313571A74660100E54701 /* FacebookProfileViewerClassesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FacebookProfileViewerClassesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8033135F1A74660100E54701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		803313601A74660100E54701 /* FacebookEndpointManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookEndpointManager.swift; sourceTree = "<group>"; };
+		803313601A74660100E54701 /* FacebookEndpointManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookEndpointManagerTests.swift; sourceTree = "<group>"; };
 		803313721A74661500E54701 /* FacebookProfileViewerUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FacebookProfileViewerUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803313751A74661500E54701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		803313761A74661500E54701 /* FacebookProfileViewerUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FacebookProfileViewerUI.h; sourceTree = "<group>"; };
@@ -185,8 +187,9 @@
 				803313951A74687A00E54701 /* PersistenceStore.swift */,
 				80CFEE941A7E947B00D47E62 /* AppState.swift */,
 				807E28721A7AB703005DBF05 /* Logging.swift */,
-				808A363D1A7EA4F100C18EC1 /* NSURL.swift */,
 				80F43D3B1A824C890084881F /* Errors.swift */,
+				808A363D1A7EA4F100C18EC1 /* NSURL.swift */,
+				801029041A82679F00D73C54 /* NSDictionary.swift */,
 			);
 			path = FacebookProfileViewerClasses;
 			sourceTree = "<group>";
@@ -195,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				80F43D3D1A8256390084881F /* EnpointTestCase.swift */,
-				803313601A74660100E54701 /* FacebookEndpointManager.swift */,
+				803313601A74660100E54701 /* FacebookEndpointManagerTests.swift */,
 				C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */,
 				C51980DE1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift */,
 				8033135F1A74660100E54701 /* Info.plist */,
@@ -485,6 +488,7 @@
 			files = (
 				C58C7BE81A7FD36E007E3996 /* FacebookProfileLoadManager.swift in Sources */,
 				803313941A7467EB00E54701 /* PersistenceStoreProvider.swift in Sources */,
+				801029051A82679F00D73C54 /* NSDictionary.swift in Sources */,
 				C51980DD1A811F5300BE4861 /* FacebookFriendsLoadManager.swift in Sources */,
 				C58C7BE01A7FB7F1007E3996 /* Profile.swift in Sources */,
 				80205E931A7996670042E94A /* ProfileEntity.swift in Sources */,
@@ -505,7 +509,7 @@
 			files = (
 				C51980DF1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift in Sources */,
 				80F43D3E1A8256390084881F /* EnpointTestCase.swift in Sources */,
-				803313611A74660100E54701 /* FacebookEndpointManager.swift in Sources */,
+				803313611A74660100E54701 /* FacebookEndpointManagerTests.swift in Sources */,
 				C5A750701A80E1930089703F /* FacebookProfileLoadManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

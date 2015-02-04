@@ -37,7 +37,10 @@ extension FacebookEndpointManager {
   public func fetchFriendsURL(cursorAfter: String?) -> NSURL? {
     var endpointURL: NSURL?
     if let accesToken = persistenceStore.facebookAccesToken {
-      let fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
+      var fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
+      #if DEBUG || TEST
+        fetchLimit = 20
+      #endif
       var urlString = "https://graph.facebook.com/me/taggable_friends?limit=\(fetchLimit)&access_token=\(accesToken)"
       if let cursor = cursorAfter {
         urlString += "&after=\(cursor)"

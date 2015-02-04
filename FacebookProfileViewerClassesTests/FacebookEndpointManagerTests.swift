@@ -1,5 +1,5 @@
 //
-//  FacebookEndpointManager.swift
+//  FacebookEndpointManagerTests.swift
 //  FacebookProfileViewerClassesTests
 //
 //  Created by Vlad Gorlov on 25.01.15.
