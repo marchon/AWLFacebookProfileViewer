@@ -4,8 +4,11 @@
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
+import FacebookProfileViewerClasses
 
 class FriendsTableViewController : UITableViewController {
+
+  private var profiles = [Friend]()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -17,13 +20,19 @@ class FriendsTableViewController : UITableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 40
+    return profiles.count
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as UITableViewCell
-    cell.textLabel?.text = "f: \(indexPath.row)";
+    let profile = profiles[indexPath.row]
+    cell.textLabel?.text = profile.userName
     return cell
+  }
+
+  func updateWithData(profiles: [Friend]) {
+    self.profiles = profiles
+    self.tableView.reloadData()
   }
 
 }
