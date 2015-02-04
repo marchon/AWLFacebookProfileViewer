@@ -5,15 +5,13 @@
 
 import UIKit
 
-let UninitializedTaskErrorDomain = "UninitializedTaskErrorDomain"
-let UninitializedTaskErrorCode = -1
 
 class FacebookProfileLoadState {
 
   enum StateIdentifier: String {
     case Unknown = "Unknown", Initial = "Initial"
     case FetchingUserPictureURL = "FetchingUserPictureURL", FetchingUserPictureData = "FetchingUserPictureData",
-    FetchingUserProfileInfo = "FetchingUserProfileInfo", FetchingUserProfileCoverPhoto = "FetchingUserProfileCoverPhoto"
+         FetchingUserProfileInfo = "FetchingUserProfileInfo", FetchingUserProfileCoverPhoto = "FetchingUserProfileCoverPhoto"
     case LoadSuccessed = "LoadSuccessed", LoadFailed = "LoadFailed"
   }
 
@@ -38,16 +36,7 @@ class FacebookProfileLoadState {
   }
 
   class Helper {
-
     class func reportError(context: FacebookProfileLoadManager, error: NSError) {
-      let newState = FacebookProfileLoadStateLoadFailed()
-      context.lastOperationError = error
-      context.state = newState
-      newState.reportFailure(context)
-    }
-
-    class func reportUninitializedTaskError(context: FacebookProfileLoadManager) {
-      let error = NSError(domain: UninitializedTaskErrorDomain, code: UninitializedTaskErrorCode, userInfo: nil)
       let newState = FacebookProfileLoadStateLoadFailed()
       context.lastOperationError = error
       context.state = newState
@@ -75,21 +64,26 @@ class FacebookProfileLoadStateFetchingUserPictureURL: FacebookProfileLoadState {
   }
 
   override func performFetchTask(context: FacebookProfileLoadManager) {
-    var fetchTask = context.backendManager.fetchUserPictureURLTask({
-      (url: String) -> Void in
-      context.fetchResults.avatarImageURLString = url
-      let newState = FacebookProfileLoadStateFetchingUserPictureData()
-      context.state = newState
-      newState.performFetchTask(context)
-    }, failure: {
-      (error: NSError) -> Void in
-      FacebookProfileLoadState.Helper.reportError(context, error: error)
-    })
-
-    if let task = fetchTask {
+    if let url = context.backendManager.fetchUserPictureURL() {
+      var task = context.backendManager.fetchFacebookGraphAPITask(url,
+          success: {
+            (json: NSDictionary) -> Void in
+            let keyPath = "data.url"
+            if let downloadURL = json.valueForKeyPath(keyPath) as? String {
+              context.fetchResults.avatarImageURLString = downloadURL
+              context.state = FacebookProfileLoadStateFetchingUserPictureData()
+              context.state.performFetchTask(context)
+            } else {
+              FacebookProfileLoadState.Helper.reportError(context, error: NSError.errorForMissedAttribute(keyPath))
+            }
+          },
+          failure: {
+            (error: NSError) -> Void in
+            FacebookProfileLoadState.Helper.reportError(context, error: error)
+          })
       task.resume()
     } else {
-      FacebookProfileLoadState.Helper.reportUninitializedTaskError(context)
+      FacebookProfileLoadState.Helper.reportError(context, error: NSError.errorForUninitializedURL())
     }
   }
 }
@@ -100,25 +94,27 @@ class FacebookProfileLoadStateFetchingUserPictureData: FacebookProfileLoadState 
   }
 
   override func performFetchTask(context: FacebookProfileLoadManager) {
-    assert(context.fetchResults.avatarImageURLString != nil)
-    var downloadTask = context.backendManager.photoDownloadTask(context.fetchResults.avatarImageURLString!,
-        success: {
-          (image: UIImage) -> Void in
-          context.fetchResults.avatarImage = image
-          let newState = FacebookProfileLoadStateFetchingUserProfileInfo()
-          context.state = newState
-          newState.performFetchTask(context)
-        },
-        failure: {
-          (error: NSError) -> Void in
-          FacebookProfileLoadState.Helper.reportError(context, error: error)
-        }
-    )
-
-    if let task = downloadTask {
-      task.resume()
+    if let urlString = context.fetchResults.avatarImageURLString {
+      if let url = NSURL(string: urlString) {
+        var task = context.backendManager.photoDownloadTask(url,
+            success: {
+              (image: UIImage) -> Void in
+              context.fetchResults.avatarImage = image
+              let newState = FacebookProfileLoadStateFetchingUserProfileInfo()
+              context.state = newState
+              newState.performFetchTask(context)
+            },
+            failure: {
+              (error: NSError) -> Void in
+              FacebookProfileLoadState.Helper.reportError(context, error: error)
+            }
+        )
+        task.resume()
+      } else {
+        FacebookProfileLoadState.Helper.reportError(context, error: NSError.errorForUninitializedURL())
+      }
     } else {
-      FacebookProfileLoadState.Helper.reportUninitializedTaskError(context)
+      FacebookProfileLoadState.Helper.reportError(context, error: NSError.errorForUninitializedURL())
     }
   }
 }
@@ -129,21 +125,21 @@ class FacebookProfileLoadStateFetchingUserProfileInfo: FacebookProfileLoadState 
   }
 
   override func performFetchTask(context: FacebookProfileLoadManager) {
-    var fetchTask = context.backendManager.fetchUserProfileInformationTask({
-      (json: NSDictionary) -> Void in
-      context.fetchResults.userProfileJson = json
-      let newState = FacebookProfileLoadStateFetchingUserProfileCoverPhoto()
-      context.state = newState
-      newState.performFetchTask(context)
-    }, failure: {
-      (error: NSError) -> Void in
-      FacebookProfileLoadState.Helper.reportError(context, error: error)
-    })
-
-    if let task = fetchTask {
+    if let url = context.backendManager.fetchUserProfileInformationURL() {
+      var task = context.backendManager.fetchFacebookGraphAPITask(url,
+          success: {
+            (json: NSDictionary) -> Void in
+            context.fetchResults.userProfileJson = json
+            context.state = FacebookProfileLoadStateFetchingUserProfileCoverPhoto()
+            context.state.performFetchTask(context)
+          },
+          failure: {
+            (error: NSError) -> Void in
+            FacebookProfileLoadState.Helper.reportError(context, error: error)
+          })
       task.resume()
     } else {
-      FacebookProfileLoadState.Helper.reportUninitializedTaskError(context)
+      FacebookProfileLoadState.Helper.reportError(context, error: NSError.errorForUninitializedURL())
     }
   }
 }
@@ -152,28 +148,29 @@ class FacebookProfileLoadStateFetchingUserProfileCoverPhoto: FacebookProfileLoad
   override var stateID: StateIdentifier {
     return .FetchingUserProfileCoverPhoto
   }
-  
+
   override func performFetchTask(context: FacebookProfileLoadManager) {
-    let coverPhotoURLString = context.fetchResults.userProfileJson?.valueForKeyPath("cover.source") as? String
-    assert(coverPhotoURLString != nil)
-    var downloadTask = context.backendManager.photoDownloadTask(coverPhotoURLString!,
-      success: {
-        (image: UIImage) -> Void in
-        context.fetchResults.coverPhotoImage = image
-        let newState = FacebookProfileLoadStateLoadSuccessed()
-        context.state = newState
-        newState.reportSuccess(context)
-      },
-      failure: {
-        (error: NSError) -> Void in
-        FacebookProfileLoadState.Helper.reportError(context, error: error)
+    if let coverPhotoURLString = context.fetchResults.userProfileJson?.valueForKeyPath("cover.source") as? String {
+      if let url = NSURL(string: coverPhotoURLString) {
+        var task = context.backendManager.photoDownloadTask(url,
+            success: {
+              (image: UIImage) -> Void in
+              context.fetchResults.coverPhotoImage = image
+              let newState = FacebookProfileLoadStateLoadSuccessed()
+              context.state = newState
+              newState.reportSuccess(context)
+            },
+            failure: {
+              (error: NSError) -> Void in
+              FacebookProfileLoadState.Helper.reportError(context, error: error)
+            }
+        )
+        task.resume()
+      } else {
+        FacebookProfileLoadState.Helper.reportError(context, error: NSError.errorForUninitializedURL())
       }
-    )
-    
-    if let task = downloadTask {
-      task.resume()
     } else {
-      FacebookProfileLoadState.Helper.reportUninitializedTaskError(context)
+      FacebookProfileLoadState.Helper.reportError(context, error: NSError.errorForUninitializedURL())
     }
   }
 }
@@ -205,18 +202,19 @@ class FacebookProfileLoadStateLoadFailed: FacebookProfileLoadState {
 public class FacebookProfileLoadManager {
 
   public class FetchResults {
-    
+
     public var avatarImageURLString: String?
     public var avatarImage: UIImage?
     public var coverPhotoImage: UIImage?
     public var userProfileJson: NSDictionary?
-    
+
     public var isResultsValid: Bool {
       return avatarImageURLString != nil && avatarImage != nil && coverPhotoImage != nil && userProfileJson != nil
     }
   }
+
   var lastOperationError: NSError?
-  
+
   var successCallback: (FetchResults -> Void)!
   var failureCallback: (NSError -> Void)!
 
@@ -236,11 +234,11 @@ public class FacebookProfileLoadManager {
   var stateID: FacebookProfileLoadState.StateIdentifier {
     return self.state.stateID
   }
-  
+
   public init() {
   }
 
-  public func fetchUserProfile(success: (results: FetchResults) -> Void, failure: (error: NSError) -> Void) {
+  public func fetchUserProfile(success: (results:FetchResults) -> Void, failure: (error:NSError) -> Void) {
     self.successCallback = success
     self.failureCallback = failure
     self.state.fetchUserProfile(self)

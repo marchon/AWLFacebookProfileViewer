@@ -7,19 +7,16 @@ import UIKit
 import XCTest
 import FacebookProfileViewerClasses
 
-class FacebookFriendsLoadManagerTests : XCTestCase {
+class FacebookFriendsLoadManagerTests : EnpointTestCase {
   
   func testUserFriends() {
-    var exp = expectationWithDescription("Fetch friends")
     let mngr = FacebookFriendsLoadManager()
     mngr.fetchUserFriends( { (results: FacebookFriendsLoadManager.FetchResults) -> Void in
       XCTAssertTrue(results.isResultsValid)
-      exp.fulfill()
+      self.expectation.fulfill()
       },
       failure: { (error: NSError) -> Void in
-        logError(error)
-        XCTFail("Unecpected error: \(error)")
-        exp.fulfill()
+        self.reportFailure(error)
     })
     
     waitForExpectationsWithTimeout(30, handler: nil)

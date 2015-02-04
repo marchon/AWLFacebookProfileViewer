@@ -36,6 +36,8 @@
 		80C3B0651A70506A0004CBDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0641A70506A0004CBDE /* Images.xcassets */; };
 		80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0661A70506A0004CBDE /* LaunchScreen.xib */; };
 		80CFEE961A7E986F00D47E62 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFEE941A7E947B00D47E62 /* AppState.swift */; };
+		80F43D3C1A824C890084881F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F43D3B1A824C890084881F /* Errors.swift */; };
+		80F43D3E1A8256390084881F /* EnpointTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F43D3D1A8256390084881F /* EnpointTestCase.swift */; };
 		C51980DD1A811F5300BE4861 /* FacebookFriendsLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51980DC1A811F5300BE4861 /* FacebookFriendsLoadManager.swift */; };
 		C51980DF1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51980DE1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift */; };
 		C58C7BDC1A7FAF40007E3996 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDA1A7FAF40007E3996 /* FriendsTableViewController.swift */; };
@@ -124,6 +126,8 @@
 		80C3B0641A70506A0004CBDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80C3B0671A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80CFEE941A7E947B00D47E62 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		80F43D3B1A824C890084881F /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		80F43D3D1A8256390084881F /* EnpointTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnpointTestCase.swift; sourceTree = "<group>"; };
 		C51980DC1A811F5300BE4861 /* FacebookFriendsLoadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookFriendsLoadManager.swift; sourceTree = "<group>"; };
 		C51980DE1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookFriendsLoadManagerTests.swift; sourceTree = "<group>"; };
 		C58C7BDA1A7FAF40007E3996 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				80CFEE941A7E947B00D47E62 /* AppState.swift */,
 				807E28721A7AB703005DBF05 /* Logging.swift */,
 				808A363D1A7EA4F100C18EC1 /* NSURL.swift */,
+				80F43D3B1A824C890084881F /* Errors.swift */,
 			);
 			path = FacebookProfileViewerClasses;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 		8033135D1A74660100E54701 /* FacebookProfileViewerClassesTests */ = {
 			isa = PBXGroup;
 			children = (
+				80F43D3D1A8256390084881F /* EnpointTestCase.swift */,
 				803313601A74660100E54701 /* FacebookEndpointManager.swift */,
 				C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */,
 				C51980DE1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift */,
@@ -484,6 +490,7 @@
 				80205E931A7996670042E94A /* ProfileEntity.swift in Sources */,
 				8033139E1A746AE600E54701 /* FacebookEndpointManager.swift in Sources */,
 				807E28731A7AB703005DBF05 /* Logging.swift in Sources */,
+				80F43D3C1A824C890084881F /* Errors.swift in Sources */,
 				803313961A74687A00E54701 /* PersistenceStore.swift in Sources */,
 				80205E8F1A7996670042E94A /* FriendEntity.swift in Sources */,
 				808A363E1A7EA4F100C18EC1 /* NSURL.swift in Sources */,
@@ -497,6 +504,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C51980DF1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift in Sources */,
+				80F43D3E1A8256390084881F /* EnpointTestCase.swift in Sources */,
 				803313611A74660100E54701 /* FacebookEndpointManager.swift in Sources */,
 				C5A750701A80E1930089703F /* FacebookProfileLoadManagerTests.swift in Sources */,
 			);

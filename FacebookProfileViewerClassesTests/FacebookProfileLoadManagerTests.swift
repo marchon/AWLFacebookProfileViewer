@@ -7,21 +7,18 @@ import UIKit
 import XCTest
 import FacebookProfileViewerClasses
 
-class FacebookProfileLoadManagerTests : XCTestCase {
-  
+class FacebookProfileLoadManagerTests : EnpointTestCase {
+
   func testFetchUserProfile() {
-    var exp = expectationWithDescription("Fetch profile")
     let mngr = FacebookProfileLoadManager()
     mngr.fetchUserProfile( { (results: FacebookProfileLoadManager.FetchResults) -> Void in
       XCTAssertTrue(results.isResultsValid)
-      exp.fulfill()
+      self.expectation.fulfill()
       },
       failure: { (error: NSError) -> Void in
-        logError(error)
-        XCTFail("Unecpected error: \(error)")
-        exp.fulfill()
+        self.reportFailure(error)
     })
-    
+
     waitForExpectationsWithTimeout(30, handler: nil)
   }
 }
