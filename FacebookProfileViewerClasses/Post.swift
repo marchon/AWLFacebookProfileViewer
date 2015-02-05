@@ -46,11 +46,28 @@ public class Post {
       if let createdTime = propertyForCreatedTime(properties) {
         post.createdDate = createdTime
       }
+      if let value = propertyForMessage(properties) {
+        post.title = value
+      } else if let value = propertyForStory(properties) {
+        post.title = value
+      }
       return post
     case .Photo:
       var post = PhotoPost()
       if let createdTime = propertyForCreatedTime(properties) {
         post.createdDate = createdTime
+      }
+      if let value = propertyForMessage(properties) {
+        post.title = value
+      } else if let value = propertyForStory(properties) {
+        post.title = value
+      } else if let value = propertyForDescription(properties) {
+        post.title = value
+      } else if let value = propertyForName(properties) {
+        post.title = value
+      }
+      if let value = propertyForPicture(properties) {
+        post.pictureURLString = value
       }
       return post
     case .Video:
@@ -58,11 +75,41 @@ public class Post {
       if let createdTime = propertyForCreatedTime(properties) {
         post.createdDate = createdTime
       }
+      if let value = propertyForMessage(properties) {
+        post.title = value
+      } else if let value = propertyForStory(properties) {
+        post.title = value
+      } else if let value = propertyForDescription(properties) {
+        post.title = value
+      } else if let value = propertyForName(properties) {
+        post.title = value
+      }
+      if let value = propertyForPicture(properties) {
+        post.pictureURLString = value
+      }
+      if let value = propertyForSource(properties) {
+        post.videoURLString = value
+      }
       return post
     case .SWF:
       var post = SWFPost()
       if let createdTime = propertyForCreatedTime(properties) {
         post.createdDate = createdTime
+      }
+      if let value = propertyForMessage(properties) {
+        post.title = value
+      } else if let value = propertyForStory(properties) {
+        post.title = value
+      } else if let value = propertyForDescription(properties) {
+        post.title = value
+      } else if let value = propertyForName(properties) {
+        post.title = value
+      }
+      if let value = propertyForPicture(properties) {
+        post.pictureURLString = value
+      }
+      if let value = propertyForSource(properties) {
+        post.videoURLString = value
       }
       return post
     }
@@ -100,6 +147,14 @@ public class Post {
   private class func propertyForName(properties: NSDictionary) -> String? {
     return properties.valueForKey("name") as? String
   }
+  
+  private class func propertyForPicture(properties: NSDictionary) -> String? {
+    return properties.valueForKey("picture") as? String
+  }
+  
+  private class func propertyForSource(properties: NSDictionary) -> String? {
+    return properties.valueForKey("source") as? String
+  }
 }
 
 
@@ -126,6 +181,11 @@ public class StatusPost : Post {
     set {
     }
   }
+  
+  public var title: String!
+  override public var isValid: Bool {
+    return super.isValid && title != nil
+  }
 }
 
 public class PhotoPost : Post {
@@ -135,6 +195,13 @@ public class PhotoPost : Post {
     }
     set {
     }
+  }
+  
+  public var title: String!
+  public var pictureURLString: String!
+  
+  override public var isValid: Bool {
+    return super.isValid && title != nil && pictureURLString != nil
   }
 }
 
@@ -146,6 +213,14 @@ public class VideoPost : Post {
     set {
     }
   }
+  
+  public var title: String!
+  public var pictureURLString: String!
+  public var videoURLString: String!
+  
+  override public var isValid: Bool {
+    return super.isValid && title != nil && pictureURLString != nil && videoURLString != nil
+  }
 }
 
 public class SWFPost : Post {
@@ -155,5 +230,13 @@ public class SWFPost : Post {
     }
     set {
     }
+  }
+  
+  public var title: String!
+  public var pictureURLString: String!
+  public var videoURLString: String!
+  
+  override public var isValid: Bool {
+    return super.isValid && title != nil && pictureURLString != nil && videoURLString != nil
   }
 }

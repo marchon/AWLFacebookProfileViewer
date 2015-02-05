@@ -27,13 +27,13 @@ class PostsTableViewController : UITableViewController {
     case Post.PostType.Link:
       cell.textLabel?.text = (post as LinkPost).title
     case Post.PostType.Status:
-      cell.textLabel?.text = post.type.rawValue
+      cell.textLabel?.text = (post as StatusPost).title
     case Post.PostType.Photo:
-      cell.textLabel?.text = post.type.rawValue
+      cell.textLabel?.text = (post as PhotoPost).title
     case Post.PostType.Video:
-      cell.textLabel?.text = post.type.rawValue
+      cell.textLabel?.text = (post as VideoPost).title
     case Post.PostType.SWF:
-      cell.textLabel?.text = post.type.rawValue
+      cell.textLabel?.text = (post as SWFPost).title
     }
     
     let dateFormat = NSDateFormatter.dateFormatFromTemplate("yMMMMd", options: 0, locale: NSLocale.currentLocale())
