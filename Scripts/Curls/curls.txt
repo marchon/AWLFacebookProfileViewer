@@ -18,6 +18,7 @@ curl -v -d @access_token.txt -d "message=Test: Hello" https://graph.facebook.com
 
 # Read feed
 curl -v -d @access_token.txt https://graph.facebook.com/me/feed?limit=10 -G | python -mjson.tool
+curl -v -d @access_token.txt -d "fields=message,type,application,caption,name,story,description" https://graph.facebook.com/me/feed?limit=10 -G | python -mjson.tool
 
 # Read friends
 curl -v -d fields=picture,name -d limit=10 -d @access_token.txt https://graph.facebook.com/me/taggable_friends -G | python -mjson.tool

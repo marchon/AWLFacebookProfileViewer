@@ -13,40 +13,44 @@ import FacebookProfileViewerUI
 import FacebookProfileViewerClasses
 
 class MainViewController: UIViewController {
-
+  
   @IBOutlet weak var topView: UserProfile!
   @IBOutlet weak var bottomView: UIView!
-
+  
   private var postsViewControoler: PostsTableViewController!
   private var friendsViewControoler: FriendsTableViewController!
   private var activeControllerType: ChildControllerType!
   lazy private var profileLoadManager: FacebookProfileLoadManager = {
     return FacebookProfileLoadManager()
-  }()
+    }()
   lazy private var friendsLoadManager: FacebookFriendsLoadManager = {
     return FacebookFriendsLoadManager()
-  }()
-
+    }()
+  lazy private var postsLoadManager: FacebookPostsLoadManager = {
+    return FacebookPostsLoadManager()
+    }()
+  
   var managedObjectContext: NSManagedObjectContext!
-
+  
   //MARK: - Internal
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-
+    
     initChildControllers()
-
+    
     if !AppState.UI.shouldShowWelcomeScreen {
       fetchProfileFromDatasource()
       fetchFriendsFromDatasource()
+      fetchPostsFromDatasource()
     }
   }
-
+  
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     layoutChildControllers()
   }
-
+  
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     if AppState.UI.shouldShowWelcomeScreen {
@@ -54,7 +58,7 @@ class MainViewController: UIViewController {
       performSegueWithIdentifier("showWelcomeScreen", sender: nil)
     }
   }
-
+  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showWelcomeScreen" {
       let nc = segue.destinationViewController as UINavigationController
@@ -73,13 +77,14 @@ class MainViewController: UIViewController {
           () -> Void in
           self.fetchProfileFromDatasource()
           self.fetchFriendsFromDatasource()
+          self.fetchPostsFromDatasource()
         })
       }
     }
   }
-
+  
   //MARK: - Private
-
+  
   private func updateProfileInformation(profile: Profile) {
     dispatch_async(dispatch_get_main_queue(), {
       self.topView.profileAvatar.image = profile.avatarPicture
@@ -88,13 +93,19 @@ class MainViewController: UIViewController {
       self.topView.coverPhoto.image = profile.coverPhoto
     })
   }
-
+  
+  private func updatePostsTable(posts: [Post]) {
+    dispatch_async(dispatch_get_main_queue(), {
+      self.postsViewControoler.updateWithData(posts)
+    })
+  }
+  
   private func updateFriendsTable(friends: [Friend]) {
     dispatch_async(dispatch_get_main_queue(), {
       self.friendsViewControoler.updateWithData(friends)
     })
   }
-
+  
 }
 
 //MARK: - Networking
@@ -109,12 +120,12 @@ extension MainViewController {
       profile.hometown = results.userProfileJson?.valueForKeyPath("hometown.name") as? String
       profile.coverPhoto = results.coverPhotoImage
       self.updateProfileInformation(profile)
-    }, failure: {
-      (error: NSError) -> Void in
-      logError(self.removeSensitiveInformationFromError(error))
+      }, failure: {
+        (error: NSError) -> Void in
+        logError(self.removeSensitiveInformationFromError(error))
     })
   }
-
+  
   private func fetchFriendsFromServer() {
     friendsLoadManager.fetchUserFriends({
       (results: FacebookFriendsLoadManager.FetchResults) -> Void in
@@ -130,46 +141,73 @@ extension MainViewController {
         })
         self.updateFriendsTable(friendProfiles)
       }
-    }, failure: {
-      (error: NSError) -> Void in
-      logError(self.removeSensitiveInformationFromError(error))
+      }, failure: {
+        (error: NSError) -> Void in
+        logError(self.removeSensitiveInformationFromError(error))
     })
   }
-
+  
+  private func fetchPostsFromServer() {
+    postsLoadManager.fetchUserPosts({
+      (results: FacebookPostsLoadManager.FetchResults) -> Void in
+      if let postsDict = results.postsFeedChunks {
+        var posts = [Post]()
+        for dict in postsDict {
+          if let postType = dict.valueForKey("type") as? String {
+            if let type = Post.PostType(rawValue: postType) {
+              let post = Post.postForType(type, properties: dict)
+              if post.isValid {
+                posts.append(post)
+              } else {
+                logWarn("Invalid post: \(post). Dictionary: \(dict)")
+              }
+            } else {
+              logWarn("Unknown post type: \(postType). Dictionary: \(dict)")
+            }
+          }
+        }
+        self.updatePostsTable(posts)
+      }
+      }, failure: {
+        (error: NSError) -> Void in
+        logError(self.removeSensitiveInformationFromError(error))
+    })
+  }
+  
   private func removeSensitiveInformationFromError(error: NSError) -> String {
-#if TEST || DEBUG
-    return error.description
-#else
-    if let token = PersistenceStore.sharedInstance().facebookAccesToken {
-      return error.description.stringByReplacingOccurrencesOfString(token, withString: "TOKEN-WAS-STRIPPED")
-    } else {
+    #if TEST || DEBUG
       return error.description
-    }
-#endif
+      #else
+      if let token = PersistenceStore.sharedInstance().facebookAccesToken {
+      return error.description.stringByReplacingOccurrencesOfString(token, withString: "TOKEN-WAS-STRIPPED")
+      } else {
+      return error.description
+      }
+    #endif
   }
 }
 
 //MARK: - Persistence
 
 extension MainViewController {
-
+  
   private func fetchProfileFromDatasource() {
-#if DEBUG
-    let dic = NSProcessInfo.processInfo().environment
-    if dic["AWL_SKIP_DATASOURCE"] != nil {
-      fetchProfileFromServer()
-      return
-    }
-#endif
-
+    #if DEBUG
+      let dic = NSProcessInfo.processInfo().environment
+      if dic["AWL_SKIP_DATASOURCE"] != nil {
+        fetchProfileFromServer()
+        return
+      }
+    #endif
+    
     let fetchRequest = NSFetchRequest()
     let entityName = ProfileEntity.description().componentsSeparatedByString(".").last!
     let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.managedObjectContext)
     fetchRequest.entity = entityDescription
-
+    
     var fetchError: NSError?
     var fetchResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &fetchError)
-
+    
     if let results = fetchResults {
       if results.count == 0 {
         // Profile not yet fetched from server
@@ -183,27 +221,37 @@ extension MainViewController {
       logError(fetchError!)
     }
   }
-
+  
   private func fetchFriendsFromDatasource() {
-#if DEBUG
-    let dic = NSProcessInfo.processInfo().environment
-    if dic["AWL_SKIP_DATASOURCE"] != nil {
-      fetchFriendsFromServer()
-      return
-    }
-#endif
+    #if DEBUG
+      let dic = NSProcessInfo.processInfo().environment
+      if dic["AWL_SKIP_DATASOURCE"] != nil {
+        fetchFriendsFromServer()
+        return
+      }
+    #endif
   }
-
+  
+  private func fetchPostsFromDatasource() {
+    #if DEBUG
+      let dic = NSProcessInfo.processInfo().environment
+      if dic["AWL_SKIP_DATASOURCE"] != nil {
+        fetchPostsFromServer()
+        return
+      }
+    #endif
+  }
+  
 }
 
 //MARK: - Child View Controllers
 
 extension MainViewController {
-
+  
   enum ChildControllerType: Int {
     case Posts
     case Friends
-
+    
     func opposite() -> ChildControllerType {
       if self != .Posts {
         return .Posts
@@ -212,49 +260,49 @@ extension MainViewController {
       }
     }
   }
-
+  
   @IBAction func switchBottomView(sender: UISegmentedControl?) {
     let type = ChildControllerType(rawValue: sender?.selectedSegmentIndex ?? 0) ?? ChildControllerType.Posts
     switchToChildViewController(type)
   }
-
+  
   //MARK: - Private
-
+  
   private func initChildControllers() {
-
+    
     activeControllerType = .Posts
-
+    
     postsViewControoler = self.storyboard?.instantiateViewControllerWithIdentifier("postsViewControoler") as PostsTableViewController
     friendsViewControoler = self.storyboard?.instantiateViewControllerWithIdentifier("friendsViewController") as FriendsTableViewController
-
+    
     self.addChildViewController(postsViewControoler)
     self.addChildViewController(friendsViewControoler)
-
+    
     let activeController = activeControllerType == .Posts ? postsViewControoler : friendsViewControoler
     self.bottomView.addSubview(activeController.view)
-
+    
     postsViewControoler.didMoveToParentViewController(self)
     friendsViewControoler.didMoveToParentViewController(self)
   }
-
+  
   private func layoutChildControllers() {
     for item in childViewControllers {
       (item as UIViewController).view.frame = bottomView.bounds
     }
   }
-
+  
   private func switchToChildViewController(type: ChildControllerType) {
     if type == activeControllerType {
       return // Nothing to do
     }
-
+    
     let from = type == .Posts ? friendsViewControoler : postsViewControoler
     let to = type == .Posts ? postsViewControoler : friendsViewControoler
-
+    
     transitionFromViewController(from, toViewController: to, duration: 0.4, options: UIViewAnimationOptions.allZeros,
-        animations: nil, completion: nil)
+      animations: nil, completion: nil)
     activeControllerType = activeControllerType.opposite()
   }
-
+  
 }
 
