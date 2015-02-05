@@ -9,6 +9,7 @@ public class Friend {
 
   public var avatarPicture: UIImage?
   public var userName: String?
+  public var id: String?
 
   public init() {
   }

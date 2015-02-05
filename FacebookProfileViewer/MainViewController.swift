@@ -134,6 +134,8 @@ extension MainViewController {
         for dict in friends {
           let friend = Friend()
           friend.userName = dict.valueForKey("name") as? String
+          friend.id = dict.valueForKey("id") as? String
+          assert(friend.id != nil)
           friendProfiles.append(friend)
         }
         friendProfiles.sort({ (lhs: Friend, rhs: Friend) -> Bool in

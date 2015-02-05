@@ -7,6 +7,9 @@ import UIKit
 
 public class Post {
   
+  /// Graph API Reference Post /post (https://developers.facebook.com/docs/graph-api/reference/v2.2/post)
+  /// facebook graph api - What types of posts are in a feed? - Stack Overflow (http://stackoverflow.com/questions/7334689/what-types-of-posts-are-in-a-feed)
+  /// Graph API /user/feed (https://developers.facebook.com/docs/graph-api/reference/v2.2/user/feed)
   public enum PostType : String {
     case Link = "link"
     case Status = "status"
@@ -17,9 +20,10 @@ public class Post {
   
   public var type: PostType!
   public var createdDate: NSDate!
+  public var id: String!
   
   public var isValid: Bool {
-    return type != nil && createdDate != nil
+    return type != nil && createdDate != nil && id != nil
   }
   
   public class func postForType(type: PostType, properties: NSDictionary) -> Post {
@@ -28,6 +32,9 @@ public class Post {
       var post = LinkPost()
       if let createdTime = propertyForCreatedTime(properties) {
         post.createdDate = createdTime
+      }
+      if let value = propertyForID(properties) {
+        post.id = value
       }
       if let value = propertyForMessage(properties) {
         post.title = value
@@ -46,6 +53,9 @@ public class Post {
       if let createdTime = propertyForCreatedTime(properties) {
         post.createdDate = createdTime
       }
+      if let value = propertyForID(properties) {
+        post.id = value
+      }
       if let value = propertyForMessage(properties) {
         post.title = value
       } else if let value = propertyForStory(properties) {
@@ -56,6 +66,9 @@ public class Post {
       var post = PhotoPost()
       if let createdTime = propertyForCreatedTime(properties) {
         post.createdDate = createdTime
+      }
+      if let value = propertyForID(properties) {
+        post.id = value
       }
       if let value = propertyForMessage(properties) {
         post.title = value
@@ -74,6 +87,9 @@ public class Post {
       var post = VideoPost()
       if let createdTime = propertyForCreatedTime(properties) {
         post.createdDate = createdTime
+      }
+      if let value = propertyForID(properties) {
+        post.id = value
       }
       if let value = propertyForMessage(properties) {
         post.title = value
@@ -95,6 +111,9 @@ public class Post {
       var post = SWFPost()
       if let createdTime = propertyForCreatedTime(properties) {
         post.createdDate = createdTime
+      }
+      if let value = propertyForID(properties) {
+        post.id = value
       }
       if let value = propertyForMessage(properties) {
         post.title = value
@@ -154,6 +173,10 @@ public class Post {
   
   private class func propertyForSource(properties: NSDictionary) -> String? {
     return properties.valueForKey("source") as? String
+  }
+  
+  private class func propertyForID(properties: NSDictionary) -> String? {
+    return properties.valueForKey("id") as? String
   }
 }
 
