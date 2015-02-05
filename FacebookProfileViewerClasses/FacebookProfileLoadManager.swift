@@ -241,6 +241,7 @@ public class FacebookProfileLoadManager {
   public func fetchUserProfile(success: (results:FetchResults) -> Void, failure: (error:NSError) -> Void) {
     self.successCallback = success
     self.failureCallback = failure
+    self.state = FacebookProfileLoadStateInitial()
     self.state.fetchUserProfile(self)
   }
 }

@@ -80,26 +80,32 @@ class FacebookFriendsLoadStateFetchingFriendsFeedChunk: FacebookFriendsLoadState
               return
             }
 
-            // Should continue or exit
-            let pagingKey = "paging"
-            if let paginDict = json.valueForKey(pagingKey) as? NSDictionary {
-              if paginDict.hasKey("next") {
-                // Continure fetching friends
-                let cursorAfterKey = "cursors.after"
-                if let cursorAfter = paginDict.valueForKeyPath(cursorAfterKey) as? String {
-                  context.fetchCursorAfter = cursorAfter
-                  context.state = FacebookFriendsLoadStateFetchingFriendsFeedChunk()
-                  context.state.performFetchTask(context)
+            if context.fetchResults.friendsFeedChunks!.count < context.maxNumberOfTotalFriendsToFetch {
+              // Should continue or exit
+              let pagingKey = "paging"
+              if let paginDict = json.valueForKey(pagingKey) as? NSDictionary {
+                if paginDict.hasKey("next") {
+                  // Continure fetching friends
+                  let cursorAfterKey = "cursors.after"
+                  if let cursorAfter = paginDict.valueForKeyPath(cursorAfterKey) as? String {
+                    context.fetchCursorAfter = cursorAfter
+                    context.state = FacebookFriendsLoadStateFetchingFriendsFeedChunk()
+                    context.state.performFetchTask(context)
+                  } else {
+                    FacebookFriendsLoadState.Helper.reportError(context, error: NSError.errorForMissedAttribute(cursorAfterKey))
+                  }
                 } else {
-                  FacebookFriendsLoadState.Helper.reportError(context, error: NSError.errorForMissedAttribute(cursorAfterKey))
+                  context.state = FacebookFriendsLoadStateLoadSuccessed()
+                  context.state.reportSuccess(context)
                 }
               } else {
-                context.state = FacebookFriendsLoadStateLoadSuccessed()
-                context.state.reportSuccess(context)
+                FacebookFriendsLoadState.Helper.reportError(context, error: NSError.errorForMissedAttribute(pagingKey))
               }
             } else {
-              FacebookFriendsLoadState.Helper.reportError(context, error: NSError.errorForMissedAttribute(pagingKey))
+              context.state = FacebookFriendsLoadStateLoadSuccessed()
+              context.state.reportSuccess(context)
             }
+
           },
           failure: {
             (error: NSError) -> Void in
@@ -149,6 +155,12 @@ public class FacebookFriendsLoadManager {
 
   var lastOperationError: NSError?
   var fetchCursorAfter: String?
+  
+  #if TEST
+  let maxNumberOfTotalFriendsToFetch = 80
+  #else
+  let maxNumberOfTotalFriendsToFetch = 400
+  #endif
 
   var successCallback: (FetchResults -> Void)!
   var failureCallback: (NSError -> Void)!
@@ -177,6 +189,7 @@ public class FacebookFriendsLoadManager {
   public func fetchUserFriends(success: (results:FetchResults) -> Void, failure: (error:NSError) -> Void) {
     self.successCallback = success
     self.failureCallback = failure
+    self.state = FacebookFriendsLoadStateInitial()
     self.state.fetchUserFriends(self)
   }
 }

@@ -38,13 +38,26 @@ extension FacebookEndpointManager {
     var endpointURL: NSURL?
     if let accesToken = persistenceStore.facebookAccesToken {
       var fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
-      #if DEBUG || TEST
-        fetchLimit = 20
-      #endif
+#if DEBUG || TEST
+      fetchLimit = 20
+#endif
       var urlString = "https://graph.facebook.com/me/taggable_friends?limit=\(fetchLimit)&access_token=\(accesToken)"
       if let cursor = cursorAfter {
         urlString += "&after=\(cursor)"
       }
+      endpointURL = NSURL(string: urlString)
+    }
+    return endpointURL
+  }
+
+  public func fetchPostsURL() -> NSURL? {
+    var endpointURL: NSURL?
+    if let accesToken = persistenceStore.facebookAccesToken {
+      var fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
+#if DEBUG || TEST
+      fetchLimit = 20
+#endif
+      var urlString = "https://graph.facebook.com/me/feed?limit=\(fetchLimit)&access_token=\(accesToken)"
       endpointURL = NSURL(string: urlString)
     }
     return endpointURL
@@ -59,7 +72,7 @@ extension FacebookEndpointManager {
       (location: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
 
       if error != nil {
-        failure( error)
+        failure(error)
       } else {
         if let loc = location {
           if let data = NSData(contentsOfURL: loc) {

@@ -69,5 +69,20 @@ class FacebookEndpointManagerTests: EnpointTestCase {
 
     waitForExpectationsWithTimeout(30, handler: nil)
   }
+
+  func testFetchPosts() {
+    var url = manager.fetchPostsURL()
+    manager.fetchFacebookGraphAPITask(url!,
+        success:
+        {(json: NSDictionary) -> Void in
+          self.expectation.fulfill()
+        },
+        failure: {(error: NSError) -> Void in
+          self.reportFailure(error)
+        }
+    ).resume()
+
+    waitForExpectationsWithTimeout(30, handler: nil)
+  }
   
 }

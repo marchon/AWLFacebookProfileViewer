@@ -40,6 +40,8 @@
 		80CFEE961A7E986F00D47E62 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFEE941A7E947B00D47E62 /* AppState.swift */; };
 		80F43D3C1A824C890084881F /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F43D3B1A824C890084881F /* Errors.swift */; };
 		80F43D3E1A8256390084881F /* EnpointTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F43D3D1A8256390084881F /* EnpointTestCase.swift */; };
+		C5171BD61A837D000066E006 /* FacebookPostsLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5171BD51A837D000066E006 /* FacebookPostsLoadManager.swift */; };
+		C5171BD81A83818A0066E006 /* FacebookPostsLoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5171BD71A83818A0066E006 /* FacebookPostsLoadManagerTests.swift */; };
 		C51980DD1A811F5300BE4861 /* FacebookFriendsLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51980DC1A811F5300BE4861 /* FacebookFriendsLoadManager.swift */; };
 		C51980DF1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51980DE1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift */; };
 		C58C7BDC1A7FAF40007E3996 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDA1A7FAF40007E3996 /* FriendsTableViewController.swift */; };
@@ -132,6 +134,8 @@
 		80CFEE941A7E947B00D47E62 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		80F43D3B1A824C890084881F /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		80F43D3D1A8256390084881F /* EnpointTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnpointTestCase.swift; sourceTree = "<group>"; };
+		C5171BD51A837D000066E006 /* FacebookPostsLoadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPostsLoadManager.swift; sourceTree = "<group>"; };
+		C5171BD71A83818A0066E006 /* FacebookPostsLoadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookPostsLoadManagerTests.swift; sourceTree = "<group>"; };
 		C51980DC1A811F5300BE4861 /* FacebookFriendsLoadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookFriendsLoadManager.swift; sourceTree = "<group>"; };
 		C51980DE1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookFriendsLoadManagerTests.swift; sourceTree = "<group>"; };
 		C58C7BDA1A7FAF40007E3996 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 				8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */,
 				C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */,
 				C51980DC1A811F5300BE4861 /* FacebookFriendsLoadManager.swift */,
+				C5171BD51A837D000066E006 /* FacebookPostsLoadManager.swift */,
 				803313931A7467EB00E54701 /* PersistenceStoreProvider.swift */,
 				803313951A74687A00E54701 /* PersistenceStore.swift */,
 				80CFEE941A7E947B00D47E62 /* AppState.swift */,
@@ -203,6 +208,7 @@
 				803313601A74660100E54701 /* FacebookEndpointManagerTests.swift */,
 				C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */,
 				C51980DE1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift */,
+				C5171BD71A83818A0066E006 /* FacebookPostsLoadManagerTests.swift */,
 				8033135F1A74660100E54701 /* Info.plist */,
 			);
 			path = FacebookProfileViewerClassesTests;
@@ -496,6 +502,7 @@
 				C58C7BE01A7FB7F1007E3996 /* Profile.swift in Sources */,
 				80205E931A7996670042E94A /* ProfileEntity.swift in Sources */,
 				8033139E1A746AE600E54701 /* FacebookEndpointManager.swift in Sources */,
+				C5171BD61A837D000066E006 /* FacebookPostsLoadManager.swift in Sources */,
 				807E28731A7AB703005DBF05 /* Logging.swift in Sources */,
 				80F43D3C1A824C890084881F /* Errors.swift in Sources */,
 				803313961A74687A00E54701 /* PersistenceStore.swift in Sources */,
@@ -511,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5171BD81A83818A0066E006 /* FacebookPostsLoadManagerTests.swift in Sources */,
 				C51980DF1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift in Sources */,
 				80F43D3E1A8256390084881F /* EnpointTestCase.swift in Sources */,
 				803313611A74660100E54701 /* FacebookEndpointManagerTests.swift in Sources */,
