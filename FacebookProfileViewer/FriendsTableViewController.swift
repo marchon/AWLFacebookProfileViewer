@@ -21,7 +21,11 @@ class FriendsTableViewController : UITableViewController {
   }
 
   func updateWithData(profiles: [Friend]) {
-    self.profiles = profiles
+    self.profiles += profiles
+    self.profiles.sort({
+      (lhs: Friend, rhs: Friend) -> Bool in
+      return lhs.userName < rhs.userName
+    })
     self.tableView.reloadData()
   }
   

@@ -143,72 +143,73 @@ extension MainViewController {
 
   private func fetchFriendsFromServer() {
     friendsLoadManager.fetchUserFriends({
-      (results: FacebookFriendsLoadManager.FetchResults) -> Void in
-      if let friends = results.friendsFeedChunks {
-        var friendProfiles = [Friend]()
-        for dict in friends {
-          if let friend = Friend(properties: dict) {
-            if let URLString = friend.avatarPictureURL {
-              if let url = NSURL(string: URLString) {
-                var imageDownLoadTask = self.backendManager.photoDownloadTask(url,
-                    success: {
-                      (image: UIImage) -> Void in
-                      friend.avatarPicture = image
-                      self.updateFriendsTable(friend.id, image: image)
-                    },
-                    failure: {
-                      (error: NSError) -> Void in
-                      logError(self.removeSensitiveInformationFromError(error))
-                    }
-                )
-                imageDownLoadTask.resume()
-              }
+      (results: [NSDictionary]) -> Void in
+      
+      var friendProfiles = [Friend]()
+      for dict in results {
+        if let friend = Friend(properties: dict) {
+          if let URLString = friend.avatarPictureURL {
+            if let url = NSURL(string: URLString) {
+              var imageDownLoadTask = self.backendManager.photoDownloadTask(url,
+                  success: {
+                    (image: UIImage) -> Void in
+                    friend.avatarPicture = image
+                    self.updateFriendsTable(friend.id, image: image)
+                  },
+                  failure: {
+                    (error: NSError) -> Void in
+                    logError(self.removeSensitiveInformationFromError(error))
+                  }
+              )
+              imageDownLoadTask.resume()
             }
-            friendProfiles.append(friend)
           }
+          friendProfiles.append(friend)
         }
-        friendProfiles.sort({
-          (lhs: Friend, rhs: Friend) -> Bool in
-          return lhs.userName < rhs.userName
-        })
-        self.updateFriendsTable(friendProfiles)
       }
-    }, failure: {
-      (error: NSError) -> Void in
-      logError(self.removeSensitiveInformationFromError(error))
-    })
+      self.updateFriendsTable(friendProfiles)
+    },
+        success: {
+          (results: [NSDictionary]) -> Void in
+        },
+        failure: {
+          (error: NSError) -> Void in
+          logError(self.removeSensitiveInformationFromError(error))
+        })
   }
 
   private func fetchPostsFromServer() {
     postsLoadManager.fetchUserPosts({
-      (results: FacebookPostsLoadManager.FetchResults) -> Void in
-      if let postsDict = results.postsFeedChunks {
-        var posts = [Post]()
-        for dict in postsDict {
-          if let post = Post(properties: dict) {
-            if let URLString = post.pictureURLString {
-              if let url = NSURL(string: URLString) {
-                var imageDownLoadTask = self.backendManager.photoDownloadTask(url,
-                    success: {
-                      (image: UIImage) -> Void in
-                      post.picture = image
-                      self.updatePostsTable(post.id!, image: image)
-                    },
-                    failure: {
-                      (error: NSError) -> Void in
-                      logError(self.removeSensitiveInformationFromError(error))
-                    }
-                )
-                imageDownLoadTask.resume()
-              }
+      (results: [NSDictionary]) -> Void in
+      var posts = [Post]()
+      for dict in results {
+        if let post = Post(properties: dict) {
+          if let URLString = post.pictureURLString {
+            if let url = NSURL(string: URLString) {
+              var imageDownLoadTask = self.backendManager.photoDownloadTask(url,
+                success: {
+                  (image: UIImage) -> Void in
+                  post.picture = image
+                  self.updatePostsTable(post.id!, image: image)
+                },
+                failure: {
+                  (error: NSError) -> Void in
+                  logError(self.removeSensitiveInformationFromError(error))
+                }
+              )
+              imageDownLoadTask.resume()
             }
-            posts.append(post)
-          } else {
-            logWarn("Invalid post dictionary: \(dict)")
           }
+          posts.append(post)
+        } else {
+          logWarn("Invalid post dictionary: \(dict)")
         }
-        self.updatePostsTable(posts)
       }
+      self.updatePostsTable(posts)
+      },
+      success: {
+      (results: [NSDictionary]) -> Void in
+
     }, failure: {
       (error: NSError) -> Void in
       logError(self.removeSensitiveInformationFromError(error))

@@ -11,9 +11,12 @@ class FacebookPostsLoadManagerTests: EnpointTestCase {
   
   func testUserPosts() {
     let mngr = FacebookPostsLoadManager()
-    mngr.fetchUserPosts( { (results: FacebookPostsLoadManager.FetchResults) -> Void in
-      XCTAssertTrue(results.isResultsValid)
-      self.expectation.fulfill()
+    mngr.fetchUserPosts( { (results: [NSDictionary]) -> Void in
+      XCTAssertTrue(results.count > 0)
+      },
+      success: { (results: [NSDictionary]) -> Void in
+        XCTAssertTrue(results.count > 0)
+        self.expectation.fulfill()
       },
       failure: { (error: NSError) -> Void in
         self.reportFailure(error)

@@ -17,7 +17,7 @@ class PostsTableViewController : UITableViewController {
   }
 
   func updateWithData(posts: [Post]) {
-    self.posts = posts
+    self.posts += posts
     self.tableView.reloadData()
   }
   

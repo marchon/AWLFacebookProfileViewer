@@ -70,19 +70,19 @@
 			remoteGlobalIDString = 80C3B0541A70506A0004CBDE;
 			remoteInfo = FacebookProfileViewer;
 		};
-		803313621A74660100E54701 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 80C3B04D1A70506A0004CBDE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8033134C1A74660100E54701;
-			remoteInfo = FacebookProfileViewerClasses;
-		};
 		803313871A74661500E54701 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 80C3B04D1A70506A0004CBDE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 803313711A74661500E54701;
 			remoteInfo = FacebookProfileViewerUI;
+		};
+		C54D82D21A853661006A71EF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80C3B04D1A70506A0004CBDE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8033134C1A74660100E54701;
+			remoteInfo = FacebookProfileViewerClasses;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -396,6 +396,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C54D82D31A853661006A71EF /* PBXTargetDependency */,
 			);
 			name = FacebookProfileViewerUI;
 			productName = FacebookProfileViewerUI;
@@ -414,7 +415,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				803313631A74660100E54701 /* PBXTargetDependency */,
 				803313881A74661500E54701 /* PBXTargetDependency */,
 			);
 			name = FacebookProfileViewer;
@@ -579,15 +579,15 @@
 			target = 80C3B0541A70506A0004CBDE /* FacebookProfileViewer */;
 			targetProxy = 8033135B1A74660100E54701 /* PBXContainerItemProxy */;
 		};
-		803313631A74660100E54701 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8033134C1A74660100E54701 /* FacebookProfileViewerClasses */;
-			targetProxy = 803313621A74660100E54701 /* PBXContainerItemProxy */;
-		};
 		803313881A74661500E54701 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 803313711A74661500E54701 /* FacebookProfileViewerUI */;
 			targetProxy = 803313871A74661500E54701 /* PBXContainerItemProxy */;
+		};
+		C54D82D31A853661006A71EF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8033134C1A74660100E54701 /* FacebookProfileViewerClasses */;
+			targetProxy = C54D82D21A853661006A71EF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
