@@ -8,18 +8,14 @@ import UIKit
 public func instanceSummary(o: AnyObject, multiline: Bool = true) -> String {
   let mirror = reflect(o)
   var summary = [String]()
-  if multiline {
-    for var i = 0; i < mirror.count; ++i {
-      var property = mirror[i]
-      summary.append("\t" + property.0 + ": " + property.1.summary + "")
-    }
-    return "{\n" + "\n".join(summary) + "\n}"
-  } else {
-    for var i = 0; i < mirror.count; ++i {
-      var property = mirror[i]
-      summary.append(property.0 + "=" + property.1.summary)
-    }
-    return "{" + "; ".join(summary) + "}"
+  var entryPrefix = multiline ? "\t" : ""
+  var entrySeparator = multiline ? ": " : "="
+  
+  for var i = 0; i < mirror.count; ++i {
+    var property = mirror[i]
+    summary.append(entryPrefix + property.0 + entrySeparator + property.1.summary)
   }
+  
+  return multiline ? "{\n" + "\n".join(summary) + "\n}" : "{" + "; ".join(summary) + "}"
 }
 

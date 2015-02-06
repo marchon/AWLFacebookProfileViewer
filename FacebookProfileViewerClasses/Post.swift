@@ -8,7 +8,17 @@ import UIKit
 public class Post : DebugPrintable {
   
   public var debugDescription: String {
-    return instanceSummary(self)
+    let mirror = reflect(self)
+    var description = [String]()
+    for i in 0 ..< mirror.count {
+      let value = mirror[i].1.value
+      var summary = mirror[i].1.summary
+      if value is PostType {
+        summary = (value as PostType).rawValue
+      }
+      description.append("\t" + mirror[i].0 + ": " + summary)
+    }
+    return "{\n" + "\n".join(description) + "\n}"
   }
   
   /// Graph API Reference Post /post (https://developers.facebook.com/docs/graph-api/reference/v2.2/post)
