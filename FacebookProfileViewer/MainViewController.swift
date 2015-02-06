@@ -29,6 +29,9 @@ class MainViewController: UIViewController {
   lazy private var postsLoadManager: FacebookPostsLoadManager = {
     return FacebookPostsLoadManager()
     }()
+  lazy var backendManager: FacebookEndpointManager = {
+    return FacebookEndpointManager()
+    }()
   
   var managedObjectContext: NSManagedObjectContext!
   
@@ -100,9 +103,21 @@ class MainViewController: UIViewController {
     })
   }
   
+  private func updatePostsTable(postID: String, image: UIImage) {
+    dispatch_async(dispatch_get_main_queue(), {
+      self.postsViewControoler.updateWithData(postID, image: image)
+    })
+  }
+  
   private func updateFriendsTable(friends: [Friend]) {
     dispatch_async(dispatch_get_main_queue(), {
       self.friendsViewControoler.updateWithData(friends)
+    })
+  }
+  
+  private func updateFriendsTable(friendID: String, image: UIImage) {
+    dispatch_async(dispatch_get_main_queue(), {
+      self.friendsViewControoler.updateWithData(friendID, image: image)
     })
   }
   
@@ -135,6 +150,23 @@ extension MainViewController {
           let friend = Friend()
           friend.userName = dict.valueForKey("name") as? String
           friend.id = dict.valueForKey("id") as? String
+          let pictureUrlKey = "picture.data.url"
+          if let URLString = dict.valueForKeyPath(pictureUrlKey) as? String {
+            if let url = NSURL(string: URLString) {
+              var imageDownLoadTask = self.backendManager.photoDownloadTask(url,
+                success: {
+                (image: UIImage) -> Void in
+                  friend.avatarPicture = image
+                  self.updateFriendsTable(friend.id!, image: image)
+                },
+                failure: {
+                  (error: NSError) -> Void in
+                  logError(self.removeSensitiveInformationFromError(error))
+                }
+              )
+              imageDownLoadTask.resume()
+            }
+          }
           assert(friend.id != nil)
           friendProfiles.append(friend)
         }
@@ -160,6 +192,24 @@ extension MainViewController {
               let post = Post.postForType(type, properties: dict)
               if post.isValid {
                 posts.append(post)
+                
+                if let URLString = post.pictureURLString {
+                  if let url = NSURL(string: URLString) {
+                    var imageDownLoadTask = self.backendManager.photoDownloadTask(url,
+                      success: {
+                        (image: UIImage) -> Void in
+                        post.picture = image
+                        self.updatePostsTable(post.id!, image: image)
+                      },
+                      failure: {
+                        (error: NSError) -> Void in
+                        logError(self.removeSensitiveInformationFromError(error))
+                      }
+                    )
+                    imageDownLoadTask.resume()
+                  }
+                }
+                
               } else {
                 logWarn("Invalid post: \(post). Dictionary: \(dict)")
               }

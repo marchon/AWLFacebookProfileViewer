@@ -5,6 +5,7 @@
 
 import UIKit
 import FacebookProfileViewerClasses
+import FacebookProfileViewerUI
 
 class FriendsTableViewController : UITableViewController {
 
@@ -19,20 +20,39 @@ class FriendsTableViewController : UITableViewController {
     super.viewDidAppear(animated)
   }
 
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return profiles.count
-  }
-
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as UITableViewCell
-    let profile = profiles[indexPath.row]
-    cell.textLabel?.text = profile.userName
-    return cell
-  }
-
   func updateWithData(profiles: [Friend]) {
     self.profiles = profiles
     self.tableView.reloadData()
   }
+  
+  func updateWithData(friendID: String, image: UIImage) {
+    let visibleCells = self.tableView.visibleCells() as [FriendTableViewCell]
+    for cell in visibleCells {
+      if cell.acceciatedObject.id! == friendID {
+        cell.imageView?.image = image
+        if let ip = tableView.indexPathForCell(cell) {
+          tableView.reloadRowsAtIndexPaths([ip], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+      }
+    }
+  }
 
+}
+
+extension FriendsTableViewController {
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return profiles.count
+  }
+  
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as FriendTableViewCell
+    let object = profiles[indexPath.row]
+    cell.acceciatedObject = object
+    return cell
+  }
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let object = profiles[indexPath.row]
+    logInfo("Associated object of selected cell: \(object)")
+  }
 }

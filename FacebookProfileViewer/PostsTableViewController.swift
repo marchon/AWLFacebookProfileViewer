@@ -5,7 +5,7 @@
 
 import UIKit
 import FacebookProfileViewerClasses
-
+import FacebookProfileViewerUI
 
 class PostsTableViewController : UITableViewController {
   
@@ -16,38 +16,39 @@ class PostsTableViewController : UITableViewController {
     self.tableView.backgroundColor = UIColor.greenColor()
   }
 
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return posts.count
-  }
-
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as UITableViewCell
-    let post = posts[indexPath.row]
-    switch post.type! {
-    case Post.PostType.Link:
-      cell.textLabel?.text = (post as LinkPost).title
-    case Post.PostType.Status:
-      cell.textLabel?.text = (post as StatusPost).title
-    case Post.PostType.Photo:
-      cell.textLabel?.text = (post as PhotoPost).title
-    case Post.PostType.Video:
-      cell.textLabel?.text = (post as VideoPost).title
-    case Post.PostType.SWF:
-      cell.textLabel?.text = (post as SWFPost).title
-    }
-    
-    let dateFormat = NSDateFormatter.dateFormatFromTemplate("yMMMMd", options: 0, locale: NSLocale.currentLocale())
-    let f = NSDateFormatter()
-    f.locale = NSLocale.currentLocale()
-    f.dateFormat = dateFormat
-    let subtitle = f.stringFromDate(post.createdDate)
-    cell.detailTextLabel?.text = subtitle
-    return cell
-  }
-
   func updateWithData(posts: [Post]) {
     self.posts = posts
     self.tableView.reloadData()
   }
   
+  func updateWithData(postID: String, image: UIImage) {
+    let visibleCells = self.tableView.visibleCells() as [PostsTableViewCell]
+    for cell in visibleCells {
+      if cell.acceciatedObject.id! == postID {
+        cell.imageView?.image = image
+        if let ip = tableView.indexPathForCell(cell) {
+          tableView.reloadRowsAtIndexPaths([ip], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+      }
+    }
+  }
+  
+}
+
+extension PostsTableViewController {
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return posts.count
+  }
+  
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as PostsTableViewCell
+    let post = posts[indexPath.row]
+    cell.acceciatedObject = post
+    return cell
+  }
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    let object = posts[indexPath.row]
+    logInfo("Associated object of selected cell: \(object)")
+  }
 }

@@ -3,14 +3,18 @@
 /// Author: Created by Vlad Gorlov on 04.02.15.
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
-import Foundation
+import UIKit
 
-public class Friend {
+public class Friend : DebugPrintable {
 
   public var avatarPicture: UIImage?
   public var userName: String?
   public var id: String?
 
+  public var debugDescription: String {
+    return instanceSummary(self)
+  }
+  
   public init() {
   }
 }

@@ -47,6 +47,9 @@
 		C51D0DDC1A839414001CBF19 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51D0DDB1A839414001CBF19 /* Post.swift */; };
 		C51D0DDE1A83C1B4001CBF19 /* ImageDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51D0DDD1A83C1B4001CBF19 /* ImageDownloadManager.swift */; };
 		C51D0DE01A83C739001CBF19 /* ImageDownloadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51D0DDF1A83C739001CBF19 /* ImageDownloadManagerTests.swift */; };
+		C57D70981A84E060005D488E /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D70971A84E060005D488E /* FriendTableViewCell.swift */; };
+		C57D709A1A84F5DD005D488E /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D70991A84F5DD005D488E /* GlobalFunctions.swift */; };
+		C57D709C1A850689005D488E /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D709B1A850689005D488E /* PostsTableViewCell.swift */; };
 		C58C7BDC1A7FAF40007E3996 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDA1A7FAF40007E3996 /* FriendsTableViewController.swift */; };
 		C58C7BDD1A7FAF40007E3996 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDB1A7FAF40007E3996 /* PostsTableViewController.swift */; };
 		C58C7BE01A7FB7F1007E3996 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDF1A7FB7F1007E3996 /* Profile.swift */; };
@@ -144,6 +147,9 @@
 		C51D0DDB1A839414001CBF19 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C51D0DDD1A83C1B4001CBF19 /* ImageDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadManager.swift; sourceTree = "<group>"; };
 		C51D0DDF1A83C739001CBF19 /* ImageDownloadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloadManagerTests.swift; sourceTree = "<group>"; };
+		C57D70971A84E060005D488E /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
+		C57D70991A84F5DD005D488E /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		C57D709B1A850689005D488E /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		C58C7BDA1A7FAF40007E3996 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		C58C7BDB1A7FAF40007E3996 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		C58C7BDF1A7FB7F1007E3996 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -202,6 +208,7 @@
 				80CFEE941A7E947B00D47E62 /* AppState.swift */,
 				807E28721A7AB703005DBF05 /* Logging.swift */,
 				80F43D3B1A824C890084881F /* Errors.swift */,
+				C57D70991A84F5DD005D488E /* GlobalFunctions.swift */,
 				808A363D1A7EA4F100C18EC1 /* NSURL.swift */,
 				801029041A82679F00D73C54 /* NSDictionary.swift */,
 			);
@@ -230,6 +237,8 @@
 				808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */,
 				807E28641A7A57EB005DBF05 /* UserProfile.swift */,
 				807E28621A7A578B005DBF05 /* UserProfile.xib */,
+				C57D70971A84E060005D488E /* FriendTableViewCell.swift */,
+				C57D709B1A850689005D488E /* PostsTableViewCell.swift */,
 			);
 			path = FacebookProfileViewerUI;
 			sourceTree = "<group>";
@@ -515,6 +524,7 @@
 				C5171BD61A837D000066E006 /* FacebookPostsLoadManager.swift in Sources */,
 				807E28731A7AB703005DBF05 /* Logging.swift in Sources */,
 				80F43D3C1A824C890084881F /* Errors.swift in Sources */,
+				C57D709A1A84F5DD005D488E /* GlobalFunctions.swift in Sources */,
 				803313961A74687A00E54701 /* PersistenceStore.swift in Sources */,
 				80205E8F1A7996670042E94A /* FriendEntity.swift in Sources */,
 				808A363E1A7EA4F100C18EC1 /* NSURL.swift in Sources */,
@@ -544,7 +554,9 @@
 			files = (
 				807E28651A7A57EB005DBF05 /* UserProfile.swift in Sources */,
 				808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */,
+				C57D709C1A850689005D488E /* PostsTableViewCell.swift in Sources */,
 				807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */,
+				C57D70981A84E060005D488E /* FriendTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

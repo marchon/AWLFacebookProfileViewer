@@ -73,7 +73,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" textLabel="4M3-sG-dcC" detailTextLabel="1MI-Dj-Mgd" style="IBUITableViewCellStyleSubtitle" id="gto-fq-89F">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" textLabel="4M3-sG-dcC" detailTextLabel="1MI-Dj-Mgd" style="IBUITableViewCellStyleSubtitle" id="gto-fq-89F" customClass="PostsTableViewCell" customModule="FacebookProfileViewerUI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gto-fq-89F" id="W1D-Qb-TgJ">
@@ -115,7 +115,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendCell" textLabel="gjb-tB-LPq" style="IBUITableViewCellStyleDefault" id="lM7-iU-mam">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendCell" textLabel="gjb-tB-LPq" style="IBUITableViewCellStyleDefault" id="lM7-iU-mam" customClass="FriendTableViewCell" customModule="FacebookProfileViewerUI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lM7-iU-mam" id="7SF-AN-Ka4">

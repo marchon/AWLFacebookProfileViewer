@@ -67,26 +67,21 @@ extension FacebookEndpointManager {
 
 extension FacebookEndpointManager {
 
-  public func photoDownloadTask(url: NSURL, success: imageCallback, failure: errorCallback) -> NSURLSessionDownloadTask {
-    let task = session.downloadTaskWithURL(url, completionHandler: {
-      (location: NSURL!, response: NSURLResponse!, error: NSError!) -> Void in
+  public func photoDownloadTask(url: NSURL, success: imageCallback, failure: errorCallback) -> NSURLSessionDataTask {
+    let task = session.dataTaskWithURL(url, completionHandler: {
+      (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
 
       if error != nil {
         failure(error)
       } else {
-        if let loc = location {
-          if let data = NSData(contentsOfURL: loc) {
-            if let image = UIImage(data: data) {
-              success(image)
-              return
-            }
-          }
+        if let image = UIImage(data: data) {
+          success(image)
+        } else {
+          let e = NSError(domain: OperationErrorDomain,
+              code: OperationErrorCode.HandleDownloadError.rawValue,
+              userInfo: [NSLocalizedFailureReasonErrorKey: "Unable to unable to convert data to image"])
+          failure(e)
         }
-
-        let e = NSError(domain: OperationErrorDomain,
-            code: OperationErrorCode.HandleDownloadError.rawValue,
-            userInfo: [NSLocalizedFailureReasonErrorKey: "Unable to handle downloaded file"])
-        failure(e)
       }
     })
 
