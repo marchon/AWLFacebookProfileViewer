@@ -41,7 +41,7 @@ extension FacebookEndpointManager {
 #if DEBUG || TEST
       fetchLimit = 20
 #endif
-      var urlString = "https://graph.facebook.com/me/taggable_friends?limit=\(fetchLimit)&access_token=\(accesToken)"
+      var urlString = "https://graph.facebook.com/me/taggable_friends?limit=\(fetchLimit)&fields=id,name,picture&access_token=\(accesToken)"
       if let cursor = cursorAfter {
         urlString += "&after=\(cursor)"
       }

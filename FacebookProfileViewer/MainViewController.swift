@@ -147,28 +147,25 @@ extension MainViewController {
       if let friends = results.friendsFeedChunks {
         var friendProfiles = [Friend]()
         for dict in friends {
-          let friend = Friend()
-          friend.userName = dict.valueForKey("name") as? String
-          friend.id = dict.valueForKey("id") as? String
-          let pictureUrlKey = "picture.data.url"
-          if let URLString = dict.valueForKeyPath(pictureUrlKey) as? String {
-            if let url = NSURL(string: URLString) {
-              var imageDownLoadTask = self.backendManager.photoDownloadTask(url,
-                  success: {
-                    (image: UIImage) -> Void in
-                    friend.avatarPicture = image
-                    self.updateFriendsTable(friend.id!, image: image)
-                  },
-                  failure: {
-                    (error: NSError) -> Void in
-                    logError(self.removeSensitiveInformationFromError(error))
-                  }
-              )
-              imageDownLoadTask.resume()
+          if let friend = Friend(properties: dict) {
+            if let URLString = friend.avatarPictureURL {
+              if let url = NSURL(string: URLString) {
+                var imageDownLoadTask = self.backendManager.photoDownloadTask(url,
+                    success: {
+                      (image: UIImage) -> Void in
+                      friend.avatarPicture = image
+                      self.updateFriendsTable(friend.id, image: image)
+                    },
+                    failure: {
+                      (error: NSError) -> Void in
+                      logError(self.removeSensitiveInformationFromError(error))
+                    }
+                )
+                imageDownLoadTask.resume()
+              }
             }
+            friendProfiles.append(friend)
           }
-          assert(friend.id != nil)
-          friendProfiles.append(friend)
         }
         friendProfiles.sort({
           (lhs: Friend, rhs: Friend) -> Bool in

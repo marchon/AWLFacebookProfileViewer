@@ -56,7 +56,7 @@ public class Post : DebugPrintable {
   public var videoURLString: String?
   public var picture: UIImage?
   
-  public var isValid: Bool {
+  private var isValid: Bool {
     return id != nil && type != nil
   }
   
