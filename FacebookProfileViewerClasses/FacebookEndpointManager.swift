@@ -57,7 +57,7 @@ extension FacebookEndpointManager {
 #if DEBUG || TEST
       fetchLimit = 20
 #endif
-      var urlString = "https://graph.facebook.com/me/feed?limit=\(fetchLimit)&access_token=\(accesToken)"
+      var urlString = "https://graph.facebook.com/me/feed?limit=\(fetchLimit)&fields=id,type,created_time,message,story,caption,description,name,picture,source&access_token=\(accesToken)"
       endpointURL = NSURL(string: urlString)
     }
     return endpointURL

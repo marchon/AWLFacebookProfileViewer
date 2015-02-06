@@ -57,41 +57,46 @@ public class Post : DebugPrintable {
   public var picture: UIImage?
   
   public var isValid: Bool {
-    return id != nil && type != nil && title != nil
+    return id != nil && type != nil
   }
   
-  public class func postForType(type: PostType, properties: NSDictionary) -> Post {
-    var post = Post()
-    post.type = type
-    
-    if let value = properties.valueForKey("created_time") as? String {
-      post.createdDate = Post.sharedDateFormatter().dateFromString(value)
+  public init? (properties: NSDictionary) {
+    if let value = properties.valueForKey("type") as? String {
+      if let type = Post.PostType(rawValue: value) {
+        self.type = type
+      }
     }
     
     if let value = properties.valueForKey("id") as? String {
-      post.id = value
+      self.id = value
+    }
+    
+    if let value = properties.valueForKey("created_time") as? String {
+      self.createdDate = Post.sharedDateFormatter().dateFromString(value)
     }
     
     if let value = properties.valueForKey("message") as? String {
-      post.title = value
+      self.title = value
     } else if let value = properties.valueForKey("story") as? String {
-      post.title = value
+      self.title = value
     } else if let value = properties.valueForKey("caption") as? String {
-      post.title = value
+      self.title = value
     } else if let value = properties.valueForKey("description") as? String {
-      post.title = value
+      self.title = value
     } else if let value = properties.valueForKey("name") as? String {
-      post.title = value
+      self.title = value
     }
     
     if let value = properties.valueForKey("picture") as? String {
-      post.pictureURLString = value
+      self.pictureURLString = value
     }
     
     if let value = properties.valueForKey("source") as? String {
-      post.videoURLString = value
+      self.videoURLString = value
     }
     
-    return post
+    if !self.isValid {
+      return nil
+    }
   }
 }
