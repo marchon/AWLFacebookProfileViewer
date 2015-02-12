@@ -64,8 +64,8 @@ class MainViewController: UIViewController {
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showWelcomeScreen" {
-      let nc = segue.destinationViewController as UINavigationController
-      let ctrl = nc.viewControllers.first as WelcomeScreenViewController
+      let nc = segue.destinationViewController as! UINavigationController
+      let ctrl = nc.viewControllers.first as! WelcomeScreenViewController
       ctrl.canceled = {
         self.dismissViewControllerAnimated(true, completion: {
           () -> Void in
@@ -255,7 +255,7 @@ extension MainViewController {
         // Profile not yet fetched from server
         fetchProfileFromServer()
       } else {
-        var profileRecord = results.first as ProfileEntity
+        var profileRecord = results.first as! ProfileEntity
         let profile = Profile(entity: profileRecord)
         updateProfileInformation(profile)
       }
@@ -314,8 +314,8 @@ extension MainViewController {
 
     activeControllerType = .Posts
 
-    postsViewControoler = self.storyboard?.instantiateViewControllerWithIdentifier("postsViewControoler") as PostsTableViewController
-    friendsViewControoler = self.storyboard?.instantiateViewControllerWithIdentifier("friendsViewController") as FriendsTableViewController
+    postsViewControoler = self.storyboard?.instantiateViewControllerWithIdentifier("postsViewControoler") as! PostsTableViewController
+    friendsViewControoler = self.storyboard?.instantiateViewControllerWithIdentifier("friendsViewController") as! FriendsTableViewController
 
     self.addChildViewController(postsViewControoler)
     self.addChildViewController(friendsViewControoler)
@@ -329,7 +329,7 @@ extension MainViewController {
 
   private func layoutChildControllers() {
     for item in childViewControllers {
-      (item as UIViewController).view.frame = bottomView.bounds
+      (item as! UIViewController).view.frame = bottomView.bounds
     }
   }
 

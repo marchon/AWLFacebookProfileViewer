@@ -10,7 +10,7 @@ public extension NSURL {
   // Every element is a string in key=value format
   public class func requestQueryFromParameters(elements: [String]) -> String {
     if elements.count > 0 {
-      return elements[1..<elements.count].reduce(elements[0], {$0 + "&" + $1})
+      return elements[1..<elements.count].reduce(elements[0], combine: {$0 + "&" + $1})
     } else {
       return elements[0]
     }

@@ -30,7 +30,7 @@ class FriendsTableViewController : UITableViewController {
   }
   
   func updateWithData(friendID: String, image: UIImage) {
-    let visibleCells = self.tableView.visibleCells() as [FriendTableViewCell]
+    let visibleCells = self.tableView.visibleCells() as! [FriendTableViewCell]
     for cell in visibleCells {
       if cell.acceciatedObject.id! == friendID {
         cell.imageView?.image = image
@@ -49,7 +49,7 @@ extension FriendsTableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as FriendTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! FriendTableViewCell
     let object = profiles[indexPath.row]
     cell.acceciatedObject = object
     return cell

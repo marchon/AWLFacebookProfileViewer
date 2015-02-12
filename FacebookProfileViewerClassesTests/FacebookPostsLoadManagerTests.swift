@@ -8,11 +8,16 @@ import XCTest
 import FacebookProfileViewerClasses
 
 class FacebookPostsLoadManagerTests: EnpointTestCase {
-  
-  func testUserPosts() {
+
+
+  func testFetch100OldPosts() {
     let mngr = FacebookPostsLoadManager()
-    mngr.fetchUserPosts( { (results: [NSDictionary]) -> Void in
-      XCTAssertTrue(results.count > 0)
+
+    let until = NSDateFormatter.facebookDateFormatter().dateFromString("2014-12-31T20:00:00+0000")
+
+    mngr.fetchUserPosts(since: nil, until: until!, maxPostsToFetch: 100,
+      fetchCallback: { (results: [NSDictionary]) -> Void in
+        XCTAssertTrue(results.count >= 0)
       },
       success: { (results: [NSDictionary]) -> Void in
         XCTAssertTrue(results.count > 0)
@@ -21,8 +26,46 @@ class FacebookPostsLoadManagerTests: EnpointTestCase {
       failure: { (error: NSError) -> Void in
         self.reportFailure(error)
     })
-    
+
     waitForExpectationsWithTimeout(60, handler: nil)
+  }
+
+  func testFetchNewPostsBeforeCertainDate() {
+    let mngr = FacebookPostsLoadManager()
+
+    let since = NSDateFormatter.facebookDateFormatter().dateFromString("2014-11-01T20:00:00+0000")
+
+    mngr.fetchUserPosts(since: since, until: nil, maxPostsToFetch: 100,
+      fetchCallback: { (results: [NSDictionary]) -> Void in
+        XCTAssertTrue(results.count >= 0)
+      },
+      success: { (results: [NSDictionary]) -> Void in
+        XCTAssertTrue(results.count > 0)
+        self.expectation.fulfill()
+      },
+      failure: { (error: NSError) -> Void in
+        self.reportFailure(error)
+    })
+
+    waitForExpectationsWithTimeout(600, handler: nil)
+  }
+
+  func testLast60Posts() {
+    let mngr = FacebookPostsLoadManager()
+
+    mngr.fetchUserPosts(since: nil, until: nil, maxPostsToFetch: 60,
+      fetchCallback: { (results: [NSDictionary]) -> Void in
+        XCTAssertTrue(results.count >= 0)
+      },
+      success: { (results: [NSDictionary]) -> Void in
+        XCTAssertTrue(results.count > 0)
+        self.expectation.fulfill()
+      },
+      failure: { (error: NSError) -> Void in
+        self.reportFailure(error)
+    })
+
+    waitForExpectationsWithTimeout(600, handler: nil)
   }
   
 }

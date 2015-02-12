@@ -82,11 +82,11 @@ extension LoginScreenViewController {
 
   func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
     if let redirectURI = self.redirectURI {
-      if let requestURLString = request.URL.absoluteString {
+      if let requestURLString = request.URL?.absoluteString {
         if requestURLString.hasPrefix(redirectURI) {
-          if let token = accessTokenFromURL(request.URL) {
+          if let token = accessTokenFromURL(request.URL!) {
             self.tokenInfo = token
-          } else if let error = errorFromURL(request.URL) {
+          } else if let error = errorFromURL(request.URL!) {
             self.error = error
           } else {
             logError("Unable to extract access token from URL: \(request.URL)")

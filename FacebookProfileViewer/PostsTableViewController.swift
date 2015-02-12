@@ -22,7 +22,7 @@ class PostsTableViewController : UITableViewController {
   }
   
   func updateWithData(postID: String, image: UIImage) {
-    let visibleCells = self.tableView.visibleCells() as [PostsTableViewCell]
+    let visibleCells = self.tableView.visibleCells() as! [PostsTableViewCell]
     for cell in visibleCells {
       if cell.acceciatedObject.id! == postID {
         cell.imageView?.image = image
@@ -41,7 +41,7 @@ extension PostsTableViewController {
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as PostsTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! PostsTableViewCell
     let post = posts[indexPath.row]
     cell.acceciatedObject = post
     return cell

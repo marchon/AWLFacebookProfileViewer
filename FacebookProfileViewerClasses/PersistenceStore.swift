@@ -10,6 +10,7 @@ public class PersistenceStore: PersistenceStoreProvider {
   enum UserDefaultsKeys : String {
     case FacebookAccessToken = "ua.com.wavelabs.FacebookAccessToken"
     case FacebookAccessTokenExpitesIn = "ua.com.wavelabs.FacebookAccessTokenExpitesIn"
+    case FetchChunksForPosts = "ua.com.wavelabs.FetchChunksForPosts"
   }
   
   public class func sharedInstance() -> PersistenceStoreProvider {
@@ -45,6 +46,35 @@ public class PersistenceStore: PersistenceStoreProvider {
         NSUserDefaults.standardUserDefaults().setInteger(value, forKey: UserDefaultsKeys.FacebookAccessTokenExpitesIn.rawValue)
       } else {
         NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeys.FacebookAccessTokenExpitesIn.rawValue)
+      }
+    }
+  }
+
+  public var fetchChunksForPosts: [FetchChunk]? {
+    get {
+      let result = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsKeys.FetchChunksForPosts.rawValue) as? [AnyObject]
+      if let value = result {
+        var chunks = [FetchChunk]()
+
+        for item in value {
+          if let chunk = item as? [String: NSDate] {
+            chunks.append(FetchChunk(dictionary: chunk))
+          }
+        }
+        return chunks
+      }
+      return nil
+    }
+    set {
+      if let value = newValue {
+        var encodedValue = [AnyObject]()
+        for item in value {
+          encodedValue.append(item.dictionaryRepresentation)
+        }
+
+        NSUserDefaults.standardUserDefaults().setObject(encodedValue, forKey: UserDefaultsKeys.FetchChunksForPosts.rawValue)
+      } else {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeys.FetchChunksForPosts.rawValue)
       }
     }
   }

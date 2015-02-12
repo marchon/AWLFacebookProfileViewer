@@ -14,7 +14,7 @@ public class Post : DebugPrintable {
       let value = mirror[i].1.value
       var summary = mirror[i].1.summary
       if value is PostType {
-        summary = (value as PostType).rawValue
+        summary = (value as! PostType).rawValue
       }
       description.append("\t" + mirror[i].0 + ": " + summary)
     }
@@ -30,22 +30,6 @@ public class Post : DebugPrintable {
     case Photo = "photo"
     case Video = "video"
     case SWF = "swf"
-  }
-  
-  class func sharedDateFormatter() -> NSDateFormatter {
-    struct Static {
-      static var onceToken : dispatch_once_t = 0
-      static var instance : NSDateFormatter? = nil
-    }
-    dispatch_once(&Static.onceToken) {
-      let facebookDateFormatter = NSDateFormatter()
-      facebookDateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-      facebookDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
-      facebookDateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
-      Static.instance = facebookDateFormatter
-      
-    }
-    return Static.instance!
   }
   
   public var type: PostType!
@@ -72,7 +56,7 @@ public class Post : DebugPrintable {
     }
     
     if let value = properties.valueForKey("created_time") as? String {
-      self.createdDate = Post.sharedDateFormatter().dateFromString(value)
+      self.createdDate = NSDateFormatter.facebookDateFormatter().dateFromString(value)
     }
     
     if let value = properties.valueForKey("message") as? String {

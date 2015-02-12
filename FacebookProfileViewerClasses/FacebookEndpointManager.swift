@@ -50,13 +50,33 @@ extension FacebookEndpointManager {
     return endpointURL
   }
 
-  public func fetchPostsURL() -> NSURL? {
+  public func fetchPostsURL(#since: NSDate?, until: NSDate?) -> NSURL? {
     var endpointURL: NSURL?
     if let accesToken = persistenceStore.facebookAccesToken {
       var fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
 #if DEBUG || TEST
       fetchLimit = 20
 #endif
+//      let untilTimestamp = until.timeIntervalSince1970
+      var urlString = "https://graph.facebook.com/me/feed?limit=\(fetchLimit)&fields=id,type,created_time,message,story,caption,description,name,picture,source&access_token=\(accesToken)"
+      if let timestamp = since?.timeIntervalSince1970AsString {
+        urlString += "&since=" + timestamp
+      }
+      if let timestamp = until?.timeIntervalSince1970AsString {
+        urlString += "&until=" + timestamp
+      }
+      endpointURL = NSURL(string: urlString)
+    }
+    return endpointURL
+  }
+
+  public func fetchPostsURL() -> NSURL? {
+    var endpointURL: NSURL?
+    if let accesToken = persistenceStore.facebookAccesToken {
+      var fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
+      #if DEBUG || TEST
+        fetchLimit = 20
+      #endif
       var urlString = "https://graph.facebook.com/me/feed?limit=\(fetchLimit)&fields=id,type,created_time,message,story,caption,description,name,picture,source&access_token=\(accesToken)"
       endpointURL = NSURL(string: urlString)
     }
@@ -97,7 +117,7 @@ extension FacebookEndpointManager {
         failure(error)
       } else {
         if response is NSHTTPURLResponse {
-          let code = (response as NSHTTPURLResponse).statusCode
+          let code = (response as! NSHTTPURLResponse).statusCode
           if code == 200 {
             self.parseJson(data, success: success, failure: failure)
           } else {

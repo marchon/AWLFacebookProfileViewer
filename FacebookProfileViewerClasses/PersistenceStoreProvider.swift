@@ -6,6 +6,7 @@
 import Foundation
 
 public protocol PersistenceStoreProvider {
-   var facebookAccesToken: String? {get set}
-   var facebookAccesTokenExpitesIn: Int? {get set}
+  var facebookAccesToken: String? {get set}
+  var facebookAccesTokenExpitesIn: Int? {get set}
+  var fetchChunksForPosts: [FetchChunk]? {get set}
 }

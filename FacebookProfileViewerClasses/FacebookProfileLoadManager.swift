@@ -5,7 +5,6 @@
 
 import UIKit
 
-
 class FacebookProfileLoadState {
 
   enum StateIdentifier: String {

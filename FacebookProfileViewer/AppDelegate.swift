@@ -64,7 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   lazy var applicationDocumentsDirectory: NSURL = {
     // The directory the application uses to store the Core Data store file. This code uses a directory named "ua.com.wavelabs.FacebookProfileViewer" in the application's documents Application Support directory.
     let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-    return urls[urls.count-1] as NSURL
+    return urls[urls.count-1] as! NSURL
     }()
   
   lazy var managedObjectModel: NSManagedObjectModel = {
@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
       coordinator = nil
       // Report any error we got.
-      let dict = NSMutableDictionary()
+      var dict = [String: AnyObject]()
       dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data"
       dict[NSLocalizedFailureReasonErrorKey] = failureReason
       dict[NSUnderlyingErrorKey] = error
@@ -130,8 +130,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let label = UILabel(frame: ctrl.view.bounds)
       label.text = "Testing..."
       label.textAlignment = NSTextAlignment.Center
-      label.font = UIFont.systemFontOfSize(38)
-      label.textColor = UIColor.lightGrayColor()
+      label.font = UIFont.systemFontOfSize(28)
+      label.textColor = UIColor.whiteColor()
       ctrl.view.addSubview(label)
       controller = ctrl
     #else
