@@ -9,22 +9,39 @@ public class AppState {
 
   public class UI {
 
-    enum UserDefaultsKeys : String {
-      case ShouldShowWelcomeScreen = "ua.com.wavelabs.ShouldShowWelcomeScreen"
-    }
+    static let KeyShouldShowWelcomeScreen = "ua.com.wavelabs.ui-shouldShowWelcomeScreen"
 
     public class var shouldShowWelcomeScreen: Bool {
       get {
-        if let key: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsKeys.ShouldShowWelcomeScreen.rawValue) {
-          return NSUserDefaults.standardUserDefaults().boolForKey(UserDefaultsKeys.ShouldShowWelcomeScreen.rawValue);
+        if let key: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(UI.KeyShouldShowWelcomeScreen) {
+          return NSUserDefaults.standardUserDefaults().boolForKey(UI.KeyShouldShowWelcomeScreen);
         } else {
           return true
         }
       }
       set {
-        NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: UserDefaultsKeys.ShouldShowWelcomeScreen.rawValue)
+        NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: UI.KeyShouldShowWelcomeScreen)
       }
     }
+  }
+
+  public class Friends {
+
+    static let KeyLastFetchDate = "ua.com.wavelabs.friends-lastFetchDate"
+
+    public class var lastFetchDate: NSDate? {
+      get {
+        return NSUserDefaults.standardUserDefaults().objectForKey(Friends.KeyLastFetchDate) as? NSDate
+      }
+      set {
+        if let value = newValue {
+          NSUserDefaults.standardUserDefaults().setObject(value, forKey: Friends.KeyLastFetchDate)
+        } else {
+          NSUserDefaults.standardUserDefaults().removeObjectForKey(Friends.KeyLastFetchDate)
+        }
+      }
+    }
+
   }
    
 }

@@ -20,20 +20,25 @@ class MainViewController: UIViewController {
   private var postsViewControoler: PostsTableViewController!
   private var friendsViewControoler: FriendsTableViewController!
   private var activeControllerType: ChildControllerType!
+
+  lazy private var log: Logger = {
+    return Logger.getLogger("M-VC")
+    }()
+
   lazy private var profileLoadManager: FacebookProfileLoadManager = {
     return FacebookProfileLoadManager()
-  }()
-  lazy private var friendsLoadManager: FacebookFriendsLoadManager = {
-    return FacebookFriendsLoadManager()
-  }()
+    }()
+
   lazy private var postsLoadManager: FacebookPostsLoadManager = {
     return FacebookPostsLoadManager()
-  }()
+    }()
   lazy var backendManager: FacebookEndpointManager = {
     return FacebookEndpointManager()
-  }()
+    }()
 
-  var managedObjectContext: NSManagedObjectContext!
+  var managedObjectContext: NSManagedObjectContext {
+    return CoreDataHelper.sharedInstance().managedObjectContext!
+  }
 
   //MARK: - Internal
 
@@ -44,8 +49,6 @@ class MainViewController: UIViewController {
 
     if !AppState.UI.shouldShowWelcomeScreen {
       fetchProfileFromDatasource()
-      fetchFriendsFromDatasource()
-      fetchPostsFromDatasource()
     }
   }
 
@@ -57,7 +60,7 @@ class MainViewController: UIViewController {
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     if AppState.UI.shouldShowWelcomeScreen {
-      AppState.UI.shouldShowWelcomeScreen = false
+      log.verbose("Will show welcome screen")
       performSegueWithIdentifier("showWelcomeScreen", sender: nil)
     }
   }
@@ -69,18 +72,18 @@ class MainViewController: UIViewController {
       ctrl.canceled = {
         self.dismissViewControllerAnimated(true, completion: {
           () -> Void in
+          AppState.UI.shouldShowWelcomeScreen = false
         })
       }
-      ctrl.success = {
-        (tokenInfo: (accessToken:String, expiresIn:Int)) -> () in
+      ctrl.success = { (tokenInfo: (accessToken:String, expiresIn:Int)) -> () in
+        AppState.UI.shouldShowWelcomeScreen = false
         var ps = PersistenceStore.sharedInstance()
         ps.facebookAccesToken = tokenInfo.accessToken
         ps.facebookAccesTokenExpitesIn = tokenInfo.expiresIn
         self.dismissViewControllerAnimated(true, completion: {
           () -> Void in
           self.fetchProfileFromDatasource()
-          self.fetchFriendsFromDatasource()
-          self.fetchPostsFromDatasource()
+          self.friendsViewControoler.loadUsersFromServerIfNeeded()
         })
       }
     }
@@ -88,14 +91,7 @@ class MainViewController: UIViewController {
 
   //MARK: - Private
 
-  private func updateProfileInformation(profile: Profile) {
-    dispatch_async(dispatch_get_main_queue(), {
-      self.topView.profileAvatar.image = profile.avatarPicture
-      self.topView.userName.text = profile.userName
-      self.topView.hometown.text = profile.hometown
-      self.topView.coverPhoto.image = profile.coverPhoto
-    })
-  }
+
 
   private func updatePostsTable(posts: [Post]) {
     dispatch_async(dispatch_get_main_queue(), {
@@ -109,138 +105,60 @@ class MainViewController: UIViewController {
     })
   }
 
-  private func updateFriendsTable(friends: [Friend]) {
-    dispatch_async(dispatch_get_main_queue(), {
-      self.friendsViewControoler.updateWithData(friends)
-    })
-  }
-
-  private func updateFriendsTable(friendID: String, image: UIImage) {
-    dispatch_async(dispatch_get_main_queue(), {
-      self.friendsViewControoler.updateWithData(friendID, image: image)
-    })
-  }
-
 }
 
 //MARK: - Networking
 
 extension MainViewController {
-  private func fetchProfileFromServer() {
-    profileLoadManager.fetchUserProfile({
-      (results: FacebookProfileLoadManager.FetchResults) -> Void in
-      let profile = Profile()
-      profile.avatarPicture = results.avatarImage
-      profile.userName = results.userProfileJson?.valueForKey("name") as? String
-      profile.hometown = results.userProfileJson?.valueForKeyPath("hometown.name") as? String
-      profile.coverPhoto = results.coverPhotoImage
-      self.updateProfileInformation(profile)
-    }, failure: {
-      (error: NSError) -> Void in
-      logError(self.removeSensitiveInformationFromError(error))
-    })
-  }
 
-  private func fetchFriendsFromServer() {
-    friendsLoadManager.fetchUserFriends({
-      (results: [NSDictionary]) -> Void in
-      
-      var friendProfiles = [Friend]()
-      for dict in results {
-        if let friend = Friend(properties: dict) {
-          if let URLString = friend.avatarPictureURL {
-            if let url = NSURL(string: URLString) {
-              var imageDownLoadTask = self.backendManager.photoDownloadTask(url,
-                  success: {
-                    (image: UIImage) -> Void in
-                    friend.avatarPicture = image
-                    self.updateFriendsTable(friend.id, image: image)
-                  },
-                  failure: {
-                    (error: NSError) -> Void in
-                    logError(self.removeSensitiveInformationFromError(error))
-                  }
-              )
-              imageDownLoadTask.resume()
+  private func processFetchedPosts(results: [NSDictionary]) {
+    var posts = [Post]()
+    for dict in results {
+      if let post = Post(properties: dict) {
+        if let URLString = post.pictureURLString, url = NSURL(string: URLString) {
+          let imageDownLoadTask = self.backendManager.photoDownloadTask(url,
+            success: {(image: UIImage) -> Void in
+              post.picture = image
+              self.updatePostsTable(post.id, image: image)
+            },
+            failure: {(error: NSError) -> Void in
+              logError(self.removeSensitiveInformationFromError(error))
             }
-          }
-          friendProfiles.append(friend)
+          )
+          imageDownLoadTask.resume()
         }
+        posts.append(post)
       }
-      self.updateFriendsTable(friendProfiles)
-    },
-        success: {
-          (results: [NSDictionary]) -> Void in
-        },
-        failure: {
-          (error: NSError) -> Void in
-          logError(self.removeSensitiveInformationFromError(error))
-        })
+      else {
+        logWarn("Invalid post dictionary: \(dict)")
+      }
+    }
+    self.updatePostsTable(posts)
   }
 
   private func fetchPostsFromServer() {
-    postsLoadManager.fetchUserPosts({
-      (results: [NSDictionary]) -> Void in
-      var posts = [Post]()
-      for dict in results {
-        if let post = Post(properties: dict) {
-          if let URLString = post.pictureURLString {
-            if let url = NSURL(string: URLString) {
-              var imageDownLoadTask = self.backendManager.photoDownloadTask(url,
-                success: {
-                  (image: UIImage) -> Void in
-                  post.picture = image
-                  self.updatePostsTable(post.id!, image: image)
-                },
-                failure: {
-                  (error: NSError) -> Void in
-                  logError(self.removeSensitiveInformationFromError(error))
-                }
-              )
-              imageDownLoadTask.resume()
-            }
-          }
-          posts.append(post)
-        } else {
-          logWarn("Invalid post dictionary: \(dict)")
-        }
-      }
-      self.updatePostsTable(posts)
+    postsLoadManager.fetchUserPosts(since: nil, until: nil, maxPostsToFetch: 200,
+      fetchCallback: {(results: [NSDictionary]) -> Void in
+        self.processFetchedPosts(results)
       },
-      success: {
-      (results: [NSDictionary]) -> Void in
-
-    }, failure: {
-      (error: NSError) -> Void in
-      logError(self.removeSensitiveInformationFromError(error))
-    })
+      success: {(results: [NSDictionary]) -> Void in
+      },
+      failure: {(error: NSError) -> Void in
+        logError(self.removeSensitiveInformationFromError(error))
+      }
+    )
   }
 
   private func removeSensitiveInformationFromError(error: NSError) -> String {
-#if TEST || DEBUG
-    return error.description
-#else
-    if let token = PersistenceStore.sharedInstance().facebookAccesToken {
-      return error.description.stringByReplacingOccurrencesOfString(token, withString: "TOKEN-WAS-STRIPPED")
-    } else {
-      return error.description
-    }
-#endif
+    return error.securedDescription
   }
 }
 
-//MARK: - Persistence
+//MARK: - Profile
 
 extension MainViewController {
 
   private func fetchProfileFromDatasource() {
-#if DEBUG
-    let dic = NSProcessInfo.processInfo().environment
-    if dic["AWL_SKIP_DATASOURCE"] != nil {
-      fetchProfileFromServer()
-      return
-    }
-#endif
 
     let fetchRequest = NSFetchRequest()
     let entityName = ProfileEntity.description().componentsSeparatedByString(".").last!
@@ -255,33 +173,46 @@ extension MainViewController {
         // Profile not yet fetched from server
         fetchProfileFromServer()
       } else {
+        log.debug("Found \(results.count) profile record(s) in database")
         var profileRecord = results.first as! ProfileEntity
-        let profile = Profile(entity: profileRecord)
-        updateProfileInformation(profile)
+        updateProfileInformation(profileRecord)
       }
     } else {
-      logError(fetchError!)
+      log.error(fetchError!)
     }
   }
 
-  private func fetchFriendsFromDatasource() {
-#if DEBUG
-    let dic = NSProcessInfo.processInfo().environment
-    if dic["AWL_SKIP_DATASOURCE"] != nil {
-      fetchFriendsFromServer()
-      return
-    }
-#endif
+  private func fetchProfileFromServer() {
+    profileLoadManager.fetchUserProfile(success: {(results: FacebookProfileLoadManager.FetchResults) -> Void in
+
+      if let theUserName = results.userProfile.valueForKey("name") as? String {
+        let entityName = ProfileEntity.description().componentsSeparatedByString(".").last!
+        let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.managedObjectContext)
+        var entityInstance = ProfileEntity(entity: entityDescription!, insertIntoManagedObjectContext: self.managedObjectContext)
+        entityInstance.userName = theUserName
+        entityInstance.homeTown = results.userProfile.valueForKeyPath("hometown.name") as? String
+        entityInstance.avatarPictureData = results.avatarPictureImageData
+        entityInstance.coverPhotoData = results.coverPhotoImageData
+        CoreDataHelper.sharedInstance().saveContext()
+        self.updateProfileInformation(entityInstance)
+      }
+      }, failure: {
+        (error: NSError) -> Void in
+        logError(self.removeSensitiveInformationFromError(error))
+    })
   }
 
-  private func fetchPostsFromDatasource() {
-#if DEBUG
-    let dic = NSProcessInfo.processInfo().environment
-    if dic["AWL_SKIP_DATASOURCE"] != nil {
-      fetchPostsFromServer()
-      return
-    }
-#endif
+  private func updateProfileInformation(profile: ProfileEntity) {
+    dispatch_async(dispatch_get_main_queue(), {
+      self.topView.userName.text = profile.userName
+      self.topView.hometown.text = profile.homeTown
+      if let theImageData = profile.avatarPictureData {
+        self.topView.profileAvatar.image = UIImage(data: theImageData)
+      }
+      if let theImageData = profile.coverPhotoData {
+        self.topView.coverPhoto.image = UIImage(data: theImageData)
+      }
+    })
   }
 
 }
@@ -342,9 +273,9 @@ extension MainViewController {
     let to = type == .Posts ? postsViewControoler : friendsViewControoler
 
     transitionFromViewController(from, toViewController: to, duration: 0.4, options: UIViewAnimationOptions.allZeros,
-        animations: nil, completion: nil)
+      animations: nil, completion: nil)
     activeControllerType = activeControllerType.opposite()
   }
-
+  
 }
 

@@ -16,6 +16,6 @@ public class Profile {
   }
   
   public init(entity: ProfileEntity) {
-    avatarPicture = UIImage(data: entity.avatarPicture)
+    avatarPicture = UIImage(data: entity.avatarPictureData!)
   }
 }

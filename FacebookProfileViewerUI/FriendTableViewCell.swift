@@ -7,10 +7,4 @@ import UIKit
 import FacebookProfileViewerClasses
 
 public class FriendTableViewCell : UITableViewCell {
-  public var acceciatedObject: Friend! {
-    didSet {
-      self.textLabel?.text = acceciatedObject.userName
-      self.imageView?.image = acceciatedObject.avatarPicture
-    }
-  }
 }

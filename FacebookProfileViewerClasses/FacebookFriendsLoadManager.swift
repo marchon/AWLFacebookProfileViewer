@@ -4,77 +4,69 @@
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
-
 public class FacebookFriendsLoadManager {
 
-  private var friendsFeedChunks = [NSDictionary]()
-  private var lastOperationError: NSError?
-  private var fetchCursorAfter: NSURL?
+  public typealias SuccessCallback    = (([NSDictionary]) -> Void)
+  public typealias FailureCallback    = ((NSError) -> Void)
+  public typealias CompletionCallback = (() -> Void)
 
-#if TEST
-  let maxNumberOfTotalFriendsToFetch = 80
-#else
-  let maxNumberOfTotalFriendsToFetch = 400
-#endif
+  private var cbSuccess:    SuccessCallback!
+  private var cbFailure:    FailureCallback!
+  private var cbCompletion: CompletionCallback!
 
-  var fetchCallback: ([NSDictionary] -> Void)!
-  var successCallback: ([NSDictionary] -> Void)!
-  var failureCallback: (NSError -> Void)!
+  lazy private var log: Logger = {
+    return Logger.getLogger("FfLM")
+    }()
 
   lazy var backendManager: FacebookEndpointManager = {
     return FacebookEndpointManager()
-  }()
+    }()
 
   public init() {
   }
 
-  public func fetchUserFriends(fetchCallback: (results:[NSDictionary]) -> Void, success: (results:[NSDictionary]) -> Void, failure: (error:NSError) -> Void) {
-    self.successCallback = success
-    self.failureCallback = failure
-    self.fetchCallback = fetchCallback
-    self.reset()
-    self.performFetchTask()
-  }
-
-  private func reset() {
-    friendsFeedChunks.removeAll(keepCapacity: true)
-    lastOperationError = nil
-    fetchCursorAfter = self.backendManager.fetchFriendsURL(nil)
-  }
-
-  private func performFetchTask() {
-    if let url = self.fetchCursorAfter {
-      var task = self.backendManager.fetchFacebookGraphAPITask(url,
-          success: {
-            (json: NSDictionary) -> Void in
-
-            let dataKey = "data"
-            if let dataArray = json.valueForKey(dataKey) as? Array<NSDictionary> {
-              self.friendsFeedChunks += dataArray
-              self.fetchCallback(dataArray)
-            } else {
-              self.failureCallback(NSError.errorForMissedAttribute(dataKey))
-              return
-            }
-
-            if self.friendsFeedChunks.count < self.maxNumberOfTotalFriendsToFetch {
-              if let nextCursor = json.valueForKeyPath("paging.next") as? String {
-                self.fetchCursorAfter = NSURL(string: nextCursor)
-                self.performFetchTask()
-              } else {
-                self.successCallback(self.friendsFeedChunks)
-              }
-            } else {
-              self.successCallback(self.friendsFeedChunks)
-            }
-          },
-          failure: {
-            (error: NSError) -> Void in
-            self.failureCallback(error)
-          })
-      task.resume()
+  public func fetchUserFriends(#success: SuccessCallback, failure: FailureCallback, completion: CompletionCallback) {
+    self.cbSuccess = success
+    self.cbFailure = failure
+    self.cbCompletion = completion
+    if let URL = self.backendManager.fetchFriendsURL() {
+      log.verbose("Starting operation...")
+      self.performFetchTask(URL)
     } else {
-      self.failureCallback(NSError.errorForUninitializedURL())
+      cbFailure(NSError.errorForUninitializedURL())
     }
+  }
+
+  private func performFetchTask(taskURL: NSURL!) {
+    log.verbose("Starting fetch from URL: \(taskURL)")
+      var task = self.backendManager.fetchFacebookGraphAPITask(taskURL,
+        success: {
+          (json: NSDictionary) -> Void in
+
+          let keyData = "data"
+          if let theFriends = json.valueForKey(keyData) as? [NSDictionary] {
+            self.log.debug("Got \(theFriends.count) records.")
+            self.cbSuccess(theFriends)
+          } else {
+            self.cbFailure(NSError.errorForMissedAttribute(keyData))
+            return
+          }
+
+          if let keyPathNext = json.valueForKeyPath("paging.next") as? String {
+            if let URL = NSURL(string: keyPathNext) {
+              self.performFetchTask(URL)
+            } else {
+              self.cbFailure(NSError.errorForUninitializedURL())
+            }
+          } else {
+            self.log.verbose("Operation completed")
+            self.cbCompletion()
+          }
+        },
+        failure: {
+          (error: NSError) -> Void in
+          self.cbFailure(error)
+      })
+      task.resume()
   }
 }

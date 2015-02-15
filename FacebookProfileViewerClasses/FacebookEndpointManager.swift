@@ -7,6 +7,7 @@ import UIKit
 
 public typealias jsonCallback = ((NSDictionary) -> Void)
 public typealias imageCallback = ((UIImage) -> Void)
+public typealias dataCallback = ((NSData) -> Void)
 public typealias errorCallback = ((NSError) -> Void)
 
 extension FacebookEndpointManager {
@@ -34,17 +35,14 @@ extension FacebookEndpointManager {
     return endpointURL
   }
 
-  public func fetchFriendsURL(cursorAfter: String?) -> NSURL? {
+  public func fetchFriendsURL() -> NSURL? {
     var endpointURL: NSURL?
     if let accesToken = persistenceStore.facebookAccesToken {
-      var fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
+      var fetchLimit = 80 // TODO: Try different settings for 2G/3G/... networks
 #if DEBUG || TEST
-      fetchLimit = 20
+      fetchLimit = 40
 #endif
       var urlString = "https://graph.facebook.com/me/taggable_friends?limit=\(fetchLimit)&fields=id,name,picture&access_token=\(accesToken)"
-      if let cursor = cursorAfter {
-        urlString += "&after=\(cursor)"
-      }
       endpointURL = NSURL(string: urlString)
     }
     return endpointURL
@@ -108,6 +106,20 @@ extension FacebookEndpointManager {
     return task
   }
 
+  public func dataDownloadTask(url: NSURL, success: dataCallback, failure: errorCallback) -> NSURLSessionDataTask {
+    let task = session.dataTaskWithURL(url, completionHandler: {
+      (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+
+      if error != nil {
+        failure(error)
+      } else {
+        success(data)
+      }
+    })
+
+    return task
+  }
+
   public func fetchFacebookGraphAPITask(url: NSURL, success: jsonCallback, failure: errorCallback) -> NSURLSessionDataTask {
 
     let task = session.dataTaskWithURL(url, completionHandler: {
@@ -147,7 +159,7 @@ extension FacebookEndpointManager {
 public class FacebookEndpointManager {
 
   var session: NSURLSession
-  private var persistenceStore: PersistenceStoreProvider
+  private var persistenceStore: PersistenceStore
 
   public init() {
     var sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()

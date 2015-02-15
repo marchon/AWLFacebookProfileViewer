@@ -56,7 +56,7 @@ class FacebookEndpointManagerTests: EnpointTestCase {
   }
 
   func testFetchFriends() {
-    var url = manager.fetchFriendsURL(nil)
+    var url = manager.fetchFriendsURL()
     manager.fetchFacebookGraphAPITask(url!,
       success:
       {(json: NSDictionary) -> Void in

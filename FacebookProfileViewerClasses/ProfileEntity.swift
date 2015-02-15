@@ -11,7 +11,9 @@ import CoreData
 
 public class ProfileEntity: NSManagedObject {
 
-    @NSManaged var avatarPicture: NSData
-    @NSManaged var userName: String
+  @NSManaged public var userName: String
+  @NSManaged public var coverPhotoData: NSData?
+  @NSManaged public var avatarPictureData: NSData?
+  @NSManaged public var homeTown: String?
 
 }

@@ -32,6 +32,19 @@ extension NSError {
     let e = NSError(domain: UninitializedTaskErrorDomain, code: UninitializedTaskErrorCode, userInfo: nil)
     return e
   }
+
+  public var securedDescription: String {
+    #if TEST || DEBUG
+      return self.description
+      #else
+      if let token = PersistenceStore.sharedInstance().facebookAccesToken {
+      return self.description.stringByReplacingOccurrencesOfString(token, withString: "TOKEN-WAS-STRIPPED")
+      } else {
+      return self.description
+      }
+    #endif
+  }
+
 }
 
 

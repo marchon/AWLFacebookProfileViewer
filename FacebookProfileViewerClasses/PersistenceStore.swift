@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class PersistenceStore: PersistenceStoreProvider {
+public class PersistenceStore {
 
   enum UserDefaultsKeys : String {
     case FacebookAccessToken = "ua.com.wavelabs.FacebookAccessToken"
@@ -13,7 +13,7 @@ public class PersistenceStore: PersistenceStoreProvider {
     case FetchChunksForPosts = "ua.com.wavelabs.FetchChunksForPosts"
   }
   
-  public class func sharedInstance() -> PersistenceStoreProvider {
+  public class func sharedInstance() -> PersistenceStore {
     struct Static {
       static var onceToken : dispatch_once_t = 0
       static var instance : PersistenceStore? = nil
@@ -23,6 +23,8 @@ public class PersistenceStore: PersistenceStoreProvider {
     }
     return Static.instance!
   }
+
+
 
   public var facebookAccesToken: String? {
     get {
