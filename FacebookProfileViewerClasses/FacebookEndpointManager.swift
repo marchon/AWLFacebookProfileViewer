@@ -129,7 +129,7 @@ extension FacebookEndpointManager {
         failure(error)
       } else {
         if response is NSHTTPURLResponse {
-          let code = (response as! NSHTTPURLResponse).statusCode
+          let code = (response as NSHTTPURLResponse).statusCode
           if code == 200 {
             self.parseJson(data, success: success, failure: failure)
           } else {

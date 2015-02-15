@@ -12,7 +12,7 @@ class WelcomeScreenViewController : UIViewController {
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showLoginScreen" && segue.destinationViewController is LoginScreenViewController {
-      let ctrl = segue.destinationViewController as! LoginScreenViewController
+      let ctrl = segue.destinationViewController as LoginScreenViewController
       ctrl.success = self.success
       ctrl.canceled = self.canceled
     }

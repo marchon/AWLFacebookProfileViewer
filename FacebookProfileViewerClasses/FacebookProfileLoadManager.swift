@@ -46,11 +46,14 @@ public class FacebookProfileLoadManager {
     self.cbSuccess = success
     self.cbFailure = failure
     self.executionState = (false, false)
-    if let avatarPctureURL = backendManager.fetchUserPictureURL(),
-      profileInfoURL = backendManager.fetchUserProfileInformationURL() {
-        log.debug("Operation started")
-        self.fetchAvatarPictureURL(avatarPctureURL)
-        self.fetchUserProfile(profileInfoURL)
+    if let avatarPctureURL = backendManager.fetchUserPictureURL() {
+        if let profileInfoURL = backendManager.fetchUserProfileInformationURL() {
+          log.debug("Operation started")
+          self.fetchAvatarPictureURL(avatarPctureURL)
+          self.fetchUserProfile(profileInfoURL)
+        } else {
+          failure(NSError.errorForUninitializedURL())
+        }
     } else {
       failure(NSError.errorForUninitializedURL())
     }

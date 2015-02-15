@@ -14,7 +14,7 @@ public class Post : DebugPrintable {
       let value = mirror[i].1.value
       var summary = mirror[i].1.summary
       if value is PostType {
-        summary = (value as! PostType).rawValue
+        summary = (value as PostType).rawValue
       }
       description.append("\t" + mirror[i].0 + ": " + summary)
     }

@@ -45,7 +45,7 @@ public class NibDesignable: UIView {
   func loadNib() -> UIView {
     let bundle = NSBundle(forClass: self.dynamicType)
     let nib = UINib(nibName: self.nibName(), bundle: bundle)
-    return nib.instantiateWithOwner(self, options: nil)[0] as! UIView
+    return nib.instantiateWithOwner(self, options: nil)[0] as UIView
   }
 
   /**

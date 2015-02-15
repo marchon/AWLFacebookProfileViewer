@@ -65,15 +65,17 @@ public class FacebookPostsLoadManager {
               let keyCreatedDate = "created_time"
               for item in dataArray {
                 if let
-                  createdDateString = item.valueForKey(keyCreatedDate) as? String,
-                  createdDate = NSDateFormatter.facebookDateFormatter().dateFromString(createdDateString) {
+                  createdDateString = item.valueForKey(keyCreatedDate) as? String {
+                  if let createdDate = NSDateFormatter.facebookDateFormatter().dateFromString(createdDateString) {
                     // Post created later than requested date
                     if self.since!.compare(createdDate) == NSComparisonResult.OrderedAscending {
                       fetchedPosts.append(item)
-                    } else {
+                    }
+                    else {
                       isPostForRequestedDateFound = true
                       break
                     }
+                  }
                 } else {
                   self.failureCallback(NSError.errorForMissedAttribute(keyCreatedDate))
                   return

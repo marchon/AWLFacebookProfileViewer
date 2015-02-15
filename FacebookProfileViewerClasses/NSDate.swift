@@ -7,6 +7,6 @@ import UIKit
 
 public extension NSDate {
   var timeIntervalSince1970AsString : String {
-    return NSString(format: "%.0f", self.timeIntervalSince1970) as! String
+    return NSString(format: "%.0f", self.timeIntervalSince1970) as String
   }
 }

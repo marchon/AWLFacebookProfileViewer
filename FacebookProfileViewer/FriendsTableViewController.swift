@@ -87,7 +87,7 @@ extension FriendsTableViewController {
     if cell == nil {
       return
     }
-    let object = self.fetchedResultsController.objectAtIndexPath(atIndexPath) as! FriendEntity
+    let object = self.fetchedResultsController.objectAtIndexPath(atIndexPath) as FriendEntity
     cell?.textLabel?.text = object.userName
     if let thePictureData = object.avatarPictureData {
       cell?.imageView?.image = UIImage(data: thePictureData)
@@ -102,7 +102,7 @@ extension FriendsTableViewController {
         if fetchResults.count > 0 {
           log.verbose("Will fetch \(fetchResults.count) missed avatar images.")
         }
-        for theItem in fetchResults as! [FriendEntity] {
+        for theItem in fetchResults as [FriendEntity] {
           if let url = NSURL(string: theItem.avatarPictureURL) {
             self.backendManager.dataDownloadTask(url,
               success: { (data: NSData) -> Void in
@@ -246,7 +246,7 @@ extension FriendsTableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as UITableViewCell
     self.configureCell(cell, atIndexPath: indexPath)
     return cell
   }
@@ -268,7 +268,7 @@ extension FriendsTableViewController {
 
   func controller(controller: NSFetchedResultsController, didChangeObject: AnyObject,
     atIndexPath: NSIndexPath?, forChangeType: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-      log.verbose("Object did changed: \((didChangeObject as! FriendEntity).userName)")
+      log.verbose("Object did changed: \((didChangeObject as FriendEntity).userName)")
       switch forChangeType {
       case .Insert:
         self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
