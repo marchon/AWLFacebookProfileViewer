@@ -47,9 +47,8 @@ class MainViewController: UIViewController {
 
     initChildControllers()
 
-    if !AppState.UI.shouldShowWelcomeScreen {
-      fetchProfileFromDatasource()
-    }
+    fetchProfileFromDatasource()
+
   }
 
   override func viewDidLayoutSubviews() {
@@ -90,8 +89,6 @@ class MainViewController: UIViewController {
   }
 
   //MARK: - Private
-
-
 
   private func updatePostsTable(posts: [Post]) {
     dispatch_async(dispatch_get_main_queue(), {
@@ -159,6 +156,10 @@ extension MainViewController {
 extension MainViewController {
 
   private func fetchProfileFromDatasource() {
+
+    if AppState.UI.shouldShowWelcomeScreen {
+      return
+    }
 
     let fetchRequest = NSFetchRequest()
     let entityName = ProfileEntity.description().componentsSeparatedByString(".").last!

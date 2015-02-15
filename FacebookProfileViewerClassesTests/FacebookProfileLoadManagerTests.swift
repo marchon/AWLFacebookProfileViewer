@@ -11,7 +11,7 @@ class FacebookProfileLoadManagerTests : EnpointTestCase {
 
   func testFetchUserProfile() {
     let mngr = FacebookProfileLoadManager()
-    mngr.fetchUserProfile( { (results: FacebookProfileLoadManager.FetchResults) -> Void in
+    mngr.fetchUserProfile( success: { (results: FacebookProfileLoadManager.FetchResults) -> Void in
       XCTAssertNotNil(results.userProfile)
       XCTAssertNotNil(results.coverPhotoImageData)
       XCTAssertNotNil(results.avatarPictureImageData)

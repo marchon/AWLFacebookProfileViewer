@@ -9,7 +9,10 @@ How to authorize cURL with Facebook?
 
         Double click on '02. Open Facebook Login Dialog.webloc' file
     
-3. Copy access token from browser page and paste into `Scripts/Curls/access_token.txt` file.
+3. Copy access token from browser page and paste into `Scripts/Curls/access_token.txt` file in format as below:
+    
+        access_token=AcceSsTokEnValuE
+
 4. Open Terminal.app and change directory to `Scripts/Curls` folder.
 
 Now you are ready to execute requests from curls.txt file.
