@@ -70,7 +70,7 @@ public class CoreDataHelper {
       if moc.hasChanges && !moc.save(&error) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-        NSLog("Unresolved error \(error), \(error!.userInfo)")
+        logError(error)
         abort()
       }
     }
@@ -83,11 +83,6 @@ public class CoreDataHelper {
       var fetchRequest = NSFetchRequest(entityName: entityName)
       fetchRequest.predicate = NSPredicate(format: "\(kFriendEntityKeyAvatarPictureData) == NIL")
       return fetchRequest
-    }()
-
-    public lazy var fetchRequestForAllRecords: NSFetchRequest = {
-      let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
-      return NSFetchRequest(entityName: entityName)
     }()
 
     public lazy var fetchRequestForAllRecordsSortedByName: NSFetchRequest = {
@@ -107,6 +102,12 @@ public class CoreDataHelper {
       return fetchRequest
     }
 
+    public func fetchRequestForRecordsNotMatchingNames(names: [String]) -> NSFetchRequest {
+      let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
+      var fetchRequest = NSFetchRequest(entityName: entityName)
+      fetchRequest.predicate = NSPredicate(format: "!(\(kFriendEntityKeyUserName) in %@)", names)
+      return fetchRequest
+    }
 
     public class var sharedInstance: CoreDataHelper.Friends {
       struct Static {
@@ -115,8 +116,90 @@ public class CoreDataHelper {
       return Static.instance
     }
 
-    public class func deleteFriendsByName(names: [String]) {
+    public class func addOrUpdateRecordsWithEntities(entities: [FriendEntity]) {
+      if entities.count <= 0 {
+        return
+      }
 
+      var sortedEntities = entities.sorted({ (lhs: FriendEntity, rhs: FriendEntity) -> Bool in
+        return lhs.userName < rhs.userName
+      })
+
+      var names = [String]()
+      for entity in sortedEntities {
+        names.append(entity.userName)
+      }
+
+      let fetchRequest = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsMatchingNames(names)
+      var fetchResults = CoreDataHelper.Friends.fetchRecordsAndLogError(fetchRequest)
+      if fetchResults == nil {
+        return
+      }
+
+      let moc = CoreDataHelper.sharedInstance().managedObjectContext!
+
+      if fetchResults!.count <= 0 {
+        for theItem in entities { // Just insert all fetched elements
+          moc.insertObject(theItem)
+        }
+        CoreDataHelper.sharedInstance().saveContext()
+        return
+      }
+
+      let entitiesFromDatabase = fetchResults!
+      let entitiesFromResponse = sortedEntities
+      logVerbose("Number of records in database: \(entitiesFromDatabase.count), from server response: \(entitiesFromResponse.count)")
+      var iteratorForDatabase = entitiesFromDatabase.generate()
+      var iteratorForResponse = entitiesFromResponse.generate()
+
+      var entityFromDatabase = iteratorForDatabase.next()
+      var entityFromResponse = iteratorForResponse.next()
+
+      var shouldSaveCoreData = false
+      do {
+        if entityFromDatabase == nil || entityFromResponse == nil {
+          break
+        }
+
+        if entityFromDatabase!.userName == entityFromResponse!.userName {
+          if entityFromDatabase!.avatarPictureURL != entityFromResponse!.avatarPictureURL {
+            entityFromDatabase!.avatarPictureURL = entityFromResponse!.avatarPictureURL
+            entityFromDatabase!.avatarPictureData = nil
+            shouldSaveCoreData = true
+          }
+          entityFromDatabase = iteratorForDatabase.next()
+          entityFromResponse = iteratorForResponse.next()
+        } else {
+          moc.insertObject(entityFromResponse!)
+          entityFromResponse = iteratorForResponse.next()
+        }
+
+      } while (true)
+
+      // Continue inserting if there are still available new entries from server
+      while entityFromResponse != nil {
+        moc.insertObject(entityFromResponse!)
+        entityFromResponse = iteratorForResponse.next()
+      }
+
+      if shouldSaveCoreData {
+        CoreDataHelper.sharedInstance().saveContext()
+      }
+
+    }
+
+    public class func deleteRecordsNotMatchingNames(names: [String]) {
+      let request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsNotMatchingNames(names)
+      if let results = CoreDataHelper.Friends.fetchRecordsAndLogError(request) {
+        if results.count <= 0 {
+          return
+        }
+        let moc = CoreDataHelper.sharedInstance().managedObjectContext!
+        for result in results {
+          moc.deleteObject(result)
+        }
+        CoreDataHelper.sharedInstance().saveContext()
+      }
     }
 
     public class func fetchRecordsAndLogError(request: NSFetchRequest) -> [FriendEntity]? {
