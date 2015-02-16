@@ -57,6 +57,8 @@
 		C58C7BDD1A7FAF40007E3996 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDB1A7FAF40007E3996 /* PostsTableViewController.swift */; };
 		C58C7BE01A7FB7F1007E3996 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDF1A7FB7F1007E3996 /* Profile.swift */; };
 		C58C7BE81A7FD36E007E3996 /* FacebookProfileLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */; };
+		C5921A2E1A920E6600298543 /* CoreDataHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5921A2D1A920E6600298543 /* CoreDataHelperTests.swift */; };
+		C5921A301A923BBA00298543 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5921A2F1A923BBA00298543 /* Reflection.swift */; };
 		C5A750701A80E1930089703F /* FacebookProfileLoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +169,8 @@
 		C58C7BDB1A7FAF40007E3996 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		C58C7BDF1A7FB7F1007E3996 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookProfileLoadManager.swift; sourceTree = "<group>"; };
+		C5921A2D1A920E6600298543 /* CoreDataHelperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelperTests.swift; sourceTree = "<group>"; };
+		C5921A2F1A923BBA00298543 /* Reflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
 		C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookProfileLoadManagerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -228,6 +232,7 @@
 				80CDE7BE1A8E24E600499B4E /* NSFileManager.swift */,
 				801BA28C1A8A1C2E008319C2 /* NSDate.swift */,
 				8006BA7A1A8FB6FA003F1DF8 /* String.swift */,
+				C5921A2F1A923BBA00298543 /* Reflection.swift */,
 			);
 			path = FacebookProfileViewerClasses;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */,
 				C51980DE1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift */,
 				C5171BD71A83818A0066E006 /* FacebookPostsLoadManagerTests.swift */,
+				C5921A2D1A920E6600298543 /* CoreDataHelperTests.swift */,
 				8033135F1A74660100E54701 /* Info.plist */,
 				80E4F3AC1A8A528B00254343 /* PersistenceStoreTests.swift */,
 			);
@@ -536,6 +542,7 @@
 				C51980DD1A811F5300BE4861 /* FacebookFriendsLoadManager.swift in Sources */,
 				C51D0DDC1A839414001CBF19 /* Post.swift in Sources */,
 				801BA28B1A8A10FD008319C2 /* NSDateFormatter.swift in Sources */,
+				C5921A301A923BBA00298543 /* Reflection.swift in Sources */,
 				C58C7BE01A7FB7F1007E3996 /* Profile.swift in Sources */,
 				80205E931A7996670042E94A /* ProfileEntity.swift in Sources */,
 				80CDE7BD1A8E242A00499B4E /* CoreDataHelper.swift in Sources */,
@@ -562,6 +569,7 @@
 				C5171BD81A83818A0066E006 /* FacebookPostsLoadManagerTests.swift in Sources */,
 				80E4F3AD1A8A528B00254343 /* PersistenceStoreTests.swift in Sources */,
 				C51980DF1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift in Sources */,
+				C5921A2E1A920E6600298543 /* CoreDataHelperTests.swift in Sources */,
 				80F43D3E1A8256390084881F /* EnpointTestCase.swift in Sources */,
 				803313611A74660100E54701 /* FacebookEndpointManagerTests.swift in Sources */,
 				C5A750701A80E1930089703F /* FacebookProfileLoadManagerTests.swift in Sources */,

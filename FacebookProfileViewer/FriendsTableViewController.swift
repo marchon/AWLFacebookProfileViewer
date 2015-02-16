@@ -27,21 +27,9 @@ class FriendsTableViewController : UITableViewController, NSFetchedResultsContro
     return CoreDataHelper.sharedInstance().managedObjectContext!
   }
 
-  lazy var fetchRequestForRecordsWithoutAvatarImage: NSFetchRequest = {
-    var fetchRequest = FriendEntity.fetchRequest()
-    fetchRequest.predicate = NSPredicate(format: "\(kFriendEntityKeyAvatarPictureData) == NIL")
-    return fetchRequest
-    }()
-
-  lazy var fetchRequest: NSFetchRequest = {
-    var fetchRequest = FriendEntity.fetchRequest()
-    let sortDescriptor = NSSortDescriptor(key: kFriendEntityKeyUserName, ascending: true)
-    fetchRequest.sortDescriptors = [sortDescriptor]
-    return fetchRequest
-    }()
-
   lazy var fetchedResultsController: NSFetchedResultsController = {
-    let fetchedResultController = NSFetchedResultsController(fetchRequest: self.fetchRequest, managedObjectContext: self.managedObjectContext,
+    let fetchedResultController = NSFetchedResultsController(fetchRequest: CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName,
+      managedObjectContext: self.managedObjectContext,
       sectionNameKeyPath: nil, cacheName: nil)
     return fetchedResultController
     }()
@@ -96,9 +84,8 @@ extension FriendsTableViewController {
 
   // Determinate is there are records without avatar image
   private func fetchMissedAvatarPictures() {
-    var theFetchError: NSError?
-    if let fetchResults = self.managedObjectContext.executeFetchRequest(self.fetchRequestForRecordsWithoutAvatarImage,
-      error: &theFetchError) {
+    let request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsWithoutAvatarImage
+    if let fetchResults = CoreDataHelper.Friends.fetchRecordsAndLogError(request) {
         if fetchResults.count > 0 {
           log.verbose("Will fetch \(fetchResults.count) missed avatar images.")
         }
@@ -118,12 +105,11 @@ extension FriendsTableViewController {
               ).resume()
           }
         }
-    } else {
-      log.error(theFetchError!)
     }
   }
 
   private func fetchFriendsFromServer() {
+    var namesOfAllFriends = [String]();
     friendsLoadManager.fetchUserFriends(
       success: {(results: [NSDictionary]) -> Void in
 
@@ -134,6 +120,7 @@ extension FriendsTableViewController {
           var valueFiendPictureURL = itemDictionary.valueForKeyPath("picture.data.url") as? String
 
           if let theFriendName = valueFiendName {
+            namesOfAllFriends.append(theFriendName)
             let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
             let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.managedObjectContext)
             var entityInstance = FriendEntity(entity: entityDescription!, insertIntoManagedObjectContext: nil)
@@ -169,14 +156,9 @@ extension FriendsTableViewController {
       return lhs < rhs
     })
 
-    let fetchRequest = FriendEntity.fetchRequest()
-    fetchRequest.predicate = NSPredicate(format: "\(kFriendEntityKeyUserName) in %@", entityNames)
-    fetchRequest.sortDescriptors = [NSSortDescriptor(key: kFriendEntityKeyUserName, ascending: true)]
-
-    var fetchError: NSError?
-    var fetchResults = self.managedObjectContext.executeFetchRequest(fetchRequest, error: &fetchError) as? [FriendEntity]
-    if let theFetchError = fetchError {
-      log.error(theFetchError)
+    let fetchRequest = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsMatchingNames(entityNames)
+    var fetchResults = CoreDataHelper.Friends.fetchRecordsAndLogError(fetchRequest)
+    if fetchResults == nil {
       return
     }
 

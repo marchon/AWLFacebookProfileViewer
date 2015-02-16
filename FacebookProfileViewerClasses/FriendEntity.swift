@@ -10,17 +10,25 @@ import Foundation
 import CoreData
 
 public let kFriendEntityKeyUserName          = "userName"
+public let kFriendEntityKeyAvatarPictureURL  = "avatarPictureURL"
 public let kFriendEntityKeyAvatarPictureData = "avatarPictureData"
 
-public class FriendEntity: NSManagedObject {
+public class FriendEntity: NSManagedObject, DebugPrintable, Equatable {
 
   @NSManaged public var userName: String
   @NSManaged public var avatarPictureURL: String
   @NSManaged public var avatarPictureData: NSData?
-
-  public class func fetchRequest() -> NSFetchRequest {
-    let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
-    return NSFetchRequest(entityName: entityName)
+  
+  public override var debugDescription: String {
+    var properties = Array<Reflection.Property>()
+    properties.append(Reflection.Property(key: kFriendEntityKeyUserName, value: self.userName))
+    properties.append(Reflection.Property(key: kFriendEntityKeyAvatarPictureURL, value: self.avatarPictureURL))
+    properties.append(Reflection.Property(key: kFriendEntityKeyAvatarPictureData, value: self.avatarPictureData?.description ?? "null"))
+    return Reflection.propertiesToString(properties, multiline: true)
   }
+}
 
+public func ==(lhs: FriendEntity, rhs: FriendEntity) -> Bool {
+  return lhs.userName == rhs.userName && lhs.avatarPictureURL == rhs.avatarPictureURL
+    && lhs.avatarPictureData == rhs.avatarPictureData
 }

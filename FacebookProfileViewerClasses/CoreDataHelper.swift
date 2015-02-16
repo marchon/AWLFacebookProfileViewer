@@ -10,13 +10,9 @@ public class CoreDataHelper {
 
   public class func sharedInstance() -> CoreDataHelper {
     struct Static {
-      static var onceToken : dispatch_once_t = 0
-      static var instance : CoreDataHelper? = nil
+      static let instance = CoreDataHelper()
     }
-    dispatch_once(&Static.onceToken) {
-      Static.instance = CoreDataHelper()
-    }
-    return Static.instance!
+    return Static.instance
   }
 
   lazy var managedObjectModel: NSManagedObjectModel = {
@@ -29,10 +25,16 @@ public class CoreDataHelper {
     // The persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. This property is optional since there are legitimate error conditions that could cause the creation of the store to fail.
     // Create the coordinator and store
     var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
-    let url = NSFileManager.applicationDocumentsDirectory.URLByAppendingPathComponent("FacebookProfileViewer.sqlite")
     var error: NSError? = nil
     var failureReason = "There was an error creating or loading the application's saved data."
-    if coordinator!.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: url, options: nil, error: &error) == nil {
+    #if TEST
+    let storeType = NSInMemoryStoreType
+    let url: NSURL? = nil
+    #else
+    let url = NSFileManager.applicationDocumentsDirectory.URLByAppendingPathComponent("FacebookProfileViewer.sqlite")
+    let storeType = NSSQLiteStoreType
+    #endif
+    if coordinator!.addPersistentStoreWithType(storeType, configuration: nil, URL: url, options: nil, error: &error) == nil {
       coordinator = nil
       // Report any error we got.
       var dict = [String: AnyObject]()
@@ -71,6 +73,68 @@ public class CoreDataHelper {
         NSLog("Unresolved error \(error), \(error!.userInfo)")
         abort()
       }
+    }
+  }
+
+  public class Friends {
+
+    public lazy var fetchRequestForRecordsWithoutAvatarImage: NSFetchRequest = {
+      let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
+      var fetchRequest = NSFetchRequest(entityName: entityName)
+      fetchRequest.predicate = NSPredicate(format: "\(kFriendEntityKeyAvatarPictureData) == NIL")
+      return fetchRequest
+    }()
+
+    public lazy var fetchRequestForAllRecords: NSFetchRequest = {
+      let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
+      return NSFetchRequest(entityName: entityName)
+    }()
+
+    public lazy var fetchRequestForAllRecordsSortedByName: NSFetchRequest = {
+      let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
+      var fetchRequest = NSFetchRequest(entityName: entityName)
+      let sortDescriptor = NSSortDescriptor(key: kFriendEntityKeyUserName, ascending: true)
+      fetchRequest.sortDescriptors = [sortDescriptor]
+      return fetchRequest
+    }()
+
+    public func fetchRequestForRecordsMatchingNames(names: [String]) -> NSFetchRequest {
+      let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
+      var fetchRequest = NSFetchRequest(entityName: entityName)
+      fetchRequest.predicate = NSPredicate(format: "\(kFriendEntityKeyUserName) in %@", names)
+      let sortDescriptor = NSSortDescriptor(key: kFriendEntityKeyUserName, ascending: true)
+      fetchRequest.sortDescriptors = [sortDescriptor]
+      return fetchRequest
+    }
+
+
+    public class var sharedInstance: CoreDataHelper.Friends {
+      struct Static {
+        static let instance = CoreDataHelper.Friends()
+      }
+      return Static.instance
+    }
+
+    public class func deleteFriendsByName(names: [String]) {
+
+    }
+
+    public class func fetchRecordsAndLogError(request: NSFetchRequest) -> [FriendEntity]? {
+      var e: NSError?
+      if let fetchResults = CoreDataHelper.sharedInstance().managedObjectContext?.executeFetchRequest(request, error: &e) {
+        return fetchResults as? [FriendEntity]
+      } else {
+        logError(e)
+        return nil
+      }
+    }
+
+    public class func makeEntityInstance() -> FriendEntity {
+      let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
+      let moc = CoreDataHelper.sharedInstance().managedObjectContext!
+      let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: moc)
+      var entityInstance = FriendEntity(entity: entityDescription!, insertIntoManagedObjectContext: nil)
+      return entityInstance
     }
   }
 }
