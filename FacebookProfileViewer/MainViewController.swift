@@ -29,26 +29,13 @@ class MainViewController: UIViewController {
     return FacebookProfileLoadManager()
   }()
 
-  lazy private var postsLoadManager: FacebookPostsLoadManager = {
-    return FacebookPostsLoadManager()
-  }()
-  lazy var backendManager: FacebookEndpointManager = {
-    return FacebookEndpointManager()
-  }()
-
-  var managedObjectContext: NSManagedObjectContext {
-    return CoreDataHelper.sharedInstance().managedObjectContext!
-  }
-
   //MARK: - Internal
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
     initChildControllers()
-
-    fetchProfileFromDatasource()
-
+    fetchProfileFromDatasourceIfNeeded()
   }
 
   override func viewDidLayoutSubviews() {
@@ -82,115 +69,36 @@ class MainViewController: UIViewController {
         ps.facebookAccesTokenExpitesIn = tokenInfo.expiresIn
         self.dismissViewControllerAnimated(true, completion: {
           () -> Void in
-          self.fetchProfileFromDatasource()
+          self.fetchProfileFromDatasourceIfNeeded()
           self.friendsViewControoler.fetchUsersFromServerIfNeeded()
+          self.postsViewControoler.fetchPostsFromServerIfNeeded()
         })
       }
     }
   }
 
-  //MARK: - Private
-
-  private func updatePostsTable(posts: [Post]) {
-    dispatch_async(dispatch_get_main_queue(), {
-      self.postsViewControoler.updateWithData(posts)
-    })
-  }
-
-  private func updatePostsTable(postID: String, image: UIImage) {
-    dispatch_async(dispatch_get_main_queue(), {
-      self.postsViewControoler.updateWithData(postID, image: image)
-    })
-  }
-
-}
-
-//MARK: - Networking
-
-extension MainViewController {
-
-  private func processFetchedPosts(results: [NSDictionary]) {
-    var posts = [Post]()
-    for dict in results {
-      if let post = Post(properties: dict) {
-        if let URLString = post.pictureURLString {
-          if let url = NSURL(string: URLString) {
-            let imageDownLoadTask = self.backendManager.photoDownloadTask(
-            url,
-            success: {
-              (image: UIImage) -> Void in
-              post.picture = image
-              self.updatePostsTable(post.id, image: image)
-            },
-            failure: {
-              (error: NSError) -> Void in
-              logError(self.removeSensitiveInformationFromError(error))
-            })
-            imageDownLoadTask.resume()
-          }
-        }
-        posts.append(post)
-      }
-      else {
-        logWarn("Invalid post dictionary: \(dict)")
-      }
-    }
-    self.updatePostsTable(posts)
-  }
-
-  private func fetchPostsFromServer() {
-    postsLoadManager.fetchUserPosts(since: nil, until: nil, maxPostsToFetch: 200,
-                                    fetchCallback: {
-                                      (results: [NSDictionary]) -> Void in
-                                      self.processFetchedPosts(results)
-                                    },
-                                    success: {
-                                      (results: [NSDictionary]) -> Void in
-                                    },
-                                    failure: {
-                                      (error: NSError) -> Void in
-                                      logError(self.removeSensitiveInformationFromError(error))
-                                    }
-    )
-  }
-
-  private func removeSensitiveInformationFromError(error: NSError) -> String {
-    return error.securedDescription
-  }
 }
 
 //MARK: - Profile
 
 extension MainViewController {
 
-  private func fetchProfileFromDatasource() {
+  private func fetchProfileFromDatasourceIfNeeded() {
 
     if AppState.UI.shouldShowWelcomeScreen {
       return
     }
 
-    let fetchRequest = NSFetchRequest()
-    let entityName = ProfileEntity.description().componentsSeparatedByString(".").last!
-    let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.managedObjectContext)
-    fetchRequest.entity = entityDescription
-
-    var fetchError: NSError?
-    var fetchResults = managedObjectContext.executeFetchRequest(fetchRequest, error: &fetchError)
-
+    var request = CoreDataHelper.Profile.sharedInstance.fetchRequestForProfile
+    var fetchResults = CoreDataHelper.Profile.fetchRecordsAndLogError(request)
     if let results = fetchResults {
       if results.count == 0 {
-        // Profile not yet fetched from server
-        fetchProfileFromServer()
-      }
-      else {
+        fetchProfileFromServer() // Profile not yet fetched from server
+      } else {
         log.debug("Found \(results.count) profile record(s) in database")
-        var profileRecord = results.first as ProfileEntity
+        var profileRecord = results.first!
         updateProfileInformation(profileRecord)
       }
-
-    }
-    else {
-      log.error(fetchError!)
     }
   }
 
@@ -199,19 +107,21 @@ extension MainViewController {
       (results: FacebookProfileLoadManager.FetchResults) -> Void in
 
       if let theUserName = results.userProfile.valueForKey("name") as? String {
-        let entityName = ProfileEntity.description().componentsSeparatedByString(".").last!
-        let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.managedObjectContext)
-        var entityInstance = ProfileEntity(entity: entityDescription!, insertIntoManagedObjectContext: self.managedObjectContext)
+        var entityInstance = CoreDataHelper.Profile.makeEntityInstance()
         entityInstance.userName = theUserName
         entityInstance.homeTown = results.userProfile.valueForKeyPath("hometown.name") as? String
         entityInstance.avatarPictureData = results.avatarPictureImageData
         entityInstance.coverPhotoData = results.coverPhotoImageData
-        CoreDataHelper.sharedInstance().saveContext()
+        let moc = CoreDataHelper.sharedInstance().managedObjectContext!
+        moc.performBlock({ () -> Void in
+          moc.insertObject(entityInstance)
+          CoreDataHelper.sharedInstance().saveContext()
+        })
         self.updateProfileInformation(entityInstance)
       }
     }, failure: {
       (error: NSError) -> Void in
-      logError(self.removeSensitiveInformationFromError(error))
+      logError(error.securedDescription)
     })
   }
 

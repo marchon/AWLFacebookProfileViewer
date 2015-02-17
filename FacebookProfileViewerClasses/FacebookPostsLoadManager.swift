@@ -8,7 +8,6 @@ import UIKit
 public class FacebookPostsLoadManager {
 
   private var posts = [NSDictionary]()
-  private var lastOperationError: NSError?
   private var fetchCursorNext: NSURL?
 
   private var fetchCallback: ([NSDictionary] -> Void)!

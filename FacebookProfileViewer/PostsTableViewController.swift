@@ -8,13 +8,13 @@ import FacebookProfileViewerClasses
 import FacebookProfileViewerUI
 import CoreData
 
-class PostsTableViewController : UITableViewController {
+class PostsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate {
   
   lazy private var log: Logger = {
     return Logger.getLogger("PTvc")
     }()
   
-  lazy private var profilesLoadManager: FacebookPostsLoadManager = {
+  lazy private var postsLoadManager: FacebookPostsLoadManager = {
     return FacebookPostsLoadManager()
     }()
   
@@ -31,46 +31,146 @@ class PostsTableViewController : UITableViewController {
     return fetchedResultController
     }()
 
-  private var posts = [Post]()
+
+  private class func facebookDateFormatter() -> NSDateFormatter {
+    struct Static {
+      static var onceToken : dispatch_once_t = 0
+      static var instance : NSDateFormatter? = nil
+    }
+    dispatch_once(&Static.onceToken) {
+      let dateFormat = NSDateFormatter.dateFormatFromTemplate("yMMMMd", options: 0, locale: NSLocale.currentLocale())
+      let f = NSDateFormatter()
+      f.locale = NSLocale.currentLocale()
+      f.dateFormat = dateFormat
+      Static.instance = f
+    }
+    return Static.instance!
+  }
   
+  func fetchPostsFromServerIfNeeded() {
+    if !AppState.UI.shouldShowWelcomeScreen {
+      self.fetchPostsFromServer()
+    }
+  }
+  
+//  private func processFetchedPosts(results: [NSDictionary]) {
+//    var posts = [Post]()
+//    for dict in results {
+//      if let post = Post(properties: dict) {
+//        if let URLString = post.pictureURLString {
+//          if let url = NSURL(string: URLString) {
+//            let imageDownLoadTask = self.backendManager.photoDownloadTask(
+//              url,
+//              success: {
+//                (image: UIImage) -> Void in
+//                post.picture = image
+//                //self.updatePostsTable(post.id, image: image)
+//              },
+//              failure: {
+//                (error: NSError) -> Void in
+//                logError(error.securedDescription)
+//            })
+//            imageDownLoadTask.resume()
+//          }
+//        }
+//        posts.append(post)
+//      }
+//      else {
+//        logWarn("Invalid post dictionary: \(dict)")
+//      }
+//    }
+//    //    self.updatePostsTable(posts)
+//  }
+  
+  private func fetchPostsFromServer() {
+    postsLoadManager.fetchUserPosts(since: nil, until: nil, maxPostsToFetch: 200,
+      fetchCallback: {
+        (results: [NSDictionary]) -> Void in
+//        self.processFetchedPosts(results)
+      },
+      success: {
+        (results: [NSDictionary]) -> Void in
+      },
+      failure: {
+        (error: NSError) -> Void in
+        logError(error.securedDescription)
+      }
+    )
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.backgroundColor = UIColor.greenColor()
-  }
-
-  func updateWithData(posts: [Post]) {
-    self.posts += posts
-    self.tableView.reloadData()
+    
+    var theFetchError: NSError?
+    if !self.fetchedResultsController.performFetch(&theFetchError) {
+      log.error(theFetchError!)
+    }
+    
+    self.fetchPostsFromServerIfNeeded()
   }
   
-  func updateWithData(postID: String, image: UIImage) {
-    let visibleCells = self.tableView.visibleCells() as [PostsTableViewCell]
-    for cell in visibleCells {
-      if cell.acceciatedObject.id! == postID {
-        cell.imageView?.image = image
-        if let ip = tableView.indexPathForCell(cell) {
-          tableView.reloadRowsAtIndexPaths([ip], withRowAnimation: UITableViewRowAnimation.Automatic)
-        }
-      }
+  private func configureCell(cell: UITableViewCell?, atIndexPath: NSIndexPath) {
+    if cell == nil {
+      return
+    }
+    let object = self.fetchedResultsController.objectAtIndexPath(atIndexPath) as PostEntity
+    cell?.textLabel?.text = object.title
+    cell?.detailTextLabel?.text = PostsTableViewController.facebookDateFormatter().stringFromDate(object.createdDate)
+    if let data = object.pictureData {
+     cell?.imageView?.image = UIImage(data: data)
     }
   }
   
 }
 
 extension PostsTableViewController {
+  
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return self.fetchedResultsController.sections?.count ?? 0
+  }
+  
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return posts.count
+    return fetchedResultsController.sections?[section].numberOfObjects ?? 0
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as PostsTableViewCell
-    let post = posts[indexPath.row]
-    cell.acceciatedObject = post
+    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as UITableViewCell
+    self.configureCell(cell, atIndexPath: indexPath)
     return cell
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let object = posts[indexPath.row]
-    logInfo("Associated object of selected cell: \(object)")
+    let object = fetchedResultsController.objectAtIndexPath(indexPath) as PostEntity
+    logInfo("Associated object of selected cell: \(object.debugDescription)")
+  }
+}
+
+extension PostsTableViewController {
+  func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    self.tableView.beginUpdates()
+  }
+  
+  func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    self.tableView.endUpdates()
+  }
+  
+  func controller(controller: NSFetchedResultsController, didChangeObject: AnyObject,
+    atIndexPath: NSIndexPath?, forChangeType: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+      let post = didChangeObject as PostEntity
+      log.verbose("Object did changed: type=\(post.type); id=\(post.id); title=\(post.title); createdDate=\(post.createdDate)")
+      switch forChangeType {
+      case .Insert:
+        self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
+      case .Update:
+        let cell = self.tableView.cellForRowAtIndexPath(atIndexPath!)
+        self.configureCell(cell, atIndexPath: atIndexPath!)
+        self.tableView.reloadRowsAtIndexPaths([atIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
+      case .Move:
+        self.tableView.deleteRowsAtIndexPaths([atIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
+        self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
+      case .Delete:
+        self.tableView.deleteRowsAtIndexPaths([atIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
+      }
   }
 }

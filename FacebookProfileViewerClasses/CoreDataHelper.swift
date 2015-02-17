@@ -75,6 +75,40 @@ public class CoreDataHelper {
       }
     }
   }
+
+  public class Profile {
+
+    public class var sharedInstance: CoreDataHelper.Profile {
+      struct Static {
+        static let instance = CoreDataHelper.Profile()
+      }
+      return Static.instance
+    }
+
+    public class func makeEntityInstance() -> ProfileEntity {
+      let entityName = ProfileEntity.description().componentsSeparatedByString(".").last!
+      let moc = CoreDataHelper.sharedInstance().managedObjectContext!
+      let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: moc)
+      var entityInstance = ProfileEntity(entity: entityDescription!, insertIntoManagedObjectContext: nil)
+      return entityInstance
+    }
+
+    public lazy var fetchRequestForProfile: NSFetchRequest = {
+      let entityName = ProfileEntity.description().componentsSeparatedByString(".").last!
+      var fetchRequest = NSFetchRequest(entityName: entityName)
+      return fetchRequest
+      }()
+
+    public class func fetchRecordsAndLogError(request: NSFetchRequest) -> [ProfileEntity]? {
+      var e: NSError?
+      if let fetchResults = CoreDataHelper.sharedInstance().managedObjectContext?.executeFetchRequest(request, error: &e) {
+        return fetchResults as? [ProfileEntity]
+      } else {
+        logError(e)
+        return nil
+      }
+    }
+  }
   
   public class Posts {
 
