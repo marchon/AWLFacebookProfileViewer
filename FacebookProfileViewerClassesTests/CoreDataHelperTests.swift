@@ -10,6 +10,17 @@ import CoreData
 
 class CoreDataHelperTests : XCTestCase {
   
+  override func tearDown() {
+    super.tearDown()
+    var moc = CoreDataHelper.sharedInstance().managedObjectContext!
+    var request = CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName
+    var records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    for result in records! {
+      moc.deleteObject(result)
+    }
+    CoreDataHelper.sharedInstance().saveContext()
+  }
+  
   func makeEntityWithNumber(number: Int) -> FriendEntity {
     let entity = CoreDataHelper.Friends.makeEntityInstance()
     entity.userName = "User \(number)"
@@ -97,6 +108,36 @@ class CoreDataHelperTests : XCTestCase {
     let f1 = makeEntityWithNumber(1)
     let f2 = makeEntityWithNumber(2)
     let f3 = makeEntityWithNumber(3)
+    f3.avatarPictureData = "Data 3".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+    moc.insertObject(f1)
+    moc.insertObject(f3)
+    moc.insertObject(f2)
+    
+    CoreDataHelper.sharedInstance().saveContext()
+    var request: NSFetchRequest
+    var records: [FriendEntity]?
+    
+    let f3Updated = makeEntityWithNumber(3)
+    f3Updated.avatarPictureURL += " Updated"
+    let f4 = makeEntityWithNumber(4)
+    let f5 = makeEntityWithNumber(5)
+    CoreDataHelper.Friends.addOrUpdateRecordsWithEntities([f4, f5, f3Updated])
+    
+    // All records sorted by name
+    request = CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName
+    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    XCTAssertNotNil(records)
+    XCTAssertTrue(records!.count == 5)
+    XCTAssertTrue(records![2] == f3Updated)
+    
+  }
+  
+  func testAddNewRecords() {
+    var moc = CoreDataHelper.sharedInstance().managedObjectContext!
+    
+    let f1 = makeEntityWithNumber(1)
+    let f2 = makeEntityWithNumber(2)
+    let f3 = makeEntityWithNumber(3)
     moc.insertObject(f1)
     moc.insertObject(f3)
     moc.insertObject(f2)
@@ -107,8 +148,12 @@ class CoreDataHelperTests : XCTestCase {
     
     let f4 = makeEntityWithNumber(4)
     let f5 = makeEntityWithNumber(5)
-
-
+    CoreDataHelper.Friends.addOrUpdateRecordsWithEntities([f5, f4])
+    
+    // All records sorted by name
+    request = CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName
+    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    XCTAssertNotNil(records)
+    XCTAssertTrue(records!.count == 5)    
   }
-  
 }
