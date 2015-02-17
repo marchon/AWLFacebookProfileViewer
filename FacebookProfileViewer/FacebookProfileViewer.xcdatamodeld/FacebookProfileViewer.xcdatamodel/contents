@@ -10,7 +10,7 @@
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="pictureData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="pictureURL" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
         <attribute name="videoURL" optional="YES" attributeType="String" syncable="YES"/>
     </entity>

@@ -53,10 +53,68 @@ class CoreDataHelperPostsTests : XCTestCase {
     records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 3)
-    XCTAssertTrue(records!.first! == p1)
+    XCTAssertTrue(records!.first! == p3)
     XCTAssertTrue(records![1] == p2)
-    XCTAssertTrue(records!.last! == p3)
+    XCTAssertTrue(records!.last! == p1)
     
+    
+    // Records matching ID sorted by ID
+    request = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsMatchingIds(["ID 3", "ID 2", "ID X"])
+    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    XCTAssertNotNil(records)
+    XCTAssertTrue(records!.count == 2)
+    XCTAssertTrue(records!.first! == p2)
+    XCTAssertTrue(records!.last! == p3)
+
   }
   
+  func testAddNewPosts() {
+    var moc = CoreDataHelper.sharedInstance().managedObjectContext!
+    
+    let p1 = makeEntityWithNumber(1, type: "a")
+    let p2 = makeEntityWithNumber(2, type: "a")
+    let p3 = makeEntityWithNumber(3, type: "a")
+    
+    moc.insertObject(p3)
+    moc.insertObject(p1)
+    moc.insertObject(p2)
+    
+    CoreDataHelper.sharedInstance().saveContext()
+    var request: NSFetchRequest
+    var records: [PostEntity]?
+    
+    let p4 = makeEntityWithNumber(4, type: "a")
+    let p5 = makeEntityWithNumber(5, type: "a")
+    CoreDataHelper.Posts.addOrUpdateRecordsWithEntities([p5, p4])
+    request = CoreDataHelper.Posts.sharedInstance.fetchRequestForAllRecordsSortedByCreatedDate
+    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    XCTAssertNotNil(records)
+    XCTAssertTrue(records!.count == 5)
+  }
+  
+  func testAddOrUpdatePosts() {
+    var moc = CoreDataHelper.sharedInstance().managedObjectContext!
+    
+    let p1 = makeEntityWithNumber(1, type: "a")
+    let p2 = makeEntityWithNumber(2, type: "a")
+    let p3 = makeEntityWithNumber(3, type: "a")
+    
+    moc.insertObject(p3)
+    moc.insertObject(p1)
+    moc.insertObject(p2)
+    
+    CoreDataHelper.sharedInstance().saveContext()
+    var request: NSFetchRequest
+    var records: [PostEntity]?
+    
+    let p4 = makeEntityWithNumber(4, type: "a")
+    let p5 = makeEntityWithNumber(5, type: "a")
+    p5.id = "ID 3"
+    CoreDataHelper.Posts.addOrUpdateRecordsWithEntities([p5, p4])
+    request = CoreDataHelper.Posts.sharedInstance.fetchRequestForAllRecordsSortedByCreatedDate
+    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    XCTAssertNotNil(records)
+    XCTAssertTrue(records!.count == 4)
+    XCTAssertTrue(records!.first!.id == "ID 3")
+  }
 }

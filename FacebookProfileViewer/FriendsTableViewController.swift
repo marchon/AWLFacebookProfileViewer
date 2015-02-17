@@ -124,6 +124,8 @@ extension FriendsTableViewController {
               entityInstance.avatarPictureURL = theFiendPictureURL
             }
             entityInstances.append(entityInstance)
+          } else {
+            self.log.error(NSError.errorForIncompleteDictionary(itemDictionary))
           }
         }
         CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({

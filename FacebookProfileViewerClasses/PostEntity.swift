@@ -19,18 +19,29 @@ public let kPostEntityKeyVideoURL    = "videoURL"
 
 
 public class PostEntity: NSManagedObject, DebugPrintable, Equatable {
-  
-  @NSManaged public var title: String
+
+  /// Graph API Reference Post /post (https://developers.facebook.com/docs/graph-api/reference/v2.2/post)
+  /// facebook graph api - What types of posts are in a feed? - Stack Overflow (http://stackoverflow.com/questions/7334689/what-types-of-posts-are-in-a-feed)
+  /// Graph API /user/feed (https://developers.facebook.com/docs/graph-api/reference/v2.2/user/feed)
+  public enum PostType : String {
+    case Link = "link"
+    case Status = "status"
+    case Photo = "photo"
+    case Video = "video"
+    case SWF = "swf"
+  }
+
   @NSManaged public var type: String
   @NSManaged public var id: String
   @NSManaged public var createdDate: NSDate
+  @NSManaged public var title: String?
   @NSManaged public var pictureURL: String?
   @NSManaged public var pictureData: NSData?
   @NSManaged public var videoURL: String?
   
   public override var debugDescription: String {
     var properties = Array<Reflection.Property>()
-    properties.append(Reflection.Property(key: kPostEntityKeyTitle, value: self.title))
+    properties.append(Reflection.Property(key: kPostEntityKeyTitle, value: self.title ?? "null"))
     properties.append(Reflection.Property(key: kPostEntityKeyType, value: self.type))
     properties.append(Reflection.Property(key: kPostEntityKeyId, value: self.id))
     properties.append(Reflection.Property(key: kPostEntityKeyCreatedDate, value: self.createdDate.description))

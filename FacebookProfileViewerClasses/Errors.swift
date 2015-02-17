@@ -12,6 +12,7 @@ enum OperationErrorCode: Int {
   case UnexpectedResponseCode = -103
   case MissedAttribute = -104
   case HandleDownloadError = -105
+  case IncompleteDictionary = -106
 }
 
 
@@ -20,15 +21,22 @@ let UninitializedTaskErrorDomain = "UninitializedTaskErrorDomain"
 let UninitializedTaskErrorCode = -1
 
 
-extension NSError {
-  class func errorForMissedAttribute(attribute: String) -> NSError {
+public extension NSError {
+  public class func errorForMissedAttribute(attribute: String) -> NSError {
     let e = NSError(domain: OperationErrorDomain,
       code: OperationErrorCode.MissedAttribute.rawValue,
       userInfo: [NSLocalizedFailureReasonErrorKey: "Attribute: \(attribute)"])
     return e
   }
+  
+  public class func errorForIncompleteDictionary(json: NSDictionary) -> NSError {
+    let e = NSError(domain: OperationErrorDomain,
+      code: OperationErrorCode.IncompleteDictionary.rawValue,
+      userInfo: [NSLocalizedFailureReasonErrorKey: "JSON: \(json)"])
+    return e
+  }
 
-  class func errorForUninitializedURL() -> NSError {
+  public class func errorForUninitializedURL() -> NSError {
     let e = NSError(domain: UninitializedTaskErrorDomain, code: UninitializedTaskErrorCode, userInfo: nil)
     return e
   }

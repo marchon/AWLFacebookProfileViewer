@@ -86,7 +86,17 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
     postsLoadManager.fetchUserPosts(since: nil, until: nil, maxPostsToFetch: 200,
       success: {
         (results: [NSDictionary]) -> Void in
-//        self.processFetchedPosts(results)
+        var entityInstances = [PostEntity]()
+        for itemDictionsry in results {
+          if let entityInstance = CoreDataHelper.Posts.makeEntityInstanceFromJSON(itemDictionsry) {
+            entityInstances.append(entityInstance)
+          } else {
+            self.log.error(NSError.errorForIncompleteDictionary(itemDictionsry))
+          }
+        }
+        CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({
+          CoreDataHelper.Posts.addOrUpdateRecordsWithEntities(entityInstances)
+        })
       },
       failure: {
         (error: NSError) -> Void in
@@ -101,7 +111,8 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.backgroundColor = UIColor.greenColor()
-    
+
+    self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
     if !self.fetchedResultsController.performFetch(&theFetchError) {
       log.error(theFetchError!)
