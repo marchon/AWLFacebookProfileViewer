@@ -83,7 +83,7 @@ class MainViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: {
           () -> Void in
           self.fetchProfileFromDatasource()
-          self.friendsViewControoler.loadUsersFromServerIfNeeded()
+          self.friendsViewControoler.fetchUsersFromServerIfNeeded()
         })
       }
     }

@@ -57,7 +57,7 @@ public class CoreDataHelper {
     if coordinator == nil {
       return nil
     }
-    var managedObjectContext = NSManagedObjectContext()
+    var managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
     managedObjectContext.persistentStoreCoordinator = coordinator
     return managedObjectContext
     }()
@@ -72,6 +72,42 @@ public class CoreDataHelper {
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         logError(error)
         abort()
+      }
+    }
+  }
+  
+  public class Posts {
+
+    public class var sharedInstance: CoreDataHelper.Posts {
+      struct Static {
+        static let instance = CoreDataHelper.Posts()
+      }
+      return Static.instance
+    }
+
+    public lazy var fetchRequestForAllRecordsSortedByCreatedDate: NSFetchRequest = {
+      let entityName = PostEntity.description().componentsSeparatedByString(".").last!
+      var fetchRequest = NSFetchRequest(entityName: entityName)
+      let sortDescriptor = NSSortDescriptor(key: kPostEntityKeyCreatedDate, ascending: true)
+      fetchRequest.sortDescriptors = [sortDescriptor]
+      return fetchRequest
+      }()
+
+    public class func makeEntityInstance() -> PostEntity {
+      let entityName = PostEntity.description().componentsSeparatedByString(".").last!
+      let moc = CoreDataHelper.sharedInstance().managedObjectContext!
+      let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: moc)
+      var entityInstance = PostEntity(entity: entityDescription!, insertIntoManagedObjectContext: nil)
+      return entityInstance
+    }
+
+    public class func fetchRecordsAndLogError(request: NSFetchRequest) -> [PostEntity]? {
+      var e: NSError?
+      if let fetchResults = CoreDataHelper.sharedInstance().managedObjectContext?.executeFetchRequest(request, error: &e) {
+        return fetchResults as? [PostEntity]
+      } else {
+        logError(e)
+        return nil
       }
     }
   }

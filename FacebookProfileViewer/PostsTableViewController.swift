@@ -6,9 +6,31 @@
 import UIKit
 import FacebookProfileViewerClasses
 import FacebookProfileViewerUI
+import CoreData
 
 class PostsTableViewController : UITableViewController {
   
+  lazy private var log: Logger = {
+    return Logger.getLogger("PTvc")
+    }()
+  
+  lazy private var profilesLoadManager: FacebookPostsLoadManager = {
+    return FacebookPostsLoadManager()
+    }()
+  
+  lazy var backendManager: FacebookEndpointManager = {
+    return FacebookEndpointManager()
+    }()
+  
+  lazy var fetchedResultsController: NSFetchedResultsController = {
+    let request = CoreDataHelper.Posts.sharedInstance.fetchRequestForAllRecordsSortedByCreatedDate
+    let moc = CoreDataHelper.sharedInstance().managedObjectContext!
+    let fetchedResultController = NSFetchedResultsController(fetchRequest: request,
+      managedObjectContext: CoreDataHelper.sharedInstance().managedObjectContext!,
+      sectionNameKeyPath: nil, cacheName: nil)
+    return fetchedResultController
+    }()
+
   private var posts = [Post]()
   
   override func viewDidLoad() {

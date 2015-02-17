@@ -23,14 +23,11 @@ class FriendsTableViewController : UITableViewController, NSFetchedResultsContro
     return FacebookEndpointManager()
     }()
   
-  var managedObjectContext: NSManagedObjectContext {
-    return CoreDataHelper.sharedInstance().managedObjectContext!
-  }
-  
   lazy var fetchedResultsController: NSFetchedResultsController = {
     let request = CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName
+    let moc = CoreDataHelper.sharedInstance().managedObjectContext!
     let fetchedResultController = NSFetchedResultsController(fetchRequest: request,
-      managedObjectContext: self.managedObjectContext,
+      managedObjectContext: CoreDataHelper.sharedInstance().managedObjectContext!,
       sectionNameKeyPath: nil, cacheName: nil)
     return fetchedResultController
     }()
@@ -38,39 +35,20 @@ class FriendsTableViewController : UITableViewController, NSFetchedResultsContro
 }
 
 extension FriendsTableViewController {
-  
-  func loadUsersFromServerIfNeeded() {
-    if !AppState.UI.shouldShowWelcomeScreen {
-      if let theDate = AppState.Friends.lastFetchDate {
-        let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600
-        if elapsedHoursFromLastUpdate > 24 {
-          self.fetchFriendsFromServer()
-        } else {
-          self.fetchMissedAvatarPictures()
-        }
-      } else {
-        self.fetchFriendsFromServer()
-      }
-    }
-  }
-  
-}
 
-extension FriendsTableViewController {
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.backgroundColor = UIColor.redColor()
-    
+
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
     if !self.fetchedResultsController.performFetch(&theFetchError) {
       log.error(theFetchError!)
     }
-    
-    self.loadUsersFromServerIfNeeded()
+
+    self.fetchUsersFromServerIfNeeded()
   }
-  
+
 }
 
 extension FriendsTableViewController {
@@ -85,7 +63,7 @@ extension FriendsTableViewController {
       cell?.imageView?.image = UIImage(data: thePictureData)
     }
   }
-  
+
   // Determinate is there are records without avatar image
   private func fetchMissedAvatarPictures() {
     let request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsWithoutAvatarImage
@@ -98,7 +76,9 @@ extension FriendsTableViewController {
           self.backendManager.dataDownloadTask(url,
             success: { (data: NSData) -> Void in
               theItem.avatarPictureData = data
-              CoreDataHelper.sharedInstance().saveContext()
+              CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({
+                CoreDataHelper.sharedInstance().saveContext()
+              })
             },
             failure: { (error: NSError) -> Void in
               logError(error.securedDescription)
@@ -108,9 +88,24 @@ extension FriendsTableViewController {
       }
     }
   }
-  
+
+  func fetchUsersFromServerIfNeeded() {
+    if !AppState.UI.shouldShowWelcomeScreen {
+      if let theDate = AppState.Friends.lastFetchDate {
+        let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600
+        if elapsedHoursFromLastUpdate > 24 { // FIXME: Time should be confugurable.
+          self.fetchFriendsFromServer()
+        } else {
+          self.fetchMissedAvatarPictures()
+        }
+      } else {
+        self.fetchFriendsFromServer()
+      }
+    }
+  }
+
   private func fetchFriendsFromServer() {
-    var namesOfAllFriends = [String]();
+    var namesOfAllFriends = [String]()
     friendsLoadManager.fetchUserFriends(
       success: {(results: [NSDictionary]) -> Void in
         
@@ -122,9 +117,8 @@ extension FriendsTableViewController {
           
           if let theFriendName = valueFiendName {
             namesOfAllFriends.append(theFriendName)
-            let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
-            let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: self.managedObjectContext)
-            var entityInstance = FriendEntity(entity: entityDescription!, insertIntoManagedObjectContext: nil)
+            // FIXME: Should we use managedObjectContext!.performBlock here for Thread safety?
+            let entityInstance = CoreDataHelper.Friends.makeEntityInstance()
             entityInstance.userName = theFriendName
             if let theFiendPictureURL = valueFiendPictureURL {
               entityInstance.avatarPictureURL = theFiendPictureURL
@@ -132,7 +126,7 @@ extension FriendsTableViewController {
             entityInstances.append(entityInstance)
           }
         }
-        dispatch_async(dispatch_get_main_queue(), {
+        CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({
           CoreDataHelper.Friends.addOrUpdateRecordsWithEntities(entityInstances)
         })
         
@@ -167,8 +161,8 @@ extension FriendsTableViewController {
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let object: AnyObject = fetchedResultsController.objectAtIndexPath(indexPath)
-    logInfo("Associated object of selected cell: \(object)")
+    let object = fetchedResultsController.objectAtIndexPath(indexPath) as FriendEntity
+    logInfo("Associated object of selected cell: \(object.debugDescription)")
   }
 }
 

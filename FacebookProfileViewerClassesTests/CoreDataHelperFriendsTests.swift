@@ -8,7 +8,7 @@ import XCTest
 import FacebookProfileViewerClasses
 import CoreData
 
-class CoreDataHelperTests : XCTestCase {
+class CoreDataHelperFriendsTests : XCTestCase {
   
   override func tearDown() {
     super.tearDown()
