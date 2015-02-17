@@ -84,16 +84,16 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
   
   private func fetchPostsFromServer() {
     postsLoadManager.fetchUserPosts(since: nil, until: nil, maxPostsToFetch: 200,
-      fetchCallback: {
+      success: {
         (results: [NSDictionary]) -> Void in
 //        self.processFetchedPosts(results)
       },
-      success: {
-        (results: [NSDictionary]) -> Void in
-      },
       failure: {
         (error: NSError) -> Void in
-        logError(error.securedDescription)
+        self.log.error(error.securedDescription)
+      },
+      completion: {
+        
       }
     )
   }

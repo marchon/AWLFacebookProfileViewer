@@ -7,16 +7,18 @@ import UIKit
 
 public class FacebookPostsLoadManager {
 
-  private var posts = [NSDictionary]()
-  private var fetchCursorNext: NSURL?
+  public typealias SuccessCallback    = (([NSDictionary]) -> Void)
+  public typealias FailureCallback    = ((NSError) -> Void)
+  public typealias CompletionCallback = (() -> Void)
 
-  private var fetchCallback: ([NSDictionary] -> Void)!
-  private var successCallback: ([NSDictionary] -> Void)!
-  private var failureCallback: (NSError -> Void)!
+  private var cbCompletion: CompletionCallback!
+  private var cbSuccess: SuccessCallback!
+  private var cbFailure: FailureCallback!
 
-  private var since: NSDate?
-  private var until: NSDate?
+  private var dateSince: NSDate?
+  private var dateUntil: NSDate?
   private var numberOfElementsToFetch = 200
+  private var numberOfElementsFetched = 0
 
   lazy var backendManager: FacebookEndpointManager = {
     return FacebookEndpointManager()
@@ -25,32 +27,26 @@ public class FacebookPostsLoadManager {
   public init() {
   }
 
-  public func fetchUserPosts(fetchCallback: (results:[NSDictionary]) -> Void, success: (results:[NSDictionary]) -> Void, failure: (error:NSError) -> Void) {
-    self.fetchCallback = fetchCallback
-    self.successCallback = success
-    self.failureCallback = failure
-    self.reset()
-    self.performOperation()
-  }
-
-  public func fetchUserPosts(#since: NSDate?, until: NSDate?, maxPostsToFetch: Int, fetchCallback: (results:[NSDictionary]) -> Void, success: (results:[NSDictionary]) -> Void, failure: (error:NSError) -> Void) {
-    self.fetchCallback = fetchCallback
-    self.successCallback = success
-    self.failureCallback = failure
+  public func fetchUserPosts(#since: NSDate?, until: NSDate?, maxPostsToFetch: Int, success: SuccessCallback, failure: FailureCallback, completion: CompletionCallback) {
+    self.cbCompletion = completion
+    self.cbSuccess = success
+    self.cbFailure = failure
+    self.dateSince = since
+    self.dateUntil = until
     self.numberOfElementsToFetch = maxPostsToFetch
-    self.since = since
-    self.until = until
-    self.reset()
-    self.performOperation()
+    self.numberOfElementsFetched = 0
+    if let url = backendManager.fetchPostsURL(since: self.dateSince, until: self.dateUntil) {
+      self.performOperation(url)
+    } else {
+      cbFailure(NSError.errorForUninitializedURL())
+    }
   }
 
   private func reset() {
-    posts.removeAll(keepCapacity: true)
-    fetchCursorNext = backendManager.fetchPostsURL(since: self.since, until: self.until)
+    
   }
 
-  private func performOperation() {
-    if let url = self.fetchCursorNext {
+  private func performOperation(url: NSURL) {
       backendManager.fetchFacebookGraphAPITask(url,
         success:
         {
@@ -60,14 +56,14 @@ public class FacebookPostsLoadManager {
           let keyData = "data"
           if let dataArray = json.valueForKey(keyData) as? [NSDictionary] {
             var fetchedPosts = [NSDictionary]()
-            if self.since != nil {
+            if self.dateSince != nil {
               let keyCreatedDate = "created_time"
               for item in dataArray {
                 if let
                   createdDateString = item.valueForKey(keyCreatedDate) as? String {
                   if let createdDate = NSDateFormatter.facebookDateFormatter().dateFromString(createdDateString) {
                     // Post created later than requested date
-                    if self.since!.compare(createdDate) == NSComparisonResult.OrderedAscending {
+                    if self.dateSince!.compare(createdDate) == NSComparisonResult.OrderedAscending {
                       fetchedPosts.append(item)
                     }
                     else {
@@ -76,37 +72,39 @@ public class FacebookPostsLoadManager {
                     }
                   }
                 } else {
-                  self.failureCallback(NSError.errorForMissedAttribute(keyCreatedDate))
+                  self.cbFailure(NSError.errorForMissedAttribute(keyCreatedDate))
                   return
                 }
               }
             } else {
               fetchedPosts = dataArray
             }
-            self.posts += fetchedPosts
-            self.fetchCallback(fetchedPosts)
+            self.numberOfElementsFetched += fetchedPosts.count
+            self.cbSuccess(fetchedPosts)
           } else {
-            self.failureCallback(NSError.errorForMissedAttribute(keyData))
+            self.cbFailure(NSError.errorForMissedAttribute(keyData))
             return
           }
 
-          if !isPostForRequestedDateFound && self.posts.count < self.numberOfElementsToFetch {
+          if !isPostForRequestedDateFound && self.numberOfElementsFetched < self.numberOfElementsToFetch {
             let pagingKey = "paging.next"
             if let cursor = json.valueForKeyPath(pagingKey) as? String {
-              self.fetchCursorNext = NSURL(string: cursor)
-              self.performOperation()
+              if let fetchCursorNext = NSURL(string: cursor) {
+                self.performOperation(fetchCursorNext)
+              } else {
+                self.cbFailure(NSError.errorForUninitializedURL())
+              }
             } else {
-              self.successCallback(self.posts)
+              self.cbCompletion()
             }
           } else {
-            self.successCallback(self.posts)
+            self.cbCompletion()
           }
         },
         failure: {
           (error: NSError) -> Void in
-          self.failureCallback(error)
+          self.cbFailure(error)
         }
         ).resume()
-    }
   }
 }
