@@ -46,7 +46,7 @@ public class PostEntity: NSManagedObject, DebugPrintable, Equatable {
     properties.append(Reflection.Property(key: kPostEntityKeyId, value: self.id))
     properties.append(Reflection.Property(key: kPostEntityKeyCreatedDate, value: self.createdDate.description))
     properties.append(Reflection.Property(key: kPostEntityKeyPictureURL, value: self.pictureURL?.debugDescription ?? "null"))
-    properties.append(Reflection.Property(key: kPostEntityKeyPictureData, value: self.pictureData?.description ?? "null"))
+    properties.append(Reflection.Property(key: kPostEntityKeyPictureData, value: self.pictureData == nil ? "null" : "\(self.pictureData!.length) bytes"))
     properties.append(Reflection.Property(key: kPostEntityKeyVideoURL, value: self.videoURL?.debugDescription ?? "null"))
     return Reflection.propertiesToString(properties, multiline: true)
   }

@@ -6,12 +6,12 @@
 import Foundation
 
 let KeyShouldShowWelcomeScreen = "ua.com.wavelabs.ui-shouldShowWelcomeScreen"
-let KeyLastFetchDate = "ua.com.wavelabs.friends-lastFetchDate"
+let KeyFriendsLastFetchDate = "ua.com.wavelabs.friends-lastFetchDate"
+let KeyPostsLastFetchDate = "ua.com.wavelabs.friends-lastFetchDate"
 
 public class AppState {
 
   public class UI {
-
 
     public class var shouldShowWelcomeScreen: Bool {
       get {
@@ -29,16 +29,32 @@ public class AppState {
 
   public class Friends {
 
-
     public class var lastFetchDate: NSDate? {
       get {
-        return NSUserDefaults.standardUserDefaults().objectForKey(KeyLastFetchDate) as? NSDate
+        return NSUserDefaults.standardUserDefaults().objectForKey(KeyFriendsLastFetchDate) as? NSDate
       }
       set {
         if let value = newValue {
-          NSUserDefaults.standardUserDefaults().setObject(value, forKey: KeyLastFetchDate)
+          NSUserDefaults.standardUserDefaults().setObject(value, forKey: KeyFriendsLastFetchDate)
         } else {
-          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyLastFetchDate)
+          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyFriendsLastFetchDate)
+        }
+      }
+    }
+
+  }
+
+  public class Posts {
+
+    public class var lastFetchDate: NSDate? {
+      get {
+        return NSUserDefaults.standardUserDefaults().objectForKey(KeyPostsLastFetchDate) as? NSDate
+      }
+      set {
+        if let value = newValue {
+          NSUserDefaults.standardUserDefaults().setObject(value, forKey: KeyPostsLastFetchDate)
+        } else {
+          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyPostsLastFetchDate)
         }
       }
     }

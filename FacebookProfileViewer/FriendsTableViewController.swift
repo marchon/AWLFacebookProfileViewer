@@ -12,7 +12,7 @@ class FriendsTableViewController : UITableViewController, NSFetchedResultsContro
   
   
   lazy private var log: Logger = {
-    return Logger.getLogger("FTvc")
+    return Logger.getLogger("fTvC")
     }()
   
   lazy private var friendsLoadManager: FacebookFriendsLoadManager = {
@@ -44,6 +44,8 @@ extension FriendsTableViewController {
     var theFetchError: NSError?
     if !self.fetchedResultsController.performFetch(&theFetchError) {
       log.error(theFetchError!)
+    } else {
+      log.debug("Found \(self.fetchedResultsController.fetchedObjects?.count ?? -1) friend records in database.")
     }
 
     self.fetchUsersFromServerIfNeeded()

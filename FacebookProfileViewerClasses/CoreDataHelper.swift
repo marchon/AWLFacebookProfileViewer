@@ -118,6 +118,13 @@ public class CoreDataHelper {
       }
       return Static.instance
     }
+
+    public lazy var fetchRequestForRecordsWithoutPreviewImage: NSFetchRequest = {
+      let entityName = PostEntity.description().componentsSeparatedByString(".").last!
+      var fetchRequest = NSFetchRequest(entityName: entityName)
+      fetchRequest.predicate = NSPredicate(format: "\(kPostEntityKeyPictureURL) != NIL && \(kPostEntityKeyPictureData) == NIL")
+      return fetchRequest
+    }()
     
     public lazy var fetchRequestForAllRecordsSortedByCreatedDate: NSFetchRequest = {
       let entityName = PostEntity.description().componentsSeparatedByString(".").last!

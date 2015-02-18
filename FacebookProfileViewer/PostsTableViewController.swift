@@ -9,19 +9,19 @@ import FacebookProfileViewerUI
 import CoreData
 
 class PostsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate {
-  
+
   lazy private var log: Logger = {
     return Logger.getLogger("PTvc")
     }()
-  
+
   lazy private var postsLoadManager: FacebookPostsLoadManager = {
     return FacebookPostsLoadManager()
     }()
-  
+
   lazy var backendManager: FacebookEndpointManager = {
     return FacebookEndpointManager()
     }()
-  
+
   lazy var fetchedResultsController: NSFetchedResultsController = {
     let request = CoreDataHelper.Posts.sharedInstance.fetchRequestForAllRecordsSortedByCreatedDate
     let moc = CoreDataHelper.sharedInstance().managedObjectContext!
@@ -30,7 +30,6 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
       sectionNameKeyPath: nil, cacheName: nil)
     return fetchedResultController
     }()
-
 
   private class func facebookDateFormatter() -> NSDateFormatter {
     struct Static {
@@ -46,42 +45,68 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
     }
     return Static.instance!
   }
-  
+}
+
+extension PostsTableViewController {
+
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.tableView.backgroundColor = UIColor.greenColor()
+
+    self.fetchedResultsController.delegate = self
+    var theFetchError: NSError?
+    if !self.fetchedResultsController.performFetch(&theFetchError) {
+      log.error(theFetchError!)
+    } else {
+      log.debug("Found \(self.fetchedResultsController.fetchedObjects?.count ?? -1) post records in database.")
+    }
+
+    self.fetchPostsFromServerIfNeeded()
+  }
+
+}
+
+extension PostsTableViewController {
+
   func fetchPostsFromServerIfNeeded() {
     if !AppState.UI.shouldShowWelcomeScreen {
-      self.fetchPostsFromServer()
+      if let theDate = AppState.Posts.lastFetchDate {
+        let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600
+        if elapsedHoursFromLastUpdate > 24 { // FIXME: Time should be confugurable.
+          self.fetchPostsFromServer()
+        } else {
+          self.fetchMissedPreviewPictures()
+        }
+      } else {
+        self.fetchPostsFromServer()
+      }
     }
   }
-  
-//  private func processFetchedPosts(results: [NSDictionary]) {
-//    var posts = [Post]()
-//    for dict in results {
-//      if let post = Post(properties: dict) {
-//        if let URLString = post.pictureURLString {
-//          if let url = NSURL(string: URLString) {
-//            let imageDownLoadTask = self.backendManager.photoDownloadTask(
-//              url,
-//              success: {
-//                (image: UIImage) -> Void in
-//                post.picture = image
-//                //self.updatePostsTable(post.id, image: image)
-//              },
-//              failure: {
-//                (error: NSError) -> Void in
-//                logError(error.securedDescription)
-//            })
-//            imageDownLoadTask.resume()
-//          }
-//        }
-//        posts.append(post)
-//      }
-//      else {
-//        logWarn("Invalid post dictionary: \(dict)")
-//      }
-//    }
-//    //    self.updatePostsTable(posts)
-//  }
-  
+
+  private func fetchMissedPreviewPictures() {
+    let request = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsWithoutPreviewImage
+    if let fetchResults = CoreDataHelper.Posts.fetchRecordsAndLogError(request) {
+      if fetchResults.count > 0 {
+        log.verbose("Will fetch \(fetchResults.count) missed preview images.")
+      }
+      for theItem in fetchResults {
+        if let url = NSURL(string: theItem.pictureURL!) {
+          self.backendManager.dataDownloadTask(url,
+            success: { (data: NSData) -> Void in
+              theItem.pictureData = data
+              CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({
+                CoreDataHelper.sharedInstance().saveContext()
+              })
+            },
+            failure: { (error: NSError) -> Void in
+              logError(error.securedDescription)
+            }
+            ).resume()
+        }
+      }
+    }
+  }
+
   private func fetchPostsFromServer() {
     postsLoadManager.fetchUserPosts(since: nil, until: nil, maxPostsToFetch: 200,
       success: {
@@ -103,24 +128,13 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
         self.log.error(error.securedDescription)
       },
       completion: {
-        
+        self.log.verbose("Posts fetch completed.")
+        self.fetchMissedPreviewPictures()
+        AppState.Posts.lastFetchDate = NSDate()
       }
     )
   }
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.tableView.backgroundColor = UIColor.greenColor()
-
-    self.fetchedResultsController.delegate = self
-    var theFetchError: NSError?
-    if !self.fetchedResultsController.performFetch(&theFetchError) {
-      log.error(theFetchError!)
-    }
-    
-    self.fetchPostsFromServerIfNeeded()
-  }
-  
   private func configureCell(cell: UITableViewCell?, atIndexPath: NSIndexPath) {
     if cell == nil {
       return
@@ -129,28 +143,28 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
     cell?.textLabel?.text = object.title
     cell?.detailTextLabel?.text = PostsTableViewController.facebookDateFormatter().stringFromDate(object.createdDate)
     if let data = object.pictureData {
-     cell?.imageView?.image = UIImage(data: data)
+      cell?.imageView?.image = UIImage(data: data)
     }
   }
-  
+
 }
 
 extension PostsTableViewController {
-  
+
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return self.fetchedResultsController.sections?.count ?? 0
   }
-  
+
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return fetchedResultsController.sections?[section].numberOfObjects ?? 0
   }
-  
+
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as UITableViewCell
     self.configureCell(cell, atIndexPath: indexPath)
     return cell
   }
-  
+
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let object = fetchedResultsController.objectAtIndexPath(indexPath) as PostEntity
     logInfo("Associated object of selected cell: \(object.debugDescription)")
@@ -161,11 +175,11 @@ extension PostsTableViewController {
   func controllerWillChangeContent(controller: NSFetchedResultsController) {
     self.tableView.beginUpdates()
   }
-  
+
   func controllerDidChangeContent(controller: NSFetchedResultsController) {
     self.tableView.endUpdates()
   }
-  
+
   func controller(controller: NSFetchedResultsController, didChangeObject: AnyObject,
     atIndexPath: NSIndexPath?, forChangeType: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
       let post = didChangeObject as PostEntity

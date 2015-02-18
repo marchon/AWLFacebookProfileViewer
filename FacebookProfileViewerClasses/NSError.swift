@@ -15,8 +15,6 @@ enum OperationErrorCode: Int {
   case IncompleteDictionary = -106
 }
 
-
-
 let UninitializedTaskErrorDomain = "UninitializedTaskErrorDomain"
 let UninitializedTaskErrorCode = -1
 

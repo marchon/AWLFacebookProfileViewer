@@ -117,4 +117,32 @@ class CoreDataHelperPostsTests : XCTestCase {
     XCTAssertTrue(records!.count == 4)
     XCTAssertTrue(records!.first!.id == "ID 3")
   }
+
+  func testPostsWithMissedPreviewImage() {
+    var moc = CoreDataHelper.sharedInstance().managedObjectContext!
+
+    let p1 = makeEntityWithNumber(1, type: "a")
+    let p2 = makeEntityWithNumber(2, type: "a")
+    p1.pictureData = nil
+    let p3 = makeEntityWithNumber(3, type: "a")
+    let p4 = makeEntityWithNumber(3, type: "a")
+    p4.pictureData = nil
+    p4.pictureURL = nil
+
+    moc.insertObject(p3)
+    moc.insertObject(p1)
+    moc.insertObject(p2)
+    moc.insertObject(p4)
+
+    CoreDataHelper.sharedInstance().saveContext()
+    var request: NSFetchRequest
+    var records: [PostEntity]?
+
+    request = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsWithoutPreviewImage
+    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    XCTAssertNotNil(records)
+    XCTAssertTrue(records!.count == 1)
+    XCTAssertTrue(records!.first! == p1)
+
+  }
 }

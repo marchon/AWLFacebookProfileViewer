@@ -95,7 +95,7 @@ extension MainViewController {
       if results.count == 0 {
         fetchProfileFromServer() // Profile not yet fetched from server
       } else {
-        log.debug("Found \(results.count) profile record(s) in database")
+        log.debug("Found \(results.count) profile records in database.")
         var profileRecord = results.first!
         updateProfileInformation(profileRecord)
       }
