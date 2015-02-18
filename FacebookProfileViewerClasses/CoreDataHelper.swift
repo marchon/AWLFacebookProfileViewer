@@ -27,12 +27,16 @@ public class CoreDataHelper {
     var coordinator: NSPersistentStoreCoordinator? = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
     var error: NSError? = nil
     var failureReason = "There was an error creating or loading the application's saved data."
+    let url = NSFileManager.applicationDocumentsDirectory.URLByAppendingPathComponent("FacebookProfileViewer.sqlite")
+    var storeType = NSSQLiteStoreType
     #if TEST
-      let storeType = NSInMemoryStoreType
-      let url: NSURL? = nil
-      #else
-      let url = NSFileManager.applicationDocumentsDirectory.URLByAppendingPathComponent("FacebookProfileViewer.sqlite")
-      let storeType = NSSQLiteStoreType
+      storeType = NSInMemoryStoreType
+    #elseif DEBUG
+    if let envValue = NSProcessInfo.processInfo().environment["AWLInMemoryStore"] as? String {
+      if envValue == "YES" {
+        storeType = NSInMemoryStoreType
+      }
+    }
     #endif
     if coordinator!.addPersistentStoreWithType(storeType, configuration: nil, URL: url, options: nil, error: &error) == nil {
       coordinator = nil
@@ -216,9 +220,9 @@ public class CoreDataHelper {
       }
     }
 
-    public class func addOrUpdateRecordsWithEntities(entities: [PostEntity]) {
+    public class func addOrUpdateRecordsWithEntities(entities: [PostEntity]) -> [PostEntity] {
       if entities.count <= 0 {
-        return
+        return []
       }
 
       var sortedEntities = entities.sorted({ (lhs: PostEntity, rhs: PostEntity) -> Bool in
@@ -233,7 +237,7 @@ public class CoreDataHelper {
       let fetchRequest = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsMatchingIds(ids)
       var fetchResults = CoreDataHelper.Posts.fetchRecordsAndLogError(fetchRequest)
       if fetchResults == nil {
-        return
+        return []
       }
 
       let moc = CoreDataHelper.sharedInstance().managedObjectContext!
@@ -243,9 +247,10 @@ public class CoreDataHelper {
           moc.insertObject(theItem)
         }
         CoreDataHelper.sharedInstance().saveContext()
-        return
+        return entities
       }
 
+      var updatedOrInsertedEntities = [PostEntity]()
       let entitiesFromDatabase = fetchResults!
       let entitiesFromResponse = sortedEntities
       logVerbose("Number of records in database: \(entitiesFromDatabase.count), from server response: \(entitiesFromResponse.count)")
@@ -270,11 +275,14 @@ public class CoreDataHelper {
             entityFromDatabase!.pictureData = entityFromResponse!.pictureData
             entityFromDatabase!.videoURL = entityFromResponse!.videoURL
             shouldSaveCoreData = true
+            updatedOrInsertedEntities.append(entityFromDatabase!)
           }
           entityFromDatabase = iteratorForDatabase.next()
           entityFromResponse = iteratorForResponse.next()
         } else {
+          shouldSaveCoreData = true
           moc.insertObject(entityFromResponse!)
+          updatedOrInsertedEntities.append(entityFromResponse!)
           entityFromResponse = iteratorForResponse.next()
         }
 
@@ -282,13 +290,18 @@ public class CoreDataHelper {
 
       // Continue inserting if there are still available new entries from server
       while entityFromResponse != nil {
+        shouldSaveCoreData = true
         moc.insertObject(entityFromResponse!)
+        updatedOrInsertedEntities.append(entityFromResponse!)
         entityFromResponse = iteratorForResponse.next()
       }
 
       if shouldSaveCoreData {
         CoreDataHelper.sharedInstance().saveContext()
+        return updatedOrInsertedEntities
       }
+
+      return []
 
     }
   }
@@ -333,9 +346,9 @@ public class CoreDataHelper {
       return Static.instance
     }
     
-    public class func addOrUpdateRecordsWithEntities(entities: [FriendEntity]) {
+    public class func addOrUpdateRecordsWithEntities(entities: [FriendEntity]) -> [FriendEntity] {
       if entities.count <= 0 {
-        return
+        return []
       }
       
       var sortedEntities = entities.sorted({ (lhs: FriendEntity, rhs: FriendEntity) -> Bool in
@@ -350,7 +363,7 @@ public class CoreDataHelper {
       let fetchRequest = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsMatchingNames(names)
       var fetchResults = CoreDataHelper.Friends.fetchRecordsAndLogError(fetchRequest)
       if fetchResults == nil {
-        return
+        return []
       }
       
       let moc = CoreDataHelper.sharedInstance().managedObjectContext!
@@ -360,9 +373,10 @@ public class CoreDataHelper {
           moc.insertObject(theItem)
         }
         CoreDataHelper.sharedInstance().saveContext()
-        return
+        return entities
       }
-      
+
+      var updatedOrInsertedEntities = [FriendEntity]()
       let entitiesFromDatabase = fetchResults!
       let entitiesFromResponse = sortedEntities
       logVerbose("Number of records in database: \(entitiesFromDatabase.count), from server response: \(entitiesFromResponse.count)")
@@ -383,11 +397,14 @@ public class CoreDataHelper {
             entityFromDatabase!.avatarPictureURL = entityFromResponse!.avatarPictureURL
             entityFromDatabase!.avatarPictureData = nil
             shouldSaveCoreData = true
+            updatedOrInsertedEntities.append(entityFromDatabase!)
           }
           entityFromDatabase = iteratorForDatabase.next()
           entityFromResponse = iteratorForResponse.next()
         } else {
+          shouldSaveCoreData = true
           moc.insertObject(entityFromResponse!)
+          updatedOrInsertedEntities.append(entityFromResponse!)
           entityFromResponse = iteratorForResponse.next()
         }
         
@@ -395,13 +412,18 @@ public class CoreDataHelper {
       
       // Continue inserting if there are still available new entries from server
       while entityFromResponse != nil {
+        shouldSaveCoreData = true
         moc.insertObject(entityFromResponse!)
+        updatedOrInsertedEntities.append(entityFromResponse!)
         entityFromResponse = iteratorForResponse.next()
       }
       
       if shouldSaveCoreData {
         CoreDataHelper.sharedInstance().saveContext()
+        return updatedOrInsertedEntities
       }
+
+      return []
       
     }
     

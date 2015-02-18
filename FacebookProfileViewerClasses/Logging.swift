@@ -34,12 +34,11 @@ struct ColorLog {
   static let colorDebug   = UIColor(red:0.679, green:0.513, blue:0.306, alpha:1)
   static let colorVerbose = UIColor(red:0.523, green:0.809, blue:0.41,  alpha:1)
 
-  static let colorLogLevel   = UIColor(red:0.458, green:0.458, blue:0.458,  alpha:1)
+  static let colorDefault    = UIColor(red:0.458, green:0.458, blue:0.458,  alpha:1)
   static let colorLocation   = UIColor(red:0.704, green:0.704, blue:0.704,  alpha:1)
   static let colorSeparator  = UIColor(red:0.608, green:0.608, blue:0.608,  alpha:1)
 
   static let ESCAPE = "\u{001b}["
-
   static let RESET_FG = ESCAPE + "fg;" // Clear any foreground color
   static let RESET_BG = ESCAPE + "bg;" // Clear any background color
   static let RESET    = ESCAPE + ";"   // Clear any foreground or background color
@@ -60,8 +59,8 @@ struct ColorLog {
     return ESCAPE + "fg" + colorVerbose.consoleColor + ";"
     }()
 
-  static var cLogLevelBegin: String = {
-    return ESCAPE + "fg" + colorLogLevel.consoleColor + ";"
+  static var cDefaultBegin: String = {
+    return ESCAPE + "fg" + colorDefault.consoleColor + ";"
     }()
   static var cLocationBegin: String = {
     return ESCAPE + "fg" + colorLocation.consoleColor + ";"
@@ -69,8 +68,8 @@ struct ColorLog {
   static var cSeparatorBegin: String = {
     return ESCAPE + "fg" + colorSeparator.consoleColor + ";"
     }()
-  static var cLogLevelEnd: String   = ESCAPE + "fg;"
-  static var cLocationEnd: String   = ESCAPE + "fg;"
+  static var cDefaultEnd: String   = ESCAPE + "fg;"
+  static var cLocationEnd: String  = ESCAPE + "fg;"
   static var cSeparatorEnd: String = ESCAPE + "fg;"
 
   static var isEnabledXcodeColors: Bool = {
@@ -92,10 +91,8 @@ struct ColorLog {
     var separatorLocationEnd    = ">"
 
     if isEnabledXcodeColors {
-      theLevel    = "\(cLogLevelBegin)\(theLevel)\(cLogLevelEnd)"
       theFunction = "\(cLocationBegin)\(theFunction)\(cLocationEnd)"
       theFile     = "\(cLocationBegin)\(theFile)\(cLocationEnd)"
-      separatorPrefix = cSeparatorBegin + separatorPrefix + cSeparatorEnd
       separatorContext = cSeparatorBegin + separatorContext + cSeparatorEnd
       separatorLocation = cSeparatorBegin + separatorLocation + cSeparatorEnd
       separatorLocationBegin = cSeparatorBegin + separatorLocationBegin + cSeparatorEnd
@@ -113,7 +110,8 @@ struct ColorLog {
       case .Verbose:
         prefix = consoleColorVerbose
       }
-      theMessage = "\(prefix)\(theMessage)\(RESET_FG)"
+      theLevel   = "\(prefix)\(theLevel)\(RESET_FG)"
+      separatorPrefix = prefix + separatorPrefix + RESET_FG
 
       if context != kGlobalContextCode {
         // Converting context to color
@@ -127,8 +125,10 @@ struct ColorLog {
         var g = (c1 * c2) % 255
         var b = (c2 * c3) % 255
         theContext = ESCAPE + "fg\(r),\(g),\(b);" + theContext + ESCAPE + "fg;"
+        theMessage = ESCAPE + "fg\(r),\(g),\(b);" + theMessage + ESCAPE + "fg;"
       } else {
-        theContext = "\(cLogLevelBegin)\(theContext)\(cLogLevelEnd)"
+        theContext = "\(cDefaultBegin)\(theContext)\(cDefaultEnd)"
+        theMessage = "\(cDefaultBegin)\(theMessage)\(cDefaultEnd)"
       }
     }
 

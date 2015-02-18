@@ -16,10 +16,15 @@ class MainViewController: UIViewController {
 
   @IBOutlet weak var topView: UserProfile!
   @IBOutlet weak var bottomView: UIView!
+  @IBOutlet weak var bottomViewSwitcher: UISegmentedControl!
 
   private var postsViewControoler: PostsTableViewController!
   private var friendsViewControoler: FriendsTableViewController!
-  private var activeControllerType: ChildControllerType!
+  private var activeControllerType: ChildControllerType = ChildControllerType.Posts {
+    didSet {
+      self.bottomViewSwitcher.selectedSegmentIndex = self.activeControllerType.rawValue
+    }
+  }
 
   lazy private var log: Logger = {
     return Logger.getLogger("M-VC")
@@ -89,6 +94,15 @@ extension MainViewController {
       return
     }
 
+    #if DEBUG
+      if let envValue = NSProcessInfo.processInfo().environment["AWLProfileAlwaysLoad"] as? String {
+        if envValue == "YES" {
+          fetchProfileFromServer()
+          return
+        }
+      }
+    #endif
+
     var request = CoreDataHelper.Profile.sharedInstance.fetchRequestForProfile
     var fetchResults = CoreDataHelper.Profile.fetchRecordsAndLogError(request)
     if let results = fetchResults {
@@ -107,14 +121,24 @@ extension MainViewController {
       (results: FacebookProfileLoadManager.FetchResults) -> Void in
 
       if let theUserName = results.userProfile.valueForKey("name") as? String {
+        var request = CoreDataHelper.Profile.sharedInstance.fetchRequestForProfile
+        var shouldInsert = true
         var entityInstance = CoreDataHelper.Profile.makeEntityInstance()
+        if var fetchResults = CoreDataHelper.Profile.fetchRecordsAndLogError(request) {
+          if fetchResults.count > 0 {
+            entityInstance = fetchResults.first!
+            shouldInsert = false
+          }
+        }
         entityInstance.userName = theUserName
         entityInstance.homeTown = results.userProfile.valueForKeyPath("hometown.name") as? String
         entityInstance.avatarPictureData = results.avatarPictureImageData
         entityInstance.coverPhotoData = results.coverPhotoImageData
         let moc = CoreDataHelper.sharedInstance().managedObjectContext!
         moc.performBlock({ () -> Void in
-          moc.insertObject(entityInstance)
+          if shouldInsert {
+            moc.insertObject(entityInstance)
+          }
           CoreDataHelper.sharedInstance().saveContext()
         })
         self.updateProfileInformation(entityInstance)
@@ -156,18 +180,37 @@ extension MainViewController {
         return .Friends
       }
     }
+
+    var stringValue: String {
+      switch self {
+        case .Posts:
+          return "posts"
+        case .Friends:
+          return "friends"
+      }
+    }
+
+    static func fromString(type: String) -> ChildControllerType {
+      if type == ChildControllerType.Friends.stringValue {
+        return ChildControllerType.Friends
+      } else {
+        return ChildControllerType.Posts
+      }
+    }
   }
 
   @IBAction func switchBottomView(sender: UISegmentedControl?) {
     let type = ChildControllerType(rawValue: sender?.selectedSegmentIndex ?? 0) ?? ChildControllerType.Posts
-    switchToChildViewController(type)
+    self.switchToChildViewController(type)
   }
 
   //MARK: - Private
 
   private func initChildControllers() {
 
-    activeControllerType = .Posts
+    if let type = AppState.UI.bottomControllerType {
+      self.activeControllerType = ChildControllerType.fromString(type)
+    }
 
     postsViewControoler = self.storyboard?.instantiateViewControllerWithIdentifier("postsViewControoler") as? PostsTableViewController
     friendsViewControoler = self.storyboard?.instantiateViewControllerWithIdentifier("friendsViewController") as? FriendsTableViewController
@@ -197,8 +240,12 @@ extension MainViewController {
     let to = type == .Posts ? postsViewControoler : friendsViewControoler
 
     transitionFromViewController(from, toViewController: to, duration: 0.4, options: UIViewAnimationOptions.allZeros,
-                                 animations: nil, completion: nil)
-    activeControllerType = activeControllerType.opposite()
+                                 animations: nil, completion: { (finished:Bool) -> Void in
+      if finished {
+        self.activeControllerType = self.activeControllerType.opposite()
+        AppState.UI.bottomControllerType = self.activeControllerType.stringValue
+      }
+    })
   }
 
 }

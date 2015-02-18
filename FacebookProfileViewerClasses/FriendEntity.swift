@@ -23,7 +23,7 @@ public class FriendEntity: NSManagedObject, DebugPrintable, Equatable {
     var properties = Array<Reflection.Property>()
     properties.append(Reflection.Property(key: kFriendEntityKeyUserName, value: self.userName))
     properties.append(Reflection.Property(key: kFriendEntityKeyAvatarPictureURL, value: self.avatarPictureURL))
-    properties.append(Reflection.Property(key: kFriendEntityKeyAvatarPictureData, value: self.avatarPictureData?.description ?? "null"))
+    properties.append(Reflection.Property(key: kFriendEntityKeyAvatarPictureData, value: self.avatarPictureData == nil ? "null" : "\(self.avatarPictureData!.length) bytes"))
     return Reflection.propertiesToString(properties, multiline: true)
   }
 }

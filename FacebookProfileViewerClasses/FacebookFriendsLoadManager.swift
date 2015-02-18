@@ -38,7 +38,7 @@ public class FacebookFriendsLoadManager {
   }
 
   private func performFetchTask(taskURL: NSURL!) {
-    log.verbose("Starting fetch from URL: \(taskURL)")
+    log.debug("Starting fetch from URL: \(taskURL)")
       var task = self.backendManager.fetchFacebookGraphAPITask(taskURL,
         success: {
           (json: NSDictionary) -> Void in
@@ -59,7 +59,7 @@ public class FacebookFriendsLoadManager {
               self.cbFailure(NSError.errorForUninitializedURL())
             }
           } else {
-            self.log.verbose("Operation completed")
+            self.log.debug("Friends load completed.")
             self.cbCompletion()
           }
         },

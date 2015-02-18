@@ -69,32 +69,46 @@ extension PostsTableViewController {
 extension PostsTableViewController {
 
   func fetchPostsFromServerIfNeeded() {
-    if !AppState.UI.shouldShowWelcomeScreen {
-      if let theDate = AppState.Posts.lastFetchDate {
-        let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600
-        if elapsedHoursFromLastUpdate > 24 { // FIXME: Time should be confugurable.
-          self.fetchPostsFromServer()
-        } else {
-          self.fetchMissedPreviewPictures()
-        }
-      } else {
-        self.fetchPostsFromServer()
-      }
+    if AppState.UI.shouldShowWelcomeScreen {
+      return
     }
+
+    #if DEBUG
+      if let envValue = NSProcessInfo.processInfo().environment["AWLPostsAlwaysLoad"] as? String {
+        if envValue == "YES" {
+          fetchPostsFromServer()
+          return
+        }
+      }
+    #endif
+
+    if let theDate = AppState.Posts.lastFetchDate {
+      let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600
+      if elapsedHoursFromLastUpdate > 24 { // FIXME: Time should be confugurable.
+        self.fetchPostsFromServer()
+      } else {
+        let request = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsWithoutPreviewImage
+        if let fetchResults = CoreDataHelper.Posts.fetchRecordsAndLogError(request) {
+          self.fetchMissedPreviewPictures(fetchResults)
+        }
+      }
+    } else {
+      self.fetchPostsFromServer()
+    }
+
   }
 
-  private func fetchMissedPreviewPictures() {
-    let request = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsWithoutPreviewImage
-    if let fetchResults = CoreDataHelper.Posts.fetchRecordsAndLogError(request) {
-      if fetchResults.count > 0 {
-        log.verbose("Will fetch \(fetchResults.count) missed preview images.")
-      }
-      for theItem in fetchResults {
-        if let url = NSURL(string: theItem.pictureURL!) {
+  private func fetchMissedPreviewPictures(entities: [PostEntity]) {
+    if entities.count > 0 {
+      log.verbose("Will fetch \(entities.count) missed preview images.")
+    }
+    for theItem in entities {
+      if let urlString = theItem.pictureURL {
+        if let url = NSURL(string: urlString) {
           self.backendManager.dataDownloadTask(url,
             success: { (data: NSData) -> Void in
-              theItem.pictureData = data
               CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({
+                theItem.pictureData = data
                 CoreDataHelper.sharedInstance().saveContext()
               })
             },
@@ -120,7 +134,14 @@ extension PostsTableViewController {
           }
         }
         CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({
-          CoreDataHelper.Posts.addOrUpdateRecordsWithEntities(entityInstances)
+          var insertedOrUpdated = CoreDataHelper.Posts.addOrUpdateRecordsWithEntities(entityInstances)
+          var entitiesWithMissedData = [PostEntity]()
+          for item in insertedOrUpdated {
+            if item.pictureData == nil {
+              entitiesWithMissedData.append(item)
+            }
+          }
+          self.fetchMissedPreviewPictures(entitiesWithMissedData)
         })
       },
       failure: {
@@ -128,8 +149,7 @@ extension PostsTableViewController {
         self.log.error(error.securedDescription)
       },
       completion: {
-        self.log.verbose("Posts fetch completed.")
-        self.fetchMissedPreviewPictures()
+        self.log.debug("Posts fetch completed.")
         AppState.Posts.lastFetchDate = NSDate()
       }
     )
@@ -144,6 +164,8 @@ extension PostsTableViewController {
     cell?.detailTextLabel?.text = PostsTableViewController.facebookDateFormatter().stringFromDate(object.createdDate)
     if let data = object.pictureData {
       cell?.imageView?.image = UIImage(data: data)
+    } else {
+      cell?.imageView?.image = nil
     }
   }
 
@@ -183,7 +205,7 @@ extension PostsTableViewController {
   func controller(controller: NSFetchedResultsController, didChangeObject: AnyObject,
     atIndexPath: NSIndexPath?, forChangeType: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
       let post = didChangeObject as PostEntity
-      log.verbose("Object did changed: type=\(post.type); id=\(post.id); title=\(post.title); createdDate=\(post.createdDate)")
+      log.verbose("Object did changed for \(forChangeType.stringValue): id=\(post.id); createdDate=\(post.createdDate); type=\(post.type)" + (post.title != nil ? "; title=\(post.title!)" : ""))
       switch forChangeType {
       case .Insert:
         self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)

@@ -5,9 +5,10 @@
 
 import Foundation
 
-let KeyShouldShowWelcomeScreen = "ua.com.wavelabs.ui-shouldShowWelcomeScreen"
+let KeyUIShouldShowWelcomeScreen = "ua.com.wavelabs.ui-shouldShowWelcomeScreen"
+let KeyUIBottomControllerType = "ua.com.wavelabs.ui-bottomControllerType"
 let KeyFriendsLastFetchDate = "ua.com.wavelabs.friends-lastFetchDate"
-let KeyPostsLastFetchDate = "ua.com.wavelabs.friends-lastFetchDate"
+let KeyPostsLastFetchDate = "ua.com.wavelabs.posts-lastFetchDate"
 
 public class AppState {
 
@@ -15,14 +16,27 @@ public class AppState {
 
     public class var shouldShowWelcomeScreen: Bool {
       get {
-        if let key: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(KeyShouldShowWelcomeScreen) {
-          return NSUserDefaults.standardUserDefaults().boolForKey(KeyShouldShowWelcomeScreen);
+        if let key: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(KeyUIShouldShowWelcomeScreen) {
+          return NSUserDefaults.standardUserDefaults().boolForKey(KeyUIShouldShowWelcomeScreen);
         } else {
           return true
         }
       }
       set {
-        NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: KeyShouldShowWelcomeScreen)
+        NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: KeyUIShouldShowWelcomeScreen)
+      }
+    }
+
+    public class var bottomControllerType: String? {
+      get {
+        return NSUserDefaults.standardUserDefaults().stringForKey(KeyUIBottomControllerType)
+      }
+      set {
+        if let value = newValue {
+          NSUserDefaults.standardUserDefaults().setObject(value, forKey: KeyUIBottomControllerType)
+        } else {
+          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyUIBottomControllerType)
+        }
       }
     }
   }
