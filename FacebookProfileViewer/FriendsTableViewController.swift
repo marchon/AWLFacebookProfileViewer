@@ -54,6 +54,7 @@ extension FriendsTableViewController {
     self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: Selector("doFetchFriends:"), forControlEvents: UIControlEvents.ValueChanged)
     self.configureAppearance()
+    self.configureTitleForRefreshControl()
 
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
@@ -72,6 +73,15 @@ extension FriendsTableViewController {
 
   func doFetchFriends(sender: AnyObject) {
     self.fetchFriendsFromServer()
+  }
+
+  private func configureTitleForRefreshControl() {
+    if let theDate = AppState.Friends.lastFetchDate {
+      var lastUpdateDate = NSDateFormatter.refreshControlDateFormatter().stringFromDate(theDate)
+      self.refreshControl?.attributedTitle = NSAttributedString(string: lastUpdateDate)
+    } else {
+      self.refreshControl?.attributedTitle = nil
+    }
   }
 
   private func configureAppearance() {
@@ -190,10 +200,10 @@ extension FriendsTableViewController {
 
       },
       failure: {(error: NSError) -> Void in
+        self.log.error(error.securedDescription)
         dispatch_async(dispatch_get_main_queue(), {
           self.refreshControl!.endRefreshing()
         })
-        self.log.error(error.securedDescription)
       }
       ,
       completion: {
@@ -202,20 +212,7 @@ extension FriendsTableViewController {
 
         dispatch_async(dispatch_get_main_queue(), {
           self.refreshControl!.endRefreshing()
-          if let theDate = AppState.Friends.lastFetchDate {
-            var theTemplate = "yMMMMdhm"
-#if DEBUG
-            theTemplate += "s"
-#endif
-            let dateFormat = NSDateFormatter.dateFormatFromTemplate(theTemplate, options: 0, locale: NSLocale.currentLocale())
-            let f = NSDateFormatter()
-            f.locale = NSLocale.currentLocale()
-            f.dateFormat = dateFormat
-            var lastUpdateDate = f.stringFromDate(theDate)
-            self.refreshControl?.attributedTitle = NSAttributedString(string: lastUpdateDate)
-          } else {
-            self.refreshControl?.attributedTitle = nil
-          }
+          self.configureTitleForRefreshControl()
         })
 
     })

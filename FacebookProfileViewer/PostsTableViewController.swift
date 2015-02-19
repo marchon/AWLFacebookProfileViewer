@@ -45,13 +45,30 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
     }
     return Static.instance!
   }
+
+  private var tableViewSeparatorStileDefault = UITableViewCellSeparatorStyle.SingleLine
+
+  private var tableViewBackgroundView: UIView = {
+    var view = UILabel()
+    view.text = "No data is currently available.\n Please pull down to refresh."
+    view.textColor = UIColor.blackColor()
+    view.numberOfLines = 2
+    view.textAlignment = NSTextAlignment.Center
+    view.font = UIFont.systemFontOfSize(20)
+    view.sizeToFit()
+    return view
+  }()
 }
 
 extension PostsTableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.tableView.backgroundColor = UIColor.greenColor()
+    self.tableViewSeparatorStileDefault = self.tableView.separatorStyle
+    self.refreshControl = UIRefreshControl()
+    self.refreshControl?.addTarget(self, action: Selector("doFetchPosts:"), forControlEvents: UIControlEvents.ValueChanged)
+    self.configureAppearance()
+    self.configureTitleForRefreshControl()
 
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
@@ -68,6 +85,35 @@ extension PostsTableViewController {
 
 extension PostsTableViewController {
 
+  func doFetchPosts(sender: AnyObject) {
+    self.fetchLatestPostsFromServer()
+  }
+
+  private func configureTitleForRefreshControl() {
+    if let theDate = AppState.Friends.lastFetchDate {
+      var lastUpdateDate = NSDateFormatter.refreshControlDateFormatter().stringFromDate(theDate)
+      self.refreshControl?.attributedTitle = NSAttributedString(string: lastUpdateDate)
+    } else {
+      self.refreshControl?.attributedTitle = nil
+    }
+  }
+
+  private func configureAppearance() {
+    self.tableView.backgroundColor = UIColor.greenColor()
+    self.refreshControl?.backgroundColor = UIColor.blueColor()
+    self.refreshControl?.tintColor = UIColor.whiteColor()
+  }
+
+  private func configureTableView(#shouldShowBackgroundView: Bool) {
+    if shouldShowBackgroundView {
+      self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+      self.tableView.backgroundView = self.tableViewBackgroundView
+    } else {
+      self.tableView.separatorStyle = self.tableViewSeparatorStileDefault
+      self.tableView.backgroundView = nil
+    }
+  }
+
   func fetchPostsFromServerIfNeeded() {
     if AppState.UI.shouldShowWelcomeScreen {
       return
@@ -76,7 +122,7 @@ extension PostsTableViewController {
     #if DEBUG
       if let envValue = NSProcessInfo.processInfo().environment["AWLPostsAlwaysLoad"] as? String {
         if envValue == "YES" {
-          fetchPostsFromServer()
+          fetchPostsFromServer(since: nil, until: nil)
           return
         }
       }
@@ -85,7 +131,7 @@ extension PostsTableViewController {
     if let theDate = AppState.Posts.lastFetchDate {
       let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600
       if elapsedHoursFromLastUpdate > 24 { // FIXME: Time should be confugurable.
-        self.fetchPostsFromServer()
+        self.fetchLatestPostsFromServer()
       } else {
         let request = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsWithoutPreviewImage
         if let fetchResults = CoreDataHelper.Posts.fetchRecordsAndLogError(request) {
@@ -93,7 +139,7 @@ extension PostsTableViewController {
         }
       }
     } else {
-      self.fetchPostsFromServer()
+      self.fetchPostsFromServer(since: nil, until: nil)
     }
 
   }
@@ -121,8 +167,13 @@ extension PostsTableViewController {
     }
   }
 
-  private func fetchPostsFromServer() {
-    postsLoadManager.fetchUserPosts(since: nil, until: nil, maxPostsToFetch: 200,
+  private func fetchLatestPostsFromServer() {
+    let sinceDate = AppState.Posts.lastFetchDate
+    self.fetchPostsFromServer(since: sinceDate, until: nil)
+  }
+
+  private func fetchPostsFromServer(#since: NSDate?, until: NSDate?) {
+    postsLoadManager.fetchUserPosts(since: since, until: until, maxPostsToFetch: 200,
       success: {
         (results: [NSDictionary]) -> Void in
         var entityInstances = [PostEntity]()
@@ -147,10 +198,17 @@ extension PostsTableViewController {
       failure: {
         (error: NSError) -> Void in
         self.log.error(error.securedDescription)
+        dispatch_async(dispatch_get_main_queue(), {
+          self.refreshControl!.endRefreshing()
+        })
       },
       completion: {
         self.log.debug("Posts fetch completed.")
         AppState.Posts.lastFetchDate = NSDate()
+        dispatch_async(dispatch_get_main_queue(), {
+          self.refreshControl!.endRefreshing()
+          self.configureTitleForRefreshControl()
+        })
       }
     )
   }
@@ -174,6 +232,9 @@ extension PostsTableViewController {
 extension PostsTableViewController {
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
+    self.configureTableView(shouldShowBackgroundView: numberOfObjects == 0)
+
     return self.fetchedResultsController.sections?.count ?? 0
   }
 

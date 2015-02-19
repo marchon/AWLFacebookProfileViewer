@@ -23,4 +23,25 @@ public extension NSDateFormatter {
     return Static.instance!
   }
 
+
+  public class func refreshControlDateFormatter() -> NSDateFormatter {
+    struct Static {
+      static var onceToken : dispatch_once_t = 0
+      static var instance : NSDateFormatter? = nil
+    }
+    dispatch_once(&Static.onceToken) {
+      var theTemplate = "yMMMMdhm"
+#if DEBUG
+      theTemplate += "s"
+#endif
+      let dateFormat = NSDateFormatter.dateFormatFromTemplate(theTemplate, options: 0, locale: NSLocale.currentLocale())
+      let f = NSDateFormatter()
+      f.locale = NSLocale.currentLocale()
+      f.dateFormat = dateFormat
+      Static.instance = f
+    }
+    return Static.instance!
+  }
+
+
 }
