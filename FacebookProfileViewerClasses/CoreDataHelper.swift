@@ -138,6 +138,15 @@ public class CoreDataHelper {
       return fetchRequest
       }()
 
+    public lazy var fetchRequestForOldestPost: NSFetchRequest = {
+      let entityName = PostEntity.description().componentsSeparatedByString(".").last!
+      var fetchRequest = NSFetchRequest(entityName: entityName)
+      let sortDescriptor = NSSortDescriptor(key: kPostEntityKeyCreatedDate, ascending: true)
+      fetchRequest.sortDescriptors = [sortDescriptor]
+      fetchRequest.fetchLimit = 1
+      return fetchRequest
+    }()
+
     public func fetchRequestForRecordsMatchingIds(ids: [String]) -> NSFetchRequest {
       let entityName = PostEntity.description().componentsSeparatedByString(".").last!
       var fetchRequest = NSFetchRequest(entityName: entityName)

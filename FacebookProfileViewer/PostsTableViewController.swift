@@ -239,18 +239,45 @@ extension PostsTableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return fetchedResultsController.sections?[section].numberOfObjects ?? 0
+    let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
+    if numberOfObjects > 0 {
+      return numberOfObjects + 1
+    }
+    return numberOfObjects
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as UITableViewCell
-    self.configureCell(cell, atIndexPath: indexPath)
-    return cell
+    let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
+    if indexPath.row >= numberOfObjects {
+      let cell = tableView.dequeueReusableCellWithIdentifier("loadMoreCell", forIndexPath: indexPath) as UITableViewCell
+      return cell
+    } else {
+      let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as UITableViewCell
+      self.configureCell(cell, atIndexPath: indexPath)
+      return cell
+    }
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let object = fetchedResultsController.objectAtIndexPath(indexPath) as PostEntity
-    logInfo("Associated object of selected cell: \(object.debugDescription)")
+    let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
+    if indexPath.row >= numberOfObjects {
+      log.verbose("Will load more posts")
+      var moc = CoreDataHelper.sharedInstance().managedObjectContext!
+      var request = CoreDataHelper.Posts.sharedInstance.fetchRequestForOldestPost
+      var records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+      if let theRecords = records {
+        if theRecords.count > 0 {
+          let theRecord = theRecords.first!
+          let oldPostDate = theRecord.createdDate
+          log.debug("Date of oldest post: \(oldPostDate)")
+          self.fetchPostsFromServer(since: nil, until: oldPostDate)
+        }
+      }
+    }
+    else {
+      let object = fetchedResultsController.objectAtIndexPath(indexPath) as PostEntity
+      logInfo("Associated object of selected cell: \(object.debugDescription)")
+    }
   }
 }
 

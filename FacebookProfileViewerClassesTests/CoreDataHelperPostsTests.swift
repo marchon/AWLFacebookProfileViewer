@@ -145,4 +145,27 @@ class CoreDataHelperPostsTests : XCTestCase {
     XCTAssertTrue(records!.first! == p1)
 
   }
+  
+  func testOldestPost() {
+    var moc = CoreDataHelper.sharedInstance().managedObjectContext!
+    
+    let p1 = makeEntityWithNumber(1, type: "a")
+    let p2 = makeEntityWithNumber(2, type: "a")
+    let p3 = makeEntityWithNumber(3, type: "a")
+    
+    moc.insertObject(p3)
+    moc.insertObject(p1)
+    moc.insertObject(p2)
+    
+    CoreDataHelper.sharedInstance().saveContext()
+    var request: NSFetchRequest
+    var records: [PostEntity]?
+    
+    request = CoreDataHelper.Posts.sharedInstance.fetchRequestForOldestPost
+    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    XCTAssertNotNil(records)
+    XCTAssertTrue(records!.count == 1)
+    XCTAssertTrue(records!.first!.id == "ID 1")
+
+  }
 }
