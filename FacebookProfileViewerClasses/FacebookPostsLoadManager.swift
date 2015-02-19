@@ -95,6 +95,8 @@ public class FacebookPostsLoadManager {
                 self.cbFailure(NSError.errorForUninitializedURL())
               }
             } else {
+              // FIXME: Completion should have Bool parameter which indicates the first post on facebook ever
+              // cbCompletion(firstFacebookPostReached: Bool)
               self.cbCompletion()
             }
           } else {
