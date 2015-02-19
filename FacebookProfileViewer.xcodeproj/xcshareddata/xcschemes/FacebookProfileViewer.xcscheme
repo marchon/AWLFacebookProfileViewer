@@ -75,6 +75,11 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "AWLIDEVersion"
+            value = "$(XCODE_PRODUCT_BUILD_VERSION)"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "AWLInMemoryStore"
             value = "YES"
             isEnabled = "NO">

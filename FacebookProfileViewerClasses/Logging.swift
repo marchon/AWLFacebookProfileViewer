@@ -3,16 +3,54 @@
 /// Author: Created by Vlad Gorlov on 29.01.15.
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
-import Foundation
+import UIKit
 
 extension UIColor {
-  var consoleColor: String {
+  var foregroundConsoleColor: String {
     var r: CGFloat = 0
     var g: CGFloat = 0
     var b: CGFloat = 0
     var a: CGFloat = 0
     self.getRed(&r, green: &g, blue: &b, alpha: &a)
-    return "\(Int(255 * r)),\(Int(255 * g)),\(Int(255 * b))"
+    return "fg\(Int(255 * r)),\(Int(255 * g)),\(Int(255 * b));"
+  }
+
+  var backgroundConsoleColor: String {
+    var r: CGFloat = 0
+    var g: CGFloat = 0
+    var b: CGFloat = 0
+    var a: CGFloat = 0
+    self.getRed(&r, green: &g, blue: &b, alpha: &a)
+    return "bg\(Int(255 * r)),\(Int(255 * g)),\(Int(255 * b));"
+  }
+
+  class func colorFrom4CodeString(string: String) -> UIColor {
+    assert(string.length == 4, "String should be 4 letters lenght")
+    // Converting context to color
+    var chars = string.cStringUsingEncoding(NSUTF8StringEncoding)
+    var c0 = Int(chars?[0] ?? 0)
+    var c1 = Int(chars?[1] ?? 0)
+    var c2 = Int(chars?[2] ?? 0)
+    var c3 = Int(chars?[3] ?? 0)
+
+    var r = (c0 * c1) % 255
+    var g = (c1 * c2) % 255
+    var b = (c2 * c3) % 255
+
+    return UIColor(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue:CGFloat(b) / 255.0, alpha:1.0)
+  }
+}
+
+extension String {
+  func stringAttributedForTerminalOutput(#foregroundColor: UIColor?, backgroundColor: UIColor?) -> String {
+    var result = self
+    if let color = foregroundColor {
+      result = ColorLog.ESCAPE + color.foregroundConsoleColor + result + ColorLog.RESET_FG
+    }
+    if let color = backgroundColor {
+      result = ColorLog.ESCAPE + color.backgroundConsoleColor + result + ColorLog.RESET_BG
+    }
+    return result
   }
 }
 
@@ -37,44 +75,22 @@ struct ColorLog {
   static let colorDefault    = UIColor(red:0.458, green:0.458, blue:0.458,  alpha:1)
   static let colorLocation   = UIColor(red:0.704, green:0.704, blue:0.704,  alpha:1)
   static let colorSeparator  = UIColor(red:0.608, green:0.608, blue:0.608,  alpha:1)
+  static let colorPrefix     = UIColor(red:0.908, green:0.908, blue:0.908,  alpha:1)
 
   static let ESCAPE = "\u{001b}["
   static let RESET_FG = ESCAPE + "fg;" // Clear any foreground color
   static let RESET_BG = ESCAPE + "bg;" // Clear any background color
   static let RESET    = ESCAPE + ";"   // Clear any foreground or background color
 
-  static var consoleColorError: String = {
-    return ESCAPE + "fg" + colorError.consoleColor + ";"
-    }()
-  static var consoleColorWarn: String = {
-    return ESCAPE + "fg" + colorWarn.consoleColor + ";"
-    }()
-  static var consoleColorInfo: String = {
-    return ESCAPE + "fg" + colorInfo.consoleColor + ";"
-    }()
-  static var consoleColorDebug: String = {
-    return ESCAPE + "fg" + colorDebug.consoleColor + ";"
-    }()
-  static var consoleColorVerbose: String = {
-    return ESCAPE + "fg" + colorVerbose.consoleColor + ";"
-    }()
-
-  static var cDefaultBegin: String = {
-    return ESCAPE + "fg" + colorDefault.consoleColor + ";"
-    }()
-  static var cLocationBegin: String = {
-    return ESCAPE + "fg" + colorLocation.consoleColor + ";"
-    }()
-  static var cSeparatorBegin: String = {
-    return ESCAPE + "fg" + colorSeparator.consoleColor + ";"
-    }()
-  static var cDefaultEnd: String   = ESCAPE + "fg;"
-  static var cLocationEnd: String  = ESCAPE + "fg;"
-  static var cSeparatorEnd: String = ESCAPE + "fg;"
 
   static var isEnabledXcodeColors: Bool = {
     let XcodeColorsValue = NSProcessInfo.processInfo().environment["XcodeColors"] as? String
     return XcodeColorsValue == "YES"
+    }()
+
+  static var isXcodeIDE: Bool = {
+    let IDE = NSProcessInfo.processInfo().environment["AWLIDEVersion"] as? String
+    return IDE != "$(XCODE_PRODUCT_BUILD_VERSION)"
     }()
 
   static func logMessage<T>(message: T, level: LogLevel, context: String, function: String, file: String, line: Int32) {
@@ -90,51 +106,41 @@ struct ColorLog {
     var separatorLocationBegin  = "<"
     var separatorLocationEnd    = ">"
 
-    if isEnabledXcodeColors {
-      theFunction = "\(cLocationBegin)\(theFunction)\(cLocationEnd)"
-      theFile     = "\(cLocationBegin)\(theFile)\(cLocationEnd)"
-      separatorContext = cSeparatorBegin + separatorContext + cSeparatorEnd
-      separatorLocation = cSeparatorBegin + separatorLocation + cSeparatorEnd
-      separatorLocationBegin = cSeparatorBegin + separatorLocationBegin + cSeparatorEnd
-      separatorLocationEnd = cSeparatorBegin + separatorLocationEnd + cSeparatorEnd
-      var prefix: String
+    if isEnabledXcodeColors && isXcodeIDE {
+      theFunction = theFunction.stringAttributedForTerminalOutput(foregroundColor: colorLocation, backgroundColor: nil)
+      theFile     = theFile.stringAttributedForTerminalOutput(foregroundColor: colorLocation, backgroundColor: nil)
+      separatorContext = separatorContext.stringAttributedForTerminalOutput(foregroundColor: colorSeparator, backgroundColor: nil)
+      separatorLocation = separatorLocation.stringAttributedForTerminalOutput(foregroundColor: colorSeparator, backgroundColor: nil)
+      separatorLocationBegin = separatorLocationBegin.stringAttributedForTerminalOutput(foregroundColor: colorSeparator, backgroundColor: nil)
+      separatorLocationEnd = separatorLocationEnd.stringAttributedForTerminalOutput(foregroundColor: colorSeparator, backgroundColor: nil)
+
+      var theLogLevelColor: UIColor
       switch (level) {
       case .Error:
-        prefix = consoleColorError
+        theLogLevelColor = colorError
       case .Warn:
-        prefix = consoleColorWarn
+        theLogLevelColor = colorWarn
       case .Info:
-        prefix = consoleColorInfo
+        theLogLevelColor = colorInfo
       case .Debug:
-        prefix = consoleColorDebug
+        theLogLevelColor = colorDebug
       case .Verbose:
-        prefix = consoleColorVerbose
+        theLogLevelColor = colorVerbose
       }
-      theLevel   = "\(prefix)\(theLevel)\(RESET_FG)"
-      separatorPrefix = prefix + separatorPrefix + RESET_FG
+      theLevel = theLevel.stringAttributedForTerminalOutput(foregroundColor: theLogLevelColor, backgroundColor: nil)
+      separatorPrefix = separatorPrefix.stringAttributedForTerminalOutput(foregroundColor: theLogLevelColor, backgroundColor: nil)
 
-      if context != kGlobalContextCode {
-        // Converting context to color
-        var chars = context.cStringUsingEncoding(NSUTF8StringEncoding)
-        var c0 = Int(chars?[0] ?? 0)
-        var c1 = Int(chars?[1] ?? 0)
-        var c2 = Int(chars?[2] ?? 0)
-        var c3 = Int(chars?[3] ?? 0)
-
-        var r = (c0 * c1) % 255
-        var g = (c1 * c2) % 255
-        var b = (c2 * c3) % 255
-        theContext = ESCAPE + "fg\(r),\(g),\(b);" + theContext + ESCAPE + "fg;"
-        theMessage = ESCAPE + "fg\(r),\(g),\(b);" + theMessage + ESCAPE + "fg;"
-      } else {
-        theContext = "\(cDefaultBegin)\(theContext)\(cDefaultEnd)"
-        theMessage = "\(cDefaultBegin)\(theMessage)\(cDefaultEnd)"
-      }
+      var theContextColor = context != kGlobalContextCode ? UIColor.colorFrom4CodeString(theContext) : colorDefault
+      theContext = theContext.stringAttributedForTerminalOutput(foregroundColor: theContextColor, backgroundColor: nil)
+      theMessage = theMessage.stringAttributedForTerminalOutput(foregroundColor: theContextColor, backgroundColor: nil)
     }
 
-    var logMessage = separatorPrefix + theLevel + separatorContext + theContext + separatorPrefix
-      + " " + theMessage
-      + " " + separatorLocationBegin + theFunction + separatorLocation + theFile + separatorLocationEnd
+    var thePrefix = separatorPrefix + theLevel + separatorContext + theContext + separatorPrefix
+    if isEnabledXcodeColors && isXcodeIDE {
+      thePrefix = thePrefix.stringAttributedForTerminalOutput(foregroundColor: nil, backgroundColor: colorPrefix)
+    }
+    var theLocation = separatorLocationBegin + theFunction + separatorLocation + theFile + separatorLocationEnd
+    var logMessage = thePrefix + " " + theMessage + " " + theLocation
     if let buffer = logMessage.cStringUsingEncoding(NSUTF8StringEncoding) {
       puts(buffer)
     } else {
