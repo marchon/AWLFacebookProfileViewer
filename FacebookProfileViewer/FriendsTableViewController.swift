@@ -32,13 +32,28 @@ class FriendsTableViewController : UITableViewController, NSFetchedResultsContro
     return fetchedResultController
     }()
 
+  private var tableViewSeparatorStileDefault = UITableViewCellSeparatorStyle.SingleLine
+
+  private var tableViewBackgroundView: UIView = {
+    var view = UILabel()
+    view.text = "No data is currently available.\n Please pull down to refresh."
+    view.textColor = UIColor.blackColor()
+    view.numberOfLines = 2
+    view.textAlignment = NSTextAlignment.Center
+    view.font = UIFont.systemFontOfSize(20)
+    view.sizeToFit()
+    return view
+  }()
 }
 
 extension FriendsTableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.tableView.backgroundColor = UIColor.redColor()
+    self.tableViewSeparatorStileDefault = self.tableView.separatorStyle
+    self.refreshControl = UIRefreshControl()
+    self.refreshControl?.addTarget(self, action: Selector("doFetchFriends:"), forControlEvents: UIControlEvents.ValueChanged)
+    self.configureAppearance()
 
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
@@ -54,6 +69,26 @@ extension FriendsTableViewController {
 }
 
 extension FriendsTableViewController {
+
+  func doFetchFriends(sender: AnyObject) {
+    self.fetchFriendsFromServer()
+  }
+
+  private func configureAppearance() {
+    self.tableView.backgroundColor = UIColor.redColor()
+    self.refreshControl?.backgroundColor = UIColor.blueColor()
+    self.refreshControl?.tintColor = UIColor.whiteColor()
+  }
+
+  private func configureTableView(#shouldShowBackgroundView: Bool) {
+    if shouldShowBackgroundView {
+      self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+      self.tableView.backgroundView = self.tableViewBackgroundView
+    } else {
+      self.tableView.separatorStyle = self.tableViewSeparatorStileDefault
+      self.tableView.backgroundView = nil
+    }
+  }
 
   private func configureCell(cell: UITableViewCell?, atIndexPath: NSIndexPath) {
     if cell == nil {
@@ -155,12 +190,34 @@ extension FriendsTableViewController {
 
       },
       failure: {(error: NSError) -> Void in
+        dispatch_async(dispatch_get_main_queue(), {
+          self.refreshControl!.endRefreshing()
+        })
         self.log.error(error.securedDescription)
       }
       ,
       completion: {
         self.log.verbose("Friends fetch completed.")
         AppState.Friends.lastFetchDate = NSDate()
+
+        dispatch_async(dispatch_get_main_queue(), {
+          self.refreshControl!.endRefreshing()
+          if let theDate = AppState.Friends.lastFetchDate {
+            var theTemplate = "yMMMMdhm"
+#if DEBUG
+            theTemplate += "s"
+#endif
+            let dateFormat = NSDateFormatter.dateFormatFromTemplate(theTemplate, options: 0, locale: NSLocale.currentLocale())
+            let f = NSDateFormatter()
+            f.locale = NSLocale.currentLocale()
+            f.dateFormat = dateFormat
+            var lastUpdateDate = f.stringFromDate(theDate)
+            self.refreshControl?.attributedTitle = NSAttributedString(string: lastUpdateDate)
+          } else {
+            self.refreshControl?.attributedTitle = nil
+          }
+        })
+
     })
   }
 
@@ -169,6 +226,9 @@ extension FriendsTableViewController {
 extension FriendsTableViewController {
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
+    self.configureTableView(shouldShowBackgroundView: numberOfObjects == 0)
+
     return self.fetchedResultsController.sections?.count ?? 0
   }
 
