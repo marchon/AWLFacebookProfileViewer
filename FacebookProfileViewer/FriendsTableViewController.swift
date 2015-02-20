@@ -10,7 +10,8 @@ import CoreData
 
 class FriendsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate {
 
-
+  private var notificationObserver: NSObjectProtocol?
+  
   lazy private var log: Logger = {
     return Logger.getLogger("fTvC")
     }()
@@ -55,6 +56,12 @@ extension FriendsTableViewController {
     self.refreshControl?.addTarget(self, action: Selector("doFetchFriends:"), forControlEvents: UIControlEvents.ValueChanged)
     self.configureAppearance()
     self.configureTitleForRefreshControl()
+    self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegateForceReloadChangeNotification, object: nil,
+      queue: NSOperationQueue.mainQueue()) { (n: NSNotification!) -> Void in
+        if AppState.Friends.lastFetchDate == nil {
+          self.fetchUsersFromServerIfNeeded()
+        }
+    }
 
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
@@ -64,6 +71,11 @@ extension FriendsTableViewController {
       log.debug("Found \(self.fetchedResultsController.fetchedObjects?.count ?? -1) friend records in database.")
     }
 
+    self.fetchUsersFromServerIfNeeded()
+  }
+  
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
     self.fetchUsersFromServerIfNeeded()
   }
 
@@ -138,8 +150,10 @@ extension FriendsTableViewController {
   }
 
   func fetchUsersFromServerIfNeeded() {
-    if AppState.UI.shouldShowWelcomeScreen {
-      return
+    if let shouldShowWelcomeScreen = AppState.UI.shouldShowWelcomeScreen {
+      if shouldShowWelcomeScreen {
+        return
+      }
     }
 
     #if DEBUG

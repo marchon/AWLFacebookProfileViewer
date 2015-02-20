@@ -50,9 +50,11 @@ class MainViewController: UIViewController {
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
-    if AppState.UI.shouldShowWelcomeScreen {
-      log.verbose("Will show welcome screen")
-      performSegueWithIdentifier("showWelcomeScreen", sender: nil)
+    if let shouldShowWelcomeScreen = AppState.UI.shouldShowWelcomeScreen {
+      if shouldShowWelcomeScreen {
+        log.verbose("Will show welcome screen")
+        performSegueWithIdentifier("showWelcomeScreen", sender: nil)
+      }
     }
   }
 
@@ -89,8 +91,10 @@ extension MainViewController {
 
   private func fetchProfileFromDatasourceIfNeeded() {
 
-    if AppState.UI.shouldShowWelcomeScreen {
-      return
+    if let shouldShowWelcomeScreen = AppState.UI.shouldShowWelcomeScreen {
+      if shouldShowWelcomeScreen {
+        return
+      }
     }
 
     #if DEBUG

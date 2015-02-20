@@ -10,6 +10,8 @@ import CoreData
 
 class PostsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate {
 
+  private var notificationObserver: NSObjectProtocol?
+  
   lazy private var log: Logger = {
     return Logger.getLogger("PTvc")
     }()
@@ -69,6 +71,12 @@ extension PostsTableViewController {
     self.refreshControl?.addTarget(self, action: Selector("doFetchPosts:"), forControlEvents: UIControlEvents.ValueChanged)
     self.configureAppearance()
     self.configureTitleForRefreshControl()
+    self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegateForceReloadChangeNotification, object: nil,
+      queue: NSOperationQueue.mainQueue()) { (n: NSNotification!) -> Void in
+        if AppState.Friends.lastFetchDate == nil {
+          self.fetchPostsFromServerIfNeeded()
+        }
+    }
 
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
@@ -81,6 +89,10 @@ extension PostsTableViewController {
     self.fetchPostsFromServerIfNeeded()
   }
 
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    self.fetchPostsFromServerIfNeeded()
+  }
 }
 
 extension PostsTableViewController {
@@ -115,8 +127,10 @@ extension PostsTableViewController {
   }
 
   func fetchPostsFromServerIfNeeded() {
-    if AppState.UI.shouldShowWelcomeScreen {
-      return
+    if let shouldShowWelcomeScreen = AppState.UI.shouldShowWelcomeScreen {
+      if shouldShowWelcomeScreen {
+        return
+      }
     }
 
     #if DEBUG

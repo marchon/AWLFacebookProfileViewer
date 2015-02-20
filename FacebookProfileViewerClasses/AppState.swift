@@ -11,34 +11,65 @@ let KeyFriendsLastFetchDate                       = "ua.com.wavelabs.friends-las
 let KeyPostsLastFetchDate                         = "ua.com.wavelabs.posts-lastFetchDate"
 let KeyAuthenticationFacebookAccessTokenValue     = "ua.com.wavelabs.authentication-facebookAccessTokenValue"
 let KeyAuthenticationFacebookAccessTokenExpitesIn = "ua.com.wavelabs.authentication-facebookAccessTokenExpitesIn"
+let KeySettingsReloadAllDataWhenAppBecomeActive   = "ua.com.wavelabs.settings-reloadAllDataWhenAppBecomeActive"
 
 public class AppState {
 
+  private class func setObjectValueForKeyOrRemoveKey(key: String, value: AnyObject?) {
+    if let v: AnyObject = value {
+      NSUserDefaults.standardUserDefaults().setObject(v, forKey: key)
+    } else {
+      NSUserDefaults.standardUserDefaults().removeObjectForKey(key)
+    }
+  }
+
+  private class func setBoolValueForKeyOrRemoveKey(key: String, value: Bool?) {
+    if let v = value {
+      NSUserDefaults.standardUserDefaults().setBool(v, forKey: key)
+    } else {
+      NSUserDefaults.standardUserDefaults().removeObjectForKey(key)
+    }
+  }
+
+  private class func setIntValueForKeyOrRemoveKey(key: String, value: Int?) {
+    if let v = value {
+      NSUserDefaults.standardUserDefaults().setInteger(v, forKey: key)
+    } else {
+      NSUserDefaults.standardUserDefaults().removeObjectForKey(key)
+    }
+  }
+
+  private class func boolForKey(key: String) -> Bool? {
+    if let value: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key) {
+      return NSUserDefaults.standardUserDefaults().boolForKey(key)
+    } else {
+      return nil
+    }
+  }
+
+  private class func intForKey(key: String) -> Int? {
+    if let value: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(key) {
+      return NSUserDefaults.standardUserDefaults().integerForKey(key)
+    } else {
+      return nil
+    }
+  }
+
   public class UI {
 
-    public class var shouldShowWelcomeScreen: Bool {
+    public class var shouldShowWelcomeScreen: Bool? {
       get {
-        if let key: AnyObject = NSUserDefaults.standardUserDefaults().objectForKey(KeyUIShouldShowWelcomeScreen) {
-          return NSUserDefaults.standardUserDefaults().boolForKey(KeyUIShouldShowWelcomeScreen);
-        } else {
-          return true
-        }
-      }
-      set {
-        NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: KeyUIShouldShowWelcomeScreen)
+        return AppState.boolForKey(KeyUIShouldShowWelcomeScreen)
+      } set {
+        AppState.setBoolValueForKeyOrRemoveKey(KeyUIShouldShowWelcomeScreen, value: newValue)
       }
     }
 
     public class var bottomControllerType: String? {
       get {
         return NSUserDefaults.standardUserDefaults().stringForKey(KeyUIBottomControllerType)
-      }
-      set {
-        if let value = newValue {
-          NSUserDefaults.standardUserDefaults().setObject(value, forKey: KeyUIBottomControllerType)
-        } else {
-          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyUIBottomControllerType)
-        }
+      } set {
+        AppState.setObjectValueForKeyOrRemoveKey(KeyUIBottomControllerType, value: newValue)
       }
     }
   }
@@ -48,13 +79,8 @@ public class AppState {
     public class var lastFetchDate: NSDate? {
       get {
         return NSUserDefaults.standardUserDefaults().objectForKey(KeyFriendsLastFetchDate) as? NSDate
-      }
-      set {
-        if let value = newValue {
-          NSUserDefaults.standardUserDefaults().setObject(value, forKey: KeyFriendsLastFetchDate)
-        } else {
-          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyFriendsLastFetchDate)
-        }
+      } set {
+        AppState.setObjectValueForKeyOrRemoveKey(KeyFriendsLastFetchDate, value: newValue)
       }
     }
 
@@ -65,13 +91,8 @@ public class AppState {
     public class var lastFetchDate: NSDate? {
       get {
         return NSUserDefaults.standardUserDefaults().objectForKey(KeyPostsLastFetchDate) as? NSDate
-      }
-      set {
-        if let value = newValue {
-          NSUserDefaults.standardUserDefaults().setObject(value, forKey: KeyPostsLastFetchDate)
-        } else {
-          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyPostsLastFetchDate)
-        }
+      } set {
+        AppState.setObjectValueForKeyOrRemoveKey(KeyPostsLastFetchDate, value: newValue)
       }
     }
 
@@ -82,27 +103,29 @@ public class AppState {
     public class var facebookAccesToken: String? {
       get {
         return NSUserDefaults.standardUserDefaults().stringForKey(KeyAuthenticationFacebookAccessTokenValue)
-      }
-      set {
-        if let value = newValue {
-          NSUserDefaults.standardUserDefaults().setObject(value, forKey: KeyAuthenticationFacebookAccessTokenValue)
-        } else {
-          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyAuthenticationFacebookAccessTokenValue)
-        }
+      } set {
+        AppState.setObjectValueForKeyOrRemoveKey(KeyAuthenticationFacebookAccessTokenValue, value: newValue)
       }
     }
 
     public class var facebookAccesTokenExpitesIn: Int? {
       get {
-        return NSUserDefaults.standardUserDefaults().integerForKey(KeyAuthenticationFacebookAccessTokenExpitesIn)
-      }
-      set {
-        if let value = newValue {
-          NSUserDefaults.standardUserDefaults().setInteger(value, forKey: KeyAuthenticationFacebookAccessTokenExpitesIn)
-        } else {
-          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyAuthenticationFacebookAccessTokenExpitesIn)
-        }
+        return AppState.intForKey(KeyAuthenticationFacebookAccessTokenExpitesIn)
+      } set {
+        AppState.setIntValueForKeyOrRemoveKey(KeyAuthenticationFacebookAccessTokenExpitesIn, value: newValue)
       }
     }
+  }
+  
+  public class Settings {
+    
+    public class var reloadAllDataWhenAppBecomeActive: Bool? {
+      get {
+        return AppState.boolForKey(KeySettingsReloadAllDataWhenAppBecomeActive)
+      } set {
+        AppState.setBoolValueForKeyOrRemoveKey(KeySettingsReloadAllDataWhenAppBecomeActive, value: newValue)
+      }
+    }
+    
   }
 }

@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import FacebookProfileViewerClasses
 
+let AppDelegateForceReloadChangeNotification = "AppDelegateForceReloadChangeNotification"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
@@ -46,7 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   func applicationDidBecomeActive(application: UIApplication) {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    if let shouldReload = AppState.Settings.reloadAllDataWhenAppBecomeActive {
+      if shouldReload {
+        AppState.Settings.reloadAllDataWhenAppBecomeActive = false
+        AppState.Posts.lastFetchDate = nil
+        AppState.Friends.lastFetchDate = nil
+        NSNotificationCenter.defaultCenter().postNotificationName(AppDelegateForceReloadChangeNotification, object: nil)
+      }
+    }
   }
   
   func applicationWillTerminate(application: UIApplication) {
