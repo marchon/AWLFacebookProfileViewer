@@ -6,13 +6,17 @@
 import UIKit
 import XCTest
 
-class EnpointTestCase : XCTestCase {
+private var gEnpointTestCaseExpectation: XCTestExpectation?
 
-  var expectation: XCTestExpectation!
+extension XCTestCase {
 
-  override func setUp() {
+  var expectation: XCTestExpectation {
+      return gEnpointTestCaseExpectation!
+  }
+  
+  public override func setUp() {
     super.setUp()
-    expectation = expectationWithDescription("Fetch request")
+    gEnpointTestCaseExpectation = expectationWithDescription("Fetch request")
   }
 
   func reportFailure(error: NSError) {

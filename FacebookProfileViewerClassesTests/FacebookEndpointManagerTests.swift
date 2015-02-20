@@ -10,7 +10,7 @@ import UIKit
 import XCTest
 import FacebookProfileViewerClasses
 
-class FacebookEndpointManagerTests: EnpointTestCase {
+class FacebookEndpointManagerTests: XCTestCase {
 
   var manager = FacebookEndpointManager()
 

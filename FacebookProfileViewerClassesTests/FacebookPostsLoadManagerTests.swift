@@ -7,7 +7,7 @@ import UIKit
 import XCTest
 import FacebookProfileViewerClasses
 
-class FacebookPostsLoadManagerTests: EnpointTestCase {
+class FacebookPostsLoadManagerTests: XCTestCase {
   
   
   func testFetch100OldPosts() {

@@ -7,7 +7,7 @@ import UIKit
 import XCTest
 import FacebookProfileViewerClasses
 
-class FacebookFriendsLoadManagerTests: EnpointTestCase {
+class FacebookFriendsLoadManagerTests: XCTestCase {
   func testUserFriends() {
     let mngr = FacebookFriendsLoadManager()
     mngr.fetchUserFriends(success: {
