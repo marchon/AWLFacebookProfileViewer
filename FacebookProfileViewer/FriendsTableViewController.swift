@@ -150,8 +150,8 @@ extension FriendsTableViewController {
   }
 
   func fetchUsersFromServerIfNeeded() {
-    if let shouldShowWelcomeScreen = AppState.UI.shouldShowWelcomeScreen {
-      if shouldShowWelcomeScreen {
+    if let shouldSkipWelcomeScreen = AppState.UI.shouldSkipWelcomeScreen {
+      if !shouldSkipWelcomeScreen {
         return
       }
     }

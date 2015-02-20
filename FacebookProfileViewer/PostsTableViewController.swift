@@ -73,7 +73,7 @@ extension PostsTableViewController {
     self.configureTitleForRefreshControl()
     self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegateForceReloadChangeNotification, object: nil,
       queue: NSOperationQueue.mainQueue()) { (n: NSNotification!) -> Void in
-        if AppState.Friends.lastFetchDate == nil {
+        if AppState.Posts.lastFetchDate == nil {
           self.fetchPostsFromServerIfNeeded()
         }
     }
@@ -102,7 +102,7 @@ extension PostsTableViewController {
   }
 
   private func configureTitleForRefreshControl() {
-    if let theDate = AppState.Friends.lastFetchDate {
+    if let theDate = AppState.Posts.lastFetchDate {
       var lastUpdateDate = NSDateFormatter.refreshControlDateFormatter().stringFromDate(theDate)
       self.refreshControl?.attributedTitle = NSAttributedString(string: lastUpdateDate)
     } else {
@@ -127,8 +127,8 @@ extension PostsTableViewController {
   }
 
   func fetchPostsFromServerIfNeeded() {
-    if let shouldShowWelcomeScreen = AppState.UI.shouldShowWelcomeScreen {
-      if shouldShowWelcomeScreen {
+    if let shouldSkipWelcomeScreen = AppState.UI.shouldSkipWelcomeScreen {
+      if !shouldSkipWelcomeScreen {
         return
       }
     }

@@ -50,11 +50,14 @@ class MainViewController: UIViewController {
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
-    if let shouldShowWelcomeScreen = AppState.UI.shouldShowWelcomeScreen {
-      if shouldShowWelcomeScreen {
+    if let shouldSkipWelcomeScreen = AppState.UI.shouldSkipWelcomeScreen {
+      if !shouldSkipWelcomeScreen {
         log.verbose("Will show welcome screen")
         performSegueWithIdentifier("showWelcomeScreen", sender: nil)
       }
+    } else {
+      log.verbose("Will show welcome screen")
+      performSegueWithIdentifier("showWelcomeScreen", sender: nil)
     }
   }
 
@@ -65,12 +68,12 @@ class MainViewController: UIViewController {
       ctrl.canceled = {
         self.dismissViewControllerAnimated(true, completion: {
           () -> Void in
-          AppState.UI.shouldShowWelcomeScreen = false
+          AppState.UI.shouldSkipWelcomeScreen = true
         })
       }
       ctrl.success = {
         (tokenInfo: (accessToken:String, expiresIn:Int)) -> () in
-        AppState.UI.shouldShowWelcomeScreen = false
+        AppState.UI.shouldSkipWelcomeScreen = true
         AppState.Authentication.facebookAccesToken = tokenInfo.accessToken
         AppState.Authentication.facebookAccesTokenExpitesIn = tokenInfo.expiresIn
         self.dismissViewControllerAnimated(true, completion: {
@@ -91,8 +94,8 @@ extension MainViewController {
 
   private func fetchProfileFromDatasourceIfNeeded() {
 
-    if let shouldShowWelcomeScreen = AppState.UI.shouldShowWelcomeScreen {
-      if shouldShowWelcomeScreen {
+    if let shouldSkipWelcomeScreen = AppState.UI.shouldSkipWelcomeScreen {
+      if !shouldSkipWelcomeScreen {
         return
       }
     }

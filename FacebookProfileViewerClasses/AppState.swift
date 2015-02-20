@@ -5,7 +5,7 @@
 
 import Foundation
 
-let KeyUIShouldShowWelcomeScreen                  = "ua.com.wavelabs.ui-shouldShowWelcomeScreen"
+let KeyUIShouldSkipWelcomeScreen                  = "ua.com.wavelabs.ui-shouldSkipWelcomeScreen"
 let KeyUIBottomControllerType                     = "ua.com.wavelabs.ui-bottomControllerType"
 let KeyFriendsLastFetchDate                       = "ua.com.wavelabs.friends-lastFetchDate"
 let KeyPostsLastFetchDate                         = "ua.com.wavelabs.posts-lastFetchDate"
@@ -57,11 +57,11 @@ public class AppState {
 
   public class UI {
 
-    public class var shouldShowWelcomeScreen: Bool? {
+    public class var shouldSkipWelcomeScreen: Bool? {
       get {
-        return AppState.boolForKey(KeyUIShouldShowWelcomeScreen)
+        return AppState.boolForKey(KeyUIShouldSkipWelcomeScreen)
       } set {
-        AppState.setBoolValueForKeyOrRemoveKey(KeyUIShouldShowWelcomeScreen, value: newValue)
+        AppState.setBoolValueForKeyOrRemoveKey(KeyUIShouldSkipWelcomeScreen, value: newValue)
       }
     }
 
