@@ -151,14 +151,17 @@ extension PostsTableViewController {
     for theItem in entities {
       if let urlString = theItem.pictureURL {
         if let url = NSURL(string: urlString) {
+          UIApplication.sharedApplication().showNetworkActivityIndicator()
           self.backendManager.dataDownloadTask(url,
             success: { (data: NSData) -> Void in
+              UIApplication.sharedApplication().hideNetworkActivityIndicator()
               CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({
                 theItem.pictureData = data
                 CoreDataHelper.sharedInstance().saveContext()
               })
             },
             failure: { (error: NSError) -> Void in
+              UIApplication.sharedApplication().hideNetworkActivityIndicator()
               logError(error.securedDescription)
             }
             ).resume()
@@ -173,9 +176,9 @@ extension PostsTableViewController {
   }
 
   private func fetchPostsFromServer(#since: NSDate?, until: NSDate?) {
+    UIApplication.sharedApplication().showNetworkActivityIndicator()
     postsLoadManager.fetchUserPosts(since: since, until: until, maxPostsToFetch: 200,
-      success: {
-        (results: [NSDictionary]) -> Void in
+      success: { (results: [NSDictionary]) -> Void in
         var entityInstances = [PostEntity]()
         for itemDictionsry in results {
           if let entityInstance = CoreDataHelper.Posts.makeEntityInstanceFromJSON(itemDictionsry) {
@@ -195,14 +198,15 @@ extension PostsTableViewController {
           self.fetchMissedPreviewPictures(entitiesWithMissedData)
         })
       },
-      failure: {
-        (error: NSError) -> Void in
+      failure: { (error: NSError) -> Void in
+        UIApplication.sharedApplication().hideNetworkActivityIndicator()
         self.log.error(error.securedDescription)
         dispatch_async(dispatch_get_main_queue(), {
           self.refreshControl!.endRefreshing()
         })
       },
       completion: {
+        UIApplication.sharedApplication().hideNetworkActivityIndicator()
         self.log.debug("Posts fetch completed.")
         AppState.Posts.lastFetchDate = NSDate()
         dispatch_async(dispatch_get_main_queue(), {

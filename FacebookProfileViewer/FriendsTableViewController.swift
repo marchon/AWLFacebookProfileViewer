@@ -119,14 +119,17 @@ extension FriendsTableViewController {
     }
     for theItem in entities {
       if let url = NSURL(string: theItem.avatarPictureURL) {
+        UIApplication.sharedApplication().showNetworkActivityIndicator()
         self.backendManager.dataDownloadTask(url,
           success: { (data: NSData) -> Void in
+            UIApplication.sharedApplication().hideNetworkActivityIndicator()
             CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({
               theItem.avatarPictureData = data
               CoreDataHelper.sharedInstance().saveContext()
             })
           },
           failure: { (error: NSError) -> Void in
+            UIApplication.sharedApplication().hideNetworkActivityIndicator()
             logError(error.securedDescription)
           }
           ).resume()
@@ -165,6 +168,7 @@ extension FriendsTableViewController {
 
   private func fetchFriendsFromServer() {
     var namesOfAllFriends = [String]()
+    UIApplication.sharedApplication().showNetworkActivityIndicator()
     friendsLoadManager.fetchUserFriends(
       success: {(results: [NSDictionary]) -> Void in
 
@@ -200,6 +204,7 @@ extension FriendsTableViewController {
 
       },
       failure: {(error: NSError) -> Void in
+        UIApplication.sharedApplication().hideNetworkActivityIndicator()
         self.log.error(error.securedDescription)
         dispatch_async(dispatch_get_main_queue(), {
           self.refreshControl!.endRefreshing()
@@ -207,6 +212,7 @@ extension FriendsTableViewController {
       }
       ,
       completion: {
+        UIApplication.sharedApplication().hideNetworkActivityIndicator()
         self.log.verbose("Friends fetch completed.")
         AppState.Friends.lastFetchDate = NSDate()
 

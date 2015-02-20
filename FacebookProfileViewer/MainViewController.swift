@@ -117,9 +117,10 @@ extension MainViewController {
   }
 
   private func fetchProfileFromServer() {
-    profileLoadManager.fetchUserProfile(success: {
-      (results: FacebookProfileLoadManager.FetchResults) -> Void in
+    UIApplication.sharedApplication().showNetworkActivityIndicator()
+    profileLoadManager.fetchUserProfile(success: { (results: FacebookProfileLoadManager.FetchResults) -> Void in
 
+      UIApplication.sharedApplication().hideNetworkActivityIndicator()
       if let theUserName = results.userProfile.valueForKey("name") as? String {
         var request = CoreDataHelper.Profile.sharedInstance.fetchRequestForProfile
         var shouldInsert = true
@@ -143,8 +144,8 @@ extension MainViewController {
         })
         self.updateProfileInformation(entityInstance)
       }
-    }, failure: {
-      (error: NSError) -> Void in
+    }, failure: { (error: NSError) -> Void in
+      UIApplication.sharedApplication().hideNetworkActivityIndicator()
       logError(error.securedDescription)
     })
   }
