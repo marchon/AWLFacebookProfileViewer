@@ -5,10 +5,12 @@
 
 import Foundation
 
-let KeyUIShouldShowWelcomeScreen = "ua.com.wavelabs.ui-shouldShowWelcomeScreen"
-let KeyUIBottomControllerType = "ua.com.wavelabs.ui-bottomControllerType"
-let KeyFriendsLastFetchDate = "ua.com.wavelabs.friends-lastFetchDate"
-let KeyPostsLastFetchDate = "ua.com.wavelabs.posts-lastFetchDate"
+let KeyUIShouldShowWelcomeScreen                  = "ua.com.wavelabs.ui-shouldShowWelcomeScreen"
+let KeyUIBottomControllerType                     = "ua.com.wavelabs.ui-bottomControllerType"
+let KeyFriendsLastFetchDate                       = "ua.com.wavelabs.friends-lastFetchDate"
+let KeyPostsLastFetchDate                         = "ua.com.wavelabs.posts-lastFetchDate"
+let KeyAuthenticationFacebookAccessTokenValue     = "ua.com.wavelabs.authentication-facebookAccessTokenValue"
+let KeyAuthenticationFacebookAccessTokenExpitesIn = "ua.com.wavelabs.authentication-facebookAccessTokenExpitesIn"
 
 public class AppState {
 
@@ -74,5 +76,33 @@ public class AppState {
     }
 
   }
-   
+  
+  public class Authentication {
+    
+    public class var facebookAccesToken: String? {
+      get {
+        return NSUserDefaults.standardUserDefaults().stringForKey(KeyAuthenticationFacebookAccessTokenValue)
+      }
+      set {
+        if let value = newValue {
+          NSUserDefaults.standardUserDefaults().setObject(value, forKey: KeyAuthenticationFacebookAccessTokenValue)
+        } else {
+          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyAuthenticationFacebookAccessTokenValue)
+        }
+      }
+    }
+
+    public class var facebookAccesTokenExpitesIn: Int? {
+      get {
+        return NSUserDefaults.standardUserDefaults().integerForKey(KeyAuthenticationFacebookAccessTokenExpitesIn)
+      }
+      set {
+        if let value = newValue {
+          NSUserDefaults.standardUserDefaults().setInteger(value, forKey: KeyAuthenticationFacebookAccessTokenExpitesIn)
+        } else {
+          NSUserDefaults.standardUserDefaults().removeObjectForKey(KeyAuthenticationFacebookAccessTokenExpitesIn)
+        }
+      }
+    }
+  }
 }

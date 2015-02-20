@@ -15,7 +15,7 @@ extension FacebookEndpointManager {
   public func fetchUserPictureURL() -> NSURL? {
 
     var endpointURL: NSURL?
-    if let accesToken = persistenceStore.facebookAccesToken {
+    if let accesToken = AppState.Authentication.facebookAccesToken {
       var queryElements = ["redirect=false",
                            "type=square",
                            "width=100",
@@ -29,7 +29,7 @@ extension FacebookEndpointManager {
 
   public func fetchUserProfileInformationURL() -> NSURL? {
     var endpointURL: NSURL?
-    if let accesToken = persistenceStore.facebookAccesToken {
+    if let accesToken = AppState.Authentication.facebookAccesToken {
       endpointURL = NSURL(string: "https://graph.facebook.com/me?fields=id,name,hometown,cover&access_token=\(accesToken)")
     }
     return endpointURL
@@ -37,7 +37,7 @@ extension FacebookEndpointManager {
 
   public func fetchFriendsURL() -> NSURL? {
     var endpointURL: NSURL?
-    if let accesToken = persistenceStore.facebookAccesToken {
+    if let accesToken = AppState.Authentication.facebookAccesToken {
       var fetchLimit = 80 // TODO: Try different settings for 2G/3G/... networks
 #if DEBUG || TEST
       fetchLimit = 40
@@ -50,7 +50,7 @@ extension FacebookEndpointManager {
 
   public func fetchPostsURL(#since: NSDate?, until: NSDate?) -> NSURL? {
     var endpointURL: NSURL?
-    if let accesToken = persistenceStore.facebookAccesToken {
+    if let accesToken = AppState.Authentication.facebookAccesToken {
       var fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
 #if DEBUG || TEST
       fetchLimit = 20
@@ -70,7 +70,7 @@ extension FacebookEndpointManager {
 
   public func fetchPostsURL() -> NSURL? {
     var endpointURL: NSURL?
-    if let accesToken = persistenceStore.facebookAccesToken {
+    if let accesToken = AppState.Authentication.facebookAccesToken {
       var fetchLimit = 50 // TODO: Try different settings for 2G/3G/... networks
       #if DEBUG || TEST
         fetchLimit = 20
@@ -159,7 +159,6 @@ extension FacebookEndpointManager {
 public class FacebookEndpointManager {
 
   var session: NSURLSession
-  private var persistenceStore: PersistenceStore
 
   public init() {
     var sessionConfig = NSURLSessionConfiguration.defaultSessionConfiguration()
@@ -173,7 +172,6 @@ public class FacebookEndpointManager {
     session = NSURLSession(configuration: sessionConfig)
     session.sessionDescription = "Facebook Profile Viewer Session"
 
-    persistenceStore = PersistenceStore.sharedInstance()
   }
 
   private func parseJson(data: NSData?, success: jsonCallback, failure: errorCallback) {

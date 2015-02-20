@@ -5,7 +5,7 @@
 
 import UIKit
 
-extension UIColor {
+private extension UIColor {
   var foregroundConsoleColor: String {
     var r: CGFloat = 0
     var g: CGFloat = 0
@@ -41,7 +41,7 @@ extension UIColor {
   }
 }
 
-extension String {
+private extension String {
   func stringAttributedForTerminalOutput(#foregroundColor: UIColor?, backgroundColor: UIColor?) -> String {
     var result = self
     if let color = foregroundColor {

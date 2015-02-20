@@ -43,7 +43,7 @@ public extension NSError {
     #if TEST || DEBUG
       return self.description
       #else
-      if let token = PersistenceStore.sharedInstance().facebookAccesToken {
+      if let token = AppState.Authentication.facebookAccesToken {
       return self.description.stringByReplacingOccurrencesOfString(token, withString: "TOKEN-WAS-STRIPPED")
       } else {
       return self.description

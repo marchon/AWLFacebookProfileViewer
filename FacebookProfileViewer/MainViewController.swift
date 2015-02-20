@@ -69,9 +69,8 @@ class MainViewController: UIViewController {
       ctrl.success = {
         (tokenInfo: (accessToken:String, expiresIn:Int)) -> () in
         AppState.UI.shouldShowWelcomeScreen = false
-        var ps = PersistenceStore.sharedInstance()
-        ps.facebookAccesToken = tokenInfo.accessToken
-        ps.facebookAccesTokenExpitesIn = tokenInfo.expiresIn
+        AppState.Authentication.facebookAccesToken = tokenInfo.accessToken
+        AppState.Authentication.facebookAccesTokenExpitesIn = tokenInfo.expiresIn
         self.dismissViewControllerAnimated(true, completion: {
           () -> Void in
           self.fetchProfileFromDatasourceIfNeeded()
