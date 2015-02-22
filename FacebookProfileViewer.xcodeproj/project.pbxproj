@@ -11,6 +11,8 @@
 		801029051A82679F00D73C54 /* NSDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801029041A82679F00D73C54 /* NSDictionary.swift */; };
 		801BA28B1A8A10FD008319C2 /* NSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801BA28A1A8A10FD008319C2 /* NSDateFormatter.swift */; };
 		801BA28D1A8A1C2E008319C2 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801BA28C1A8A1C2E008319C2 /* NSDate.swift */; };
+		801CE9241A9A3E8D0062BD83 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801CE9231A9A3E8D0062BD83 /* SegmentedControl.swift */; };
+		801CE9261A9A3F080062BD83 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 801CE9251A9A3F080062BD83 /* Media.xcassets */; };
 		80205E8F1A7996670042E94A /* FriendEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E8E1A7996670042E94A /* FriendEntity.swift */; };
 		80205E911A7996670042E94A /* PostEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E901A7996670042E94A /* PostEntity.swift */; };
 		80205E931A7996670042E94A /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E921A7996670042E94A /* ProfileEntity.swift */; };
@@ -119,6 +121,8 @@
 		801029041A82679F00D73C54 /* NSDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDictionary.swift; sourceTree = "<group>"; };
 		801BA28A1A8A10FD008319C2 /* NSDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatter.swift; sourceTree = "<group>"; };
 		801BA28C1A8A1C2E008319C2 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		801CE9231A9A3E8D0062BD83 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
+		801CE9251A9A3F080062BD83 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		80205E8E1A7996670042E94A /* FriendEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendEntity.swift; sourceTree = "<group>"; };
 		80205E901A7996670042E94A /* PostEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEntity.swift; sourceTree = "<group>"; };
 		80205E921A7996670042E94A /* ProfileEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
@@ -250,6 +254,8 @@
 				807E28641A7A57EB005DBF05 /* UserProfile.swift */,
 				807E28621A7A578B005DBF05 /* UserProfile.xib */,
 				C57D70971A84E060005D488E /* FriendTableViewCell.swift */,
+				801CE9251A9A3F080062BD83 /* Media.xcassets */,
+				801CE9231A9A3E8D0062BD83 /* SegmentedControl.swift */,
 				C57D709B1A850689005D488E /* PostsTableViewCell.swift */,
 			);
 			path = FacebookProfileViewerUI;
@@ -521,6 +527,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				801CE9261A9A3F080062BD83 /* Media.xcassets in Resources */,
 				807E28631A7A578B005DBF05 /* UserProfile.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,6 +596,7 @@
 				808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */,
 				C57D709C1A850689005D488E /* PostsTableViewCell.swift in Sources */,
 				807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */,
+				801CE9241A9A3E8D0062BD83 /* SegmentedControl.swift in Sources */,
 				C57D70981A84E060005D488E /* FriendTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

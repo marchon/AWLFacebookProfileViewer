@@ -19,3 +19,4 @@ Resources
 
 * UI Design Assets by [UI8](https://ui8.net "UI8 Home page")
 * Color palette generated using [Adobe Color CC](https://color.adobe.com "Adobe Color CC Home page")
+* Avatars by [uiFaces](http://uifaces.com "uiFaces Home page")
