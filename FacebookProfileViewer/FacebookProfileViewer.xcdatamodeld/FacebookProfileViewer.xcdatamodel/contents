@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="FriendEntity" representedClassName="FacebookProfileViewerClasses.FriendEntity" syncable="YES">
         <attribute name="avatarPictureData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="avatarPictureIsSilhouette" attributeType="Boolean" syncable="YES"/>
         <attribute name="avatarPictureURL" attributeType="String" syncable="YES"/>
         <attribute name="userName" attributeType="String" syncable="YES"/>
     </entity>
@@ -21,7 +22,7 @@
         <attribute name="userName" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="FriendEntity" positionX="-54" positionY="9" width="128" height="88"/>
+        <element name="FriendEntity" positionX="-54" positionY="9" width="128" height="105"/>
         <element name="PostEntity" positionX="187" positionY="-0" width="128" height="150"/>
         <element name="ProfileEntity" positionX="70" positionY="-91" width="128" height="105"/>
     </elements>

@@ -9,19 +9,19 @@ import XCTest
 private var gEnpointTestCaseExpectation: XCTestExpectation?
 
 extension XCTestCase {
-
+  
   var expectation: XCTestExpectation {
+    get {
       return gEnpointTestCaseExpectation!
+    }
+    set {
+      gEnpointTestCaseExpectation = newValue
+    }
   }
   
-  public override func setUp() {
-    super.setUp()
-    gEnpointTestCaseExpectation = expectationWithDescription("Fetch request")
-  }
-
   func reportFailure(error: NSError) {
     XCTFail("Unexpected error: \(error)")
     self.expectation.fulfill()
   }
-
+  
 }

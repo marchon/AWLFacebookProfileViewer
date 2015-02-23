@@ -8,6 +8,12 @@ import XCTest
 import FacebookProfileViewerClasses
 
 class FacebookFriendsLoadManagerTests: XCTestCase {
+  
+  override func setUp() {
+    super.setUp()
+    self.expectation = expectationWithDescription("Fetch request")
+  }
+  
   func testUserFriends() {
     let mngr = FacebookFriendsLoadManager()
     mngr.fetchUserFriends(success: {

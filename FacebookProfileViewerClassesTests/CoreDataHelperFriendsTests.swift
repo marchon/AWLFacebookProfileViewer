@@ -25,7 +25,39 @@ class CoreDataHelperFriendsTests : XCTestCase {
     let entity = CoreDataHelper.Friends.makeEntityInstance()
     entity.userName = "User \(number)"
     entity.avatarPictureURL = "Picture URL \(number)"
+    entity.avatarPictureIsSilhouette = false
     return entity
+  }
+  
+  
+  func testRecordsWithoutAvatar () {
+    var moc = CoreDataHelper.sharedInstance().managedObjectContext!
+    
+    let f1 = makeEntityWithNumber(1)
+    f1.avatarPictureData = "Data 1".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+    let f2 = makeEntityWithNumber(2)
+    let f3 = makeEntityWithNumber(3)
+    f3.avatarPictureData = "Data 3".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+    let f4 = makeEntityWithNumber(4)
+    f4.avatarPictureIsSilhouette = true
+    
+    // Non althabetical order
+    moc.insertObject(f3)
+    moc.insertObject(f1)
+    moc.insertObject(f2)
+    moc.insertObject(f4)
+    
+    CoreDataHelper.sharedInstance().saveContext()
+    var request: NSFetchRequest
+    var records: [FriendEntity]?
+    
+    // Records with missed avatar
+    request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsWithoutAvatarImage
+    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    XCTAssertNotNil(records)
+    XCTAssertTrue(records!.count == 1)
+    XCTAssertTrue(records!.first! == f2)
+    
   }
   
   func testReadonlyFetchRequests () {
@@ -36,12 +68,12 @@ class CoreDataHelperFriendsTests : XCTestCase {
     let f2 = makeEntityWithNumber(2)
     let f3 = makeEntityWithNumber(3)
     f3.avatarPictureData = "Data 3".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-
+    
     // Non althabetical order
     moc.insertObject(f3)
     moc.insertObject(f1)
     moc.insertObject(f2)
-
+    
     CoreDataHelper.sharedInstance().saveContext()
     var request: NSFetchRequest
     var records: [FriendEntity]?
@@ -54,13 +86,6 @@ class CoreDataHelperFriendsTests : XCTestCase {
     XCTAssertTrue(records!.first! == f1)
     XCTAssertTrue(records![1] == f2)
     XCTAssertTrue(records!.last! == f3)
-    
-    // Records with missed avatar
-    request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsWithoutAvatarImage
-    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
-    XCTAssertNotNil(records)
-    XCTAssertTrue(records!.count == 1)
-    XCTAssertTrue(records!.first! == f2)
     
     // Records for requested names
     request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsMatchingNames(["User 1", "User 2", "User X"])
@@ -154,6 +179,6 @@ class CoreDataHelperFriendsTests : XCTestCase {
     request = CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName
     records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
     XCTAssertNotNil(records)
-    XCTAssertTrue(records!.count == 5)    
+    XCTAssertTrue(records!.count == 5)
   }
 }

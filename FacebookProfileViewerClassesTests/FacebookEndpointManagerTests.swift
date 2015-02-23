@@ -13,6 +13,11 @@ import FacebookProfileViewerClasses
 class FacebookEndpointManagerTests: XCTestCase {
 
   var manager = FacebookEndpointManager()
+  
+  override func setUp() {
+    super.setUp()
+    self.expectation = expectationWithDescription("Fetch request")
+  }
 
   func testDownloadUserProfileImage() {
     var url = manager.fetchUserPictureURL()

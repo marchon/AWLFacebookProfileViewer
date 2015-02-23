@@ -9,6 +9,10 @@ import FacebookProfileViewerClasses
 
 class FacebookPostsLoadManagerTests: XCTestCase {
   
+  override func setUp() {
+    super.setUp()
+    self.expectation = expectationWithDescription("Fetch request")
+  }
   
   func testFetch100OldPosts() {
     let mngr = FacebookPostsLoadManager()

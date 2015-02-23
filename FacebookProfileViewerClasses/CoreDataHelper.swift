@@ -320,7 +320,7 @@ public class CoreDataHelper {
     public lazy var fetchRequestForRecordsWithoutAvatarImage: NSFetchRequest = {
       let entityName = FriendEntity.description().componentsSeparatedByString(".").last!
       var fetchRequest = NSFetchRequest(entityName: entityName)
-      fetchRequest.predicate = NSPredicate(format: "\(kFriendEntityKeyAvatarPictureData) == NIL")
+      fetchRequest.predicate = NSPredicate(format: "\(kFriendEntityKeyAvatarPictureIsSilhouette) == FALSE AND \(kFriendEntityKeyAvatarPictureData) == NIL")
       return fetchRequest
       }()
     

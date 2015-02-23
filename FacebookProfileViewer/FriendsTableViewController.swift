@@ -118,12 +118,17 @@ extension FriendsTableViewController {
     }
     let object = self.fetchedResultsController.objectAtIndexPath(atIndexPath) as FriendEntity
     cell?.textLabel?.text = object.userName
-    if let thePictureData = object.avatarPictureData {
-      let img = UIImage(data: thePictureData)
-      cell?.imageView?.image = img?.imageWithSize(CGSizeMake(40, 40))
+    if object.avatarPictureIsSilhouette {
+      cell?.imageView?.image = UIImage(named: "iconFriendSilhouette")
     } else {
-      cell?.imageView?.image = nil
+      if let thePictureData = object.avatarPictureData {
+        let img = UIImage(data: thePictureData)
+        cell?.imageView?.image = img?.imageWithSize(CGSizeMake(40, 40))
+      } else {
+        cell?.imageView?.image = UIImage(named: "iconFriendSilhouette")
+      }
     }
+
   }
 
   private func fetchMissedAvatarPictures(entities: [FriendEntity]) {
@@ -131,6 +136,9 @@ extension FriendsTableViewController {
       log.verbose("Will fetch \(entities.count) missed avatar images.")
     }
     for theItem in entities {
+      if theItem.avatarPictureIsSilhouette {
+        continue
+      }
       if let url = NSURL(string: theItem.avatarPictureURL) {
         UIApplication.sharedApplication().showNetworkActivityIndicator()
         self.backendManager.dataDownloadTask(url,
@@ -191,13 +199,19 @@ extension FriendsTableViewController {
         for itemDictionary in results {
           /// Json value for 'id' returned from /me/taggable_friends is useless. Using name
           var valueFiendName       = itemDictionary.valueForKey("name") as? String
+          var valueisPictureIsSilhouette = itemDictionary.valueForKeyPath("picture.data.is_silhouette") as? Int
           var valueFiendPictureURL = itemDictionary.valueForKeyPath("picture.data.url") as? String
+          var isSilhouette = false
+          if let theValue = valueisPictureIsSilhouette {
+            isSilhouette = theValue == 1
+          }
 
           if let theFriendName = valueFiendName {
             namesOfAllFriends.append(theFriendName)
             // FIXME: Should we use managedObjectContext!.performBlock here for Thread safety?
             let entityInstance = CoreDataHelper.Friends.makeEntityInstance()
             entityInstance.userName = theFriendName
+            entityInstance.avatarPictureIsSilhouette = isSilhouette
             if let theFiendPictureURL = valueFiendPictureURL {
               entityInstance.avatarPictureURL = theFiendPictureURL
             }

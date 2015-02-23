@@ -8,8 +8,9 @@ import XCTest
 import FacebookProfileViewerClasses
 
 class FacebookProfileLoadManagerTests : XCTestCase {
-
+  
   func testFetchUserProfile() {
+    self.expectation = expectationWithDescription("Fetch request")
     let mngr = FacebookProfileLoadManager()
     mngr.fetchUserProfile( success: { (results: FacebookProfileLoadManager.FetchResults) -> Void in
       XCTAssertNotNil(results.userProfile)
@@ -20,7 +21,7 @@ class FacebookProfileLoadManagerTests : XCTestCase {
       failure: { (error: NSError) -> Void in
         self.reportFailure(error)
     })
-
+    
     waitForExpectationsWithTimeout(30, handler: nil)
   }
 }
