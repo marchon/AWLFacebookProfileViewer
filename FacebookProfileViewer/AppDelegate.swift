@@ -30,6 +30,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window!.rootViewController = self.rootViewController;
     self.window!.makeKeyAndVisible()
 
+    // Log fonts
+    #if FALSE
+    for family in UIFont.familyNames() as [String] {
+      println(family)
+      for name in UIFont.fontNamesForFamilyName(family) as [String] {
+        println("\t" + name)
+      }
+    }
+    #endif
+
     return true
   }
   

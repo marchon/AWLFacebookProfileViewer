@@ -31,6 +31,16 @@ public class SegmentedControl: UISegmentedControl {
   }
 
   func setupNib() {
+    var imgDevider = UIImage(named: "segmControlDevider", inBundle:NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection:nil)
+    imgDevider = imgDevider?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 1, 10, 1))
+    let imgBg = UIImage(named: "segmControlBackground", inBundle:NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection:nil)
+    self.setBackgroundImage(imgBg, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
+    self.setBackgroundImage(imgBg, forState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)
+
+    self.setDividerImage(imgDevider, forLeftSegmentState: UIControlState.Normal, rightSegmentState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)
+    self.setDividerImage(imgDevider, forLeftSegmentState: UIControlState.Selected, rightSegmentState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
+    self.setDividerImage(imgDevider, forLeftSegmentState: UIControlState.Normal, rightSegmentState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
+    self.tintColor = UIColor.whiteColor()
   }
   
 }

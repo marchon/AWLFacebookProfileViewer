@@ -97,7 +97,7 @@ extension FriendsTableViewController {
   }
 
   private func configureAppearance() {
-    self.tableView.backgroundColor = UIColor.redColor()
+    self.tableView.backgroundColor = UIColor.fromRGB(0xF3F3F3)
     self.refreshControl?.backgroundColor = UIColor.blueColor()
     self.refreshControl?.tintColor = UIColor.whiteColor()
   }

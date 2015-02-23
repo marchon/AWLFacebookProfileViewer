@@ -1,1 +1,0 @@
-Slices exported from Sketch goes here.
