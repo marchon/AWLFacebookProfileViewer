@@ -31,13 +31,24 @@ public class CoreDataHelper {
     var storeType = NSSQLiteStoreType
     #if TEST
       storeType = NSInMemoryStoreType
-    #elseif DEBUG
-    if let envValue = NSProcessInfo.processInfo().environment["AWLInMemoryStore"] as? String {
-      if envValue == "YES" {
-        storeType = NSInMemoryStoreType
+      #elseif DEBUG
+      if let envValue = NSProcessInfo.processInfo().environment["AWLInMemoryStore"] as? String {
+        if envValue == "YES" {
+          storeType = NSInMemoryStoreType
+        }
+      }
+    #endif
+    
+    if storeType == NSSQLiteStoreType {
+      if let documentPath = url.path {
+        if !NSFileManager.defaultManager().fileExistsAtPath(documentPath) {
+          logInfo("Document is not exists: \(documentPath)")
+          AppState.Friends.lastFetchDate = nil
+          AppState.Posts.lastFetchDate = nil
+        }
       }
     }
-    #endif
+    
     if coordinator!.addPersistentStoreWithType(storeType, configuration: nil, URL: url, options: nil, error: &error) == nil {
       coordinator = nil
       // Report any error we got.
@@ -122,13 +133,13 @@ public class CoreDataHelper {
       }
       return Static.instance
     }
-
+    
     public lazy var fetchRequestForRecordsWithoutPreviewImage: NSFetchRequest = {
       let entityName = PostEntity.description().componentsSeparatedByString(".").last!
       var fetchRequest = NSFetchRequest(entityName: entityName)
       fetchRequest.predicate = NSPredicate(format: "\(kPostEntityKeyPictureURL) != NIL && \(kPostEntityKeyPictureData) == NIL")
       return fetchRequest
-    }()
+      }()
     
     public lazy var fetchRequestForAllRecordsSortedByCreatedDate: NSFetchRequest = {
       let entityName = PostEntity.description().componentsSeparatedByString(".").last!
@@ -137,7 +148,7 @@ public class CoreDataHelper {
       fetchRequest.sortDescriptors = [sortDescriptor]
       return fetchRequest
       }()
-
+    
     public lazy var fetchRequestForOldestPost: NSFetchRequest = {
       let entityName = PostEntity.description().componentsSeparatedByString(".").last!
       var fetchRequest = NSFetchRequest(entityName: entityName)
@@ -145,8 +156,8 @@ public class CoreDataHelper {
       fetchRequest.sortDescriptors = [sortDescriptor]
       fetchRequest.fetchLimit = 1
       return fetchRequest
-    }()
-
+      }()
+    
     public func fetchRequestForRecordsMatchingIds(ids: [String]) -> NSFetchRequest {
       let entityName = PostEntity.description().componentsSeparatedByString(".").last!
       var fetchRequest = NSFetchRequest(entityName: entityName)
@@ -228,29 +239,29 @@ public class CoreDataHelper {
         return nil
       }
     }
-
+    
     public class func addOrUpdateRecordsWithEntities(entities: [PostEntity]) -> [PostEntity] {
       if entities.count <= 0 {
         return []
       }
-
+      
       var sortedEntities = entities.sorted({ (lhs: PostEntity, rhs: PostEntity) -> Bool in
         return lhs.id < rhs.id
       })
-
+      
       var ids = [String]()
       for entity in sortedEntities {
         ids.append(entity.id)
       }
-
+      
       let fetchRequest = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsMatchingIds(ids)
       var fetchResults = CoreDataHelper.Posts.fetchRecordsAndLogError(fetchRequest)
       if fetchResults == nil {
         return []
       }
-
+      
       let moc = CoreDataHelper.sharedInstance().managedObjectContext!
-
+      
       if fetchResults!.count <= 0 {
         for theItem in entities { // Just insert all fetched elements
           moc.insertObject(theItem)
@@ -258,23 +269,23 @@ public class CoreDataHelper {
         CoreDataHelper.sharedInstance().saveContext()
         return entities
       }
-
+      
       var updatedOrInsertedEntities = [PostEntity]()
       let entitiesFromDatabase = fetchResults!
       let entitiesFromResponse = sortedEntities
       logVerbose("Number of records in database: \(entitiesFromDatabase.count), from server response: \(entitiesFromResponse.count)")
       var iteratorForDatabase = entitiesFromDatabase.generate()
       var iteratorForResponse = entitiesFromResponse.generate()
-
+      
       var entityFromDatabase = iteratorForDatabase.next()
       var entityFromResponse = iteratorForResponse.next()
-
+      
       var shouldSaveCoreData = false
       do {
         if entityFromDatabase == nil || entityFromResponse == nil {
           break
         }
-
+        
         if entityFromDatabase!.id == entityFromResponse!.id {
           if entityFromDatabase! != entityFromResponse! {
             entityFromDatabase!.type = entityFromResponse!.type
@@ -294,9 +305,9 @@ public class CoreDataHelper {
           updatedOrInsertedEntities.append(entityFromResponse!)
           entityFromResponse = iteratorForResponse.next()
         }
-
+        
       } while (true)
-
+      
       // Continue inserting if there are still available new entries from server
       while entityFromResponse != nil {
         shouldSaveCoreData = true
@@ -304,14 +315,14 @@ public class CoreDataHelper {
         updatedOrInsertedEntities.append(entityFromResponse!)
         entityFromResponse = iteratorForResponse.next()
       }
-
+      
       if shouldSaveCoreData {
         CoreDataHelper.sharedInstance().saveContext()
         return updatedOrInsertedEntities
       }
-
+      
       return []
-
+      
     }
   }
   
@@ -384,7 +395,7 @@ public class CoreDataHelper {
         CoreDataHelper.sharedInstance().saveContext()
         return entities
       }
-
+      
       var updatedOrInsertedEntities = [FriendEntity]()
       let entitiesFromDatabase = fetchResults!
       let entitiesFromResponse = sortedEntities
@@ -431,7 +442,7 @@ public class CoreDataHelper {
         CoreDataHelper.sharedInstance().saveContext()
         return updatedOrInsertedEntities
       }
-
+      
       return []
       
     }

@@ -70,7 +70,7 @@ extension PostsTableViewController {
     self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: Selector("doFetchPosts:"), forControlEvents: UIControlEvents.ValueChanged)
     self.configureAppearance()
-    self.configureTitleForRefreshControl()
+    //self.configureTitleForRefreshControl()
     self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegateForceReloadChangeNotification, object: nil,
       queue: NSOperationQueue.mainQueue()) { (n: NSNotification!) -> Void in
         if AppState.Posts.lastFetchDate == nil {
@@ -102,17 +102,17 @@ extension PostsTableViewController {
   }
 
   private func configureTitleForRefreshControl() {
-    if let theDate = AppState.Posts.lastFetchDate {
-      var lastUpdateDate = NSDateFormatter.refreshControlDateFormatter().stringFromDate(theDate)
-      self.refreshControl?.attributedTitle = NSAttributedString(string: lastUpdateDate)
-    } else {
-      self.refreshControl?.attributedTitle = nil
-    }
+//    if let theDate = AppState.Posts.lastFetchDate {
+//      var lastUpdateDate = NSDateFormatter.refreshControlDateFormatter().stringFromDate(theDate)
+//      self.refreshControl?.attributedTitle = NSAttributedString(string: lastUpdateDate)
+//    } else {
+//      self.refreshControl?.attributedTitle = nil
+//    }
   }
 
   private func configureAppearance() {
     self.tableView.backgroundColor = StyleKit.TableView.backgroundColor
-    self.refreshControl?.backgroundColor = UIColor.blueColor()
+    self.refreshControl?.backgroundColor = StyleKit.Palette.baseColor4
     self.refreshControl?.tintColor = UIColor.whiteColor()
   }
 
@@ -136,6 +136,7 @@ extension PostsTableViewController {
     #if DEBUG
       if let envValue = NSProcessInfo.processInfo().environment["AWLPostsAlwaysLoad"] as? String {
         if envValue == "YES" {
+          log.verbose("Fetch forced by macro definition")
           fetchPostsFromServer(since: nil, until: nil)
           return
         }
@@ -143,7 +144,8 @@ extension PostsTableViewController {
     #endif
 
     if let theDate = AppState.Posts.lastFetchDate {
-      let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600
+      let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600.0
+      log.debug("Elapsed hours from last update: \(elapsedHoursFromLastUpdate)")
       if elapsedHoursFromLastUpdate > 24 { // FIXME: Time should be confugurable.
         self.fetchLatestPostsFromServer()
       } else {
@@ -224,8 +226,8 @@ extension PostsTableViewController {
         self.log.debug("Posts fetch completed.")
         AppState.Posts.lastFetchDate = NSDate()
         dispatch_async(dispatch_get_main_queue(), {
-          self.refreshControl!.endRefreshing()
           self.configureTitleForRefreshControl()
+          self.refreshControl!.endRefreshing()
         })
       }
     )
@@ -268,6 +270,12 @@ extension PostsTableViewController {
     let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
     if indexPath.row >= numberOfObjects {
       let cell = tableView.dequeueReusableCellWithIdentifier("loadMoreCell", forIndexPath: indexPath) as UITableViewCell
+      cell.backgroundColor = StyleKit.Palette.baseColor4
+      cell.selectedBackgroundView = UIView()
+      cell.selectedBackgroundView.backgroundColor = StyleKit.Palette.baseColor4.darkerColorForColor()
+      cell.contentView.backgroundColor = UIColor.clearColor()
+      cell.textLabel?.backgroundColor = UIColor.clearColor()
+      cell.textLabel?.textColor = UIColor.whiteColor()
       return cell
     } else {
       let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as UITableViewCell

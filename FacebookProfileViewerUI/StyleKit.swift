@@ -35,6 +35,10 @@ public class StyleKit {
       return UIColor.fromRGB(0xF3F3F3)
     }
     
+    public class var selectedCellBackgroundColor: UIColor {
+      return UIColor.fromRGB(0xE9E9E9)
+    }
+    
   }
   
   public class ProfileView {

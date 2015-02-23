@@ -32,6 +32,8 @@ public class FriendTableViewCell : UITableViewCell {
     self.backgroundColor = StyleKit.TableView.cellBackgroundColor
     self.contentView.backgroundColor = UIColor.clearColor()
     self.textLabel?.backgroundColor = UIColor.clearColor()
+    self.selectedBackgroundView = UIView()
+    self.selectedBackgroundView.backgroundColor = StyleKit.TableView.selectedCellBackgroundColor
   }
   
   public override func layoutSubviews() {

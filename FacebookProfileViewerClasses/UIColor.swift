@@ -12,4 +12,31 @@ public extension UIColor {
     let B = CGFloat(hex & 0xFF) / 255.0
     return UIColor(red: R, green: G, blue: B, alpha: 1.0)
   }
+  
+  public func lighterColorForColor() -> UIColor {
+    var r = CGFloat(0)
+    var g = CGFloat(0)
+    var b = CGFloat(0)
+    var a = CGFloat(0)
+    if self.getRed(&r, green: &g, blue: &b, alpha: &a) {
+      return UIColor(red: min(r + 0.2, 1.0), green: min(g + 0.2, 1.0), blue: min(b + 0.2, 1.0), alpha: a)
+    } else {
+      assert(false, "Unable to get lighter color for color: \(self)")
+      return self
+    }
+  }
+  
+  public func darkerColorForColor() -> UIColor {
+    var r = CGFloat(0)
+    var g = CGFloat(0)
+    var b = CGFloat(0)
+    var a = CGFloat(0)
+    if self.getRed(&r, green: &g, blue: &b, alpha: &a) {
+      return UIColor(red: min(r - 0.2, 1.0), green: min(g - 0.2, 1.0), blue: min(b - 0.2, 1.0), alpha: a)
+    } else {
+      assert(false, "Unable to get lighter color for color: \(self)")
+      return self
+    }
+  }
+  
 }
