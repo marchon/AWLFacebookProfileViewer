@@ -176,6 +176,7 @@ extension FriendsTableViewController {
 
     if let theDate = AppState.Friends.lastFetchDate {
       let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600
+      log.debug("Elapsed hours from last update: \(elapsedHoursFromLastUpdate)")
       if elapsedHoursFromLastUpdate > 24 { // FIXME: Time should be confugurable.
         self.fetchFriendsFromServer()
       } else {
@@ -261,11 +262,13 @@ extension FriendsTableViewController {
     let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
     self.configureTableView(shouldShowBackgroundView: numberOfObjects == 0)
 
-    return self.fetchedResultsController.sections?.count ?? 0
+    let numberOfSections = self.fetchedResultsController.sections?.count ?? 0
+    return numberOfSections
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return fetchedResultsController.sections?[section].numberOfObjects ?? 0
+    let numberOfObjects = fetchedResultsController.sections?[section].numberOfObjects ?? 0
+    return numberOfObjects
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -296,8 +299,6 @@ extension FriendsTableViewController {
       case .Insert:
         self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
       case .Update:
-        let cell = self.tableView.cellForRowAtIndexPath(atIndexPath!)
-        self.configureCell(cell, atIndexPath: atIndexPath!)
         self.tableView.reloadRowsAtIndexPaths([atIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
       case .Move:
         self.tableView.deleteRowsAtIndexPaths([atIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)

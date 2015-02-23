@@ -255,11 +255,12 @@ extension PostsTableViewController {
     let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
     self.configureTableView(shouldShowBackgroundView: numberOfObjects == 0)
 
-    return self.fetchedResultsController.sections?.count ?? 0
+    let numberOfSections = self.fetchedResultsController.sections?.count ?? 0
+    return numberOfSections
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
+    let numberOfObjects = fetchedResultsController.sections?[section].numberOfObjects ?? 0
     if numberOfObjects > 0 {
       return numberOfObjects + 1
     }
@@ -324,8 +325,6 @@ extension PostsTableViewController {
       case .Insert:
         self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
       case .Update:
-        let cell = self.tableView.cellForRowAtIndexPath(atIndexPath!)
-        self.configureCell(cell, atIndexPath: atIndexPath!)
         self.tableView.reloadRowsAtIndexPaths([atIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)
       case .Move:
         self.tableView.deleteRowsAtIndexPaths([atIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)

@@ -10,16 +10,35 @@ private var UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible = 0
 public extension UIApplication {
   
   public func showNetworkActivityIndicator() {
-    // FIXME: Seems we need to set indicator from Main thread
-    UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible++
-    self.networkActivityIndicatorVisible = UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible > 0
+    
+    let doStaff: () -> Void = {
+      UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible++
+      self.networkActivityIndicatorVisible = UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible > 0
+    }
+    
+    if NSThread.isMainThread() {
+      doStaff()
+    } else {
+      dispatch_sync(dispatch_get_main_queue(), doStaff);
+    }
   }
   
   
   public func hideNetworkActivityIndicator() {
-    UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible--
-    assert(UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible >= 0, "Unbalanced show/hide calls.")
-    self.networkActivityIndicatorVisible = UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible > 0
+    
+    let doStaff: () -> Void = {
+      UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible--
+      if UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible < 0 {
+        logError("Unbalanced show/hide calls: \(UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible)")
+      }
+      self.networkActivityIndicatorVisible = UIApplicationNetworkActivityIndicatorNumberOfCallsToSetVisible > 0
+    }
+    
+    if NSThread.isMainThread() {
+      doStaff()
+    } else {
+      dispatch_sync(dispatch_get_main_queue(), doStaff);
+    }
   }
   
 }
