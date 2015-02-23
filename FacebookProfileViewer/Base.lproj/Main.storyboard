@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NEU-gB-xkn">
-                                <rect key="frame" x="0.0" y="199" width="320" height="369"/>
+                                <rect key="frame" x="0.0" y="198" width="320" height="370"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RZF-E8-ht5" customClass="SegmentedControl" customModule="FacebookProfileViewerUI">
@@ -131,13 +131,13 @@
         <scene sceneID="s9W-nL-ZgK">
             <objects>
                 <tableViewController storyboardIdentifier="friendsViewController" id="azU-qI-VuJ" customClass="FriendsTableViewController" customModule="FacebookProfileViewer" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="8Xa-iS-dm0">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" id="8Xa-iS-dm0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.83520281314849854" green="0.8353467583656311" blue="0.8351936936378479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendCell" textLabel="gjb-tB-LPq" style="IBUITableViewCellStyleDefault" id="lM7-iU-mam" customClass="FriendTableViewCell" customModule="FacebookProfileViewerUI">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendCell" textLabel="gjb-tB-LPq" imageView="gFY-pd-AcJ" style="IBUITableViewCellStyleDefault" id="lM7-iU-mam" customClass="FriendTableViewCell" customModule="FacebookProfileViewerUI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lM7-iU-mam" id="7SF-AN-Ka4">
@@ -149,6 +149,9 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="iconFriendSilhouette" id="gFY-pd-AcJ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -263,4 +266,7 @@
             <point key="canvasLocation" x="125" y="871"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconFriendSilhouette" width="40" height="40"/>
+    </resources>
 </document>

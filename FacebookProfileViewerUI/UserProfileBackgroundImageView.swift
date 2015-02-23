@@ -36,7 +36,7 @@ public class UserProfileBackgroundImageView: UIImageView {
   }
 
   func setupNib() {
-    self.backgroundColor = UIColor.darkGrayColor()
+    self.backgroundColor = UIColor.darkGrayColor() // FIXME: Use StyleKit colors
   }
   
 }

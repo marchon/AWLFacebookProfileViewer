@@ -45,7 +45,6 @@
 		80E757781A9AB22D00CBB844 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E757771A9AB22D00CBB844 /* UIColor.swift */; };
 		80F43D3C1A824C890084881F /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F43D3B1A824C890084881F /* NSError.swift */; };
 		80F43D3E1A8256390084881F /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F43D3D1A8256390084881F /* XCTestCase.swift */; };
-		80FF71331A9A9E54005715BA /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80FF71321A9A9E54005715BA /* Media.xcassets */; };
 		80FF71351A9AA3C4005715BA /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FF71341A9AA3C4005715BA /* AvatarImageView.swift */; };
 		80FF71371A9AA4BA005715BA /* UserProfileBackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FF71361A9AA4BA005715BA /* UserProfileBackgroundImageView.swift */; };
 		80FF71461A9AAD0D005715BA /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 80FF713B1A9AAAF2005715BA /* Apache License.txt */; };
@@ -71,6 +70,9 @@
 		C58C7BE81A7FD36E007E3996 /* FacebookProfileLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */; };
 		C5921A2E1A920E6600298543 /* CoreDataHelperFriendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5921A2D1A920E6600298543 /* CoreDataHelperFriendsTests.swift */; };
 		C5921A301A923BBA00298543 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5921A2F1A923BBA00298543 /* Reflection.swift */; };
+		C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */; };
+		C5A31F421A9B4C2800CC89D6 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A31F411A9B4C2800CC89D6 /* UIImage.swift */; };
+		C5A31F431A9B4DAB00CC89D6 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80FF71321A9A9E54005715BA /* Media.xcassets */; };
 		C5A750701A80E1930089703F /* FacebookProfileLoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */; };
 		C5AD127D1A97428500B1DE89 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD127C1A97428500B1DE89 /* UIApplication.swift */; };
 		C5AD127F1A97485700B1DE89 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C5AD127E1A97485700B1DE89 /* Settings.bundle */; };
@@ -198,6 +200,8 @@
 		C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookProfileLoadManager.swift; sourceTree = "<group>"; };
 		C5921A2D1A920E6600298543 /* CoreDataHelperFriendsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelperFriendsTests.swift; sourceTree = "<group>"; };
 		C5921A2F1A923BBA00298543 /* Reflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
+		C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
+		C5A31F411A9B4C2800CC89D6 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookProfileLoadManagerTests.swift; sourceTree = "<group>"; };
 		C5AD127C1A97428500B1DE89 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		C5AD127E1A97485700B1DE89 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
@@ -278,12 +282,12 @@
 			children = (
 				803313741A74661500E54701 /* Supporting Files */,
 				807E28661A7A58A3005DBF05 /* NibDesignable.swift */,
+				C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */,
 				80FF71361A9AA4BA005715BA /* UserProfileBackgroundImageView.swift */,
 				808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */,
 				80FF71341A9AA3C4005715BA /* AvatarImageView.swift */,
 				807E28641A7A57EB005DBF05 /* UserProfile.swift */,
 				807E28621A7A578B005DBF05 /* UserProfile.xib */,
-				80FF71321A9A9E54005715BA /* Media.xcassets */,
 				C57D70971A84E060005D488E /* FriendTableViewCell.swift */,
 				C57D709B1A850689005D488E /* PostsTableViewCell.swift */,
 				801CE9231A9A3E8D0062BD83 /* SegmentedControl.swift */,
@@ -355,6 +359,7 @@
 				808A363B1A7EA19B00C18EC1 /* LoginScreenViewController.swift */,
 				80C3B0611A70506A0004CBDE /* Main.storyboard */,
 				80C3B0641A70506A0004CBDE /* Images.xcassets */,
+				80FF71321A9A9E54005715BA /* Media.xcassets */,
 			);
 			path = FacebookProfileViewer;
 			sourceTree = "<group>";
@@ -363,6 +368,7 @@
 			isa = PBXGroup;
 			children = (
 				80E757771A9AB22D00CBB844 /* UIColor.swift */,
+				C5A31F411A9B4C2800CC89D6 /* UIImage.swift */,
 				C5AD127C1A97428500B1DE89 /* UIApplication.swift */,
 				80F43D3B1A824C890084881F /* NSError.swift */,
 				808A363D1A7EA4F100C18EC1 /* NSURL.swift */,
@@ -593,7 +599,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80FF71331A9A9E54005715BA /* Media.xcassets in Resources */,
 				807E28631A7A578B005DBF05 /* UserProfile.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -612,6 +617,7 @@
 				80FF71491A9AAD0D005715BA /* OpenSans-ExtraBold.ttf in Resources */,
 				80FF71481A9AAD0D005715BA /* OpenSans-BoldItalic.ttf in Resources */,
 				80FF71461A9AAD0D005715BA /* Apache License.txt in Resources */,
+				C5A31F431A9B4DAB00CC89D6 /* Media.xcassets in Resources */,
 				80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */,
 				80FF714C1A9AAD0D005715BA /* OpenSans-Light.ttf in Resources */,
 				80FF714E1A9AAD0D005715BA /* OpenSans-Regular.ttf in Resources */,
@@ -628,6 +634,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5AD127D1A97428500B1DE89 /* UIApplication.swift in Sources */,
+				C5A31F421A9B4C2800CC89D6 /* UIImage.swift in Sources */,
 				80E757781A9AB22D00CBB844 /* UIColor.swift in Sources */,
 				C58C7BE81A7FD36E007E3996 /* FacebookProfileLoadManager.swift in Sources */,
 				801029051A82679F00D73C54 /* NSDictionary.swift in Sources */,
@@ -670,6 +677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */,
 				807E28651A7A57EB005DBF05 /* UserProfile.swift in Sources */,
 				808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */,
 				C57D709C1A850689005D488E /* PostsTableViewCell.swift in Sources */,

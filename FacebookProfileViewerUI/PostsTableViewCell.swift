@@ -29,7 +29,7 @@ public class PostsTableViewCell : UITableViewCell {
   }
 
   public func setupNib() {
-    self.backgroundColor = UIColor.fromRGB(0xF3F3F3)
+    self.backgroundColor = StyleKit.TableView.cellBackgroundColor
     self.contentView.backgroundColor = UIColor.clearColor()
     self.textLabel?.backgroundColor = UIColor.clearColor()
   }

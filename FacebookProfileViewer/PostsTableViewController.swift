@@ -53,7 +53,7 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
   private var tableViewBackgroundView: UIView = {
     var view = UILabel()
     view.text = "No data is currently available.\n Please pull down to refresh."
-    view.textColor = UIColor.blackColor()
+    view.textColor = UIColor.blackColor() // FIXME: Use StyleKit colors
     view.numberOfLines = 2
     view.textAlignment = NSTextAlignment.Center
     view.font = UIFont.systemFontOfSize(20)
@@ -111,7 +111,7 @@ extension PostsTableViewController {
   }
 
   private func configureAppearance() {
-    self.tableView.backgroundColor = UIColor.fromRGB(0xF3F3F3)
+    self.tableView.backgroundColor = StyleKit.TableView.backgroundColor
     self.refreshControl?.backgroundColor = UIColor.blueColor()
     self.refreshControl?.tintColor = UIColor.whiteColor()
   }

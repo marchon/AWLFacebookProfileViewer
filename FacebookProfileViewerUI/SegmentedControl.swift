@@ -8,7 +8,7 @@
 
 import UIKit
 
-@IBDesignable
+//@IBDesignable
 public class SegmentedControl: UISegmentedControl {
 
   public override init(items: [AnyObject]!) {
@@ -27,13 +27,13 @@ public class SegmentedControl: UISegmentedControl {
   }
 
   public override func prepareForInterfaceBuilder() {
-    self.setupNib()
+    //self.setupNib()
   }
 
   func setupNib() {
-    var imgDevider = UIImage(named: "segmControlDevider", inBundle:NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection:nil)
+    var imgDevider = UIImage(named: "segmControlDevider")
     imgDevider = imgDevider?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 1, 10, 1))
-    let imgBg = UIImage(named: "segmControlBackground", inBundle:NSBundle(forClass: self.dynamicType), compatibleWithTraitCollection:nil)
+    let imgBg = UIImage(named: "segmControlBackground")
     self.setBackgroundImage(imgBg, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
     self.setBackgroundImage(imgBg, forState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)
 

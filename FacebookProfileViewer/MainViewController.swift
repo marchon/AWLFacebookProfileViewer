@@ -161,7 +161,13 @@ extension MainViewController {
       self.topView.userName.text = profile.userName
       self.topView.hometown.text = profile.homeTown
       if let theImageData = profile.avatarPictureData {
-        self.topView.profileAvatar.image = UIImage(data: theImageData)
+        let theView = self.topView.profileAvatar
+        theView.image = UIImage(data: theImageData)
+        theView.layer.borderWidth = 2
+        theView.layer.borderColor = StyleKit.ProfileView.avatarBorderColor.CGColor
+        let radius = 0.5 * max(CGRectGetHeight(theView.bounds), CGRectGetWidth(theView.bounds))
+        theView.layer.cornerRadius = radius
+        theView.clipsToBounds = true
       }
       if let theImageData = profile.coverPhotoData {
         self.topView.coverPhoto.image = UIImage(data: theImageData)
