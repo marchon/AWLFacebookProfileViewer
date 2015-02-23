@@ -10,5 +10,10 @@ public class UserProfile : NibDesignable {
   @IBOutlet public weak var coverPhoto: UIImageView!
   @IBOutlet public weak var userName: UILabel!
   @IBOutlet public weak var hometown: UILabel!
+  
+  override func nibDidLoad() {
+    self.userName.text = ""
+    self.hometown.text = ""
+  }
 }
 

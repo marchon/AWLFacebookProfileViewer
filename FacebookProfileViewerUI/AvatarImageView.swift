@@ -36,7 +36,7 @@ public class AvatarImageView: UIImageView {
   }
 
   func setupNib() {
-    self.backgroundColor = UIColor.blueColor()
+    self.backgroundColor = StyleKit.Palette.baseColor5
   }
   
 }

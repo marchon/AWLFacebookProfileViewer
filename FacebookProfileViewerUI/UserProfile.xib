@@ -24,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OBs-6s-qwB" customClass="UserProfileBackgroundImageView" customModule="FacebookProfileViewerUI" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OBs-6s-qwB" customClass="UserProfileBackgroundImageView" customModule="FacebookProfileViewerUI" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U3S-pA-omX" customClass="AvatarImageView" customModule="FacebookProfileViewerUI" customModuleProvider="target">

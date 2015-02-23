@@ -170,7 +170,7 @@ extension MainViewController {
         theView.clipsToBounds = true
       }
       if let theImageData = profile.coverPhotoData {
-        self.topView.coverPhoto.image = UIImage(data: theImageData)
+        self.topView.coverPhoto.image = UIImage(data: theImageData) // TODO: Adjust image parameters to achive better contrast with status bar
       }
     })
   }
