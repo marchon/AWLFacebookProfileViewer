@@ -15,7 +15,7 @@ if [ -r $SCRIPT_PATH ]; then
     find "$ASSETS_DIR" -type d -name '*.imageset' | xargs rm -rd
     php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=iPhone
     
-    ASSETS_DIR=$CURR_DIR/FacebookProfileViewerUI/Media.xcassets
+    ASSETS_DIR=$CURR_DIR/FacebookProfileViewer/Media.xcassets
     echo "Removing old files..."
     find "$ASSETS_DIR" -type d -name '*.imageset' | xargs rm -rd
     php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=Symbols
