@@ -12,6 +12,8 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
 
   private var notificationObserver: NSObjectProtocol?
   
+  var shouldShowLoadMorePostsCell = false
+  
   lazy private var log: Logger = {
     return Logger.getLogger("PTvc")
     }()
@@ -208,7 +210,9 @@ extension PostsTableViewController {
         UIApplication.sharedApplication().hideNetworkActivityIndicator()
         self.log.error(error.securedDescription)
         dispatch_async(dispatch_get_main_queue(), {
-          self.refreshControl!.endRefreshing()
+          if let rc = self.refreshControl {
+            rc.endRefreshing()
+          }
         })
       },
       completion: {
@@ -216,7 +220,9 @@ extension PostsTableViewController {
         self.log.debug("Posts fetch completed.")
         AppState.Posts.lastFetchDate = NSDate()
         dispatch_async(dispatch_get_main_queue(), {
-          self.refreshControl!.endRefreshing()
+          if let rc = self.refreshControl {
+            rc.endRefreshing()
+          }
         })
       }
     )
@@ -249,16 +255,19 @@ extension PostsTableViewController {
   }
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    let numberOfObjects = fetchedResultsController.sections?[section].numberOfObjects ?? 0
+    var numberOfObjects = fetchedResultsController.sections?[section].numberOfObjects ?? 0
     if numberOfObjects > 0 {
-      return numberOfObjects + 1
+      numberOfObjects++
+      self.shouldShowLoadMorePostsCell = true
+    } else {
+      self.shouldShowLoadMorePostsCell = false
     }
     return numberOfObjects
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
-    if indexPath.row >= numberOfObjects {
+    if self.shouldShowLoadMorePostsCell && indexPath.row == numberOfObjects {
       let cell = tableView.dequeueReusableCellWithIdentifier("loadMoreCell", forIndexPath: indexPath) as UITableViewCell
       cell.backgroundColor = StyleKit.Palette.baseColor4
       cell.selectedBackgroundView = UIView()
@@ -276,7 +285,7 @@ extension PostsTableViewController {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
-    if indexPath.row >= numberOfObjects {
+    if self.shouldShowLoadMorePostsCell && indexPath.row == numberOfObjects  {
       log.verbose("Will load more posts")
       var moc = CoreDataHelper.sharedInstance().managedObjectContext!
       var request = CoreDataHelper.Posts.sharedInstance.fetchRequestForOldestPost
