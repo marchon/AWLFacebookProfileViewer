@@ -76,6 +76,7 @@
 		C5A750701A80E1930089703F /* FacebookProfileLoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */; };
 		C5AD127D1A97428500B1DE89 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD127C1A97428500B1DE89 /* UIApplication.swift */; };
 		C5AD127F1A97485700B1DE89 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C5AD127E1A97485700B1DE89 /* Settings.bundle */; };
+		C5C7253E1A9CCF9C00CF2E48 /* LoadMorePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7253D1A9CCF9C00CF2E48 /* LoadMorePostsView.swift */; };
 		C5F235571A935B0E00D8D28C /* CoreDataHelperPostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F235561A935B0E00D8D28C /* CoreDataHelperPostsTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -205,6 +206,7 @@
 		C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookProfileLoadManagerTests.swift; sourceTree = "<group>"; };
 		C5AD127C1A97428500B1DE89 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		C5AD127E1A97485700B1DE89 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		C5C7253D1A9CCF9C00CF2E48 /* LoadMorePostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMorePostsView.swift; sourceTree = "<group>"; };
 		C5F235561A935B0E00D8D28C /* CoreDataHelperPostsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelperPostsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -287,6 +289,7 @@
 				808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */,
 				80FF71341A9AA3C4005715BA /* AvatarImageView.swift */,
 				807E28641A7A57EB005DBF05 /* UserProfile.swift */,
+				C5C7253D1A9CCF9C00CF2E48 /* LoadMorePostsView.swift */,
 				807E28621A7A578B005DBF05 /* UserProfile.xib */,
 				C57D70971A84E060005D488E /* FriendTableViewCell.swift */,
 				C57D709B1A850689005D488E /* PostsTableViewCell.swift */,
@@ -684,6 +687,7 @@
 				807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */,
 				801CE9241A9A3E8D0062BD83 /* SegmentedControl.swift in Sources */,
 				80FF71371A9AA4BA005715BA /* UserProfileBackgroundImageView.swift in Sources */,
+				C5C7253E1A9CCF9C00CF2E48 /* LoadMorePostsView.swift in Sources */,
 				C57D70981A84E060005D488E /* FriendTableViewCell.swift in Sources */,
 				80FF71351A9AA3C4005715BA /* AvatarImageView.swift in Sources */,
 			);

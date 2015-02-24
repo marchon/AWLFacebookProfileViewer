@@ -55,13 +55,17 @@ extension FriendsTableViewController {
     self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: Selector("doFetchFriends:"), forControlEvents: UIControlEvents.ValueChanged)
     self.configureAppearance()
+  }
+  
+  override func didMoveToParentViewController(parent: UIViewController?) {
+    super.didMoveToParentViewController(parent)
     self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegateForceReloadChangeNotification, object: nil,
       queue: NSOperationQueue.mainQueue()) { (n: NSNotification!) -> Void in
         if AppState.Friends.lastFetchDate == nil {
           self.fetchUsersFromServerIfNeeded()
         }
     }
-
+    
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
     if !self.fetchedResultsController.performFetch(&theFetchError) {
@@ -69,7 +73,7 @@ extension FriendsTableViewController {
     } else {
       log.debug("Found \(self.fetchedResultsController.fetchedObjects?.count ?? -1) friend records in database.")
     }
-
+    
     self.fetchUsersFromServerIfNeeded()
   }
   

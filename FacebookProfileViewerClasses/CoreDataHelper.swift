@@ -179,10 +179,7 @@ public class CoreDataHelper {
     }
     
     public class func makeEntityInstanceFromJSON(properties: NSDictionary) -> PostEntity? {
-      let entityName = PostEntity.description().componentsSeparatedByString(".").last!
-      let moc = CoreDataHelper.sharedInstance().managedObjectContext!
-      let entityDescription = NSEntityDescription.entityForName(entityName, inManagedObjectContext: moc)
-      var entityInstance = PostEntity(entity: entityDescription!, insertIntoManagedObjectContext: nil)
+      var entityInstance = CoreDataHelper.Posts.makeEntityInstance()
       
       if let value = properties.valueForKey("type") as? String {
         if let type = PostEntity.PostType(rawValue: value) {

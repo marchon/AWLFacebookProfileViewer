@@ -72,13 +72,17 @@ extension PostsTableViewController {
     self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: Selector("doFetchPosts:"), forControlEvents: UIControlEvents.ValueChanged)
     self.configureAppearance()
+  }
+  
+  override func didMoveToParentViewController(parent: UIViewController?) {
+    super.didMoveToParentViewController(parent)
     self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegateForceReloadChangeNotification, object: nil,
       queue: NSOperationQueue.mainQueue()) { (n: NSNotification!) -> Void in
         if AppState.Posts.lastFetchDate == nil {
           self.fetchPostsFromServerIfNeeded()
         }
     }
-
+    
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
     if !self.fetchedResultsController.performFetch(&theFetchError) {
@@ -86,7 +90,7 @@ extension PostsTableViewController {
     } else {
       log.debug("Found \(self.fetchedResultsController.fetchedObjects?.count ?? -1) post records in database.")
     }
-
+    
     self.fetchPostsFromServerIfNeeded()
   }
 
@@ -256,53 +260,19 @@ extension PostsTableViewController {
 
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     var numberOfObjects = fetchedResultsController.sections?[section].numberOfObjects ?? 0
-    if numberOfObjects > 0 {
-      numberOfObjects++
-      self.shouldShowLoadMorePostsCell = true
-    } else {
-      self.shouldShowLoadMorePostsCell = false
-    }
+    self.shouldShowLoadMorePostsCell = numberOfObjects > 0
     return numberOfObjects
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
-    if self.shouldShowLoadMorePostsCell && indexPath.row == numberOfObjects {
-      let cell = tableView.dequeueReusableCellWithIdentifier("loadMoreCell", forIndexPath: indexPath) as UITableViewCell
-      cell.backgroundColor = StyleKit.Palette.baseColor4
-      cell.selectedBackgroundView = UIView()
-      cell.selectedBackgroundView.backgroundColor = StyleKit.Palette.baseColor4.darkerColorForColor()
-      cell.contentView.backgroundColor = UIColor.clearColor()
-      cell.textLabel?.backgroundColor = UIColor.clearColor()
-      cell.textLabel?.textColor = UIColor.whiteColor()
-      return cell
-    } else {
-      let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as UITableViewCell
-      self.configureCell(cell, atIndexPath: indexPath)
-      return cell
-    }
+    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as UITableViewCell
+    self.configureCell(cell, atIndexPath: indexPath)
+    return cell
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
-    if self.shouldShowLoadMorePostsCell && indexPath.row == numberOfObjects  {
-      log.verbose("Will load more posts")
-      var moc = CoreDataHelper.sharedInstance().managedObjectContext!
-      var request = CoreDataHelper.Posts.sharedInstance.fetchRequestForOldestPost
-      var records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
-      if let theRecords = records {
-        if theRecords.count > 0 {
-          let theRecord = theRecords.first!
-          let oldPostDate = theRecord.createdDate
-          log.debug("Date of oldest post: \(oldPostDate)")
-          self.fetchPostsFromServer(since: nil, until: oldPostDate)
-        }
-      }
-    }
-    else {
-      let object = fetchedResultsController.objectAtIndexPath(indexPath) as PostEntity
-      logInfo("Associated object of selected cell: \(object.debugDescription)")
-    }
+    let object = fetchedResultsController.objectAtIndexPath(indexPath) as PostEntity
+    logInfo("Associated object of selected cell: \(object.debugDescription)")
   }
 }
 
