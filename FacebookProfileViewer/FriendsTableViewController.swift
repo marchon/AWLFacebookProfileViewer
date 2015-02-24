@@ -110,7 +110,7 @@ extension FriendsTableViewController {
     if cell == nil {
       return
     }
-    let object = self.fetchedResultsController.objectAtIndexPath(atIndexPath) as FriendEntity
+    let object = self.fetchedResultsController.objectAtIndexPath(atIndexPath) as! FriendEntity
     cell?.textLabel?.text = object.userName
     if object.avatarPictureIsSilhouette {
       cell?.imageView?.image = UIImage(named: "iconFriendSilhouette")
@@ -269,13 +269,13 @@ extension FriendsTableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("friendCell", forIndexPath: indexPath) as! UITableViewCell
     self.configureCell(cell, atIndexPath: indexPath)
     return cell
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let object = fetchedResultsController.objectAtIndexPath(indexPath) as FriendEntity
+    let object = fetchedResultsController.objectAtIndexPath(indexPath) as! FriendEntity
     logInfo("Associated object of selected cell: \(object.debugDescription)")
   }
 }
@@ -291,7 +291,7 @@ extension FriendsTableViewController {
 
   func controller(controller: NSFetchedResultsController, didChangeObject: AnyObject,
     atIndexPath: NSIndexPath?, forChangeType: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-      log.verbose("Object did changed for \(forChangeType.stringValue): \((didChangeObject as FriendEntity).userName)")
+      log.verbose("Object did changed for \(forChangeType.stringValue): \((didChangeObject as! FriendEntity).userName)")
       switch forChangeType {
       case .Insert:
         self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)

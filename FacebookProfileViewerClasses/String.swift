@@ -7,6 +7,6 @@ import UIKit
 
 public extension String {
   public var length: Int {
-    return countElements(self)
+    return count(self)
   }
 }

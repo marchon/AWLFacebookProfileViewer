@@ -63,16 +63,15 @@ class MainViewController: UIViewController {
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showWelcomeScreen" {
-      let nc = segue.destinationViewController as UINavigationController
-      let ctrl = nc.viewControllers.first as WelcomeScreenViewController
+      let nc = segue.destinationViewController as! UINavigationController
+      let ctrl = nc.viewControllers.first as! WelcomeScreenViewController
       ctrl.canceled = {
         self.dismissViewControllerAnimated(true, completion: {
           () -> Void in
           AppState.UI.shouldSkipWelcomeScreen = true
         })
       }
-      ctrl.success = {
-        (tokenInfo: (accessToken:String, expiresIn:Int)) -> () in
+      ctrl.success = { (tokenInfo: (accessToken:String, expiresIn:Int)) -> () in
         AppState.UI.shouldSkipWelcomeScreen = true
         AppState.Authentication.facebookAccesToken = tokenInfo.accessToken
         AppState.Authentication.facebookAccesTokenExpitesIn = tokenInfo.expiresIn
@@ -240,7 +239,7 @@ extension MainViewController {
 
   private func layoutChildControllers() {
     for item in childViewControllers {
-      (item as UIViewController).view.frame = bottomView.bounds
+      (item as! UIViewController).view.frame = bottomView.bounds
     }
   }
 

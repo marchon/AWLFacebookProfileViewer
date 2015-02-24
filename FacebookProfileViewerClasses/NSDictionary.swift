@@ -9,7 +9,7 @@ extension NSDictionary {
   func hasKey(key: String) -> Bool {
     return self.allKeys.filter({
       (element: AnyObject) -> Bool in
-      return (element as String) == key
+      return (element as! String) == key
     }).count == 1
   }
 }

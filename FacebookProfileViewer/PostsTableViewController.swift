@@ -236,7 +236,7 @@ extension PostsTableViewController {
     if cell == nil {
       return
     }
-    let object = self.fetchedResultsController.objectAtIndexPath(atIndexPath) as PostEntity
+    let object = self.fetchedResultsController.objectAtIndexPath(atIndexPath) as! PostEntity
     cell?.textLabel?.text = object.title
     cell?.detailTextLabel?.text = PostsTableViewController.facebookDateFormatter().stringFromDate(object.createdDate)
     if let data = object.pictureData {
@@ -265,13 +265,13 @@ extension PostsTableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as UITableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! UITableViewCell
     self.configureCell(cell, atIndexPath: indexPath)
     return cell
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    let object = fetchedResultsController.objectAtIndexPath(indexPath) as PostEntity
+    let object = fetchedResultsController.objectAtIndexPath(indexPath) as! PostEntity
     logInfo("Associated object of selected cell: \(object.debugDescription)")
   }
 }
@@ -287,7 +287,7 @@ extension PostsTableViewController {
 
   func controller(controller: NSFetchedResultsController, didChangeObject: AnyObject,
     atIndexPath: NSIndexPath?, forChangeType: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-      let post = didChangeObject as PostEntity
+      let post = didChangeObject as! PostEntity
       log.verbose("Object did changed for \(forChangeType.stringValue): id=\(post.id); createdDate=\(post.createdDate); type=\(post.type)" + (post.title != nil ? "; title=\(post.title!)" : ""))
       switch forChangeType {
       case .Insert:

@@ -11,7 +11,7 @@ import UIKit
 //@IBDesignable
 public class SegmentedControl: UISegmentedControl {
 
-  public override init(items: [AnyObject]!) {
+  public override init(items: [AnyObject]) {
     super.init(items: items)
     self.setupNib()
   }
