@@ -47,8 +47,11 @@ public class CoreDataHelper {
           AppState.Posts.lastFetchDate = nil
         }
       }
+    } else if storeType == NSInMemoryStoreType {
+      AppState.Friends.lastFetchDate = nil
+      AppState.Posts.lastFetchDate = nil
     }
-    
+  
     if coordinator!.addPersistentStoreWithType(storeType, configuration: nil, URL: url, options: nil, error: &error) == nil {
       coordinator = nil
       // Report any error we got.

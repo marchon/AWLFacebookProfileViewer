@@ -70,7 +70,6 @@ extension PostsTableViewController {
     self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: Selector("doFetchPosts:"), forControlEvents: UIControlEvents.ValueChanged)
     self.configureAppearance()
-    //self.configureTitleForRefreshControl()
     self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegateForceReloadChangeNotification, object: nil,
       queue: NSOperationQueue.mainQueue()) { (n: NSNotification!) -> Void in
         if AppState.Posts.lastFetchDate == nil {
@@ -99,15 +98,6 @@ extension PostsTableViewController {
 
   func doFetchPosts(sender: AnyObject) {
     self.fetchLatestPostsFromServer()
-  }
-
-  private func configureTitleForRefreshControl() {
-//    if let theDate = AppState.Posts.lastFetchDate {
-//      var lastUpdateDate = NSDateFormatter.refreshControlDateFormatter().stringFromDate(theDate)
-//      self.refreshControl?.attributedTitle = NSAttributedString(string: lastUpdateDate)
-//    } else {
-//      self.refreshControl?.attributedTitle = nil
-//    }
   }
 
   private func configureAppearance() {
@@ -226,7 +216,6 @@ extension PostsTableViewController {
         self.log.debug("Posts fetch completed.")
         AppState.Posts.lastFetchDate = NSDate()
         dispatch_async(dispatch_get_main_queue(), {
-          self.configureTitleForRefreshControl()
           self.refreshControl!.endRefreshing()
         })
       }

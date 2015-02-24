@@ -139,7 +139,8 @@ struct ColorLog {
     if isEnabledXcodeColors && isXcodeIDE {
       thePrefix = thePrefix.stringAttributedForTerminalOutput(foregroundColor: nil, backgroundColor: colorPrefix)
     }
-    var theLocation = separatorLocationBegin + theFunction + separatorLocation + theFile + separatorLocationEnd
+    //var theLocation = separatorLocationBegin + theFunction + separatorLocation + theFile + separatorLocationEnd
+    var theLocation = separatorLocationBegin + theFile + separatorLocationEnd
     var logMessage = thePrefix + " " + theMessage + " " + theLocation
     if let buffer = logMessage.cStringUsingEncoding(NSUTF8StringEncoding) {
       puts(buffer)

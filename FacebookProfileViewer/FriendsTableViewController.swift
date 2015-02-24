@@ -55,7 +55,6 @@ extension FriendsTableViewController {
     self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: Selector("doFetchFriends:"), forControlEvents: UIControlEvents.ValueChanged)
     self.configureAppearance()
-    //self.configureTitleForRefreshControl()
     self.notificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegateForceReloadChangeNotification, object: nil,
       queue: NSOperationQueue.mainQueue()) { (n: NSNotification!) -> Void in
         if AppState.Friends.lastFetchDate == nil {
@@ -85,15 +84,6 @@ extension FriendsTableViewController {
 
   func doFetchFriends(sender: AnyObject) {
     self.fetchFriendsFromServer()
-  }
-
-  private func configureTitleForRefreshControl() {
-//    if let theDate = AppState.Friends.lastFetchDate {
-//      var lastUpdateDate = NSDateFormatter.refreshControlDateFormatter().stringFromDate(theDate)
-//      self.refreshControl?.attributedTitle = NSAttributedString(string: lastUpdateDate)
-//    } else {
-//      self.refreshControl?.attributedTitle = nil
-//    }
   }
 
   private func configureAppearance() {
@@ -237,7 +227,9 @@ extension FriendsTableViewController {
         UIApplication.sharedApplication().hideNetworkActivityIndicator()
         self.log.error(error.securedDescription)
         dispatch_async(dispatch_get_main_queue(), {
-          self.refreshControl!.endRefreshing()
+          if let rc = self.refreshControl {
+            rc.endRefreshing()
+          }
         })
       }
       ,
@@ -247,8 +239,9 @@ extension FriendsTableViewController {
         AppState.Friends.lastFetchDate = NSDate()
 
         dispatch_async(dispatch_get_main_queue(), {
-          self.configureTitleForRefreshControl()
-          self.refreshControl!.endRefreshing()
+          if let rc = self.refreshControl {
+            rc.endRefreshing()
+          }
         })
 
     })
