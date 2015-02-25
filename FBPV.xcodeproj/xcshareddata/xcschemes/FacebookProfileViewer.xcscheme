@@ -35,7 +35,7 @@
                BlueprintIdentifier = "803313561A74660100E54701"
                BuildableName = "FacebookProfileViewerClassesTests.xctest"
                BlueprintName = "FacebookProfileViewerClassesTests"
-               ReferencedContainer = "container:FacebookProfileViewer.xcodeproj">
+               ReferencedContainer = "container:FBPV.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "80C3B0541A70506A0004CBDE"
             BuildableName = "FacebookProfileViewer.app"
             BlueprintName = "FacebookProfileViewer"
-            ReferencedContainer = "container:FacebookProfileViewer.xcodeproj">
+            ReferencedContainer = "container:FBPV.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -65,7 +65,7 @@
             BlueprintIdentifier = "80C3B0541A70506A0004CBDE"
             BuildableName = "FacebookProfileViewer.app"
             BlueprintName = "FacebookProfileViewer"
-            ReferencedContainer = "container:FacebookProfileViewer.xcodeproj">
+            ReferencedContainer = "container:FBPV.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>

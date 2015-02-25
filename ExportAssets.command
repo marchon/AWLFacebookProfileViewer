@@ -9,13 +9,13 @@ echo ""
 
 SCRIPT_PATH=$CURR_DIR/Scripts/SketchAssetExport.php
 if [ -r $SCRIPT_PATH ]; then
-    DOC_FILE=$CURR_DIR/FacebookProfileViewerPrototypeDesign/FacebookProfileViewer.sketch
-    ASSETS_DIR=$CURR_DIR/FacebookProfileViewerPrototype/Media.xcassets
+    DOC_FILE=$CURR_DIR/Design/FBPV.sketch
+    ASSETS_DIR=$CURR_DIR/FBPVPrototype/Media.xcassets
     echo "Removing old files..."
     find "$ASSETS_DIR" -type d -name '*.imageset' | xargs rm -rd
     php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=iPhone
     
-    ASSETS_DIR=$CURR_DIR/FacebookProfileViewer/Media.xcassets
+    ASSETS_DIR=$CURR_DIR/FBPV/Media.xcassets
     echo "Removing old files..."
     find "$ASSETS_DIR" -type d -name '*.imageset' | xargs rm -rd
     php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=Symbols
