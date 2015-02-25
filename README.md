@@ -13,6 +13,7 @@ Botton view displays:
 * Recent posts
 * List of frieds
 
+![Screenshot: Friends](https://raw.githubusercontent.com/vgorloff/AWLFacebookProfileViewer/master/Screenshot-Friends.png "Screen: Friends")
 
 Resources
 ---
