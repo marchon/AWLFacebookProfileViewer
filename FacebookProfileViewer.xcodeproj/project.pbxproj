@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8006BA7B1A8FB6FA003F1DF8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8006BA7A1A8FB6FA003F1DF8 /* String.swift */; };
-		801029051A82679F00D73C54 /* NSDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801029041A82679F00D73C54 /* NSDictionary.swift */; };
-		801BA28B1A8A10FD008319C2 /* NSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801BA28A1A8A10FD008319C2 /* NSDateFormatter.swift */; };
-		801BA28D1A8A1C2E008319C2 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801BA28C1A8A1C2E008319C2 /* NSDate.swift */; };
+		375320A8F3E094F2542339C4 /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532224F8A1C41A77EBCE53 /* NSError.swift */; };
+		375323727A0C11BD0F7A833A /* PostEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532D4AFE37570632B1C14C /* PostEntity.swift */; };
+		37532406829CAFA6738345E6 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375323FAB8FFEBEE4AF41D25 /* UIColor.swift */; };
+		3753245C458C32272993A7AA /* NSDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532AA4F48CA59F462AC4E6 /* NSDictionary.swift */; };
+		375324DB613D5B1FFF83B99C /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532E7B820A7E0D82759F6F /* NSFileManager.swift */; };
+		375326D0B9607E310EDD75A2 /* NSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375326839A79DE2CD78ED098 /* NSDateFormatter.swift */; };
+		3753272F043A29F2A8DC6BEE /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753219C8038AE062CC53CC9 /* ProfileEntity.swift */; };
+		375327E6D0AAA758F50864C7 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532EC9C263E5899B18AC96 /* NSDate.swift */; };
+		375329553D6BD36B02816865 /* FriendEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532B5BAF74887199BAC09F /* FriendEntity.swift */; };
+		37532A0A869EDD952EB97DCD /* NSFetchedResultsChangeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532F59C9395B3E5F4C7F4B /* NSFetchedResultsChangeType.swift */; };
+		37532C19E99F08B3CA22CD6A /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532D6947F9F0F19529E4A2 /* NSURL.swift */; };
+		37532D3228EEC8ED3257F81E /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532E25C54C0E60F4483873 /* UIApplication.swift */; };
+		37532D3DB270012D15E59D3E /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753204E035A887625E6E3B9 /* String.swift */; };
+		37532DB3E31FE65B805B14BA /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532596ADC21B67531D9149 /* UIImage.swift */; };
 		801CE9241A9A3E8D0062BD83 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801CE9231A9A3E8D0062BD83 /* SegmentedControl.swift */; };
-		80205E8F1A7996670042E94A /* FriendEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E8E1A7996670042E94A /* FriendEntity.swift */; };
-		80205E911A7996670042E94A /* PostEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E901A7996670042E94A /* PostEntity.swift */; };
-		80205E931A7996670042E94A /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80205E921A7996670042E94A /* ProfileEntity.swift */; };
 		803313521A74660100E54701 /* FacebookProfileViewerClasses.h in Headers */ = {isa = PBXBuildFile; fileRef = 803313511A74660100E54701 /* FacebookProfileViewerClasses.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		803313581A74660100E54701 /* FacebookProfileViewerClasses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */; };
 		803313611A74660100E54701 /* FacebookEndpointManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803313601A74660100E54701 /* FacebookEndpointManagerTests.swift */; };
@@ -29,7 +36,6 @@
 		807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E28661A7A58A3005DBF05 /* NibDesignable.swift */; };
 		807E28731A7AB703005DBF05 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E28721A7AB703005DBF05 /* Logging.swift */; };
 		808A363C1A7EA19B00C18EC1 /* LoginScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A363B1A7EA19B00C18EC1 /* LoginScreenViewController.swift */; };
-		808A363E1A7EA4F100C18EC1 /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A363D1A7EA4F100C18EC1 /* NSURL.swift */; };
 		808A36401A7ECBCF00C18EC1 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A363F1A7ECBCF00C18EC1 /* WelcomeScreenViewController.swift */; };
 		808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */; };
 		80C3B05B1A70506A0004CBDE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05A1A70506A0004CBDE /* AppDelegate.swift */; };
@@ -39,11 +45,7 @@
 		80C3B0651A70506A0004CBDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0641A70506A0004CBDE /* Images.xcassets */; };
 		80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0661A70506A0004CBDE /* LaunchScreen.xib */; };
 		80CDE7BD1A8E242A00499B4E /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDE7BC1A8E242A00499B4E /* CoreDataHelper.swift */; };
-		80CDE7BF1A8E24E600499B4E /* NSFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDE7BE1A8E24E600499B4E /* NSFileManager.swift */; };
 		80CFEE961A7E986F00D47E62 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFEE941A7E947B00D47E62 /* AppState.swift */; };
-		80DBED4C1A94F9AD001B36F8 /* NSFetchedResultsChangeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80DBED4B1A94F9AD001B36F8 /* NSFetchedResultsChangeType.swift */; };
-		80E757781A9AB22D00CBB844 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E757771A9AB22D00CBB844 /* UIColor.swift */; };
-		80F43D3C1A824C890084881F /* NSError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F43D3B1A824C890084881F /* NSError.swift */; };
 		80F43D3E1A8256390084881F /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F43D3D1A8256390084881F /* XCTestCase.swift */; };
 		80FF71351A9AA3C4005715BA /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FF71341A9AA3C4005715BA /* AvatarImageView.swift */; };
 		80FF71371A9AA4BA005715BA /* UserProfileBackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FF71361A9AA4BA005715BA /* UserProfileBackgroundImageView.swift */; };
@@ -71,10 +73,8 @@
 		C5921A2E1A920E6600298543 /* CoreDataHelperFriendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5921A2D1A920E6600298543 /* CoreDataHelperFriendsTests.swift */; };
 		C5921A301A923BBA00298543 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5921A2F1A923BBA00298543 /* Reflection.swift */; };
 		C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */; };
-		C5A31F421A9B4C2800CC89D6 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A31F411A9B4C2800CC89D6 /* UIImage.swift */; };
 		C5A31F431A9B4DAB00CC89D6 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80FF71321A9A9E54005715BA /* Media.xcassets */; };
 		C5A750701A80E1930089703F /* FacebookProfileLoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */; };
-		C5AD127D1A97428500B1DE89 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD127C1A97428500B1DE89 /* UIApplication.swift */; };
 		C5AD127F1A97485700B1DE89 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C5AD127E1A97485700B1DE89 /* Settings.bundle */; };
 		C5C7253E1A9CCF9C00CF2E48 /* LoadMorePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7253D1A9CCF9C00CF2E48 /* LoadMorePostsView.swift */; };
 		C5E7F9B41A9E2CE000F5FF14 /* PhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7F9B31A9E2CE000F5FF14 /* PhotoPostTableViewCell.swift */; };
@@ -136,14 +136,21 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		8006BA7A1A8FB6FA003F1DF8 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		801029041A82679F00D73C54 /* NSDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDictionary.swift; sourceTree = "<group>"; };
-		801BA28A1A8A10FD008319C2 /* NSDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatter.swift; sourceTree = "<group>"; };
-		801BA28C1A8A1C2E008319C2 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		3753204E035A887625E6E3B9 /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		3753219C8038AE062CC53CC9 /* ProfileEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileEntity.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
+		37532224F8A1C41A77EBCE53 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
+		375323FAB8FFEBEE4AF41D25 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		37532596ADC21B67531D9149 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		375326839A79DE2CD78ED098 /* NSDateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDateFormatter.swift; sourceTree = "<group>"; };
+		37532AA4F48CA59F462AC4E6 /* NSDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDictionary.swift; sourceTree = "<group>"; };
+		37532B5BAF74887199BAC09F /* FriendEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendEntity.swift; path = FriendEntity.swift; sourceTree = "<group>"; };
+		37532D4AFE37570632B1C14C /* PostEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostEntity.swift; path = PostEntity.swift; sourceTree = "<group>"; };
+		37532D6947F9F0F19529E4A2 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
+		37532E25C54C0E60F4483873 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		37532E7B820A7E0D82759F6F /* NSFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManager.swift; sourceTree = "<group>"; };
+		37532EC9C263E5899B18AC96 /* NSDate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate.swift; sourceTree = "<group>"; };
+		37532F59C9395B3E5F4C7F4B /* NSFetchedResultsChangeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFetchedResultsChangeType.swift; sourceTree = "<group>"; };
 		801CE9231A9A3E8D0062BD83 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
-		80205E8E1A7996670042E94A /* FriendEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendEntity.swift; sourceTree = "<group>"; };
-		80205E901A7996670042E94A /* PostEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostEntity.swift; sourceTree = "<group>"; };
-		80205E921A7996670042E94A /* ProfileEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
 		8033134D1A74660100E54701 /* FacebookProfileViewerClasses.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FacebookProfileViewerClasses.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803313501A74660100E54701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		803313511A74660100E54701 /* FacebookProfileViewerClasses.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FacebookProfileViewerClasses.h; sourceTree = "<group>"; };
@@ -159,7 +166,6 @@
 		807E28661A7A58A3005DBF05 /* NibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
 		807E28721A7AB703005DBF05 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		808A363B1A7EA19B00C18EC1 /* LoginScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenViewController.swift; sourceTree = "<group>"; };
-		808A363D1A7EA4F100C18EC1 /* NSURL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSURL.swift; sourceTree = "<group>"; };
 		808A363F1A7ECBCF00C18EC1 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
 		808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
 		80C3B0551A70506A0004CBDE /* FacebookProfileViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookProfileViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,11 +177,7 @@
 		80C3B0641A70506A0004CBDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		80C3B0671A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80CDE7BC1A8E242A00499B4E /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
-		80CDE7BE1A8E24E600499B4E /* NSFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFileManager.swift; sourceTree = "<group>"; };
 		80CFEE941A7E947B00D47E62 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		80DBED4B1A94F9AD001B36F8 /* NSFetchedResultsChangeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFetchedResultsChangeType.swift; sourceTree = "<group>"; };
-		80E757771A9AB22D00CBB844 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		80F43D3B1A824C890084881F /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
 		80F43D3D1A8256390084881F /* XCTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		80FF71321A9A9E54005715BA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		80FF71341A9AA3C4005715BA /* AvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
@@ -204,9 +206,7 @@
 		C5921A2D1A920E6600298543 /* CoreDataHelperFriendsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelperFriendsTests.swift; sourceTree = "<group>"; };
 		C5921A2F1A923BBA00298543 /* Reflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
 		C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
-		C5A31F411A9B4C2800CC89D6 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookProfileLoadManagerTests.swift; sourceTree = "<group>"; };
-		C5AD127C1A97428500B1DE89 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		C5AD127E1A97485700B1DE89 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C5C7253D1A9CCF9C00CF2E48 /* LoadMorePostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMorePostsView.swift; sourceTree = "<group>"; };
 		C5E7F9B31A9E2CE000F5FF14 /* PhotoPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPostTableViewCell.swift; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				807E28611A7A50DC005DBF05 /* Supporting Files */,
-				807E28601A7A50A4005DBF05 /* Core Data */,
+				807E28601A7A50A4005DBF05 /* NSManaged */,
 				80ED1E131A94CC370000547C /* Extensions */,
 				8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */,
 				C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */,
@@ -312,14 +312,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		807E28601A7A50A4005DBF05 /* Core Data */ = {
+		807E28601A7A50A4005DBF05 /* NSManaged */ = {
 			isa = PBXGroup;
 			children = (
-				80205E921A7996670042E94A /* ProfileEntity.swift */,
-				80205E901A7996670042E94A /* PostEntity.swift */,
-				80205E8E1A7996670042E94A /* FriendEntity.swift */,
+				37532D4AFE37570632B1C14C /* PostEntity.swift */,
+				3753219C8038AE062CC53CC9 /* ProfileEntity.swift */,
+				37532B5BAF74887199BAC09F /* FriendEntity.swift */,
 			);
-			name = "Core Data";
+			path = NSManaged;
 			sourceTree = "<group>";
 		};
 		807E28611A7A50DC005DBF05 /* Supporting Files */ = {
@@ -375,19 +375,19 @@
 		80ED1E131A94CC370000547C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				80E757771A9AB22D00CBB844 /* UIColor.swift */,
-				C5A31F411A9B4C2800CC89D6 /* UIImage.swift */,
-				C5AD127C1A97428500B1DE89 /* UIApplication.swift */,
-				80F43D3B1A824C890084881F /* NSError.swift */,
-				808A363D1A7EA4F100C18EC1 /* NSURL.swift */,
-				801029041A82679F00D73C54 /* NSDictionary.swift */,
-				801BA28A1A8A10FD008319C2 /* NSDateFormatter.swift */,
-				80CDE7BE1A8E24E600499B4E /* NSFileManager.swift */,
-				801BA28C1A8A1C2E008319C2 /* NSDate.swift */,
-				8006BA7A1A8FB6FA003F1DF8 /* String.swift */,
-				80DBED4B1A94F9AD001B36F8 /* NSFetchedResultsChangeType.swift */,
+				37532EC9C263E5899B18AC96 /* NSDate.swift */,
+				375323FAB8FFEBEE4AF41D25 /* UIColor.swift */,
+				37532596ADC21B67531D9149 /* UIImage.swift */,
+				37532F59C9395B3E5F4C7F4B /* NSFetchedResultsChangeType.swift */,
+				3753204E035A887625E6E3B9 /* String.swift */,
+				37532224F8A1C41A77EBCE53 /* NSError.swift */,
+				37532E25C54C0E60F4483873 /* UIApplication.swift */,
+				37532AA4F48CA59F462AC4E6 /* NSDictionary.swift */,
+				37532E7B820A7E0D82759F6F /* NSFileManager.swift */,
+				375326839A79DE2CD78ED098 /* NSDateFormatter.swift */,
+				37532D6947F9F0F19529E4A2 /* NSURL.swift */,
 			);
-			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		80FF71381A9AAAF2005715BA /* Vendor */ = {
@@ -641,28 +641,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5AD127D1A97428500B1DE89 /* UIApplication.swift in Sources */,
-				C5A31F421A9B4C2800CC89D6 /* UIImage.swift in Sources */,
-				80E757781A9AB22D00CBB844 /* UIColor.swift in Sources */,
 				C58C7BE81A7FD36E007E3996 /* FacebookProfileLoadManager.swift in Sources */,
-				801029051A82679F00D73C54 /* NSDictionary.swift in Sources */,
-				8006BA7B1A8FB6FA003F1DF8 /* String.swift in Sources */,
 				C51980DD1A811F5300BE4861 /* FacebookFriendsLoadManager.swift in Sources */,
-				801BA28B1A8A10FD008319C2 /* NSDateFormatter.swift in Sources */,
 				C5921A301A923BBA00298543 /* Reflection.swift in Sources */,
-				80205E931A7996670042E94A /* ProfileEntity.swift in Sources */,
 				80CDE7BD1A8E242A00499B4E /* CoreDataHelper.swift in Sources */,
 				8033139E1A746AE600E54701 /* FacebookEndpointManager.swift in Sources */,
 				C5171BD61A837D000066E006 /* FacebookPostsLoadManager.swift in Sources */,
 				807E28731A7AB703005DBF05 /* Logging.swift in Sources */,
-				80F43D3C1A824C890084881F /* NSError.swift in Sources */,
-				80DBED4C1A94F9AD001B36F8 /* NSFetchedResultsChangeType.swift in Sources */,
-				80CDE7BF1A8E24E600499B4E /* NSFileManager.swift in Sources */,
-				801BA28D1A8A1C2E008319C2 /* NSDate.swift in Sources */,
-				80205E8F1A7996670042E94A /* FriendEntity.swift in Sources */,
-				808A363E1A7EA4F100C18EC1 /* NSURL.swift in Sources */,
 				80CFEE961A7E986F00D47E62 /* AppState.swift in Sources */,
-				80205E911A7996670042E94A /* PostEntity.swift in Sources */,
+				375327E6D0AAA758F50864C7 /* NSDate.swift in Sources */,
+				37532406829CAFA6738345E6 /* UIColor.swift in Sources */,
+				37532DB3E31FE65B805B14BA /* UIImage.swift in Sources */,
+				37532A0A869EDD952EB97DCD /* NSFetchedResultsChangeType.swift in Sources */,
+				37532D3DB270012D15E59D3E /* String.swift in Sources */,
+				375320A8F3E094F2542339C4 /* NSError.swift in Sources */,
+				37532D3228EEC8ED3257F81E /* UIApplication.swift in Sources */,
+				3753245C458C32272993A7AA /* NSDictionary.swift in Sources */,
+				375324DB613D5B1FFF83B99C /* NSFileManager.swift in Sources */,
+				375326D0B9607E310EDD75A2 /* NSDateFormatter.swift in Sources */,
+				37532C19E99F08B3CA22CD6A /* NSURL.swift in Sources */,
+				375323727A0C11BD0F7A833A /* PostEntity.swift in Sources */,
+				3753272F043A29F2A8DC6BEE /* ProfileEntity.swift in Sources */,
+				375329553D6BD36B02816865 /* FriendEntity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
