@@ -11,6 +11,7 @@ import CoreData
 class PostsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate {
 
   private var notificationObserver: NSObjectProtocol?
+  private var tableFooterView: UIView!
   
   var shouldShowLoadMorePostsCell = false
   
@@ -54,11 +55,12 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
 
   private var tableViewBackgroundView: UIView = {
     var view = UILabel()
-    view.text = "No data is currently available.\n Please pull down to refresh."
-    view.textColor = UIColor.blackColor() // FIXME: Use StyleKit colors
+    view.text = "No data is currently available\nPlease pull down to refresh"
+    view.textColor = StyleKit.TableView.pullToLoadLabelColor
     view.numberOfLines = 2
     view.textAlignment = NSTextAlignment.Center
-    view.font = UIFont.systemFontOfSize(20)
+    view.font = StyleKit.TableView.pullToLoadLabelFont
+    view.backgroundColor = StyleKit.TableView.backgroundColor
     view.sizeToFit()
     return view
   }()
@@ -71,6 +73,8 @@ extension PostsTableViewController {
     self.tableViewSeparatorStileDefault = self.tableView.separatorStyle
     self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: Selector("doFetchPosts:"), forControlEvents: UIControlEvents.ValueChanged)
+    self.tableFooterView = self.tableView.tableFooterView // Saving original table view footer
+    self.tableView.tableFooterView = nil
     self.configureAppearance()
   }
   
@@ -97,6 +101,7 @@ extension PostsTableViewController {
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
     self.fetchPostsFromServerIfNeeded()
+    self.configureTableViewFooter()
   }
 }
 
@@ -105,6 +110,22 @@ extension PostsTableViewController {
   func doFetchPosts(sender: AnyObject) {
     self.fetchLatestPostsFromServer()
   }
+  
+  @IBAction func doFetchOldPosts(sender: AnyObject) {
+    log.verbose("Will load more posts")
+    var moc = CoreDataHelper.sharedInstance().managedObjectContext!
+    var request = CoreDataHelper.Posts.sharedInstance.fetchRequestForOldestPost
+    var records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    if let theRecords = records {
+        if theRecords.count > 0 {
+            let theRecord = theRecords.first!
+            let oldPostDate = theRecord.createdDate
+            log.debug("Date of oldest post: \(oldPostDate)")
+            self.fetchPostsFromServer(since: nil, until: oldPostDate)
+        }
+    }
+
+  }
 
   private func configureAppearance() {
     self.tableView.backgroundColor = StyleKit.TableView.backgroundColor
@@ -112,6 +133,12 @@ extension PostsTableViewController {
     self.refreshControl?.tintColor = UIColor.whiteColor()
   }
 
+  private func configureTableViewFooter() {
+    let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
+    let shouldShowFooter = numberOfObjects != 0
+    self.tableView.tableFooterView = shouldShowFooter ? self.tableFooterView : nil
+  }
+    
   private func configureTableView(#shouldShowBackgroundView: Bool) {
     if shouldShowBackgroundView {
       self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
@@ -283,6 +310,7 @@ extension PostsTableViewController {
 
   func controllerDidChangeContent(controller: NSFetchedResultsController) {
     self.tableView.endUpdates()
+    self.configureTableViewFooter()
   }
 
   func controller(controller: NSFetchedResultsController, didChangeObject: AnyObject,

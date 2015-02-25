@@ -31,10 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window!.makeKeyAndVisible()
 
     // Log fonts
-    #if FALSE
-    for family in UIFont.familyNames() as [String] {
+    #if FAKEDEFINE
+    for family in UIFont.familyNames() as! [String] {
       println(family)
-      for name in UIFont.fontNamesForFamilyName(family) as [String] {
+      for name in UIFont.fontNamesForFamilyName(family) as! [String] {
         println("\t" + name)
       }
     }

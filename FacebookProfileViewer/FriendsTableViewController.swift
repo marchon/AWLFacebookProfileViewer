@@ -35,16 +35,18 @@ class FriendsTableViewController : UITableViewController, NSFetchedResultsContro
 
   private var tableViewSeparatorStileDefault = UITableViewCellSeparatorStyle.SingleLine
 
+  // FIXME: This is Copy/Paste code from PostsTableViewController
   private var tableViewBackgroundView: UIView = {
     var view = UILabel()
-    view.text = "No data is currently available.\n Please pull down to refresh."
-    view.textColor = UIColor.blackColor() // FIXME: Use StyleKit colors
+    view.text = "No data is currently available\nPlease pull down to refresh"
+    view.textColor = StyleKit.TableView.pullToLoadLabelColor
     view.numberOfLines = 2
     view.textAlignment = NSTextAlignment.Center
-    view.font = UIFont.systemFontOfSize(20)
+    view.font = StyleKit.TableView.pullToLoadLabelFont
+    view.backgroundColor = StyleKit.TableView.backgroundColor
     view.sizeToFit()
     return view
-  }()
+    }()
 }
 
 extension FriendsTableViewController {

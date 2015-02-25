@@ -39,6 +39,13 @@ public class StyleKit {
       return UIColor.fromRGB(0xE9E9E9)
     }
     
+    public class var pullToLoadLabelColor: UIColor {
+      return UIColor.fromRGB(0x838383)
+    }
+    
+    public class var pullToLoadLabelFont: UIFont {
+      return UIFont(name: "OpenSans-Light", size: 17)!
+    }
   }
   
   public class ProfileView {
