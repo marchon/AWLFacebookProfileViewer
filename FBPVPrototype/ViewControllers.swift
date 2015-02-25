@@ -19,7 +19,7 @@ class GenericViewController : UIViewController {
   func onViewTapped() {
     for item in self.view.subviews {
       if item is Button {
-        let button = item as Button
+        let button = item as! Button
         button.backgroundColor = UIColor.magentaColor().colorWithAlphaComponent(0.65)
         UIView.animateWithDuration(0.3, animations: { () -> Void in
           button.backgroundColor = UIColor.clearColor()

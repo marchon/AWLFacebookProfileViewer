@@ -46,7 +46,7 @@
 		80C3B01E1A704E3D0004CBDE = {
 			isa = PBXGroup;
 			children = (
-				80C3B0291A704E3D0004CBDE /* FacebookProfileViewerPrototype */,
+				80C3B0291A704E3D0004CBDE /* FBPVPrototype */,
 				80C3B0281A704E3D0004CBDE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -59,7 +59,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		80C3B0291A704E3D0004CBDE /* FacebookProfileViewerPrototype */ = {
+		80C3B0291A704E3D0004CBDE /* FBPVPrototype */ = {
 			isa = PBXGroup;
 			children = (
 				80CFEE911A7E86F200D47E62 /* Supporting files */,
@@ -69,7 +69,7 @@
 				80C3B0331A704E3D0004CBDE /* Images.xcassets */,
 				80C3B07D1A705C050004CBDE /* Media.xcassets */,
 			);
-			path = FacebookProfileViewerPrototype;
+			path = FBPVPrototype;
 			sourceTree = "<group>";
 		};
 		80CFEE911A7E86F200D47E62 /* Supporting files */ = {
@@ -118,7 +118,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 80C3B0221A704E3D0004CBDE /* Build configuration list for PBXProject "FacebookProfileViewerPrototype" */;
+			buildConfigurationList = 80C3B0221A704E3D0004CBDE /* Build configuration list for PBXProject "FBPVPrototype" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -266,7 +266,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = FacebookProfileViewerPrototype/Info.plist;
+				INFOPLIST_FILE = FBPVPrototype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -276,7 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = FacebookProfileViewerPrototype/Info.plist;
+				INFOPLIST_FILE = FBPVPrototype/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -285,7 +285,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		80C3B0221A704E3D0004CBDE /* Build configuration list for PBXProject "FacebookProfileViewerPrototype" */ = {
+		80C3B0221A704E3D0004CBDE /* Build configuration list for PBXProject "FBPVPrototype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80C3B0441A704E3D0004CBDE /* Debug */,

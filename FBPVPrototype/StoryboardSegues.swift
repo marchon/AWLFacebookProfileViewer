@@ -13,8 +13,8 @@ class GenericStoryboardSegue : UIStoryboardSegue {
 class CrossDissolveStoryboardSegue : GenericStoryboardSegue {
 
   override func perform() {
-    let sourceViewController = self.sourceViewController as UIViewController
-    let destinationController = self.destinationViewController as UIViewController
+    let sourceViewController = self.sourceViewController as! UIViewController
+    let destinationController = self.destinationViewController as! UIViewController
     let transition = CATransition()
     transition.duration = 0.25
     transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
@@ -38,8 +38,8 @@ class CrossDissolveStoryboardSegue : GenericStoryboardSegue {
 class SwitchStoryboardSegue : GenericStoryboardSegue {
 
   override func perform() {
-    let sourceViewController = self.sourceViewController as UIViewController
-    let destinationController = self.destinationViewController as UIViewController
+    let sourceViewController = self.sourceViewController as! UIViewController
+    let destinationController = self.destinationViewController as! UIViewController
     if let nc = sourceViewController.navigationController {
       if self.unwinding {
         if let dnc = destinationController.navigationController {

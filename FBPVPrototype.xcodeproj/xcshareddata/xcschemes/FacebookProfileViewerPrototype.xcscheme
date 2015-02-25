@@ -17,7 +17,7 @@
                BlueprintIdentifier = "80C3B0261A704E3D0004CBDE"
                BuildableName = "FacebookProfileViewerPrototype.app"
                BlueprintName = "FacebookProfileViewerPrototype"
-               ReferencedContainer = "container:FacebookProfileViewerPrototype.xcodeproj">
+               ReferencedContainer = "container:FBPVPrototype.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
             BlueprintIdentifier = "80C3B0261A704E3D0004CBDE"
             BuildableName = "FacebookProfileViewerPrototype.app"
             BlueprintName = "FacebookProfileViewerPrototype"
-            ReferencedContainer = "container:FacebookProfileViewerPrototype.xcodeproj">
+            ReferencedContainer = "container:FBPVPrototype.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -48,13 +48,14 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80C3B0261A704E3D0004CBDE"
             BuildableName = "FacebookProfileViewerPrototype.app"
             BlueprintName = "FacebookProfileViewerPrototype"
-            ReferencedContainer = "container:FacebookProfileViewerPrototype.xcodeproj">
+            ReferencedContainer = "container:FBPVPrototype.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -66,13 +67,14 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80C3B0261A704E3D0004CBDE"
             BuildableName = "FacebookProfileViewerPrototype.app"
             BlueprintName = "FacebookProfileViewerPrototype"
-            ReferencedContainer = "container:FacebookProfileViewerPrototype.xcodeproj">
+            ReferencedContainer = "container:FBPVPrototype.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
