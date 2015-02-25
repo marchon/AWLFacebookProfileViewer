@@ -9,7 +9,7 @@ public class FacebookPostsLoadManager {
 
   public typealias SuccessCallback    = (([NSDictionary]) -> Void)
   public typealias FailureCallback    = ((NSError) -> Void)
-  public typealias CompletionCallback = (() -> Void)
+  public typealias CompletionCallback = ((lastPageReached: Bool) -> Void)
 
   private var cbCompletion: CompletionCallback!
   private var cbSuccess: SuccessCallback!
@@ -97,10 +97,10 @@ public class FacebookPostsLoadManager {
             } else {
               // FIXME: Completion should have Bool parameter which indicates the first post on facebook ever
               // cbCompletion(firstFacebookPostReached: Bool)
-              self.cbCompletion()
+              self.cbCompletion(lastPageReached: true)
             }
           } else {
-            self.cbCompletion()
+            self.cbCompletion(lastPageReached: false)
           }
         },
         failure: {

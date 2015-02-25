@@ -210,8 +210,18 @@ extension PostsTableViewController {
   }
 
   private func fetchLatestPostsFromServer() {
-    let sinceDate = AppState.Posts.lastFetchDate
-    self.fetchPostsFromServer(since: sinceDate, until: nil)
+    log.verbose("Will load recent posts")
+    var moc = CoreDataHelper.sharedInstance().managedObjectContext!
+    var request = CoreDataHelper.Posts.sharedInstance.fetchRequestForNewestPost
+    var records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    if let theRecords = records {
+      if theRecords.count > 0 {
+        let theRecord = theRecords.first!
+        let thePostDate = theRecord.createdDate
+        log.debug("Date of newest post: \(thePostDate)")
+        self.fetchPostsFromServer(since: thePostDate, until: nil)
+      }
+    }
   }
 
   private func fetchPostsFromServer(#since: NSDate?, until: NSDate?) {
@@ -246,7 +256,7 @@ extension PostsTableViewController {
           }
         })
       },
-      completion: {
+      completion: { (lastPageReached: Bool) -> Void in
         UIApplication.sharedApplication().hideNetworkActivityIndicator()
         self.log.debug("Posts fetch completed.")
         AppState.Posts.lastFetchDate = NSDate()
@@ -258,24 +268,22 @@ extension PostsTableViewController {
       }
     )
   }
-
-  private func configureCell(cell: UITableViewCell?, atIndexPath: NSIndexPath) {
-    if cell == nil {
-      return
-    }
-    let object = self.fetchedResultsController.objectAtIndexPath(atIndexPath) as! PostEntity
-    cell?.textLabel?.text = object.title
-    cell?.detailTextLabel?.text = PostsTableViewController.facebookDateFormatter().stringFromDate(object.createdDate)
-    if let data = object.pictureData {
-      cell?.imageView?.image = UIImage(data: data)
-    } else {
-      cell?.imageView?.image = nil
-    }
-  }
-
 }
 
 extension PostsTableViewController {
+  
+  override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    let post = self.fetchedResultsController.objectAtIndexPath(indexPath) as! PostEntity
+    let postType = PostEntity.PostType(rawValue: post.type)!
+    switch postType {
+    case PostEntity.PostType.Photo:
+      return 230
+    case PostEntity.PostType.Link, PostEntity.PostType.Video:
+      return 188
+    default:
+      return 58
+    }
+  }
 
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
@@ -292,9 +300,35 @@ extension PostsTableViewController {
   }
 
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("postCell", forIndexPath: indexPath) as! UITableViewCell
-    self.configureCell(cell, atIndexPath: indexPath)
-    return cell
+    let post = self.fetchedResultsController.objectAtIndexPath(indexPath) as! PostEntity
+    if post.type == PostEntity.PostType.Photo.rawValue {
+      let cell = tableView.dequeueReusableCellWithIdentifier("photo", forIndexPath: indexPath) as! PhotoPostTableViewCell
+      cell.labelDate.text = PostsTableViewController.facebookDateFormatter().stringFromDate(post.createdDate)
+      cell.labelTitle.text = post.title
+      if let data = post.pictureData {
+        cell.imagePhoto.image = UIImage(data: data)
+      } else {
+        cell.imagePhoto.image = nil
+      }
+      return cell
+    } else if post.type == PostEntity.PostType.Link.rawValue || post.type == PostEntity.PostType.Video.rawValue
+      || post.type == PostEntity.PostType.SWF.rawValue{
+      let cell = tableView.dequeueReusableCellWithIdentifier("link", forIndexPath: indexPath) as! LinkPostTableViewCell
+      cell.labelDate.text = PostsTableViewController.facebookDateFormatter().stringFromDate(post.createdDate)
+      cell.labelTitle.text = post.title
+      cell.labelLinkText.text = "FIXME"
+      if let data = post.pictureData {
+        cell.imagePhoto.image = UIImage(data: data)
+      } else {
+        cell.imagePhoto.image = nil
+      }
+      return cell
+    } else {
+      let cell = tableView.dequeueReusableCellWithIdentifier("status", forIndexPath: indexPath) as! StatusPostTableViewCell
+      cell.labelTitle.text = post.title
+      cell.labelDate.text = PostsTableViewController.facebookDateFormatter().stringFromDate(post.createdDate)
+      return cell
+    }
   }
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

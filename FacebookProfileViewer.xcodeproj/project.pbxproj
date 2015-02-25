@@ -64,7 +64,7 @@
 		C51980DF1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51980DE1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift */; };
 		C566DE971A936EDD009117E5 /* CoreDataHelperProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566DE961A936EDD009117E5 /* CoreDataHelperProfileTests.swift */; };
 		C57D70981A84E060005D488E /* FriendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D70971A84E060005D488E /* FriendTableViewCell.swift */; };
-		C57D709C1A850689005D488E /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D709B1A850689005D488E /* PostsTableViewCell.swift */; };
+		C57D709C1A850689005D488E /* StatusPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D709B1A850689005D488E /* StatusPostTableViewCell.swift */; };
 		C58C7BDC1A7FAF40007E3996 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDA1A7FAF40007E3996 /* FriendsTableViewController.swift */; };
 		C58C7BDD1A7FAF40007E3996 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BDB1A7FAF40007E3996 /* PostsTableViewController.swift */; };
 		C58C7BE81A7FD36E007E3996 /* FacebookProfileLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */; };
@@ -77,6 +77,8 @@
 		C5AD127D1A97428500B1DE89 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AD127C1A97428500B1DE89 /* UIApplication.swift */; };
 		C5AD127F1A97485700B1DE89 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C5AD127E1A97485700B1DE89 /* Settings.bundle */; };
 		C5C7253E1A9CCF9C00CF2E48 /* LoadMorePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C7253D1A9CCF9C00CF2E48 /* LoadMorePostsView.swift */; };
+		C5E7F9B41A9E2CE000F5FF14 /* PhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7F9B31A9E2CE000F5FF14 /* PhotoPostTableViewCell.swift */; };
+		C5E7F9B61A9E3AC200F5FF14 /* LinkPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E7F9B51A9E3AC200F5FF14 /* LinkPostTableViewCell.swift */; };
 		C5F235571A935B0E00D8D28C /* CoreDataHelperPostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F235561A935B0E00D8D28C /* CoreDataHelperPostsTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -195,7 +197,7 @@
 		C51980DE1A81233A00BE4861 /* FacebookFriendsLoadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookFriendsLoadManagerTests.swift; sourceTree = "<group>"; };
 		C566DE961A936EDD009117E5 /* CoreDataHelperProfileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelperProfileTests.swift; sourceTree = "<group>"; };
 		C57D70971A84E060005D488E /* FriendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewCell.swift; sourceTree = "<group>"; };
-		C57D709B1A850689005D488E /* PostsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
+		C57D709B1A850689005D488E /* StatusPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusPostTableViewCell.swift; sourceTree = "<group>"; };
 		C58C7BDA1A7FAF40007E3996 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		C58C7BDB1A7FAF40007E3996 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookProfileLoadManager.swift; sourceTree = "<group>"; };
@@ -207,6 +209,8 @@
 		C5AD127C1A97428500B1DE89 /* UIApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		C5AD127E1A97485700B1DE89 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C5C7253D1A9CCF9C00CF2E48 /* LoadMorePostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMorePostsView.swift; sourceTree = "<group>"; };
+		C5E7F9B31A9E2CE000F5FF14 /* PhotoPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPostTableViewCell.swift; sourceTree = "<group>"; };
+		C5E7F9B51A9E3AC200F5FF14 /* LinkPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkPostTableViewCell.swift; sourceTree = "<group>"; };
 		C5F235561A935B0E00D8D28C /* CoreDataHelperPostsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelperPostsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -292,7 +296,9 @@
 				C5C7253D1A9CCF9C00CF2E48 /* LoadMorePostsView.swift */,
 				807E28621A7A578B005DBF05 /* UserProfile.xib */,
 				C57D70971A84E060005D488E /* FriendTableViewCell.swift */,
-				C57D709B1A850689005D488E /* PostsTableViewCell.swift */,
+				C57D709B1A850689005D488E /* StatusPostTableViewCell.swift */,
+				C5E7F9B31A9E2CE000F5FF14 /* PhotoPostTableViewCell.swift */,
+				C5E7F9B51A9E3AC200F5FF14 /* LinkPostTableViewCell.swift */,
 				801CE9231A9A3E8D0062BD83 /* SegmentedControl.swift */,
 			);
 			path = FacebookProfileViewerUI;
@@ -683,9 +689,11 @@
 				C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */,
 				807E28651A7A57EB005DBF05 /* UserProfile.swift in Sources */,
 				808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */,
-				C57D709C1A850689005D488E /* PostsTableViewCell.swift in Sources */,
+				C57D709C1A850689005D488E /* StatusPostTableViewCell.swift in Sources */,
 				807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */,
+				C5E7F9B61A9E3AC200F5FF14 /* LinkPostTableViewCell.swift in Sources */,
 				801CE9241A9A3E8D0062BD83 /* SegmentedControl.swift in Sources */,
+				C5E7F9B41A9E2CE000F5FF14 /* PhotoPostTableViewCell.swift in Sources */,
 				80FF71371A9AA4BA005715BA /* UserProfileBackgroundImageView.swift in Sources */,
 				C5C7253E1A9CCF9C00CF2E48 /* LoadMorePostsView.swift in Sources */,
 				C57D70981A84E060005D488E /* FriendTableViewCell.swift in Sources */,
