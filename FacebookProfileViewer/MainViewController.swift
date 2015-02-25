@@ -162,7 +162,7 @@ extension MainViewController {
       if let theImageData = profile.avatarPictureData {
         let theView = self.topView.profileAvatar
         theView.image = UIImage(data: theImageData)
-        theView.layer.borderWidth = 2
+        theView.layer.borderWidth = 1
         theView.layer.borderColor = StyleKit.ProfileView.avatarBorderColor.CGColor
         let radius = 0.5 * max(CGRectGetHeight(theView.bounds), CGRectGetWidth(theView.bounds))
         theView.layer.cornerRadius = radius
