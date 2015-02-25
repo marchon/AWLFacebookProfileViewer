@@ -26,7 +26,7 @@ class FacebookPostsLoadManagerTests: XCTestCase {
       failure: { (error: NSError) -> Void in
         self.reportFailure(error)
       },
-      completion: {
+      completion: { (lastPageReached: Bool) -> Void in
         self.expectation.fulfill()
       }
     )
@@ -46,7 +46,7 @@ class FacebookPostsLoadManagerTests: XCTestCase {
       failure: { (error: NSError) -> Void in
         self.reportFailure(error)
       },
-      completion: {
+      completion: { (lastPageReached: Bool) -> Void in
         self.expectation.fulfill()
     })
     
@@ -63,7 +63,7 @@ class FacebookPostsLoadManagerTests: XCTestCase {
       failure: { (error: NSError) -> Void in
         self.reportFailure(error)
       },
-      completion: {
+      completion: { (lastPageReached: Bool) -> Void in
         self.expectation.fulfill()
     })
     
