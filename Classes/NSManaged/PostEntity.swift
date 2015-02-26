@@ -16,6 +16,8 @@ public let kPostEntityKeyCreatedDate = "createdDate"
 public let kPostEntityKeyPictureURL  = "pictureURL"
 public let kPostEntityKeyPictureData = "pictureData"
 public let kPostEntityKeyVideoURL    = "videoURL"
+public let kPostEntityKeyDescription = "desc"
+public let kPostEntityKeySubtitle    = "subtitle"
 
 
 public class PostEntity: NSManagedObject, DebugPrintable, Equatable {
@@ -38,6 +40,8 @@ public class PostEntity: NSManagedObject, DebugPrintable, Equatable {
   @NSManaged public var pictureURL: String?
   @NSManaged public var pictureData: NSData?
   @NSManaged public var videoURL: String?
+  @NSManaged public var desc: String?
+  @NSManaged public var subtitle: String?
   
   public override var debugDescription: String {
     var properties = Array<Reflection.Property>()
@@ -48,12 +52,20 @@ public class PostEntity: NSManagedObject, DebugPrintable, Equatable {
     properties.append(Reflection.Property(key: kPostEntityKeyPictureURL, value: self.pictureURL ?? "null"))
     properties.append(Reflection.Property(key: kPostEntityKeyPictureData, value: self.pictureData == nil ? "null" : "\(self.pictureData!.length) bytes"))
     properties.append(Reflection.Property(key: kPostEntityKeyVideoURL, value: self.videoURL ?? "null"))
+    properties.append(Reflection.Property(key: kPostEntityKeySubtitle, value: self.subtitle ?? "null"))
+    properties.append(Reflection.Property(key: kPostEntityKeyDescription, value: self.desc ?? "null"))
     return Reflection.propertiesToString(properties, multiline: true)
   }
 }
 
 public func ==(lhs: PostEntity, rhs: PostEntity) -> Bool {
-  return lhs.title == rhs.title && lhs.type == rhs.type
-    && lhs.id == rhs.id && lhs.createdDate == rhs.createdDate && lhs.pictureURL == rhs.pictureURL
-    && lhs.pictureData == rhs.pictureData && lhs.videoURL == rhs.videoURL
+  return lhs.title == rhs.title
+    && lhs.type == rhs.type
+    && lhs.id == rhs.id
+    && lhs.createdDate == rhs.createdDate
+    && lhs.pictureURL == rhs.pictureURL
+    && lhs.pictureData == rhs.pictureData
+    && lhs.videoURL == rhs.videoURL
+    && lhs.subtitle == rhs.subtitle
+    && lhs.desc == rhs.desc
 }

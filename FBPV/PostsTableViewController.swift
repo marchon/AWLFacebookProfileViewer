@@ -278,7 +278,7 @@ extension PostsTableViewController {
     switch postType {
     case PostEntity.PostType.Photo:
       return 230
-    case PostEntity.PostType.Link, PostEntity.PostType.Video:
+    case PostEntity.PostType.Link, PostEntity.PostType.Video, PostEntity.PostType.SWF:
       return 188
     default:
       return 58
@@ -305,23 +305,36 @@ extension PostsTableViewController {
       let cell = tableView.dequeueReusableCellWithIdentifier("photo", forIndexPath: indexPath) as! PhotoPostTableViewCell
       cell.labelDate.text = PostsTableViewController.facebookDateFormatter().stringFromDate(post.createdDate)
       cell.labelTitle.text = post.title
-      if let data = post.pictureData {
-        cell.imagePhoto.image = UIImage(data: data)
+      if let data = post.pictureData, let image = UIImage(data: data) {
+        cell.imagePhoto.image = image
+//        cell.layoutImageHeight.constant = image.size.height
       } else {
         cell.imagePhoto.image = nil
+//        cell.layoutImageHeight.constant = 0
       }
+//      cell.setNeedsLayout()
       return cell
     } else if post.type == PostEntity.PostType.Link.rawValue || post.type == PostEntity.PostType.Video.rawValue
       || post.type == PostEntity.PostType.SWF.rawValue{
-      let cell = tableView.dequeueReusableCellWithIdentifier("link", forIndexPath: indexPath) as! LinkPostTableViewCell
+        var theImage: UIImage? = nil
+        if let data = post.pictureData {
+          theImage = UIImage(data: data)
+        }
+        
+      let cellId = theImage != nil ? "link" : "linkWithoutPhoto"
+      let cell = tableView.dequeueReusableCellWithIdentifier(cellId, forIndexPath: indexPath) as! LinkPostTableViewCell
       cell.labelDate.text = PostsTableViewController.facebookDateFormatter().stringFromDate(post.createdDate)
       cell.labelTitle.text = post.title
-      cell.labelLinkText.text = "FIXME"
-      if let data = post.pictureData {
-        cell.imagePhoto.image = UIImage(data: data)
-      } else {
-        cell.imagePhoto.image = nil
+      cell.labelLinkText.text = post.subtitle
+      cell.labelLinkText.sizeToFit()
+      cell.labelLinkSubtext.text = post.desc
+      cell.labelLinkSubtext.sizeToFit()
+      if let image = theImage {
+        cell.imagePhoto.image = image
+        cell.layoutImageWidth.constant = image.size.width
+        cell.layoutImageHeight.constant = image.size.height
       }
+      cell.setNeedsLayout()
       return cell
     } else {
       let cell = tableView.dequeueReusableCellWithIdentifier("status", forIndexPath: indexPath) as! StatusPostTableViewCell

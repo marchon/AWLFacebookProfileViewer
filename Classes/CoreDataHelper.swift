@@ -228,6 +228,14 @@ public class CoreDataHelper {
         entityInstance.title = value
       }
       
+      if let value = properties.valueForKey("description") as? String {
+        entityInstance.desc = value
+      }
+      
+      if let value = properties.valueForKey("name") as? String {
+        entityInstance.subtitle = value
+      }
+      
       if let value = properties.valueForKey("picture") as? String {
         entityInstance.pictureURL = value
       }
@@ -303,6 +311,8 @@ public class CoreDataHelper {
             entityFromDatabase!.pictureURL = entityFromResponse!.pictureURL
             entityFromDatabase!.pictureData = entityFromResponse!.pictureData
             entityFromDatabase!.videoURL = entityFromResponse!.videoURL
+            entityFromDatabase!.desc = entityFromResponse!.desc
+            entityFromDatabase!.subtitle = entityFromResponse!.subtitle
             shouldSaveCoreData = true
             updatedOrInsertedEntities.append(entityFromDatabase!)
           }

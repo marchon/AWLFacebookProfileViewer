@@ -30,6 +30,8 @@ class CoreDataHelperPostsTests : XCTestCase {
     entity.pictureURL = "Picture URL \(number)"
     entity.pictureData = "Data \(number)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
     entity.videoURL = "Video URL \(number)"
+    entity.desc = "Desc \(number)"
+    entity.subtitle = "Subtitle \(number)"
     return entity
   }
   

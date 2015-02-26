@@ -28,15 +28,15 @@ public class StyleKit {
   public class TableView {
     
     public class var backgroundColor: UIColor {
-      return UIColor.fromRGB(0xF3F3F3)
+      return UIColor.fromRGB(0xF9F9F9)
     }
     
     public class var cellBackgroundColor: UIColor {
-      return UIColor.fromRGB(0xF3F3F3)
+      return UIColor.fromRGB(0xF9F9F9)
     }
     
     public class var selectedCellBackgroundColor: UIColor {
-      return UIColor.fromRGB(0xE9E9E9)
+      return UIColor.fromRGB(0xF2F2F2)
     }
     
     public class var pullToLoadLabelColor: UIColor {
@@ -45,6 +45,20 @@ public class StyleKit {
     
     public class var pullToLoadLabelFont: UIFont {
       return UIFont(name: "OpenSans-Light", size: 17)!
+    }
+
+    public class Post {
+      public class var titleLabelColor: UIColor {
+        return UIColor.fromRGB(0x424242)
+      }
+
+      public class var linkTitleLabelColor: UIColor {
+        return UIColor.fromRGB(0x7C7C7C)
+      }
+
+      public class var linkSubtitleLabelColor: UIColor {
+        return UIColor.fromRGB(0x2B8FB3)
+      }
     }
   }
   

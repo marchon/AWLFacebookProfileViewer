@@ -287,14 +287,11 @@
 			isa = PBXGroup;
 			children = (
 				803313741A74661500E54701 /* Supporting Files */,
+				C558D6271A9F6BDE00408C5C /* Cells */,
 				80FF71341A9AA3C4005715BA /* AvatarImageView.swift */,
-				C57D70971A84E060005D488E /* FriendTableViewCell.swift */,
-				C5E7F9B51A9E3AC200F5FF14 /* LinkPostTableViewCell.swift */,
 				C5C7253D1A9CCF9C00CF2E48 /* LoadMorePostsView.swift */,
 				807E28661A7A58A3005DBF05 /* NibDesignable.swift */,
-				C5E7F9B31A9E2CE000F5FF14 /* PhotoPostTableViewCell.swift */,
 				801CE9231A9A3E8D0062BD83 /* SegmentedControl.swift */,
-				C57D709B1A850689005D488E /* StatusPostTableViewCell.swift */,
 				808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */,
 				C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */,
 				807E28641A7A57EB005DBF05 /* UserProfile.swift */,
@@ -423,6 +420,17 @@
 				80FF71451A9AAAF2005715BA /* OpenSans-SemiboldItalic.ttf */,
 			);
 			path = "open-sans";
+			sourceTree = "<group>";
+		};
+		C558D6271A9F6BDE00408C5C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C57D70971A84E060005D488E /* FriendTableViewCell.swift */,
+				C5E7F9B51A9E3AC200F5FF14 /* LinkPostTableViewCell.swift */,
+				C5E7F9B31A9E2CE000F5FF14 /* PhotoPostTableViewCell.swift */,
+				C57D709B1A850689005D488E /* StatusPostTableViewCell.swift */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		C58C7BDE1A7FAF4F007E3996 /* Supporting Files */ = {
