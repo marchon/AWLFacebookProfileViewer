@@ -13,12 +13,15 @@ Botton view displays:
 * Recent posts
 * List of frieds
 
+---
+
 ![Screenshot: Posts](https://raw.githubusercontent.com/vgorloff/AWLFacebookProfileViewer/master/Screenshot-Posts.png "Screen: Posts")
-![Screenshot: Friends](https://raw.githubusercontent.com/vgorloff/AWLFacebookProfileViewer/master/Screenshot-Friends.png "Screen: Friends")
+![Screenshot: Friends](https://raw.githubusercontent.com/vgorloff/AWLFacebookProfileViewer/master/Screenshot-Friends.png "Screen: Friends")  
+
+---
 
 Resources
 ---
-
 * UI Design Assets by [UI8](https://ui8.net "UI8 Home page")
 * Color palette generated using [Adobe Color CC](https://color.adobe.com "Adobe Color CC Home page")
 * Avatars by [uiFaces](http://uifaces.com "uiFaces Home page")
