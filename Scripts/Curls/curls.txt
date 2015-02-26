@@ -18,7 +18,7 @@ curl -v -d @access_token.txt -d "message=Test: Hello" https://graph.facebook.com
 
 # Read feed
 curl -v -d @access_token.txt https://graph.facebook.com/me/feed?limit=10 -G | python -mjson.tool
-curl -v -d @access_token.txt -d "fields=message,type,application,caption,name,story,description" https://graph.facebook.com/me/feed?limit=10 -G | python -mjson.tool
+curl -v -d @access_token.txt -d "fields=id,type,created_time,message,story,caption,description,name,picture,source,object_id" https://graph.facebook.com/me/feed?limit=10 -G | python -mjson.tool
 curl -v -d @access_token.txt -d "fields=message,type,application,caption,name,story,description" -d "until=1423088714" -d "since=1422049105" https://graph.facebook.com/me/feed?limit=10 -G | python -mjson.tool
 
 # Read friends

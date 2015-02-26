@@ -38,7 +38,7 @@ public class PostEntity: NSManagedObject, DebugPrintable, Equatable {
   @NSManaged public var createdDate: NSDate
   @NSManaged public var title: String?
   @NSManaged public var pictureURL: String?
-  @NSManaged public var pictureData: NSData?
+  @NSManaged public var pictureData: NSData? // FIXME: Load HiRes images. See: http://stackoverflow.com/a/12154970/1418981
   @NSManaged public var videoURL: String?
   @NSManaged public var desc: String?
   @NSManaged public var subtitle: String?

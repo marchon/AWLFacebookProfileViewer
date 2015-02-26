@@ -56,7 +56,7 @@ extension FacebookEndpointManager {
       fetchLimit = 20
 #endif
 //      let untilTimestamp = until.timeIntervalSince1970
-      var urlString = "https://graph.facebook.com/me/feed?limit=\(fetchLimit)&fields=id,type,created_time,message,story,caption,description,name,picture,source&access_token=\(accesToken)"
+      var urlString = "https://graph.facebook.com/me/feed?limit=\(fetchLimit)&fields=id,type,created_time,message,story,caption,description,name,picture,source,object_id&access_token=\(accesToken)"
       if let timestamp = since?.timeIntervalSince1970AsString {
         urlString += "&since=" + timestamp
       }
