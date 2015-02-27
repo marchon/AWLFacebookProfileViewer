@@ -4,7 +4,7 @@
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
-import FacebookProfileViewerClasses
+import FBPVClasses
 
 //@IBDesignable
 public class FriendTableViewCell : UITableViewCell {

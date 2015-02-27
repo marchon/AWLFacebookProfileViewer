@@ -9,8 +9,11 @@
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
+            <string>OpenSans-Light</string>
         </mutableArray>
         <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
@@ -28,7 +31,7 @@
         <!--Main View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="MainViewController" customModule="FacebookProfileViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MainViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -41,7 +44,7 @@
                                 <rect key="frame" x="0.0" y="198" width="320" height="370"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RZF-E8-ht5" customClass="SegmentedControl" customModule="FacebookProfileViewerUI">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RZF-E8-ht5" customClass="SegmentedControl" customModule="FBPVUI">
                                 <rect key="frame" x="0.0" y="170" width="320" height="29"/>
                                 <segments>
                                     <segment title="Posts"/>
@@ -51,7 +54,7 @@
                                     <action selector="switchBottomView:" destination="vXZ-lx-hvc" eventType="valueChanged" id="6vd-EG-L0O"/>
                                 </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6t-Kr-tvE" customClass="UserProfile" customModule="FacebookProfileViewerUI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6t-Kr-tvE" customClass="UserProfile" customModule="FBPVUI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -88,14 +91,14 @@
         <!--Posts Table View Controller-->
         <scene sceneID="caR-XA-cnm">
             <objects>
-                <tableViewController storyboardIdentifier="postsViewControoler" id="lRh-dj-J6f" customClass="PostsTableViewController" customModule="FacebookProfileViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="postsViewControoler" id="lRh-dj-J6f" customClass="PostsTableViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zOn-44-3Jn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="723"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.83520281314849854" green="0.8353467583656311" blue="0.8351936936378479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="avr-gB-XfG" customClass="LoadMorePostsView" customModule="FacebookProfileViewerUI">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="avr-gB-XfG" customClass="LoadMorePostsView" customModule="FBPVUI">
                             <rect key="frame" x="0.0" y="530" width="320" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -123,7 +126,7 @@
                             </connections>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="status" rowHeight="58" id="gto-fq-89F" customClass="StatusPostTableViewCell" customModule="FacebookProfileViewerUI">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="status" rowHeight="58" id="gto-fq-89F" customClass="StatusPostTableViewCell" customModule="FBPVUI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gto-fq-89F" id="W1D-Qb-TgJ">
@@ -157,7 +160,7 @@
                                     <outlet property="labelTitle" destination="A2c-H8-m8M" id="O8K-hU-BIM"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photo" rowHeight="276" id="LsL-0W-xpn" customClass="PhotoPostTableViewCell" customModule="FacebookProfileViewerUI">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="photo" rowHeight="276" id="LsL-0W-xpn" customClass="PhotoPostTableViewCell" customModule="FBPVUI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LsL-0W-xpn" id="7rM-jb-OS2">
@@ -202,7 +205,7 @@
                                     <outlet property="layoutImageHeight" destination="5A5-Ck-j3I" id="l9H-37-itL"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="link" rowHeight="188" id="ZGK-I8-wtz" customClass="LinkPostTableViewCell" customModule="FacebookProfileViewerUI">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="link" rowHeight="188" id="ZGK-I8-wtz" customClass="LinkPostTableViewCell" customModule="FBPVUI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZGK-I8-wtz" id="HVU-dz-vDz">
@@ -236,7 +239,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To preview a song, mouse over the title and click Play." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7S-Gq-FnN">
                                             <rect key="frame" x="140" y="113" width="172" height="33"/>
                                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIA-ad-kfy">
@@ -284,7 +287,7 @@
                                     <outlet property="layoutImageWidth" destination="gZZ-fc-c68" id="Ji0-Pg-stU"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="linkWithoutPhoto" rowHeight="131" id="x2Z-hm-cy7" customClass="LinkPostTableViewCell" customModule="FacebookProfileViewerUI">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="linkWithoutPhoto" rowHeight="131" id="x2Z-hm-cy7" customClass="LinkPostTableViewCell" customModule="FBPVUI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x2Z-hm-cy7" id="PDz-MG-pLe">
@@ -311,7 +314,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="To preview a song, mouse over the title and click Play. And follow instructions..." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f4g-or-2S8">
                                             <rect key="frame" x="8" y="89" width="304" height="33"/>
                                             <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="12"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -354,14 +357,14 @@
         <!--Friends Table View Controller-->
         <scene sceneID="s9W-nL-ZgK">
             <objects>
-                <tableViewController storyboardIdentifier="friendsViewController" id="azU-qI-VuJ" customClass="FriendsTableViewController" customModule="FacebookProfileViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="friendsViewController" id="azU-qI-VuJ" customClass="FriendsTableViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="51" sectionHeaderHeight="22" sectionFooterHeight="22" id="8Xa-iS-dm0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.83520281314849854" green="0.8353467583656311" blue="0.8351936936378479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendCell" textLabel="gjb-tB-LPq" imageView="gFY-pd-AcJ" style="IBUITableViewCellStyleDefault" id="lM7-iU-mam" customClass="FriendTableViewCell" customModule="FacebookProfileViewerUI">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="friendCell" textLabel="gjb-tB-LPq" imageView="gFY-pd-AcJ" style="IBUITableViewCellStyleDefault" id="lM7-iU-mam" customClass="FriendTableViewCell" customModule="FBPVUI">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lM7-iU-mam" id="7SF-AN-Ka4">
@@ -394,7 +397,7 @@
         <!--Login Screen View Controller-->
         <scene sceneID="cXL-TJ-N5p">
             <objects>
-                <viewController id="USC-5o-nec" customClass="LoginScreenViewController" customModule="FacebookProfileViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="USC-5o-nec" customClass="LoginScreenViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="R6e-IO-SyZ"/>
                         <viewControllerLayoutGuide type="bottom" id="Yky-RH-wsK"/>
@@ -403,30 +406,55 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwi-NC-3jw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pw0-d0-I8U">
+                                <rect key="frame" x="32" y="282" width="256" height="24"/>
+                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="5h9-YQ-npz">
+                                <rect key="frame" x="150" y="250" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NB5-Lq-PA6">
+                                <rect key="frame" x="0.0" y="520" width="320" height="48"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="yUn-ZO-bYg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doCancel:" destination="USC-5o-nec" eventType="touchUpInside" id="o2v-ok-4pU"/>
+                                </connections>
+                            </button>
+                            <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwi-NC-3jw">
+                                <rect key="frame" x="0.0" y="20" width="320" height="500"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </webView>
                         </subviews>
-                        <color key="backgroundColor" red="0.96640527249999997" green="0.55260038810000001" blue="0.75453959599999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="iwi-NC-3jw" secondAttribute="bottom" id="28s-p8-fOS"/>
-                            <constraint firstItem="iwi-NC-3jw" firstAttribute="top" secondItem="UlQ-af-44L" secondAttribute="top" id="BY5-Ah-0D8"/>
+                            <constraint firstItem="NB5-Lq-PA6" firstAttribute="top" secondItem="iwi-NC-3jw" secondAttribute="bottom" id="34M-US-SOt"/>
+                            <constraint firstAttribute="trailing" secondItem="NB5-Lq-PA6" secondAttribute="trailing" id="7UJ-1N-GF3"/>
+                            <constraint firstAttribute="centerY" secondItem="5h9-YQ-npz" secondAttribute="centerY" constant="24" id="9Dh-cE-c6c"/>
+                            <constraint firstItem="Pw0-d0-I8U" firstAttribute="leading" secondItem="UlQ-af-44L" secondAttribute="leadingMargin" constant="16" id="Bje-Bu-s4i"/>
                             <constraint firstAttribute="trailing" secondItem="iwi-NC-3jw" secondAttribute="trailing" id="Ff3-e4-ZVT"/>
-                            <constraint firstItem="Yky-RH-wsK" firstAttribute="top" secondItem="iwi-NC-3jw" secondAttribute="bottom" id="JyV-jc-9K8"/>
+                            <constraint firstItem="Yky-RH-wsK" firstAttribute="top" secondItem="NB5-Lq-PA6" secondAttribute="bottom" id="Q8u-kj-wXg"/>
                             <constraint firstItem="iwi-NC-3jw" firstAttribute="leading" secondItem="UlQ-af-44L" secondAttribute="leading" id="Qv0-tA-R2O"/>
-                            <constraint firstItem="iwi-NC-3jw" firstAttribute="top" secondItem="R6e-IO-SyZ" secondAttribute="bottom" id="qf0-gI-z6b"/>
-                            <constraint firstItem="iwi-NC-3jw" firstAttribute="top" secondItem="UlQ-af-44L" secondAttribute="top" id="rNK-F9-jXy"/>
+                            <constraint firstItem="NB5-Lq-PA6" firstAttribute="leading" secondItem="UlQ-af-44L" secondAttribute="leading" id="VNC-zY-ENd"/>
+                            <constraint firstAttribute="centerX" secondItem="5h9-YQ-npz" secondAttribute="centerX" id="W08-BL-FVV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Pw0-d0-I8U" secondAttribute="trailing" constant="16" id="ify-1o-TYR"/>
+                            <constraint firstItem="iwi-NC-3jw" firstAttribute="top" secondItem="R6e-IO-SyZ" secondAttribute="bottom" id="ovq-jN-JUA"/>
+                            <constraint firstItem="Pw0-d0-I8U" firstAttribute="top" secondItem="5h9-YQ-npz" secondAttribute="bottom" constant="12" id="wbq-Fd-4QC"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="BY5-Ah-0D8"/>
-                                <exclude reference="qf0-gI-z6b"/>
-                                <exclude reference="JyV-jc-9K8"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="buttonCancel" destination="NB5-Lq-PA6" id="PMI-6J-gmc"/>
+                        <outlet property="loadingProgressIndicator" destination="5h9-YQ-npz" id="xv0-L5-XVl"/>
+                        <outlet property="loadingProgressLabel" destination="Pw0-d0-I8U" id="o1R-hT-EFW"/>
                         <outlet property="webView" destination="iwi-NC-3jw" id="5AO-Ar-hY5"/>
                     </connections>
                 </viewController>
@@ -456,7 +484,7 @@
         <!--Welcome Screen View Controller-->
         <scene sceneID="yy5-JA-9IN">
             <objects>
-                <viewController id="5ux-TN-bXN" customClass="WelcomeScreenViewController" customModule="FacebookProfileViewer" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5ux-TN-bXN" customClass="WelcomeScreenViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k7A-Tq-ccw"/>
                         <viewControllerLayoutGuide type="bottom" id="iFN-26-uoh"/>
@@ -465,23 +493,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21W-DC-8QD">
-                                <rect key="frame" x="124" y="309" width="72" height="30"/>
-                                <state key="normal" title="Login">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21W-DC-8QD" customClass="LoginButton" customModule="FBPVUI">
+                                <rect key="frame" x="83" y="408" width="155" height="40"/>
+                                <color key="backgroundColor" red="0.85882359740000003" green="0.91372555489999996" blue="0.31764706970000001" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="155" id="Xs2-pb-RcF"/>
+                                    <constraint firstAttribute="height" constant="40" id="t7P-C1-77X"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                <state key="normal" title="LOG IN"/>
                                 <connections>
-                                    <segue destination="USC-5o-nec" kind="custom" identifier="showLoginScreen" customClass="CrossDissolveStoryboardSegue" customModule="FacebookProfileViewerUI" id="Xr3-ou-oI4"/>
+                                    <segue destination="USC-5o-nec" kind="custom" identifier="showLoginScreen" customClass="CrossDissolveStoryboardSegue" customModule="FBPVUI" id="Xr3-ou-oI4"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aGP-W7-cQ0">
-                                <rect key="frame" x="95" y="144" width="130" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MdT-Iv-URJ">
+                                <rect key="frame" x="125" y="120" width="70" height="70"/>
+                                <color key="backgroundColor" red="0.83520281314849854" green="0.8353467583656311" blue="0.8351936936378479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="XG6-Po-y0d"/>
+                                    <constraint firstAttribute="height" constant="70" id="ywC-AP-JY3"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.94060237510199651" blue="0.50899856639544971" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="21W-DC-8QD" secondAttribute="centerX" id="3Oe-m4-acM"/>
+                            <constraint firstItem="iFN-26-uoh" firstAttribute="top" secondItem="21W-DC-8QD" secondAttribute="bottom" constant="120" id="GYv-eF-flX"/>
+                            <constraint firstItem="MdT-Iv-URJ" firstAttribute="top" secondItem="k7A-Tq-ccw" secondAttribute="bottom" constant="100" id="cQS-Yd-ner"/>
+                            <constraint firstAttribute="centerX" secondItem="MdT-Iv-URJ" secondAttribute="centerX" id="f1x-Sw-tWO"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pWN-ib-Awg"/>
                 </viewController>

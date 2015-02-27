@@ -1,6 +1,6 @@
 //
 //  FacebookEndpointManagerTests.swift
-//  FacebookProfileViewerClassesTests
+//  FBPVClassesTests
 //
 //  Created by Vlad Gorlov on 25.01.15.
 //  Copyright (c) 2015 WaveLabs. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 import XCTest
-import FacebookProfileViewerClasses
+import FBPVClasses
 
 class FacebookEndpointManagerTests: XCTestCase {
 

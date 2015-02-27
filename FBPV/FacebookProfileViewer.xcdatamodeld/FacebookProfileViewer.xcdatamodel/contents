@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7527" systemVersion="14C109" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="FriendEntity" representedClassName="FacebookProfileViewerClasses.FriendEntity" syncable="YES">
+    <entity name="FriendEntity" representedClassName="FBPVClasses.FriendEntity" syncable="YES">
         <attribute name="avatarPictureData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="avatarPictureIsSilhouette" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="avatarPictureURL" attributeType="String" syncable="YES"/>
         <attribute name="userName" attributeType="String" indexed="YES" syncable="YES"/>
     </entity>
-    <entity name="PostEntity" representedClassName="FacebookProfileViewerClasses.PostEntity" syncable="YES">
+    <entity name="PostEntity" representedClassName="FBPVClasses.PostEntity" syncable="YES">
         <attribute name="createdDate" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" indexed="YES" syncable="YES"/>
@@ -17,7 +17,7 @@
         <attribute name="type" attributeType="String" syncable="YES"/>
         <attribute name="videoURL" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="ProfileEntity" representedClassName="FacebookProfileViewerClasses.ProfileEntity" syncable="YES">
+    <entity name="ProfileEntity" representedClassName="FBPVClasses.ProfileEntity" syncable="YES">
         <attribute name="avatarPictureData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="coverPhotoData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="homeTown" optional="YES" attributeType="String" syncable="YES"/>

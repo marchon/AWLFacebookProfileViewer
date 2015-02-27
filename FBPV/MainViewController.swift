@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 
-import FacebookProfileViewerUI
-import FacebookProfileViewerClasses
+import FBPVUI
+import FBPVClasses
 
 class MainViewController: UIViewController {
 
@@ -50,15 +50,17 @@ class MainViewController: UIViewController {
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
-    if let shouldSkipWelcomeScreen = AppState.UI.shouldSkipWelcomeScreen {
-      if !shouldSkipWelcomeScreen {
-        log.verbose("Will show welcome screen")
-        performSegueWithIdentifier("showWelcomeScreen", sender: nil)
-      }
-    } else {
+    
+    var shouldSkipWelcomeScreen = false
+    if let theValue = AppState.UI.shouldSkipWelcomeScreen {
+      shouldSkipWelcomeScreen = theValue
+    }
+    
+    if !shouldSkipWelcomeScreen {
       log.verbose("Will show welcome screen")
       performSegueWithIdentifier("showWelcomeScreen", sender: nil)
     }
+    
   }
 
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -66,9 +68,9 @@ class MainViewController: UIViewController {
       let nc = segue.destinationViewController as! UINavigationController
       let ctrl = nc.viewControllers.first as! WelcomeScreenViewController
       ctrl.canceled = {
-        self.dismissViewControllerAnimated(true, completion: {
-          () -> Void in
-          AppState.UI.shouldSkipWelcomeScreen = true
+        AppState.UI.shouldSkipWelcomeScreen = true
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+          
         })
       }
       ctrl.success = { (tokenInfo: (accessToken:String, expiresIn:Int)) -> () in
@@ -93,10 +95,13 @@ extension MainViewController {
 
   private func fetchProfileFromDatasourceIfNeeded() {
 
-    if let shouldSkipWelcomeScreen = AppState.UI.shouldSkipWelcomeScreen {
-      if !shouldSkipWelcomeScreen {
-        return
-      }
+    var shouldSkipWelcomeScreen = false
+    if let theValue = AppState.UI.shouldSkipWelcomeScreen {
+      shouldSkipWelcomeScreen = theValue
+    }
+    
+    if !shouldSkipWelcomeScreen {
+      return
     }
 
     #if DEBUG

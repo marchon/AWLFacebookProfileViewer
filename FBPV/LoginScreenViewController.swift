@@ -4,7 +4,8 @@
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
-import FacebookProfileViewerClasses
+import FBPVClasses
+import FBPVUI
 
 class LoginScreenViewController : UIViewController, UIWebViewDelegate {
 
@@ -12,6 +13,10 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
   let FacebookLoginDialogErrorKeyScope = "FacebookLoginDialogErrorScope"
 
   @IBOutlet weak var webView: UIWebView!
+  @IBOutlet weak var loadingProgressLabel: UILabel!
+  @IBOutlet weak var loadingProgressIndicator: UIActivityIndicatorView!
+  @IBOutlet weak var buttonCancel: UIButton!
+
 
   private var tokenInfo: (accessToken: String, expiresIn: Int)?
   private var error: NSError?
@@ -45,6 +50,11 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.view.backgroundColor = StyleKit.Palette.baseColor5
+    self.buttonCancel.backgroundColor = StyleKit.Palette.baseColor4
+    self.loadingProgressLabel.hidden = true
+    self.buttonCancel.hidden = true
+    self.loadingProgressIndicator.hidden = true
     webView.delegate = self
 
     var authURL = self.authorizationURL
@@ -59,10 +69,15 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
   }
 
   private func complete() {
-    if let cb = self.success {
-      if let token = self.tokenInfo {
+    if let token = self.tokenInfo {
+      if let cb = self.success {
         cb(token)
       }
+    }
+    
+    if let error = self.error {
+      let alert = UIAlertView(title: "", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK")
+      alert.show()
     }
   }
 
@@ -72,6 +87,13 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
 
   private func completeWithError(error: NSError) {
     logError(error)
+  }
+  
+  @IBAction func doCancel(sender: AnyObject) {
+    logDebug("Canceled")
+    if let cb = self.canceled {
+      cb()
+    }
   }
 
 }
@@ -106,13 +128,21 @@ extension LoginScreenViewController {
 
   func webViewDidStartLoad(webView: UIWebView) {
     logDebug("Loading...")
+    self.loadingProgressLabel.hidden = false
+    self.loadingProgressIndicator.hidden = false
   }
 
   func webViewDidFinishLoad(webView: UIWebView) {
     logDebug("Done!")
+    self.loadingProgressLabel.hidden = true
+    self.loadingProgressIndicator.hidden = true
+    self.buttonCancel.hidden = false
   }
 
   func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+    self.loadingProgressLabel.hidden = true
+    self.loadingProgressIndicator.hidden = true
+    self.buttonCancel.hidden = false
     if error.domain == "WebKitErrorDomain" && error.code == 102 { // WebKitErrorFrameLoadInterruptedByPolicyChange
       return
     }

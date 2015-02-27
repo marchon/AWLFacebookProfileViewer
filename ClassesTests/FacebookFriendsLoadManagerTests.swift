@@ -5,7 +5,7 @@
 
 import UIKit
 import XCTest
-import FacebookProfileViewerClasses
+import FBPVClasses
 
 class FacebookFriendsLoadManagerTests: XCTestCase {
   

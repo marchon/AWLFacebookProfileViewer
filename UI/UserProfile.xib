@@ -11,7 +11,7 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserProfile" customModule="FacebookProfileViewerUI" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserProfile" customModule="FBPVUI" customModuleProvider="target">
             <connections>
                 <outlet property="coverPhoto" destination="OBs-6s-qwB" id="Ili-gd-ouk"/>
                 <outlet property="hometown" destination="EOo-cA-QaJ" id="AnK-LT-F2S"/>
@@ -24,10 +24,10 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OBs-6s-qwB" customClass="UserProfileBackgroundImageView" customModule="FacebookProfileViewerUI" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OBs-6s-qwB" customClass="UserProfileBackgroundImageView" customModule="FBPVUI" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U3S-pA-omX" customClass="AvatarImageView" customModule="FacebookProfileViewerUI" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U3S-pA-omX" customClass="AvatarImageView" customModule="FBPVUI" customModuleProvider="target">
                     <rect key="frame" x="126" y="30" width="68" height="68"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="68" id="Lpa-Rp-3gh"/>

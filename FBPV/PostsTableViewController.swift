@@ -4,8 +4,8 @@
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
-import FacebookProfileViewerClasses
-import FacebookProfileViewerUI
+import FBPVClasses
+import FBPVUI
 import CoreData
 
 class PostsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate {
@@ -150,10 +150,13 @@ extension PostsTableViewController {
   }
 
   func fetchPostsFromServerIfNeeded() {
-    if let shouldSkipWelcomeScreen = AppState.UI.shouldSkipWelcomeScreen {
-      if !shouldSkipWelcomeScreen {
-        return
-      }
+    var shouldSkipWelcomeScreen = false
+    if let theValue = AppState.UI.shouldSkipWelcomeScreen {
+      shouldSkipWelcomeScreen = theValue
+    }
+    
+    if !shouldSkipWelcomeScreen {
+      return
     }
 
     #if DEBUG

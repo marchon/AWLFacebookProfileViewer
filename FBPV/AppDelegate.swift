@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import FacebookProfileViewerClasses
+import FBPVClasses
 
 let AppDelegateForceReloadChangeNotification = "AppDelegateForceReloadChangeNotification"
 

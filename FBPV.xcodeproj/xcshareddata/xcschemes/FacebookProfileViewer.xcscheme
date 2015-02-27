@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "80C3B0541A70506A0004CBDE"
-               BuildableName = "FacebookProfileViewer.app"
-               BlueprintName = "FacebookProfileViewer"
+               BuildableName = "FBPV.app"
+               BlueprintName = "FBPV"
                ReferencedContainer = "container:FBPV.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "803313561A74660100E54701"
-               BuildableName = "FacebookProfileViewerClassesTests.xctest"
-               BlueprintName = "FacebookProfileViewerClassesTests"
+               BuildableName = "FBPVClassesTests.xctest"
+               BlueprintName = "FBPVClassesTests"
                ReferencedContainer = "container:FBPV.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,8 +43,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80C3B0541A70506A0004CBDE"
-            BuildableName = "FacebookProfileViewer.app"
-            BlueprintName = "FacebookProfileViewer"
+            BuildableName = "FBPV.app"
+            BlueprintName = "FBPV"
             ReferencedContainer = "container:FBPV.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,8 +63,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80C3B0541A70506A0004CBDE"
-            BuildableName = "FacebookProfileViewer.app"
-            BlueprintName = "FacebookProfileViewer"
+            BuildableName = "FBPV.app"
+            BlueprintName = "FBPV"
             ReferencedContainer = "container:FBPV.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -72,7 +72,7 @@
          <EnvironmentVariable
             key = "XcodeColors"
             value = "YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "AWLIDEVersion"
@@ -82,7 +82,7 @@
          <EnvironmentVariable
             key = "AWLInMemoryStore"
             value = "YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "AWLProfileAlwaysLoad"
@@ -114,8 +114,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "80C3B0541A70506A0004CBDE"
-            BuildableName = "FacebookProfileViewer.app"
-            BlueprintName = "FacebookProfileViewer"
+            BuildableName = "FBPV.app"
+            BlueprintName = "FBPV"
             ReferencedContainer = "container:FBPV.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -5,7 +5,7 @@
 
 import Foundation
 import XCTest
-import FacebookProfileViewerClasses
+import FBPVClasses
 import CoreData
 
 class CoreDataHelperPostsTests : XCTestCase {
