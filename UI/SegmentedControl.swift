@@ -8,7 +8,7 @@
 
 import UIKit
 
-//@IBDesignable
+@IBDesignable
 public class SegmentedControl: UISegmentedControl {
 
   public override init(items: [AnyObject]) {
@@ -27,7 +27,7 @@ public class SegmentedControl: UISegmentedControl {
   }
 
   public override func prepareForInterfaceBuilder() {
-    //self.setupNib()
+    self.setupNib()
   }
 
   func setupNib() {
