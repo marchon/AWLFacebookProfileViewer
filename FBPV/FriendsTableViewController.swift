@@ -165,15 +165,6 @@ extension FriendsTableViewController {
       return
     }
 
-    #if DEBUG
-      if let envValue = NSProcessInfo.processInfo().environment["AWLFriendsAlwaysLoad"] as? String {
-        if envValue == "YES" {
-          fetchFriendsFromServer()
-          return
-        }
-      }
-    #endif
-
     if let theDate = AppState.Friends.lastFetchDate {
       let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600
       log.debug("Elapsed hours from last update: \(elapsedHoursFromLastUpdate)")

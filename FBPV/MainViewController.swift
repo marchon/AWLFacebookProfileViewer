@@ -104,15 +104,6 @@ extension MainViewController {
       return
     }
 
-    #if DEBUG
-      if let envValue = NSProcessInfo.processInfo().environment["AWLProfileAlwaysLoad"] as? String {
-        if envValue == "YES" {
-          fetchProfileFromServer()
-          return
-        }
-      }
-    #endif
-
     var request = CoreDataHelper.Profile.sharedInstance.fetchRequestForProfile
     var fetchResults = CoreDataHelper.Profile.fetchRecordsAndLogError(request)
     if let results = fetchResults {

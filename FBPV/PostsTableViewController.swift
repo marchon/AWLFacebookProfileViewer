@@ -159,16 +159,6 @@ extension PostsTableViewController {
       return
     }
 
-    #if DEBUG
-      if let envValue = NSProcessInfo.processInfo().environment["AWLPostsAlwaysLoad"] as? String {
-        if envValue == "YES" {
-          log.verbose("Fetch forced by macro definition")
-          fetchPostsFromServer(since: nil, until: nil)
-          return
-        }
-      }
-    #endif
-
     if let theDate = AppState.Posts.lastFetchDate {
       let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600.0
       log.debug("Elapsed hours from last update: \(elapsedHoursFromLastUpdate)")

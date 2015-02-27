@@ -82,20 +82,10 @@
          <EnvironmentVariable
             key = "AWLInMemoryStore"
             value = "YES"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "AWLProfileAlwaysLoad"
-            value = "YES"
             isEnabled = "NO">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "AWLPostsAlwaysLoad"
-            value = "YES"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "AWLFriendsAlwaysLoad"
+            key = "AWLEraseCustomDefaults"
             value = "YES"
             isEnabled = "NO">
          </EnvironmentVariable>
