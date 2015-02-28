@@ -27,7 +27,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OBs-6s-qwB" customClass="UserProfileBackgroundImageView" customModule="FBPVUI" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="170"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U3S-pA-omX" customClass="AvatarImageView" customModule="FBPVUI" customModuleProvider="target">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="U3S-pA-omX" customClass="UserProfileAvatarImageView" customModule="FBPVUI" customModuleProvider="target">
                     <rect key="frame" x="126" y="30" width="68" height="68"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="68" id="Lpa-Rp-3gh"/>

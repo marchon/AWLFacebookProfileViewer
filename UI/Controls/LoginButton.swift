@@ -10,14 +10,23 @@ import UIKit
 
 @IBDesignable
 public class LoginButton: UIButton {
-  
-  public override func prepareForInterfaceBuilder() {
+
+  public override func awakeFromNib() {
+    super.awakeFromNib()
+    self.setupNib()
   }
-  
+
+  public override func prepareForInterfaceBuilder() {
+    self.setupNib()
+  }
+
   public override func layoutSubviews() {
     super.layoutSubviews()
     self.layer.cornerRadius = 0.5 * self.bounds.size.height
+  }
+
+  private func setupNib() {
     self.backgroundColor = StyleKit.Palette.baseColor4
   }
-  
+
 }

@@ -11,18 +11,8 @@ import UIKit
 @IBDesignable
 public class SegmentedControl: UISegmentedControl {
 
-  public override init(items: [AnyObject]) {
-    super.init(items: items)
-    self.setupNib()
-  }
-
-  public override init(frame: CGRect) {
-    super.init(frame: frame)
-    self.setupNib()
-  }
-
-  required public init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
+  public override func awakeFromNib() {
+    super.awakeFromNib()
     self.setupNib()
   }
 
@@ -30,10 +20,16 @@ public class SegmentedControl: UISegmentedControl {
     self.setupNib()
   }
 
-  func setupNib() {
+  private func setupNib() {
     var imgDevider = UIImage(named: "segmControlDevider")
+    var imgBg = UIImage(named: "segmControlBackground")
+
+    if self.isUnderLiveViewTarget {
+      imgDevider = IBDesignableHelper.imageNamed("segmControlDevider")
+      imgBg = IBDesignableHelper.imageNamed("segmControlBackground")
+    }
+
     imgDevider = imgDevider?.resizableImageWithCapInsets(UIEdgeInsetsMake(10, 1, 10, 1))
-    let imgBg = UIImage(named: "segmControlBackground")
     self.setBackgroundImage(imgBg, forState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
     self.setBackgroundImage(imgBg, forState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)
 
@@ -42,5 +38,8 @@ public class SegmentedControl: UISegmentedControl {
     self.setDividerImage(imgDevider, forLeftSegmentState: UIControlState.Normal, rightSegmentState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
     self.tintColor = UIColor.whiteColor()
   }
-  
+
 }
+
+
+

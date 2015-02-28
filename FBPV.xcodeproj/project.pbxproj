@@ -35,6 +35,8 @@
 		8083DFD51AA12A65009FA37A /* PhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375321942C31AAA7167BB90B /* PhotoPostTableViewCell.swift */; };
 		8083DFD61AA12A65009FA37A /* StatusPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375321CA60DC5D1E9CF571ED /* StatusPostTableViewCell.swift */; };
 		808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */; };
+		80BACFA91AA26196000A3093 /* IBDesignableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFA61AA259ED000A3093 /* IBDesignableHelper.swift */; };
+		80BACFAB1AA262C4000A3093 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFAA1AA262C4000A3093 /* UIView.swift */; };
 		80C3B05E1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05C1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld */; };
 		80C3B0631A70506A0004CBDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0611A70506A0004CBDE /* Main.storyboard */; };
 		80C3B0651A70506A0004CBDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0641A70506A0004CBDE /* Images.xcassets */; };
@@ -44,7 +46,7 @@
 		80FBA43B1AA1288200887F25 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43A1AA1288200887F25 /* XCTestCase.swift */; };
 		80FBA43F1AA128B600887F25 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43D1AA128B600887F25 /* LoginButton.swift */; };
 		80FBA4401AA128B600887F25 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43E1AA128B600887F25 /* SegmentedControl.swift */; };
-		80FBA4471AA128C100887F25 /* AvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4421AA128C100887F25 /* AvatarImageView.swift */; };
+		80FBA4471AA128C100887F25 /* UserProfileAvatarImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4421AA128C100887F25 /* UserProfileAvatarImageView.swift */; };
 		80FBA4481AA128C100887F25 /* LoadMorePostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4431AA128C100887F25 /* LoadMorePostsView.swift */; };
 		80FBA4491AA128C100887F25 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4441AA128C100887F25 /* UserProfile.swift */; };
 		80FBA44A1AA128C100887F25 /* UserProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FBA4451AA128C100887F25 /* UserProfile.xib */; };
@@ -165,6 +167,9 @@
 		8083DFD11AA129D1009FA37A /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
 		8099BD891A9E902600DF7225 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		80BACFA61AA259ED000A3093 /* IBDesignableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBDesignableHelper.swift; sourceTree = "<group>"; };
+		80BACFA81AA25EA1000A3093 /* IBSupport.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = IBSupport.xcassets; sourceTree = "<group>"; };
+		80BACFAA1AA262C4000A3093 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		80C3B0551A70506A0004CBDE /* FBPV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBPV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C3B0591A70506A0004CBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80C3B05D1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FacebookProfileViewer.xcdatamodel; sourceTree = "<group>"; };
@@ -176,7 +181,7 @@
 		80FBA43A1AA1288200887F25 /* XCTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		80FBA43D1AA128B600887F25 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		80FBA43E1AA128B600887F25 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
-		80FBA4421AA128C100887F25 /* AvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvatarImageView.swift; sourceTree = "<group>"; };
+		80FBA4421AA128C100887F25 /* UserProfileAvatarImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileAvatarImageView.swift; sourceTree = "<group>"; };
 		80FBA4431AA128C100887F25 /* LoadMorePostsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadMorePostsView.swift; sourceTree = "<group>"; };
 		80FBA4441AA128C100887F25 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		80FBA4451AA128C100887F25 /* UserProfile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfile.xib; sourceTree = "<group>"; };
@@ -304,6 +309,7 @@
 				807E28661A7A58A3005DBF05 /* NibDesignable.swift */,
 				808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */,
 				C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */,
+				80BACFA61AA259ED000A3093 /* IBDesignableHelper.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				8083DFD11AA129D1009FA37A /* UIColor.swift */,
+				80BACFAA1AA262C4000A3093 /* UIView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -359,6 +366,7 @@
 				C5AD127E1A97485700B1DE89 /* Settings.bundle */,
 				80C3B0641A70506A0004CBDE /* Images.xcassets */,
 				80FF71321A9A9E54005715BA /* Media.xcassets */,
+				80BACFA81AA25EA1000A3093 /* IBSupport.xcassets */,
 				8099BD891A9E902600DF7225 /* Common.xcconfig */,
 				80C3B05C1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld */,
 				80C3B0661A70506A0004CBDE /* LaunchScreen.xib */,
@@ -404,11 +412,11 @@
 		80FBA4411AA128C100887F25 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				80FBA4421AA128C100887F25 /* AvatarImageView.swift */,
 				80FBA4431AA128C100887F25 /* LoadMorePostsView.swift */,
 				80FBA4441AA128C100887F25 /* UserProfile.swift */,
 				80FBA4451AA128C100887F25 /* UserProfile.xib */,
 				80FBA4461AA128C100887F25 /* UserProfileBackgroundImageView.swift */,
+				80FBA4421AA128C100887F25 /* UserProfileAvatarImageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -417,10 +425,10 @@
 			isa = PBXGroup;
 			children = (
 				80FBA44D1AA1291500887F25 /* AppDelegate.swift */,
-				80FBA44E1AA1291500887F25 /* FriendsTableViewController.swift */,
-				80FBA44F1AA1291500887F25 /* LoginScreenViewController.swift */,
 				80FBA4501AA1291500887F25 /* MainViewController.swift */,
+				80FBA44E1AA1291500887F25 /* FriendsTableViewController.swift */,
 				80FBA4511AA1291500887F25 /* PostsTableViewController.swift */,
+				80FBA44F1AA1291500887F25 /* LoginScreenViewController.swift */,
 				80FBA4521AA1291500887F25 /* WelcomeScreenViewController.swift */,
 			);
 			path = Sources;
@@ -697,9 +705,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80BACFAB1AA262C4000A3093 /* UIView.swift in Sources */,
 				C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */,
 				807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */,
 				808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */,
+				80BACFA91AA26196000A3093 /* IBDesignableHelper.swift in Sources */,
 				80FBA43F1AA128B600887F25 /* LoginButton.swift in Sources */,
 				8083DFD31AA12A65009FA37A /* FriendTableViewCell.swift in Sources */,
 				8083DFD41AA12A65009FA37A /* LinkPostTableViewCell.swift in Sources */,
@@ -709,7 +719,7 @@
 				80FBA4481AA128C100887F25 /* LoadMorePostsView.swift in Sources */,
 				8083DFD51AA12A65009FA37A /* PhotoPostTableViewCell.swift in Sources */,
 				80FBA4491AA128C100887F25 /* UserProfile.swift in Sources */,
-				80FBA4471AA128C100887F25 /* AvatarImageView.swift in Sources */,
+				80FBA4471AA128C100887F25 /* UserProfileAvatarImageView.swift in Sources */,
 				8083DFD21AA129D1009FA37A /* UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
