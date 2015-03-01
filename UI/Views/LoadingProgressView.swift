@@ -23,6 +23,8 @@ public class LoadingProgressView: UIView {
   private func setupNib() {
     self.backgroundColor = StyleKit.Palette.baseColor5
     self.layer.cornerRadius = 10
+    self.layer.borderWidth = 1
+    self.layer.borderColor = StyleKit.Palette.baseColor5.darkerColor.CGColor
   }
   
 }

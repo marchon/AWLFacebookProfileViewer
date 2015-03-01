@@ -70,6 +70,10 @@ extension PostsTableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.tableView.registerNib(UINib.nibForClass(StatusPostTableViewCell.self), forCellReuseIdentifier: "status")
+    self.tableView.registerNib(UINib.nibForClass(PhotoPostTableViewCell.self), forCellReuseIdentifier: "photo")
+    self.tableView.registerNib(UINib.nibForClass(LinkPostTableViewCell.self), forCellReuseIdentifier: "link")
+    self.tableView.registerNib(UINib.nibForClass(LinkWithoutPhotoPostTableViewCell.self), forCellReuseIdentifier: "linkWithoutPhoto")
     self.tableViewSeparatorStileDefault = self.tableView.separatorStyle
     self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: Selector("doFetchPosts:"), forControlEvents: UIControlEvents.ValueChanged)

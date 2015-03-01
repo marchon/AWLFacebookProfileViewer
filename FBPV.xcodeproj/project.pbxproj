@@ -62,6 +62,13 @@
 		80FBA4561AA1291500887F25 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4501AA1291500887F25 /* MainViewController.swift */; };
 		80FBA4571AA1291500887F25 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4511AA1291500887F25 /* PostsTableViewController.swift */; };
 		80FBA4581AA1291500887F25 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4521AA1291500887F25 /* WelcomeScreenViewController.swift */; };
+		80FE732D1AA34172006453B6 /* StatusPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE732C1AA34172006453B6 /* StatusPostTableViewCell.xib */; };
+		80FE732F1AA343B0006453B6 /* PhotoPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE732E1AA343B0006453B6 /* PhotoPostTableViewCell.xib */; };
+		80FE73311AA343DB006453B6 /* LinkPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE73301AA343DB006453B6 /* LinkPostTableViewCell.xib */; };
+		80FE73341AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE73321AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift */; };
+		80FE73351AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE73331AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib */; };
+		80FE73371AA34471006453B6 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE73361AA34471006453B6 /* FriendTableViewCell.xib */; };
+		80FE73391AA34801006453B6 /* UINib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE73381AA34801006453B6 /* UINib.swift */; };
 		80FF71461A9AAD0D005715BA /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 80FF713B1A9AAAF2005715BA /* Apache License.txt */; };
 		80FF71471A9AAD0D005715BA /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80FF713C1A9AAAF2005715BA /* OpenSans-Bold.ttf */; };
 		80FF71481A9AAD0D005715BA /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80FF713D1A9AAAF2005715BA /* OpenSans-BoldItalic.ttf */; };
@@ -202,6 +209,13 @@
 		80FBA4501AA1291500887F25 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		80FBA4511AA1291500887F25 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsTableViewController.swift; sourceTree = "<group>"; };
 		80FBA4521AA1291500887F25 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
+		80FE732C1AA34172006453B6 /* StatusPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusPostTableViewCell.xib; sourceTree = "<group>"; };
+		80FE732E1AA343B0006453B6 /* PhotoPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoPostTableViewCell.xib; sourceTree = "<group>"; };
+		80FE73301AA343DB006453B6 /* LinkPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkPostTableViewCell.xib; sourceTree = "<group>"; };
+		80FE73321AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkWithoutPhotoPostTableViewCell.swift; sourceTree = "<group>"; };
+		80FE73331AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkWithoutPhotoPostTableViewCell.xib; sourceTree = "<group>"; };
+		80FE73361AA34471006453B6 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
+		80FE73381AA34801006453B6 /* UINib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINib.swift; sourceTree = "<group>"; };
 		80FF71321A9A9E54005715BA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		80FF713B1A9AAAF2005715BA /* Apache License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
 		80FF713C1A9AAAF2005715BA /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -267,9 +281,15 @@
 			isa = PBXGroup;
 			children = (
 				37532D5B4C8CB43D1B745708 /* FriendTableViewCell.swift */,
+				80FE73361AA34471006453B6 /* FriendTableViewCell.xib */,
+				80FE73321AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift */,
+				80FE73331AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib */,
 				37532CE7757DCE1861B0C7D4 /* LinkPostTableViewCell.swift */,
+				80FE73301AA343DB006453B6 /* LinkPostTableViewCell.xib */,
 				375321942C31AAA7167BB90B /* PhotoPostTableViewCell.swift */,
+				80FE732E1AA343B0006453B6 /* PhotoPostTableViewCell.xib */,
 				375321CA60DC5D1E9CF571ED /* StatusPostTableViewCell.swift */,
+				80FE732C1AA34172006453B6 /* StatusPostTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -339,6 +359,7 @@
 			children = (
 				8083DFD11AA129D1009FA37A /* UIColor.swift */,
 				80BACFAA1AA262C4000A3093 /* UIView.swift */,
+				80FE73381AA34801006453B6 /* UINib.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -643,7 +664,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80FE73351AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib in Resources */,
+				80FE73371AA34471006453B6 /* FriendTableViewCell.xib in Resources */,
+				80FE732F1AA343B0006453B6 /* PhotoPostTableViewCell.xib in Resources */,
+				80FE73311AA343DB006453B6 /* LinkPostTableViewCell.xib in Resources */,
 				80FBA44A1AA128C100887F25 /* UserProfile.xib in Resources */,
+				80FE732D1AA34172006453B6 /* StatusPostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +746,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80FE73341AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift in Sources */,
 				80BACFAB1AA262C4000A3093 /* UIView.swift in Sources */,
 				C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */,
 				807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */,
@@ -728,6 +755,7 @@
 				80BACFA91AA26196000A3093 /* IBDesignableHelper.swift in Sources */,
 				80FBA43F1AA128B600887F25 /* LoginButton.swift in Sources */,
 				80BACFB31AA2947C000A3093 /* LoginCancelButton.swift in Sources */,
+				80FE73391AA34801006453B6 /* UINib.swift in Sources */,
 				8083DFD31AA12A65009FA37A /* FriendTableViewCell.swift in Sources */,
 				8083DFD41AA12A65009FA37A /* LinkPostTableViewCell.swift in Sources */,
 				80FBA4401AA128B600887F25 /* SegmentedControl.swift in Sources */,

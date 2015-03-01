@@ -53,6 +53,7 @@ extension FriendsTableViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.tableView.registerNib(UINib.nibForClass(FriendTableViewCell.self), forCellReuseIdentifier: "friendCell")
     self.tableViewSeparatorStileDefault = self.tableView.separatorStyle
     self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: Selector("doFetchFriends:"), forControlEvents: UIControlEvents.ValueChanged)

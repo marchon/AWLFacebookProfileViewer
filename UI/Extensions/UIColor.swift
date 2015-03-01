@@ -13,7 +13,7 @@ public extension UIColor {
     return UIColor(red: R, green: G, blue: B, alpha: 1.0)
   }
   
-  public func lighterColorForColor() -> UIColor {
+  public var lighterColor: UIColor {
     var r = CGFloat(0)
     var g = CGFloat(0)
     var b = CGFloat(0)
@@ -26,7 +26,7 @@ public extension UIColor {
     }
   }
   
-  public func darkerColorForColor() -> UIColor {
+  public var darkerColor: UIColor {
     var r = CGFloat(0)
     var g = CGFloat(0)
     var b = CGFloat(0)

@@ -37,7 +37,7 @@ public class StatusPostTableViewCell : UITableViewCell {
     self.textLabel?.backgroundColor = UIColor.clearColor()
     self.selectedBackgroundView = UIView()
     self.selectedBackgroundView.backgroundColor = StyleKit.TableView.selectedCellBackgroundColor
-    self.labelDate.textColor = StyleKit.Palette.baseColor4.darkerColorForColor()
+    self.labelDate.textColor = StyleKit.Palette.baseColor4.darkerColor
     self.labelTitle.textColor = StyleKit.TableView.Post.titleLabelColor
     self.layoutMargins = UIEdgeInsetsZero
     self.preservesSuperviewLayoutMargins = false

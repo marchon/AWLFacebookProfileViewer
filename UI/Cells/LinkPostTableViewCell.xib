@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Light.ttf">
+            <string>OpenSans-Light</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="link" rowHeight="188" id="A8N-yr-SAO" customClass="LinkPostTableViewCell" customModule="FBPVUI">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="188"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="A8N-yr-SAO" id="bfj-g4-naz">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="19 october 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7K9-cC-laT">
+                        <rect key="frame" x="8" y="28" width="304" height="19"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Contrary to popular belief, Lorem Ipsum isn’t ..." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fYK-aY-fMO">
+                        <rect key="frame" x="8" y="8" width="304" height="18"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="We’re All We Need (feat. Zoë Johnston) [The Remixes] - Single By Above &amp; Beyond" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="zgN-Jn-KX1">
+                        <rect key="frame" x="140" y="55" width="172" height="50"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y6F-9T-b3W">
+                        <rect key="frame" x="8" y="55" width="124" height="124"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="124" id="LLd-Or-WIl"/>
+                            <constraint firstAttribute="height" constant="124" id="xq9-rM-aAc"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="To preview a song, mouse over the title and click Play." lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4g-n1-9wU">
+                        <rect key="frame" x="140" y="113" width="172" height="33"/>
+                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ozg-t2-GNF">
+                        <rect key="frame" x="218" y="146" width="16" height="33"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="rpa-ts-eFo"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="zgN-Jn-KX1" firstAttribute="trailing" secondItem="u4g-n1-9wU" secondAttribute="trailing" id="4kw-X2-KEQ"/>
+                    <constraint firstItem="zgN-Jn-KX1" firstAttribute="trailing" secondItem="bfj-g4-naz" secondAttribute="trailingMargin" id="BXZ-9p-ds8"/>
+                    <constraint firstItem="zgN-Jn-KX1" firstAttribute="leading" secondItem="u4g-n1-9wU" secondAttribute="leading" id="GbL-pm-0hF"/>
+                    <constraint firstItem="u4g-n1-9wU" firstAttribute="bottom" secondItem="bfj-g4-naz" secondAttribute="bottomMargin" id="HBf-TO-3uv"/>
+                    <constraint firstItem="Ozg-t2-GNF" firstAttribute="centerX" secondItem="u4g-n1-9wU" secondAttribute="centerX" id="OQa-Fw-4vy"/>
+                    <constraint firstItem="y6F-9T-b3W" firstAttribute="bottom" secondItem="bfj-g4-naz" secondAttribute="bottomMargin" id="TNA-Pd-052"/>
+                    <constraint firstItem="fYK-aY-fMO" firstAttribute="leading" secondItem="bfj-g4-naz" secondAttribute="leadingMargin" id="Thg-f9-vZo"/>
+                    <constraint firstItem="u4g-n1-9wU" firstAttribute="top" secondItem="zgN-Jn-KX1" secondAttribute="bottom" constant="8" id="ToB-In-qMi"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7K9-cC-laT" secondAttribute="trailing" id="Why-yn-XYH"/>
+                    <constraint firstItem="zgN-Jn-KX1" firstAttribute="leading" secondItem="y6F-9T-b3W" secondAttribute="trailing" constant="8" id="X8v-tz-lEe"/>
+                    <constraint firstItem="7K9-cC-laT" firstAttribute="top" secondItem="fYK-aY-fMO" secondAttribute="bottom" constant="2" id="bW2-Ra-5HY"/>
+                    <constraint firstItem="Ozg-t2-GNF" firstAttribute="bottom" secondItem="bfj-g4-naz" secondAttribute="bottomMargin" id="eod-df-VY8"/>
+                    <constraint firstItem="y6F-9T-b3W" firstAttribute="top" secondItem="7K9-cC-laT" secondAttribute="bottom" constant="8" id="gM5-kR-Ryg"/>
+                    <constraint firstItem="fYK-aY-fMO" firstAttribute="top" secondItem="bfj-g4-naz" secondAttribute="topMargin" id="gug-Za-WIg"/>
+                    <constraint firstItem="7K9-cC-laT" firstAttribute="leading" secondItem="bfj-g4-naz" secondAttribute="leadingMargin" id="hAF-rU-nX1"/>
+                    <constraint firstItem="y6F-9T-b3W" firstAttribute="leading" secondItem="bfj-g4-naz" secondAttribute="leadingMargin" id="oUX-3K-5GN"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fYK-aY-fMO" secondAttribute="trailing" id="tsW-kI-1eM"/>
+                    <constraint firstItem="Ozg-t2-GNF" firstAttribute="top" secondItem="u4g-n1-9wU" secondAttribute="bottom" id="uZy-kc-Uvp"/>
+                    <constraint firstItem="zgN-Jn-KX1" firstAttribute="top" secondItem="7K9-cC-laT" secondAttribute="bottom" constant="8" id="udD-be-gxs"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="HBf-TO-3uv"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imagePhoto" destination="y6F-9T-b3W" id="XxS-PB-zMk"/>
+                <outlet property="labelDate" destination="7K9-cC-laT" id="vBa-8m-ctf"/>
+                <outlet property="labelLinkSubtext" destination="u4g-n1-9wU" id="Bfh-y7-w1N"/>
+                <outlet property="labelLinkText" destination="zgN-Jn-KX1" id="Udv-Cr-omZ"/>
+                <outlet property="labelTitle" destination="fYK-aY-fMO" id="0n5-T6-pfb"/>
+                <outlet property="layoutImageHeight" destination="xq9-rM-aAc" id="LmT-4v-WjX"/>
+                <outlet property="layoutImageWidth" destination="LLd-Or-WIl" id="Rbj-9K-jOy"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

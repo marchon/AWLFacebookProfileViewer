@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Light.ttf">
+            <string>OpenSans-Light</string>
+        </mutableArray>
+        <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="linkWithoutPhoto" rowHeight="131" id="rcN-nz-wwM" customClass="LinkPostTableViewCell" customModule="FBPVUI">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="131"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rcN-nz-wwM" id="BV2-nI-cSr">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="19 october 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emX-rF-ax0">
+                        <rect key="frame" x="8" y="28" width="304" height="15"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Contrary to popular belief, Lorem Ipsum isn’t ..." lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eNd-PP-LUe">
+                        <rect key="frame" x="8" y="8" width="304" height="18"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="We’re All We Need (feat. Zoë Johnston) [The Remixes] - Single By Above &amp; Beyond" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mwp-5D-AxH">
+                        <rect key="frame" x="8" y="51" width="304" height="30"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="To preview a song, mouse over the title and click Play. And follow instructions..." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frc-L3-5jZ">
+                        <rect key="frame" x="8" y="89" width="304" height="33"/>
+                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mwp-5D-AxH" firstAttribute="leading" secondItem="frc-L3-5jZ" secondAttribute="leading" id="2Cq-Is-Ptt"/>
+                    <constraint firstItem="emX-rF-ax0" firstAttribute="leading" secondItem="BV2-nI-cSr" secondAttribute="leadingMargin" id="2TF-UF-2xI"/>
+                    <constraint firstItem="mwp-5D-AxH" firstAttribute="trailing" secondItem="frc-L3-5jZ" secondAttribute="trailing" id="4rB-9o-7ZB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="emX-rF-ax0" secondAttribute="trailing" id="Em5-gs-sbN"/>
+                    <constraint firstItem="frc-L3-5jZ" firstAttribute="bottom" secondItem="BV2-nI-cSr" secondAttribute="bottomMargin" id="Xnn-3s-hUO"/>
+                    <constraint firstItem="mwp-5D-AxH" firstAttribute="trailing" secondItem="BV2-nI-cSr" secondAttribute="trailingMargin" id="Y4t-w8-us9"/>
+                    <constraint firstItem="frc-L3-5jZ" firstAttribute="top" secondItem="mwp-5D-AxH" secondAttribute="bottom" constant="8" id="Zdv-9t-x0t"/>
+                    <constraint firstItem="emX-rF-ax0" firstAttribute="top" secondItem="eNd-PP-LUe" secondAttribute="bottom" constant="2" id="f8C-r5-81k"/>
+                    <constraint firstItem="mwp-5D-AxH" firstAttribute="leading" secondItem="BV2-nI-cSr" secondAttribute="leadingMargin" id="hfg-G0-SCi"/>
+                    <constraint firstItem="eNd-PP-LUe" firstAttribute="top" secondItem="BV2-nI-cSr" secondAttribute="topMargin" id="kq9-vY-PLs"/>
+                    <constraint firstItem="eNd-PP-LUe" firstAttribute="leading" secondItem="BV2-nI-cSr" secondAttribute="leadingMargin" id="pRN-T2-dm2"/>
+                    <constraint firstItem="mwp-5D-AxH" firstAttribute="top" secondItem="emX-rF-ax0" secondAttribute="bottom" constant="8" id="vce-4w-WpK"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="eNd-PP-LUe" secondAttribute="trailing" id="x8H-Yk-tW9"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="labelDate" destination="emX-rF-ax0" id="Vbq-XG-REY"/>
+                <outlet property="labelLinkSubtext" destination="frc-L3-5jZ" id="29i-f0-wgY"/>
+                <outlet property="labelLinkText" destination="mwp-5D-AxH" id="43f-k4-0ZX"/>
+                <outlet property="labelTitle" destination="eNd-PP-LUe" id="ZHk-5A-wDr"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
