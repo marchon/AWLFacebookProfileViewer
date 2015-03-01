@@ -25,6 +25,7 @@ if [ -r $SCRIPT_PATH ]; then
     php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=AppIcons
     # Removing unneded 1x images
     find "$ASSETS_DIR" -type f -name '*@1x.png' | xargs -I{} rm -f "{}"
+    cp -fR "$ASSETS_DIR" "$CURR_DIR/FBPVPrototype"
     
 else
     echo "warning: Unable to find script: $SCRIPT_PATH"

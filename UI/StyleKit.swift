@@ -73,7 +73,7 @@ public class StyleKit {
   public class PopupViews {
 
     public class var popupViewBackgroundColor: UIColor {
-      return UIColor.fromRGB(0x8C8C8C)
+      return StyleKit.Palette.baseColor4
     }
 
     public class var popupViewBorderColor: UIColor {
