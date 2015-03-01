@@ -282,6 +282,10 @@ extension PostsTableViewController {
     }
   }
 
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    return UITableViewAutomaticDimension
+  }
+
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     let numberOfObjects = fetchedResultsController.sections?.first?.numberOfObjects ?? 0
     self.configureTableView(shouldShowBackgroundView: numberOfObjects == 0)

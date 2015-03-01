@@ -69,6 +69,8 @@
 		80FE73351AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE73331AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib */; };
 		80FE73371AA34471006453B6 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE73361AA34471006453B6 /* FriendTableViewCell.xib */; };
 		80FE73391AA34801006453B6 /* UINib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE73381AA34801006453B6 /* UINib.swift */; };
+		80FE733B1AA35F39006453B6 /* PostDateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE733A1AA35F39006453B6 /* PostDateLabel.swift */; };
+		80FE733D1AA35FF0006453B6 /* PostTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE733C1AA35FF0006453B6 /* PostTitleLabel.swift */; };
 		80FF71461A9AAD0D005715BA /* Apache License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 80FF713B1A9AAAF2005715BA /* Apache License.txt */; };
 		80FF71471A9AAD0D005715BA /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80FF713C1A9AAAF2005715BA /* OpenSans-Bold.ttf */; };
 		80FF71481A9AAD0D005715BA /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 80FF713D1A9AAAF2005715BA /* OpenSans-BoldItalic.ttf */; };
@@ -216,6 +218,8 @@
 		80FE73331AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkWithoutPhotoPostTableViewCell.xib; sourceTree = "<group>"; };
 		80FE73361AA34471006453B6 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
 		80FE73381AA34801006453B6 /* UINib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINib.swift; sourceTree = "<group>"; };
+		80FE733A1AA35F39006453B6 /* PostDateLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDateLabel.swift; sourceTree = "<group>"; };
+		80FE733C1AA35FF0006453B6 /* PostTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTitleLabel.swift; sourceTree = "<group>"; };
 		80FF71321A9A9E54005715BA /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		80FF713B1A9AAAF2005715BA /* Apache License.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Apache License.txt"; sourceTree = "<group>"; };
 		80FF713C1A9AAAF2005715BA /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -438,6 +442,8 @@
 				80BACFAC1AA28E43000A3093 /* LoadMorePostsButton.swift */,
 				80FBA43E1AA128B600887F25 /* SegmentedControl.swift */,
 				80BACFB21AA2947C000A3093 /* LoginCancelButton.swift */,
+				80FE733A1AA35F39006453B6 /* PostDateLabel.swift */,
+				80FE733C1AA35FF0006453B6 /* PostTitleLabel.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -761,11 +767,13 @@
 				80FBA4401AA128B600887F25 /* SegmentedControl.swift in Sources */,
 				8083DFD61AA12A65009FA37A /* StatusPostTableViewCell.swift in Sources */,
 				80BACFAD1AA28E43000A3093 /* LoadMorePostsButton.swift in Sources */,
+				80FE733D1AA35FF0006453B6 /* PostTitleLabel.swift in Sources */,
 				80FBA44B1AA128C100887F25 /* UserProfileBackgroundImageView.swift in Sources */,
 				8083DFD51AA12A65009FA37A /* PhotoPostTableViewCell.swift in Sources */,
 				80FBA4491AA128C100887F25 /* UserProfile.swift in Sources */,
 				80FBA4471AA128C100887F25 /* UserProfileAvatarImageView.swift in Sources */,
 				80BACFB11AA290A9000A3093 /* LoginScreenView.swift in Sources */,
+				80FE733B1AA35F39006453B6 /* PostDateLabel.swift in Sources */,
 				80BACFB71AA29FDA000A3093 /* LoadingProgressView.swift in Sources */,
 				8083DFD21AA129D1009FA37A /* UIColor.swift in Sources */,
 			);
