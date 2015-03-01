@@ -49,6 +49,9 @@
 		80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0661A70506A0004CBDE /* LaunchScreen.xib */; };
 		80CDE7BD1A8E242A00499B4E /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDE7BC1A8E242A00499B4E /* CoreDataHelper.swift */; };
 		80CFEE961A7E986F00D47E62 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFEE941A7E947B00D47E62 /* AppState.swift */; };
+		80E342331AA38B7E00F9C050 /* PostLinkTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E342321AA38B7E00F9C050 /* PostLinkTitleLabel.swift */; };
+		80E342351AA38B9000F9C050 /* PostLinkSubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E342341AA38B9000F9C050 /* PostLinkSubtitleLabel.swift */; };
+		80E342371AA38C9300F9C050 /* GenericPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E342361AA38C9300F9C050 /* GenericPostTableViewCell.swift */; };
 		80FBA43B1AA1288200887F25 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43A1AA1288200887F25 /* XCTestCase.swift */; };
 		80FBA43F1AA128B600887F25 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43D1AA128B600887F25 /* LoginButton.swift */; };
 		80FBA4401AA128B600887F25 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43E1AA128B600887F25 /* SegmentedControl.swift */; };
@@ -198,6 +201,9 @@
 		80C3B0671A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80CDE7BC1A8E242A00499B4E /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		80CFEE941A7E947B00D47E62 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		80E342321AA38B7E00F9C050 /* PostLinkTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostLinkTitleLabel.swift; sourceTree = "<group>"; };
+		80E342341AA38B9000F9C050 /* PostLinkSubtitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostLinkSubtitleLabel.swift; sourceTree = "<group>"; };
+		80E342361AA38C9300F9C050 /* GenericPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericPostTableViewCell.swift; sourceTree = "<group>"; };
 		80FBA43A1AA1288200887F25 /* XCTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		80FBA43D1AA128B600887F25 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		80FBA43E1AA128B600887F25 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
@@ -294,6 +300,7 @@
 				80FE732E1AA343B0006453B6 /* PhotoPostTableViewCell.xib */,
 				375321CA60DC5D1E9CF571ED /* StatusPostTableViewCell.swift */,
 				80FE732C1AA34172006453B6 /* StatusPostTableViewCell.xib */,
+				80E342361AA38C9300F9C050 /* GenericPostTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -444,6 +451,8 @@
 				80BACFB21AA2947C000A3093 /* LoginCancelButton.swift */,
 				80FE733A1AA35F39006453B6 /* PostDateLabel.swift */,
 				80FE733C1AA35FF0006453B6 /* PostTitleLabel.swift */,
+				80E342321AA38B7E00F9C050 /* PostLinkTitleLabel.swift */,
+				80E342341AA38B9000F9C050 /* PostLinkSubtitleLabel.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -754,6 +763,7 @@
 			files = (
 				80FE73341AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift in Sources */,
 				80BACFAB1AA262C4000A3093 /* UIView.swift in Sources */,
+				80E342351AA38B9000F9C050 /* PostLinkSubtitleLabel.swift in Sources */,
 				C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */,
 				807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */,
 				808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */,
@@ -768,7 +778,9 @@
 				8083DFD61AA12A65009FA37A /* StatusPostTableViewCell.swift in Sources */,
 				80BACFAD1AA28E43000A3093 /* LoadMorePostsButton.swift in Sources */,
 				80FE733D1AA35FF0006453B6 /* PostTitleLabel.swift in Sources */,
+				80E342371AA38C9300F9C050 /* GenericPostTableViewCell.swift in Sources */,
 				80FBA44B1AA128C100887F25 /* UserProfileBackgroundImageView.swift in Sources */,
+				80E342331AA38B7E00F9C050 /* PostLinkTitleLabel.swift in Sources */,
 				8083DFD51AA12A65009FA37A /* PhotoPostTableViewCell.swift in Sources */,
 				80FBA4491AA128C100887F25 /* UserProfile.swift in Sources */,
 				80FBA4471AA128C100887F25 /* UserProfileAvatarImageView.swift in Sources */,

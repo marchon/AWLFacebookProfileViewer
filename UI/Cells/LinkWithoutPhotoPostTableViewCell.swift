@@ -8,11 +8,7 @@
 
 import UIKit
 
-public class LinkWithoutPhotoPostTableViewCell: UITableViewCell {
-
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+@IBDesignable
+public class LinkWithoutPhotoPostTableViewCell: GenericPostTableViewCell {
 
 }

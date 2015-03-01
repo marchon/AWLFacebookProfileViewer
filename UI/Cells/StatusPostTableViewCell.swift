@@ -7,28 +7,9 @@ import UIKit
 import FBPVClasses
 
 @IBDesignable
-public class StatusPostTableViewCell : UITableViewCell {
+public class StatusPostTableViewCell : GenericPostTableViewCell {
 
   @IBOutlet public weak var labelDate: UILabel!
   @IBOutlet public weak var labelTitle: UILabel!
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    setupNib()
-  }
-
-  private func setupNib() {
-    self.backgroundColor = StyleKit.TableView.cellBackgroundColor
-    self.contentView.backgroundColor = UIColor.clearColor()
-    self.textLabel?.backgroundColor = UIColor.clearColor()
-    self.selectedBackgroundView = UIView()
-    self.selectedBackgroundView.backgroundColor = StyleKit.TableView.selectedCellBackgroundColor
-    self.layoutMargins = UIEdgeInsetsZero
-    self.preservesSuperviewLayoutMargins = false
-  }
-  
 }
