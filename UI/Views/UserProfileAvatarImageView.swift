@@ -11,6 +11,16 @@ import UIKit
 @IBDesignable
 public class UserProfileAvatarImageView: UIImageView {
 
+  public override var image: UIImage? {
+    didSet {
+      if self.image != nil {
+        self.layer.borderWidth = 1
+      } else {
+        self.layer.borderWidth = 0
+      }
+    }
+  }
+
   public override func awakeFromNib() {
     super.awakeFromNib()
     self.setupNib()
@@ -22,6 +32,10 @@ public class UserProfileAvatarImageView: UIImageView {
 
   private func setupNib() {
     self.backgroundColor = StyleKit.Palette.baseColor5
+    self.layer.borderColor = StyleKit.ProfileView.avatarBorderColor.CGColor
+    let radius = 0.5 * max(CGRectGetHeight(self.bounds), CGRectGetWidth(self.bounds))
+    self.layer.cornerRadius = radius
+    self.clipsToBounds = true
 
     if self.isUnderLiveViewTarget {
       var img = IBDesignableHelper.imageNamed("userProfilePhoto")

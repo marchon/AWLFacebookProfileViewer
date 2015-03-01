@@ -82,12 +82,12 @@
          <EnvironmentVariable
             key = "AWLInMemoryStore"
             value = "YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
             key = "AWLEraseCustomDefaults"
             value = "YES"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
       <AdditionalOptions>

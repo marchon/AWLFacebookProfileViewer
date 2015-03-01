@@ -6,13 +6,13 @@
 import UIKit
 import QuartzCore
 
-class GenericStoryboardSegue : UIStoryboardSegue {
-  var unwinding: Bool = false
+public class GenericStoryboardSegue : UIStoryboardSegue {
+  public var unwinding: Bool = false
 }
 
-class CrossDissolveStoryboardSegue : GenericStoryboardSegue {
+public class CrossDissolveStoryboardSegue : GenericStoryboardSegue {
 
-  override func perform() {
+  public override func perform() {
     let sourceViewController = self.sourceViewController as! UIViewController
     let destinationController = self.destinationViewController as! UIViewController
     let transition = CATransition()
@@ -35,9 +35,9 @@ class CrossDissolveStoryboardSegue : GenericStoryboardSegue {
   }
 }
 
-class SwitchStoryboardSegue : GenericStoryboardSegue {
+public class SwitchStoryboardSegue : GenericStoryboardSegue {
 
-  override func perform() {
+  public override func perform() {
     let sourceViewController = self.sourceViewController as! UIViewController
     let destinationController = self.destinationViewController as! UIViewController
     if let nc = sourceViewController.navigationController {

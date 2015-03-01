@@ -67,12 +67,6 @@ class MainViewController: UIViewController {
     if segue.identifier == "showWelcomeScreen" {
       let nc = segue.destinationViewController as! UINavigationController
       let ctrl = nc.viewControllers.first as! WelcomeScreenViewController
-      ctrl.canceled = {
-        AppState.UI.shouldSkipWelcomeScreen = true
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-          
-        })
-      }
       ctrl.success = { (tokenInfo: (accessToken:String, expiresIn:Int)) -> () in
         AppState.UI.shouldSkipWelcomeScreen = true
         AppState.Authentication.facebookAccesToken = tokenInfo.accessToken
@@ -158,11 +152,6 @@ extension MainViewController {
       if let theImageData = profile.avatarPictureData {
         let theView = self.topView.profileAvatar
         theView.image = UIImage(data: theImageData)
-        theView.layer.borderWidth = 1
-        theView.layer.borderColor = StyleKit.ProfileView.avatarBorderColor.CGColor
-        let radius = 0.5 * max(CGRectGetHeight(theView.bounds), CGRectGetWidth(theView.bounds))
-        theView.layer.cornerRadius = radius
-        theView.clipsToBounds = true
       }
       if let theImageData = profile.coverPhotoData {
         self.topView.coverPhoto.image = UIImage(data: theImageData) // TODO: Adjust image parameters to achive better contrast with status bar

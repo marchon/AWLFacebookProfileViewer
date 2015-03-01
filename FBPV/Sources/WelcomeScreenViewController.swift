@@ -9,19 +9,20 @@ import FBPVUI
 class WelcomeScreenViewController : UIViewController {
 
   var success: ((accessToken: String, expiresIn: Int) -> ())?
-  var canceled: (() -> ())?
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.view.backgroundColor = StyleKit.Palette.baseColor5
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    self.navigationController?.navigationBarHidden = true
   }
-  
+
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showLoginScreen" && segue.destinationViewController is LoginScreenViewController {
       let ctrl = segue.destinationViewController as! LoginScreenViewController
       ctrl.success = self.success
-      ctrl.canceled = self.canceled
     }
   }
-  
+
+  @IBAction func unwindToWelcome(unwindSegue: UIStoryboardSegue) {
+  }
+
 }

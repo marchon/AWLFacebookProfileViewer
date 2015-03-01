@@ -13,10 +13,6 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
   let FacebookLoginDialogErrorKeyScope = "FacebookLoginDialogErrorScope"
 
   @IBOutlet weak var webView: UIWebView!
-  @IBOutlet weak var loadingProgressLabel: UILabel!
-  @IBOutlet weak var loadingProgressIndicator: UIActivityIndicatorView!
-  @IBOutlet weak var buttonCancel: UIButton!
-
 
   private var tokenInfo: (accessToken: String, expiresIn: Int)?
   private var error: NSError?
@@ -50,11 +46,8 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = StyleKit.Palette.baseColor5
-    self.buttonCancel.backgroundColor = StyleKit.Palette.baseColor4
-    self.loadingProgressLabel.hidden = true
-    self.buttonCancel.hidden = true
-    self.loadingProgressIndicator.hidden = true
+    self.navigationController?.navigationBarHidden = false
+
     webView.delegate = self
 
     var authURL = self.authorizationURL
@@ -128,26 +121,25 @@ extension LoginScreenViewController {
 
   func webViewDidStartLoad(webView: UIWebView) {
     logDebug("Loading...")
-    self.loadingProgressLabel.hidden = false
-    self.loadingProgressIndicator.hidden = false
+    (self.view as! LoginScreenView).loadingStarted()
   }
 
   func webViewDidFinishLoad(webView: UIWebView) {
     logDebug("Done!")
-    self.loadingProgressLabel.hidden = true
-    self.loadingProgressIndicator.hidden = true
-    self.buttonCancel.hidden = false
+    (self.view as! LoginScreenView).loadingFinished()
   }
 
   func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
-    self.loadingProgressLabel.hidden = true
-    self.loadingProgressIndicator.hidden = true
-    self.buttonCancel.hidden = false
+    (self.view as! LoginScreenView).loadingFinished()
     if error.domain == "WebKitErrorDomain" && error.code == 102 { // WebKitErrorFrameLoadInterruptedByPolicyChange
       return
     }
     completeWithError(error)
   }
+
+}
+
+extension LoginScreenViewController {
 
   private func accessTokenFromURL(url: NSURL) -> (accessToken: String, expiresIn: Int)? {
     var token: String?

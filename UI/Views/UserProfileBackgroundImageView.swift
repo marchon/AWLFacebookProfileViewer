@@ -11,23 +11,8 @@ import UIKit
 @IBDesignable
 public class UserProfileBackgroundImageView: UIImageView {
 
-  public override init(frame: CGRect) {
-    super.init(frame: frame)
-    self.setupNib()
-  }
-
-  required public init(coder aDecoder: NSCoder) {
-    super.init(coder: aDecoder)
-    self.setupNib()
-  }
-
-  public override init(image: UIImage!) {
-    super.init(image: image)
-    self.setupNib()
-  }
-
-  public override init(image: UIImage!, highlightedImage: UIImage?) {
-    super.init(image: image, highlightedImage: highlightedImage)
+  public override func awakeFromNib() {
+    super.awakeFromNib()
     self.setupNib()
   }
 
@@ -38,6 +23,12 @@ public class UserProfileBackgroundImageView: UIImageView {
   func setupNib() {
     self.backgroundColor = StyleKit.Palette.baseColor5
     self.clipsToBounds = true
+
+
+    if self.isUnderLiveViewTarget {
+      var img = IBDesignableHelper.imageNamed("userProfileCover")
+      self.image = img
+    }
   }
   
 }

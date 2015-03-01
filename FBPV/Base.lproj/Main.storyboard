@@ -10,7 +10,6 @@
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
             <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
         </mutableArray>
         <mutableArray key="OpenSans-Regular.ttf">
             <string>OpenSans</string>
@@ -98,11 +97,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.83520281314849854" green="0.8353467583656311" blue="0.8351936936378479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="avr-gB-XfG" customClass="LoadMorePostsView" customModule="FBPVUI">
+                        <view key="tableFooterView" contentMode="scaleToFill" id="avr-gB-XfG">
                             <rect key="frame" x="0.0" y="530" width="320" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6v-ak-Lq5">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6v-ak-Lq5" customClass="LoadMorePostsButton" customModule="FBPVUI">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
                                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                                     <state key="normal" title="Load more posts ...">
@@ -121,9 +120,6 @@
                                 <constraint firstItem="Q6v-ak-Lq5" firstAttribute="leading" secondItem="avr-gB-XfG" secondAttribute="leading" id="eoL-E2-DdY"/>
                                 <constraint firstItem="Q6v-ak-Lq5" firstAttribute="top" secondItem="avr-gB-XfG" secondAttribute="top" id="ral-AR-LcI"/>
                             </constraints>
-                            <connections>
-                                <outlet property="buttonLoadMore" destination="Q6v-ak-Lq5" id="tJz-QQ-xsc"/>
-                            </connections>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="status" rowHeight="58" id="gto-fq-89F" customClass="StatusPostTableViewCell" customModule="FBPVUI">
@@ -402,70 +398,73 @@
                         <viewControllerLayoutGuide type="top" id="R6e-IO-SyZ"/>
                         <viewControllerLayoutGuide type="bottom" id="Yky-RH-wsK"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="UlQ-af-44L">
+                    <view key="view" contentMode="scaleToFill" id="UlQ-af-44L" customClass="LoginScreenView" customModule="FBPVUI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pw0-d0-I8U">
-                                <rect key="frame" x="32" y="282" width="256" height="24"/>
-                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="5h9-YQ-npz">
-                                <rect key="frame" x="150" y="250" width="20" height="20"/>
-                            </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NB5-Lq-PA6">
-                                <rect key="frame" x="0.0" y="520" width="320" height="48"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="yUn-ZO-bYg"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doCancel:" destination="USC-5o-nec" eventType="touchUpInside" id="o2v-ok-4pU"/>
-                                </connections>
-                            </button>
                             <webView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwi-NC-3jw">
-                                <rect key="frame" x="0.0" y="20" width="320" height="500"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </webView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-88-2F5" customClass="LoadingProgressView" customModule="FBPVUI">
+                                <rect key="frame" x="50" y="224" width="220" height="120"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pw0-d0-I8U">
+                                        <rect key="frame" x="71" y="70" width="78" height="24"/>
+                                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="5h9-YQ-npz">
+                                        <rect key="frame" x="100" y="38" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.26740410923957825" green="0.82880121469497681" blue="0.7620774507522583" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Pw0-d0-I8U" secondAttribute="bottom" constant="26" id="DTM-O9-jbH"/>
+                                    <constraint firstAttribute="width" constant="220" id="MQL-M9-vjO"/>
+                                    <constraint firstItem="Pw0-d0-I8U" firstAttribute="top" secondItem="5h9-YQ-npz" secondAttribute="bottom" constant="12" id="SbO-ap-zxN"/>
+                                    <constraint firstAttribute="height" constant="120" id="bUA-lP-Yz2"/>
+                                    <constraint firstAttribute="centerX" secondItem="Pw0-d0-I8U" secondAttribute="centerX" id="h1b-eA-rTj"/>
+                                    <constraint firstItem="5h9-YQ-npz" firstAttribute="top" secondItem="xgB-88-2F5" secondAttribute="top" constant="38" id="mFa-uf-0e0"/>
+                                    <constraint firstAttribute="centerX" secondItem="5h9-YQ-npz" secondAttribute="centerX" id="tm3-JE-mze"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="NB5-Lq-PA6" firstAttribute="top" secondItem="iwi-NC-3jw" secondAttribute="bottom" id="34M-US-SOt"/>
-                            <constraint firstAttribute="trailing" secondItem="NB5-Lq-PA6" secondAttribute="trailing" id="7UJ-1N-GF3"/>
-                            <constraint firstAttribute="centerY" secondItem="5h9-YQ-npz" secondAttribute="centerY" constant="24" id="9Dh-cE-c6c"/>
-                            <constraint firstItem="Pw0-d0-I8U" firstAttribute="leading" secondItem="UlQ-af-44L" secondAttribute="leadingMargin" constant="16" id="Bje-Bu-s4i"/>
+                            <constraint firstAttribute="centerX" secondItem="xgB-88-2F5" secondAttribute="centerX" id="9UG-dv-DV3"/>
                             <constraint firstAttribute="trailing" secondItem="iwi-NC-3jw" secondAttribute="trailing" id="Ff3-e4-ZVT"/>
-                            <constraint firstItem="Yky-RH-wsK" firstAttribute="top" secondItem="NB5-Lq-PA6" secondAttribute="bottom" id="Q8u-kj-wXg"/>
                             <constraint firstItem="iwi-NC-3jw" firstAttribute="leading" secondItem="UlQ-af-44L" secondAttribute="leading" id="Qv0-tA-R2O"/>
-                            <constraint firstItem="NB5-Lq-PA6" firstAttribute="leading" secondItem="UlQ-af-44L" secondAttribute="leading" id="VNC-zY-ENd"/>
-                            <constraint firstAttribute="centerX" secondItem="5h9-YQ-npz" secondAttribute="centerX" id="W08-BL-FVV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Pw0-d0-I8U" secondAttribute="trailing" constant="16" id="ify-1o-TYR"/>
+                            <constraint firstItem="Yky-RH-wsK" firstAttribute="top" secondItem="iwi-NC-3jw" secondAttribute="bottom" id="eGo-lX-s3z"/>
+                            <constraint firstAttribute="centerY" secondItem="xgB-88-2F5" secondAttribute="centerY" id="nIF-5h-u19"/>
                             <constraint firstItem="iwi-NC-3jw" firstAttribute="top" secondItem="R6e-IO-SyZ" secondAttribute="bottom" id="ovq-jN-JUA"/>
-                            <constraint firstItem="Pw0-d0-I8U" firstAttribute="top" secondItem="5h9-YQ-npz" secondAttribute="bottom" constant="12" id="wbq-Fd-4QC"/>
                         </constraints>
+                        <connections>
+                            <outlet property="loadingView" destination="xgB-88-2F5" id="3tq-38-g6O"/>
+                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="UNq-8s-INd">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="EU5-uD-odg">
+                            <connections>
+                                <action selector="doCancel:" destination="USC-5o-nec" id="eJA-o5-pGs"/>
+                                <segue destination="yyu-PI-CvU" kind="unwind" unwindAction="unwindToWelcome:" id="ARf-08-KK6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="buttonCancel" destination="NB5-Lq-PA6" id="PMI-6J-gmc"/>
-                        <outlet property="loadingProgressIndicator" destination="5h9-YQ-npz" id="xv0-L5-XVl"/>
-                        <outlet property="loadingProgressLabel" destination="Pw0-d0-I8U" id="o1R-hT-EFW"/>
-                        <outlet property="webView" destination="iwi-NC-3jw" id="5AO-Ar-hY5"/>
+                        <outlet property="webView" destination="iwi-NC-3jw" id="BB2-d2-3I7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ON8-mM-H0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="yyu-PI-CvU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="540" y="871"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Generic Navigation Controller View Controller-->
         <scene sceneID="fb6-Fl-owA">
             <objects>
-                <navigationController navigationBarHidden="YES" id="djE-6o-e9M" sceneMemberID="viewController">
+                <navigationController id="djE-6o-e9M" customClass="GenericNavigationControllerViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="pN2-bk-B5x">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -489,8 +488,8 @@
                         <viewControllerLayoutGuide type="top" id="k7A-Tq-ccw"/>
                         <viewControllerLayoutGuide type="bottom" id="iFN-26-uoh"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="w5w-zH-S1L">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <view key="view" contentMode="scaleToFill" id="w5w-zH-S1L" customClass="WelcomeScreenView" customModule="FBPVUI">
+                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21W-DC-8QD" customClass="LoginButton" customModule="FBPVUI">
@@ -507,7 +506,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MdT-Iv-URJ">
-                                <rect key="frame" x="125" y="120" width="70" height="70"/>
+                                <rect key="frame" x="125" y="164" width="70" height="70"/>
                                 <color key="backgroundColor" red="0.83520281314849854" green="0.8353467583656311" blue="0.8351936936378479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="XG6-Po-y0d"/>
