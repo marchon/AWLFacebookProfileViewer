@@ -8,7 +8,7 @@ import UIKit
 @IBDesignable
 public class LoginScreenView: UIView {
 
-  @IBOutlet weak var loadingView: UIView!
+  @IBOutlet public weak var loadingView: UIView!
 
   public override func awakeFromNib() {
     super.awakeFromNib()
@@ -25,15 +25,20 @@ public class LoginScreenView: UIView {
   }
 
   public func loadingStarted() {
-    UIView.animateWithDuration(0.5, animations: { () -> Void in
-      self.loadingView.alpha = 1
-    })
+    animateOpacity(shouldHide: false)
   }
 
   public func loadingFinished() {
-    UIView.animateWithDuration(0.25, animations: { () -> Void in
-      self.loadingView.alpha = 0
-    })
+    animateOpacity(shouldHide: true)
+  }
+
+  private func animateOpacity(#shouldHide: Bool) {
+    var animation = CABasicAnimation(keyPath: "opacity")
+    animation.fromValue = shouldHide ? 1 : 0
+    animation.toValue = shouldHide ? 0 : 1
+    animation.duration = 0.25
+    self.loadingView.layer.addAnimation(animation, forKey: "opacity")
+    self.loadingView.layer.opacity = shouldHide ? 0 : 1
   }
   
 }

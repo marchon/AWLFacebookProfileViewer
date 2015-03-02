@@ -12,7 +12,7 @@ public class OverlayErrorView: NibDesignable {
 
   @IBOutlet public weak var labelMessage: UILabel!
   private weak var parentView: UIView?
-  private var completion: (() -> Void)?
+  public var completion: (() -> Void)?
 
   public convenience init(message: String) {
     self.init(frame: CGRectZero)
@@ -31,7 +31,7 @@ public class OverlayErrorView: NibDesignable {
 
   override func nibDidLoad() {
     self.setTranslatesAutoresizingMaskIntoConstraints(false)
-    let gr = UITapGestureRecognizer(target: self, action: Selector("doDismiss:"))
+    let gr = UITapGestureRecognizer(target: self, action: Selector("dismiss"))
     self.gestureRecognizers = [gr]
   }
 
@@ -55,7 +55,7 @@ public class OverlayErrorView: NibDesignable {
 
   }
 
-  func doDismiss(sender: AnyObject?) {
+  public func dismiss() {
     UIView.animateWithDuration(0.25,
       animations: { () -> Void in
         self.alpha = 0
@@ -70,4 +70,5 @@ public class OverlayErrorView: NibDesignable {
       }
     )
   }
+
 }

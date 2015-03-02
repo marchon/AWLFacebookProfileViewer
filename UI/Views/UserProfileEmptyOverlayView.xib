@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OpenSans-Light.ttf">
+            <string>OpenSans-Light</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserProfileEmptyOverlayView" customModule="FBPVUI" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="399" height="185"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="e7i-z6-DqR" customClass="UserProfileEmptyOverlayImageView" customModule="FBPVUI" customModuleProvider="target">
+                    <rect key="frame" x="144" y="42" width="112" height="68"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="112" id="JId-c8-6ji"/>
+                        <constraint firstAttribute="height" constant="68" id="Kwn-ld-vzP"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to load" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVg-Vk-Oij">
+                    <rect key="frame" x="16" y="110" width="367" height="28"/>
+                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="20"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.26740410920000002" green="0.82880121470000001" blue="0.7620774508" alpha="1" colorSpace="calibratedRGB"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="e7i-z6-DqR" secondAttribute="centerX" id="89c-Q5-4e4"/>
+                <constraint firstAttribute="centerX" secondItem="HVg-Vk-Oij" secondAttribute="centerX" id="IcL-6U-ESM"/>
+                <constraint firstItem="HVg-Vk-Oij" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Kwe-5F-5lq"/>
+                <constraint firstItem="HVg-Vk-Oij" firstAttribute="top" secondItem="e7i-z6-DqR" secondAttribute="bottom" id="Ln9-iG-bbK"/>
+                <constraint firstItem="e7i-z6-DqR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="42" id="TiK-HC-tF8"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="iX4-8W-Wxe" appends="YES" id="m2w-Qw-EnS"/>
+            </connections>
+            <point key="canvasLocation" x="385.5" y="316.5"/>
+        </view>
+        <tapGestureRecognizer id="iX4-8W-Wxe">
+            <connections>
+                <action selector="didTapped:" destination="-1" id="XGu-si-4zU"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

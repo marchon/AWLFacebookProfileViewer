@@ -18,7 +18,7 @@ class MainViewController: UIViewController, ErrorReportingProtocol {
   @IBOutlet weak var bottomView: UIView!
   @IBOutlet weak var bottomViewSwitcher: UISegmentedControl!
 
-  private var isErrorDialogShown = false
+  private var errorDialog: OverlayErrorView?
   private var postsViewControoler: PostsTableViewController!
   private var friendsViewControoler: FriendsTableViewController!
   private var activeControllerType: ChildControllerType = ChildControllerType.Posts {
@@ -39,6 +39,13 @@ class MainViewController: UIViewController, ErrorReportingProtocol {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.topView.loadProfileHandler = {
+      self.fetchProfileFromDatasourceIfNeeded()
+      self.friendsViewControoler.fetchUsersFromServerIfNeeded()
+      self.postsViewControoler.fetchPostsFromServerIfNeeded()
+      self.errorDialog?.dismiss()
+    }
+    self.topView.isProfileLoaded = false
 
     initChildControllers()
     fetchProfileFromDatasourceIfNeeded()
@@ -129,6 +136,7 @@ extension MainViewController {
       if let theImageData = profile.coverPhotoData {
         self.topView.coverPhoto.image = UIImage(data: theImageData) // TODO: Adjust image parameters to achive better contrast with status bar
       }
+      self.topView.isProfileLoaded = true
     })
   }
 
@@ -171,12 +179,11 @@ extension MainViewController {
 
   func showErrorDialog(error: NSError) {
     dispatch_async(dispatch_get_main_queue(), {
-      if !self.isErrorDialogShown {
-        let errorDialog = OverlayErrorView(error: error)
-        errorDialog.show(self.view, completion: {
-          self.isErrorDialogShown = false
+      if self.errorDialog == nil{
+        self.errorDialog = OverlayErrorView(error: error)
+        self.errorDialog?.show(self.view, completion: {
+          self.errorDialog = nil
         })
-        self.isErrorDialogShown = true
       }
     })
   }

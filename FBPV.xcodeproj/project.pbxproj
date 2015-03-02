@@ -36,6 +36,8 @@
 		8083DFD61AA12A65009FA37A /* StatusPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375321CA60DC5D1E9CF571ED /* StatusPostTableViewCell.swift */; };
 		808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */; };
 		808D45241AA4F7D100727D07 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808D45231AA4F7D100727D07 /* Protocols.swift */; };
+		808FB2801AA512790067C15B /* UserProfileEmptyOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808FB27F1AA512790067C15B /* UserProfileEmptyOverlayView.swift */; };
+		808FB2821AA5129B0067C15B /* UserProfileEmptyOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 808FB2811AA5129B0067C15B /* UserProfileEmptyOverlayView.xib */; };
 		809FDAC91AA4D78900BEB830 /* OverlayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */; };
 		809FDACB1AA4D7A000BEB830 /* OverlayErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */; };
 		809FDACD1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FDACC1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift */; };
@@ -189,6 +191,8 @@
 		8083DFD11AA129D1009FA37A /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
 		808D45231AA4F7D100727D07 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		808FB27F1AA512790067C15B /* UserProfileEmptyOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileEmptyOverlayView.swift; sourceTree = "<group>"; };
+		808FB2811AA5129B0067C15B /* UserProfileEmptyOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileEmptyOverlayView.xib; sourceTree = "<group>"; };
 		8099BD891A9E902600DF7225 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayErrorView.swift; sourceTree = "<group>"; };
 		809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayErrorView.xib; sourceTree = "<group>"; };
@@ -481,6 +485,8 @@
 				80F775091AA4E1A100B3F615 /* IconForOverlayErrorView.swift */,
 				809FDACC1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift */,
 				809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */,
+				808FB27F1AA512790067C15B /* UserProfileEmptyOverlayView.swift */,
+				808FB2811AA5129B0067C15B /* UserProfileEmptyOverlayView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 				809FDACB1AA4D7A000BEB830 /* OverlayErrorView.xib in Resources */,
 				80FE73371AA34471006453B6 /* FriendTableViewCell.xib in Resources */,
 				80FE732F1AA343B0006453B6 /* PhotoPostTableViewCell.xib in Resources */,
+				808FB2821AA5129B0067C15B /* UserProfileEmptyOverlayView.xib in Resources */,
 				80FE73311AA343DB006453B6 /* LinkPostTableViewCell.xib in Resources */,
 				80FBA44A1AA128C100887F25 /* UserProfile.xib in Resources */,
 				80FE732D1AA34172006453B6 /* StatusPostTableViewCell.xib in Resources */,
@@ -780,6 +787,7 @@
 				80FE73341AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift in Sources */,
 				80BACFAB1AA262C4000A3093 /* UIView.swift in Sources */,
 				80E342351AA38B9000F9C050 /* PostLinkSubtitleLabel.swift in Sources */,
+				808FB2801AA512790067C15B /* UserProfileEmptyOverlayView.swift in Sources */,
 				C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */,
 				809FDAC91AA4D78900BEB830 /* OverlayErrorView.swift in Sources */,
 				809FDACD1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift in Sources */,
