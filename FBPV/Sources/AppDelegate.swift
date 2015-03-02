@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import FBPVUI
 import FBPVClasses
 
 let AppDelegateForceReloadChangeNotification = "AppDelegateForceReloadChangeNotification"
@@ -17,24 +18,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
+  private var isUnderTestingMode: Bool {
+    #if TEST
+      return true
+    #endif
+    return false
+  }
+
   private var rootViewController: UIViewController? {
-    var controller: UIViewController?
-#if TEST
-    let ctrl = UIViewController()
-    ctrl.view.backgroundColor = UIColor.darkGrayColor()
-    let label = UILabel(frame: ctrl.view.bounds)
-    label.text = "Testing..."
-    label.textAlignment = NSTextAlignment.Center
-    label.font = UIFont.systemFontOfSize(28)
-    label.textColor = UIColor.whiteColor()
-    ctrl.view.addSubview(label)
-    controller = ctrl
-#else
-    var storyBoardName = "Main"
-    let storyboard = UIStoryboard(name: storyBoardName, bundle: nil)
-    controller = storyboard.instantiateInitialViewController() as? UIViewController
-#endif
-    return controller
+    if self.isUnderTestingMode {
+      let ctrl = UIViewController()
+      ctrl.view.backgroundColor = UIColor.darkGrayColor()
+      let label = UILabel(frame: ctrl.view.bounds)
+      label.text = "Testing..."
+      label.textAlignment = NSTextAlignment.Center
+      label.font = UIFont.systemFontOfSize(28)
+      label.textColor = UIColor.whiteColor()
+      ctrl.view.addSubview(label)
+      return ctrl
+    } else {
+      var storyBoardName = "Main"
+      let storyboard = UIStoryboard(name: storyBoardName, bundle: nil)
+      if let shouldSkipWelcomeScreen = AppState.UI.shouldSkipWelcomeScreen {
+        if shouldSkipWelcomeScreen {
+          return storyboard.instantiateInitialViewController() as? UIViewController
+        }
+      }
+      let nc = storyboard.instantiateViewControllerWithIdentifier("welcomeScreenRootController") as? UINavigationController
+      let ctrl = nc?.viewControllers.first as? WelcomeScreenViewController
+      ctrl?.success = { (tokenInfo: (accessToken:String, expiresIn:Int)) -> () in
+        AppState.UI.shouldSkipWelcomeScreen = true
+        AppState.Authentication.facebookAccesToken = tokenInfo.accessToken
+        AppState.Authentication.facebookAccesTokenExpitesIn = tokenInfo.expiresIn
+        // Replacing root view controller on success.
+        if let newRootViewController = storyboard.instantiateInitialViewController() as? UIViewController {
+          self.window!.rootViewController = newRootViewController
+          self.window!.makeKeyAndVisible()
+          newRootViewController.view.alpha = 0.0
+          UIView.animateWithDuration(0.5, animations: { () -> Void in
+            newRootViewController.view.alpha = 1.0
+          })
+        }
+      }
+      return nc
+    }
   }
 
 }
@@ -58,8 +85,10 @@ extension AppDelegate {
     #endif
 
     // UI
-    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    self.window!.rootViewController = self.rootViewController;
+    let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+    window.backgroundColor = UIColor.fromRGB(0xF9F9F9)
+    self.window = window
+    self.window!.rootViewController = self.rootViewController
     self.window!.makeKeyAndVisible()
 
     // Log fonts
@@ -105,6 +134,6 @@ extension AppDelegate {
     // Saves changes in the application's managed object context before the application terminates.
     CoreDataHelper.sharedInstance().saveContext()
   }
-
+  
 }
 

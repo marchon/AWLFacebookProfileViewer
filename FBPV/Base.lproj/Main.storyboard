@@ -7,9 +7,9 @@
     <customFonts key="customFonts">
         <mutableArray key="OpenSans-Light.ttf">
             <string>OpenSans-Light</string>
-            <string>OpenSans-Light</string>
         </mutableArray>
         <mutableArray key="OpenSans-Regular.ttf">
+            <string>OpenSans</string>
             <string>OpenSans</string>
         </mutableArray>
     </customFonts>
@@ -158,25 +158,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xgB-88-2F5" customClass="LoadingProgressView" customModule="FBPVUI">
                                 <rect key="frame" x="50" y="224" width="220" height="120"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pw0-d0-I8U">
-                                        <rect key="frame" x="71" y="70" width="78" height="24"/>
-                                        <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loading ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pw0-d0-I8U">
+                                        <rect key="frame" x="16" y="76" width="188" height="24"/>
+                                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="5h9-YQ-npz">
-                                        <rect key="frame" x="100" y="38" width="20" height="20"/>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="5h9-YQ-npz">
+                                        <rect key="frame" x="92" y="27" width="37" height="37"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.26740410923957825" green="0.82880121469497681" blue="0.7620774507522583" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Pw0-d0-I8U" secondAttribute="bottom" constant="26" id="DTM-O9-jbH"/>
                                     <constraint firstAttribute="width" constant="220" id="MQL-M9-vjO"/>
                                     <constraint firstItem="Pw0-d0-I8U" firstAttribute="top" secondItem="5h9-YQ-npz" secondAttribute="bottom" constant="12" id="SbO-ap-zxN"/>
                                     <constraint firstAttribute="height" constant="120" id="bUA-lP-Yz2"/>
                                     <constraint firstAttribute="centerX" secondItem="Pw0-d0-I8U" secondAttribute="centerX" id="h1b-eA-rTj"/>
-                                    <constraint firstItem="5h9-YQ-npz" firstAttribute="top" secondItem="xgB-88-2F5" secondAttribute="top" constant="38" id="mFa-uf-0e0"/>
+                                    <constraint firstItem="5h9-YQ-npz" firstAttribute="top" secondItem="xgB-88-2F5" secondAttribute="top" constant="27" id="mFa-uf-0e0"/>
                                     <constraint firstAttribute="centerX" secondItem="5h9-YQ-npz" secondAttribute="centerX" id="tm3-JE-mze"/>
+                                    <constraint firstItem="Pw0-d0-I8U" firstAttribute="leading" secondItem="xgB-88-2F5" secondAttribute="leading" constant="16" id="vUP-o6-noI"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -195,8 +195,7 @@
                     <navigationItem key="navigationItem" id="UNq-8s-INd">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="EU5-uD-odg">
                             <connections>
-                                <action selector="doCancel:" destination="USC-5o-nec" id="eJA-o5-pGs"/>
-                                <segue destination="yyu-PI-CvU" kind="unwind" unwindAction="unwindToWelcome:" id="ARf-08-KK6"/>
+                                <segue destination="yyu-PI-CvU" kind="unwind" identifier="unwindToWelcome" unwindAction="unwindToWelcome:" id="ARf-08-KK6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -213,8 +212,8 @@
         <!--Generic Navigation Controller View Controller-->
         <scene sceneID="fb6-Fl-owA">
             <objects>
-                <navigationController id="djE-6o-e9M" customClass="GenericNavigationControllerViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pN2-bk-B5x">
+                <navigationController storyboardIdentifier="welcomeScreenRootController" navigationBarHidden="YES" id="djE-6o-e9M" customClass="GenericNavigationControllerViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="pN2-bk-B5x">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -232,7 +231,7 @@
         <!--Welcome Screen View Controller-->
         <scene sceneID="yy5-JA-9IN">
             <objects>
-                <viewController id="5ux-TN-bXN" customClass="WelcomeScreenViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" id="5ux-TN-bXN" customClass="WelcomeScreenViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k7A-Tq-ccw"/>
                         <viewControllerLayoutGuide type="bottom" id="iFN-26-uoh"/>

@@ -14,8 +14,6 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
 
   @IBOutlet weak var webView: UIWebView!
 
-  private var tokenInfo: (accessToken: String, expiresIn: Int)?
-  private var error: NSError?
   var success: ((accessToken: String, expiresIn: Int) -> ())?
   var canceled: (() -> ())?
 
@@ -47,6 +45,7 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.navigationBarHidden = false
+    self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "OpenSans-Light", size: 17)!], forState: UIControlState.Normal)
 
     webView.delegate = self
 
@@ -55,38 +54,18 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
       let request = NSURLRequest(URL: url, cachePolicy:.UseProtocolCachePolicy, timeoutInterval: 30)
       webView.loadRequest(request)
     }
+
   }
 
   deinit {
     webView.delegate = nil
   }
 
-  private func complete() {
-    if let token = self.tokenInfo {
-      if let cb = self.success {
-        cb(token)
-      }
-    }
-    
-    if let error = self.error {
-      let alert = UIAlertView(title: "", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK")
-      alert.show()
-    }
-  }
-
-  private func completeWithTokenInfo(tokenInfo: (accessToken: String, expiresIn: Int)) {
-    logInfo("Success")
-  }
-
-  private func completeWithError(error: NSError) {
-    logError(error)
-  }
-  
-  @IBAction func doCancel(sender: AnyObject) {
-    logDebug("Canceled")
-    if let cb = self.canceled {
-      cb()
-    }
+  private func showErrorDialog(error: NSError) {
+    dispatch_async(dispatch_get_main_queue(), {
+      let errorDialog = OverlayErrorView(error: error)
+      errorDialog.show(self.view)
+    })
   }
 
 }
@@ -96,24 +75,31 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
 extension LoginScreenViewController {
 
   func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-    if let redirectURI = self.redirectURI {
-      if let requestURLString = request.URL!.absoluteString {
-        if requestURLString.hasPrefix(redirectURI) {
-          if let token = accessTokenFromURL(request.URL!) {
-            self.tokenInfo = token
-          } else if let error = errorFromURL(request.URL!) {
-            self.error = error
-          } else {
-            logError("Unable to extract access token from URL: \(request.URL)")
-          }
-          logDebug("Redirect handled: \(request.URL)")
-          dispatch_async(dispatch_get_main_queue(), { [weak self] () -> Void in
-            if let this = self {
-              this.complete()
+    if let redirectURI = self.redirectURI, let requestURLString = request.URL!.absoluteString {
+      if requestURLString.hasPrefix(redirectURI) {
+        logDebug("Redirect interrupted: \(request.URL)")
+        if let token = accessTokenFromURL(request.URL!) {
+          dispatch_async(dispatch_get_main_queue(),
+            { [weak self] () -> Void in
+              if let this = self, let cb = this.success {
+                cb(token)
+              }
             }
-          })
-          return false
+          )
+        } else if let error = errorFromURL(request.URL!) {
+          logError(error)
+          dispatch_async(dispatch_get_main_queue(),
+            { [weak self] () -> Void in
+              if let this = self, let cb = this.canceled {
+                cb()
+              }
+            }
+          )
+        } else {
+          logError("Unable to extract access token from URL: \(request.URL)")
+          assert(false)
         }
+        return false
       }
     }
     return true
@@ -134,7 +120,7 @@ extension LoginScreenViewController {
     if error.domain == "WebKitErrorDomain" && error.code == 102 { // WebKitErrorFrameLoadInterruptedByPolicyChange
       return
     }
-    completeWithError(error)
+    showErrorDialog(error)
   }
 
 }

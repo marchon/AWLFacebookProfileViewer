@@ -35,6 +35,9 @@
 		8083DFD51AA12A65009FA37A /* PhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375321942C31AAA7167BB90B /* PhotoPostTableViewCell.swift */; };
 		8083DFD61AA12A65009FA37A /* StatusPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375321CA60DC5D1E9CF571ED /* StatusPostTableViewCell.swift */; };
 		808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */; };
+		809FDAC91AA4D78900BEB830 /* OverlayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */; };
+		809FDACB1AA4D7A000BEB830 /* OverlayErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */; };
+		809FDACD1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FDACC1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift */; };
 		80BACFA91AA26196000A3093 /* IBDesignableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFA61AA259ED000A3093 /* IBDesignableHelper.swift */; };
 		80BACFAB1AA262C4000A3093 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFAA1AA262C4000A3093 /* UIView.swift */; };
 		80BACFAD1AA28E43000A3093 /* LoadMorePostsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFAC1AA28E43000A3093 /* LoadMorePostsButton.swift */; };
@@ -52,6 +55,7 @@
 		80E342331AA38B7E00F9C050 /* PostLinkTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E342321AA38B7E00F9C050 /* PostLinkTitleLabel.swift */; };
 		80E342351AA38B9000F9C050 /* PostLinkSubtitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E342341AA38B9000F9C050 /* PostLinkSubtitleLabel.swift */; };
 		80E342371AA38C9300F9C050 /* GenericPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E342361AA38C9300F9C050 /* GenericPostTableViewCell.swift */; };
+		80F7750A1AA4E1A100B3F615 /* IconForOverlayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F775091AA4E1A100B3F615 /* IconForOverlayErrorView.swift */; };
 		80FBA43B1AA1288200887F25 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43A1AA1288200887F25 /* XCTestCase.swift */; };
 		80FBA43F1AA128B600887F25 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43D1AA128B600887F25 /* LoginButton.swift */; };
 		80FBA4401AA128B600887F25 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43E1AA128B600887F25 /* SegmentedControl.swift */; };
@@ -184,6 +188,9 @@
 		8083DFD11AA129D1009FA37A /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
 		8099BD891A9E902600DF7225 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayErrorView.swift; sourceTree = "<group>"; };
+		809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayErrorView.xib; sourceTree = "<group>"; };
+		809FDACC1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundForOverlayErrorView.swift; sourceTree = "<group>"; };
 		80BACFA61AA259ED000A3093 /* IBDesignableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBDesignableHelper.swift; sourceTree = "<group>"; };
 		80BACFA81AA25EA1000A3093 /* IBSupport.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = IBSupport.xcassets; sourceTree = "<group>"; };
 		80BACFAA1AA262C4000A3093 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -204,6 +211,7 @@
 		80E342321AA38B7E00F9C050 /* PostLinkTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostLinkTitleLabel.swift; sourceTree = "<group>"; };
 		80E342341AA38B9000F9C050 /* PostLinkSubtitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostLinkSubtitleLabel.swift; sourceTree = "<group>"; };
 		80E342361AA38C9300F9C050 /* GenericPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericPostTableViewCell.swift; sourceTree = "<group>"; };
+		80F775091AA4E1A100B3F615 /* IconForOverlayErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconForOverlayErrorView.swift; sourceTree = "<group>"; };
 		80FBA43A1AA1288200887F25 /* XCTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		80FBA43D1AA128B600887F25 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		80FBA43E1AA128B600887F25 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
@@ -467,6 +475,10 @@
 				80BACFAE1AA28F9C000A3093 /* WelcomeScreenView.swift */,
 				80BACFB01AA290A9000A3093 /* LoginScreenView.swift */,
 				80BACFB61AA29FDA000A3093 /* LoadingProgressView.swift */,
+				809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */,
+				80F775091AA4E1A100B3F615 /* IconForOverlayErrorView.swift */,
+				809FDACC1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift */,
+				809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -680,6 +692,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80FE73351AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib in Resources */,
+				809FDACB1AA4D7A000BEB830 /* OverlayErrorView.xib in Resources */,
 				80FE73371AA34471006453B6 /* FriendTableViewCell.xib in Resources */,
 				80FE732F1AA343B0006453B6 /* PhotoPostTableViewCell.xib in Resources */,
 				80FE73311AA343DB006453B6 /* LinkPostTableViewCell.xib in Resources */,
@@ -765,7 +778,10 @@
 				80BACFAB1AA262C4000A3093 /* UIView.swift in Sources */,
 				80E342351AA38B9000F9C050 /* PostLinkSubtitleLabel.swift in Sources */,
 				C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */,
+				809FDAC91AA4D78900BEB830 /* OverlayErrorView.swift in Sources */,
+				809FDACD1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift in Sources */,
 				807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */,
+				80F7750A1AA4E1A100B3F615 /* IconForOverlayErrorView.swift in Sources */,
 				808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */,
 				80BACFAF1AA28F9C000A3093 /* WelcomeScreenView.swift in Sources */,
 				80BACFA91AA26196000A3093 /* IBDesignableHelper.swift in Sources */,

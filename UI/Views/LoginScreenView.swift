@@ -21,7 +21,7 @@ public class LoginScreenView: UIView {
   }
 
   func setupNib() {
-    self.backgroundColor = StyleKit.Palette.baseColor5
+    self.backgroundColor = UIColor.fromRGB(0xF9F9F9)
   }
 
   public func loadingStarted() {

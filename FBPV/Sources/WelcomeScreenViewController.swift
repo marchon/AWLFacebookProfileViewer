@@ -19,6 +19,9 @@ class WelcomeScreenViewController : UIViewController {
     if segue.identifier == "showLoginScreen" && segue.destinationViewController is LoginScreenViewController {
       let ctrl = segue.destinationViewController as! LoginScreenViewController
       ctrl.success = self.success
+      ctrl.canceled = {
+        ctrl.performSegueWithIdentifier("unwindToWelcome", sender: nil)
+      }
     }
   }
 

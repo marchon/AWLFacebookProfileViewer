@@ -9,19 +9,19 @@ public class StyleKit {
   
   public class Palette {
     public class var baseColor1: UIColor {
-      return UIColor.fromRGB(0xF2385A)
+      return UIColor.fromRGB(0xEF1945)
     }
     public class var baseColor2: UIColor {
-      return UIColor.fromRGB(0xF5A503)
+      return UIColor.fromRGB(0xF39600)
     }
     public class var baseColor3: UIColor {
-      return UIColor.fromRGB(0xE9F1DF)
+      return UIColor.fromRGB(0xE4EFD7)
     }
     public class var baseColor4: UIColor {
-      return UIColor.fromRGB(0x56D9CD)
+      return UIColor.fromRGB(0x44D4C3)
     }
     public class var baseColor5: UIColor {
-      return UIColor.fromRGB(0x3AA1BF)
+      return UIColor.fromRGB(0x2B90B3)
     }
   }
   
@@ -73,12 +73,12 @@ public class StyleKit {
   public class PopupViews {
 
     public class var popupViewBackgroundColor: UIColor {
-      return StyleKit.Palette.baseColor4
+      return StyleKit.Palette.baseColor4.colorWithAlphaComponent(0.9)
     }
 
-    public class var popupViewBorderColor: UIColor {
-      return UIColor.fromRGB(0x6F6F6F)
-    }
+//    public class var popupViewBorderColor: UIColor {
+//      return UIColor.fromRGB(0x6F6F6F)
+//    }
 
   }
 

@@ -22,9 +22,9 @@ public class LoadingProgressView: UIView {
 
   private func setupNib() {
     self.backgroundColor = StyleKit.PopupViews.popupViewBackgroundColor
-    self.layer.cornerRadius = 10
-    self.layer.borderWidth = 1
-    self.layer.borderColor = StyleKit.PopupViews.popupViewBorderColor.CGColor
+    self.layer.cornerRadius = 15
+//    self.layer.borderWidth = 1
+//    self.layer.borderColor = StyleKit.PopupViews.popupViewBorderColor.CGColor
   }
   
 }
