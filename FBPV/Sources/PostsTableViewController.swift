@@ -8,7 +8,7 @@ import FBPVClasses
 import FBPVUI
 import CoreData
 
-class PostsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate {
+class PostsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate, ErrorReportingProtocol {
 
   private var notificationObserver: NSObjectProtocol?
   private var tableFooterView: UIView!
@@ -110,6 +110,12 @@ extension PostsTableViewController {
 }
 
 extension PostsTableViewController {
+
+  func showErrorDialog(error: NSError) {
+    if let parent = self.parentViewController as? ErrorReportingProtocol {
+      parent.showErrorDialog(error)
+    }
+  }
 
   func doFetchPosts(sender: AnyObject) {
     self.fetchLatestPostsFromServer()
@@ -252,6 +258,7 @@ extension PostsTableViewController {
             rc.endRefreshing()
           }
         })
+        self.showErrorDialog(error)
       },
       completion: { (lastPageReached: Bool) -> Void in
         UIApplication.sharedApplication().hideNetworkActivityIndicator()

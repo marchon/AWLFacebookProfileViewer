@@ -35,6 +35,7 @@
 		8083DFD51AA12A65009FA37A /* PhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375321942C31AAA7167BB90B /* PhotoPostTableViewCell.swift */; };
 		8083DFD61AA12A65009FA37A /* StatusPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375321CA60DC5D1E9CF571ED /* StatusPostTableViewCell.swift */; };
 		808A36421A7ED20800C18EC1 /* StoryboardSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */; };
+		808D45241AA4F7D100727D07 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808D45231AA4F7D100727D07 /* Protocols.swift */; };
 		809FDAC91AA4D78900BEB830 /* OverlayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */; };
 		809FDACB1AA4D7A000BEB830 /* OverlayErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */; };
 		809FDACD1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FDACC1AA4DD7E00BEB830 /* BackgroundForOverlayErrorView.swift */; };
@@ -187,6 +188,7 @@
 		807E28721A7AB703005DBF05 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		8083DFD11AA129D1009FA37A /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		808A36411A7ED20800C18EC1 /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
+		808D45231AA4F7D100727D07 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		8099BD891A9E902600DF7225 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayErrorView.swift; sourceTree = "<group>"; };
 		809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayErrorView.xib; sourceTree = "<group>"; };
@@ -493,6 +495,7 @@
 				80FBA44F1AA1291500887F25 /* LoginScreenViewController.swift */,
 				80FBA4521AA1291500887F25 /* WelcomeScreenViewController.swift */,
 				80BACFB41AA29C78000A3093 /* GenericNavigationControllerViewController.swift */,
+				808D45231AA4F7D100727D07 /* Protocols.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -814,6 +817,7 @@
 				80FBA4531AA1291500887F25 /* AppDelegate.swift in Sources */,
 				80FBA4571AA1291500887F25 /* PostsTableViewController.swift in Sources */,
 				80BACFB51AA29C78000A3093 /* GenericNavigationControllerViewController.swift in Sources */,
+				808D45241AA4F7D100727D07 /* Protocols.swift in Sources */,
 				80FBA4561AA1291500887F25 /* MainViewController.swift in Sources */,
 				80FBA4541AA1291500887F25 /* FriendsTableViewController.swift in Sources */,
 				80FBA4581AA1291500887F25 /* WelcomeScreenViewController.swift in Sources */,

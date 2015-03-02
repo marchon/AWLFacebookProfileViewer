@@ -12,12 +12,13 @@ import CoreData
 import FBPVUI
 import FBPVClasses
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, ErrorReportingProtocol {
 
   @IBOutlet weak var topView: UserProfile!
   @IBOutlet weak var bottomView: UIView!
   @IBOutlet weak var bottomViewSwitcher: UISegmentedControl!
 
+  private var isErrorDialogShown = false
   private var postsViewControoler: PostsTableViewController!
   private var friendsViewControoler: FriendsTableViewController!
   private var activeControllerType: ChildControllerType = ChildControllerType.Posts {
@@ -28,11 +29,11 @@ class MainViewController: UIViewController {
 
   lazy private var log: Logger = {
     return Logger.getLogger("M-VC")
-  }()
+    }()
 
   lazy private var profileLoadManager: FacebookProfileLoadManager = {
     return FacebookProfileLoadManager()
-  }()
+    }()
 
   //MARK: - Internal
 
@@ -50,37 +51,8 @@ class MainViewController: UIViewController {
 
   override func viewDidAppear(animated: Bool) {
     super.viewDidAppear(animated)
-    
-    var shouldSkipWelcomeScreen = false
-    if let theValue = AppState.UI.shouldSkipWelcomeScreen {
-      shouldSkipWelcomeScreen = theValue
-    }
-    
-    if !shouldSkipWelcomeScreen {
-      log.verbose("Will show welcome screen")
-      performSegueWithIdentifier("showWelcomeScreen", sender: nil)
-    }
-    
+    self.fetchProfileFromDatasourceIfNeeded()
   }
-
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "showWelcomeScreen" {
-      let nc = segue.destinationViewController as! UINavigationController
-      let ctrl = nc.viewControllers.first as! WelcomeScreenViewController
-      ctrl.success = { (tokenInfo: (accessToken:String, expiresIn:Int)) -> () in
-        AppState.UI.shouldSkipWelcomeScreen = true
-        AppState.Authentication.facebookAccesToken = tokenInfo.accessToken
-        AppState.Authentication.facebookAccesTokenExpitesIn = tokenInfo.expiresIn
-        self.dismissViewControllerAnimated(true, completion: {
-          () -> Void in
-          self.fetchProfileFromDatasourceIfNeeded()
-          self.friendsViewControoler.fetchUsersFromServerIfNeeded()
-          self.postsViewControoler.fetchPostsFromServerIfNeeded()
-        })
-      }
-    }
-  }
-
 }
 
 //MARK: - Profile
@@ -93,7 +65,7 @@ extension MainViewController {
     if let theValue = AppState.UI.shouldSkipWelcomeScreen {
       shouldSkipWelcomeScreen = theValue
     }
-    
+
     if !shouldSkipWelcomeScreen {
       return
     }
@@ -139,9 +111,10 @@ extension MainViewController {
         })
         self.updateProfileInformation(entityInstance)
       }
-    }, failure: { (error: NSError) -> Void in
-      UIApplication.sharedApplication().hideNetworkActivityIndicator()
-      logError(error.securedDescription)
+      }, failure: { (error: NSError) -> Void in
+        UIApplication.sharedApplication().hideNetworkActivityIndicator()
+        self.log.error(error.securedDescription)
+        self.showErrorDialog(error)
     })
   }
 
@@ -180,10 +153,10 @@ extension MainViewController {
 
     var stringValue: String {
       switch self {
-        case .Posts:
-          return "posts"
-        case .Friends:
-          return "friends"
+      case .Posts:
+        return "posts"
+      case .Friends:
+        return "friends"
       }
     }
 
@@ -194,6 +167,18 @@ extension MainViewController {
         return ChildControllerType.Posts
       }
     }
+  }
+
+  func showErrorDialog(error: NSError) {
+    dispatch_async(dispatch_get_main_queue(), {
+      if !self.isErrorDialogShown {
+        let errorDialog = OverlayErrorView(error: error)
+        errorDialog.show(self.view, completion: {
+          self.isErrorDialogShown = false
+        })
+        self.isErrorDialogShown = true
+      }
+    })
   }
 
   @IBAction func switchBottomView(sender: UISegmentedControl?) {
@@ -237,13 +222,13 @@ extension MainViewController {
     let to = type == .Posts ? postsViewControoler : friendsViewControoler
 
     transitionFromViewController(from, toViewController: to, duration: 0.4, options: UIViewAnimationOptions.allZeros,
-                                 animations: nil, completion: { (finished:Bool) -> Void in
-      if finished {
-        self.activeControllerType = self.activeControllerType.opposite()
-        AppState.UI.bottomControllerType = self.activeControllerType.stringValue
-      }
+      animations: nil, completion: { (finished:Bool) -> Void in
+        if finished {
+          self.activeControllerType = self.activeControllerType.opposite()
+          AppState.UI.bottomControllerType = self.activeControllerType.stringValue
+        }
     })
   }
-
+  
 }
 

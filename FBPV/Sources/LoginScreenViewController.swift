@@ -7,7 +7,7 @@ import UIKit
 import FBPVClasses
 import FBPVUI
 
-class LoginScreenViewController : UIViewController, UIWebViewDelegate {
+class LoginScreenViewController : UIViewController, UIWebViewDelegate, ErrorReportingProtocol {
 
   let FacebookLoginDialogErrorDomain = "FacebookLoginDialogErrorDomain"
   let FacebookLoginDialogErrorKeyScope = "FacebookLoginDialogErrorScope"
@@ -61,10 +61,10 @@ class LoginScreenViewController : UIViewController, UIWebViewDelegate {
     webView.delegate = nil
   }
 
-  private func showErrorDialog(error: NSError) {
+  func showErrorDialog(error: NSError) {
     dispatch_async(dispatch_get_main_queue(), {
       let errorDialog = OverlayErrorView(error: error)
-      errorDialog.show(self.view)
+      errorDialog.show(self.view, completion: nil)
     })
   }
 

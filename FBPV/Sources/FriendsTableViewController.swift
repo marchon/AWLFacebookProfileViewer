@@ -8,7 +8,7 @@ import FBPVClasses
 import FBPVUI
 import CoreData
 
-class FriendsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate {
+class FriendsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate, ErrorReportingProtocol {
 
   private var notificationObserver: NSObjectProtocol?
   
@@ -89,6 +89,12 @@ extension FriendsTableViewController {
 
 extension FriendsTableViewController {
 
+  func showErrorDialog(error: NSError) {
+    if let parent = self.parentViewController as? ErrorReportingProtocol {
+      parent.showErrorDialog(error)
+    }
+  }
+  
   func doFetchFriends(sender: AnyObject) {
     self.fetchFriendsFromServer()
   }

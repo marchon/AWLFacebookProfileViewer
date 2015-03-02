@@ -12,6 +12,7 @@ public class OverlayErrorView: NibDesignable {
 
   @IBOutlet public weak var labelMessage: UILabel!
   private weak var parentView: UIView?
+  private var completion: (() -> Void)?
 
   public convenience init(message: String) {
     self.init(frame: CGRectZero)
@@ -34,7 +35,8 @@ public class OverlayErrorView: NibDesignable {
     self.gestureRecognizers = [gr]
   }
 
-  public func show(parentView: UIView!) {
+  public func show(parentView: UIView!, completion: (() -> Void)? ) {
+    self.completion = completion
     parentView.addSubview(self)
     let constraints = NSLayoutConstraint.constraintsWithVisualFormat("|-[popup]-|", options: NSLayoutFormatOptions.allZeros, metrics: nil, views: ["popup" : self])
     let cX = NSLayoutConstraint(item: self,
@@ -61,6 +63,9 @@ public class OverlayErrorView: NibDesignable {
       completion: { (completed: Bool) -> Void in
         if completed {
           self.removeFromSuperview()
+          if let cb = self.completion {
+            cb()
+          }
         }
       }
     )
