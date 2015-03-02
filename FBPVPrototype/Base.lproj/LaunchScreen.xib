@@ -10,14 +10,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Launch Screen" translatesAutoresizingMaskIntoConstraints="NO" id="7XV-Dj-BqK">
-                    <rect key="frame" x="-67" y="0.0" width="455" height="568"/>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Launch Screen" translatesAutoresizingMaskIntoConstraints="NO" id="zHS-se-gLW">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-            <point key="canvasLocation" x="495" y="524"/>
+            <point key="canvasLocation" x="479" y="523"/>
         </view>
     </objects>
     <resources>
