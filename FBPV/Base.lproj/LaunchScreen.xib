@@ -2,36 +2,33 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7513.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <mutableArray key="OpenSans-Light.ttf">
-            <string>OpenSans-Light</string>
-        </mutableArray>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY WALL" textAlignment="center" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="kId-c2-rCX">
-                    <rect key="frame" x="32" y="215" width="416" height="50"/>
-                    <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="36"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconAppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Ewy-bA-rcZ">
+                    <rect key="frame" x="95" y="136" width="130" height="106"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="130" id="2gD-Oc-c3I"/>
+                        <constraint firstAttribute="height" constant="106" id="IVK-xj-4VG"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.16986057162284851" green="0.56252288818359375" blue="0.70293575525283813" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="kId-c2-rCX" secondAttribute="centerY" id="9OV-2a-kzK"/>
-                <constraint firstAttribute="centerX" secondItem="kId-c2-rCX" secondAttribute="centerX" id="HVs-X7-RZO"/>
-                <constraint firstItem="kId-c2-rCX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" constant="24" id="Pn7-Fr-qvU"/>
+                <constraint firstAttribute="centerX" secondItem="Ewy-bA-rcZ" secondAttribute="centerX" id="4M4-nl-i91"/>
+                <constraint firstItem="Ewy-bA-rcZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="136" id="UGI-4H-jfd"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
+    <resources>
+        <image name="iconAppLogo" width="108" height="102"/>
+    </resources>
 </document>

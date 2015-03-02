@@ -26,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NEU-gB-xkn">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NEU-gB-xkn">
                                 <rect key="frame" x="0.0" y="199" width="320" height="369"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
@@ -242,10 +242,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21W-DC-8QD" customClass="LoginButton" customModule="FBPVUI">
-                                <rect key="frame" x="83" y="408" width="155" height="40"/>
+                                <rect key="frame" x="98" y="408" width="125" height="40"/>
                                 <color key="backgroundColor" red="0.85882359740000003" green="0.91372555489999996" blue="0.31764706970000001" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="155" id="Xs2-pb-RcF"/>
+                                    <constraint firstAttribute="width" constant="125" id="Xs2-pb-RcF"/>
                                     <constraint firstAttribute="height" constant="40" id="t7P-C1-77X"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
@@ -254,20 +254,19 @@
                                     <segue destination="USC-5o-nec" kind="custom" identifier="showLoginScreen" customClass="CrossDissolveStoryboardSegue" customModule="FBPVUI" id="Xr3-ou-oI4"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MdT-Iv-URJ">
-                                <rect key="frame" x="125" y="164" width="70" height="70"/>
-                                <color key="backgroundColor" red="0.83520281314849854" green="0.8353467583656311" blue="0.8351936936378479" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconAppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="MdT-Iv-URJ">
+                                <rect key="frame" x="95" y="136" width="130" height="106"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="XG6-Po-y0d"/>
-                                    <constraint firstAttribute="height" constant="70" id="ywC-AP-JY3"/>
+                                    <constraint firstAttribute="width" constant="130" id="XG6-Po-y0d"/>
+                                    <constraint firstAttribute="height" constant="106" id="ywC-AP-JY3"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="21W-DC-8QD" secondAttribute="centerX" id="3Oe-m4-acM"/>
                             <constraint firstItem="iFN-26-uoh" firstAttribute="top" secondItem="21W-DC-8QD" secondAttribute="bottom" constant="120" id="GYv-eF-flX"/>
-                            <constraint firstItem="MdT-Iv-URJ" firstAttribute="top" secondItem="k7A-Tq-ccw" secondAttribute="bottom" constant="100" id="cQS-Yd-ner"/>
                             <constraint firstAttribute="centerX" secondItem="MdT-Iv-URJ" secondAttribute="centerX" id="f1x-Sw-tWO"/>
+                            <constraint firstItem="MdT-Iv-URJ" firstAttribute="top" secondItem="w5w-zH-S1L" secondAttribute="top" constant="136" id="kPz-MH-6g1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="pWN-ib-Awg"/>
@@ -277,4 +276,7 @@
             <point key="canvasLocation" x="125" y="871"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="iconAppLogo" width="108" height="102"/>
+    </resources>
 </document>
