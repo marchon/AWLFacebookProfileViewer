@@ -21,23 +21,3 @@ public class UserProfileEmptyOverlayView: NibDesignable {
 
 }
 
-@IBDesignable
-public class UserProfileEmptyOverlayImageView: UIImageView {
-
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-
-  func setupNib() {
-    if self.isUnderLiveViewTarget {
-      self.image = IBDesignableHelper.imageNamed("iconCloud")
-    } else {
-      self.image = UIImage(named: "iconCloud")
-    }
-  }
-}

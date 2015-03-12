@@ -5,22 +5,16 @@
 
 import UIKit
 
-@IBDesignable
-public class LoginScreenView: UIView {
+public class LoginScreenView: IBDesignableView {
 
   @IBOutlet public weak var loadingView: UIView!
 
   public override func awakeFromNib() {
     super.awakeFromNib()
-    self.setupNib()
     self.loadingView.alpha = 0
   }
 
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-
-  func setupNib() {
+  override func setupNib() {
     self.backgroundColor = UIColor.fromRGB(0xF9F9F9)
   }
 

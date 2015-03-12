@@ -5,38 +5,18 @@
 
 import UIKit
 
-@IBDesignable
-public class BackgroundForOverlayErrorView: UIView {
+public class BackgroundForOverlayErrorView: IBDesignableView {
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-
-  func setupNib() {
+  override func setupNib() {
     self.backgroundColor = UIColor.fromRGB(0xF39600).colorWithAlphaComponent(0.92)
     self.layer.cornerRadius = 15
   }
   
 }
 
-@IBDesignable
-public class IconForOverlayErrorView: UIImageView {
+public class IconForOverlayErrorView: IBDesignableImageView {
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-
-  func setupNib() {
+  override func setupNib() {
     if self.isUnderLiveViewTarget {
       self.image = IBDesignableHelper.imageNamed("iconGears")
     } else {

@@ -8,19 +8,9 @@
 
 import UIKit
 
-@IBDesignable
-public class LoadingProgressView: UIView {
+public class LoadingProgressView: IBDesignableView {
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-
-  private func setupNib() {
+  override func setupNib() {
     self.backgroundColor = StyleKit.PopupViews.popupViewBackgroundColor
     self.layer.cornerRadius = 15
 //    self.layer.borderWidth = 1

@@ -250,7 +250,7 @@
                                 <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                 <state key="normal" title="LOG IN"/>
                                 <connections>
-                                    <segue destination="USC-5o-nec" kind="custom" identifier="showLoginScreen" customClass="CrossDissolveStoryboardSegue" customModule="FBPVUI" id="Xr3-ou-oI4"/>
+                                    <segue destination="USC-5o-nec" kind="custom" identifier="showLoginScreen" customClass="CrossDissolveStoryboardSegue" customModule="FBPV" id="Xr3-ou-oI4"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconAppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="MdT-Iv-URJ">

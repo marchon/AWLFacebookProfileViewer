@@ -5,19 +5,9 @@
 
 import UIKit
 
-@IBDesignable
-public class WelcomeScreenView: UIView {
+public class WelcomeScreenView: IBDesignableView {
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-
-  func setupNib() {
+  override func setupNib() {
     self.backgroundColor = StyleKit.Palette.baseColor5
   }
 
