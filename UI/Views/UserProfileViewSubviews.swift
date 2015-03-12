@@ -1,5 +1,5 @@
 //
-//  AvatarImageView.swift
+//  UserProfileBackgroundImageView.swift
 //  FacebookProfileViewer
 //
 //  Created by Vlad Gorlov on 23.02.15.
@@ -7,6 +7,32 @@
 //
 
 import UIKit
+
+@IBDesignable
+public class UserProfileBackgroundImageView: UIImageView {
+
+  public override func awakeFromNib() {
+    super.awakeFromNib()
+    self.setupNib()
+  }
+
+  public override func prepareForInterfaceBuilder() {
+    self.setupNib()
+  }
+
+  func setupNib() {
+    self.backgroundColor = StyleKit.Palette.baseColor5
+    self.clipsToBounds = true
+
+
+    if self.isUnderLiveViewTarget {
+      var img = IBDesignableHelper.imageNamed("userProfileCover")
+      self.image = img
+    }
+  }
+  
+}
+
 
 @IBDesignable
 public class UserProfileAvatarImageView: UIImageView {
@@ -42,5 +68,5 @@ public class UserProfileAvatarImageView: UIImageView {
       self.image = img
     }
   }
-
+  
 }

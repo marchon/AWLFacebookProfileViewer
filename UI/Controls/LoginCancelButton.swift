@@ -5,19 +5,9 @@
 
 import UIKit
 
-@IBDesignable
-public class LoginCancelButton: UIButton {
+public class LoginCancelButton: IBDesignableButton {
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-
-  private func setupNib() {
+  override func setupNib() {
     self.backgroundColor = StyleKit.Palette.baseColor4
   }
   

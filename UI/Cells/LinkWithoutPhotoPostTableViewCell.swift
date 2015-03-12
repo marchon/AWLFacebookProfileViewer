@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 public class LinkWithoutPhotoPostTableViewCell: GenericPostTableViewCell {
 
 }

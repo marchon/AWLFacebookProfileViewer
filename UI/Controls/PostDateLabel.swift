@@ -5,19 +5,9 @@
 
 import UIKit
 
-@IBDesignable
-public class PostDateLabel : UILabel {
+public class PostDateLabel : IBDesignableLabel {
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    setupNib()
-  }
-
-  private func setupNib() {
+  override func setupNib() {
     self.textColor = StyleKit.Palette.baseColor4.darkerColor
   }
 

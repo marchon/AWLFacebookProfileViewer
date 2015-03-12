@@ -5,18 +5,9 @@
 
 import UIKit
 
-public class GenericPostTableViewCell : UITableViewCell {
+public class GenericPostTableViewCell : IBDesignableTableViewCell {
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    setupNib()
-  }
-  
-  func setupNib() {
+  override func setupNib() {
     self.backgroundColor = StyleKit.TableView.cellBackgroundColor
     self.contentView.backgroundColor = UIColor.clearColor()
     self.textLabel?.backgroundColor = UIColor.clearColor()

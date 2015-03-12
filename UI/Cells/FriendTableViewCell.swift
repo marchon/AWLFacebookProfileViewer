@@ -6,18 +6,8 @@
 import UIKit
 import FBPVClasses
 
-@IBDesignable
-public class FriendTableViewCell : UITableViewCell {
-  
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-  
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-  
+public class FriendTableViewCell : IBDesignableTableViewCell {
+
   public override func layoutSubviews() {
     super.layoutSubviews()
     if let theView = self.imageView {
@@ -27,7 +17,7 @@ public class FriendTableViewCell : UITableViewCell {
     }
   }
 
-  private func setupNib() {
+  override func setupNib() {
     self.backgroundColor = StyleKit.TableView.cellBackgroundColor
     self.contentView.backgroundColor = UIColor.clearColor()
     self.textLabel?.backgroundColor = UIColor.clearColor()

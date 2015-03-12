@@ -8,7 +8,6 @@
 
 import UIKit
 
-@IBDesignable
 public class LinkPostTableViewCell: GenericPostTableViewCell {
 
   @IBOutlet public weak var labelDate: UILabel!

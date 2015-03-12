@@ -5,19 +5,9 @@
 
 import UIKit
 
-@IBDesignable
-public class PostTitleLabel : UILabel {
+public class PostTitleLabel : IBDesignableLabel {
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    setupNib()
-  }
-
-  private func setupNib() {
+  override func setupNib() {
     self.textColor = StyleKit.TableView.Post.titleLabelColor
   }
   

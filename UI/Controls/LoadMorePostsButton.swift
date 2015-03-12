@@ -5,19 +5,9 @@
 
 import UIKit
 
-@IBDesignable
-public class LoadMorePostsButton: UIButton {
-
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-
-  private func setupNib() {
+public class LoadMorePostsButton: IBDesignableButton {
+  
+  override func setupNib() {
     self.backgroundColor = StyleKit.Palette.baseColor4
     self.tintColor = UIColor.whiteColor()
     //    let img1 = UIImage.imageFromColor(StyleKit.Palette.baseColor4, size: CGSizeMake(1, 1))

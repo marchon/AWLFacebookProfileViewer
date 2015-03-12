@@ -23,3 +23,25 @@ public class BackgroundForOverlayErrorView: UIView {
   }
   
 }
+
+@IBDesignable
+public class IconForOverlayErrorView: UIImageView {
+
+  public override func awakeFromNib() {
+    super.awakeFromNib()
+    self.setupNib()
+  }
+
+  public override func prepareForInterfaceBuilder() {
+    self.setupNib()
+  }
+
+  func setupNib() {
+    if self.isUnderLiveViewTarget {
+      self.image = IBDesignableHelper.imageNamed("iconGears")
+    } else {
+      self.image = UIImage(named: "iconGears")
+    }
+  }
+  
+}

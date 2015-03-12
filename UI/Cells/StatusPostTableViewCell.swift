@@ -6,7 +6,6 @@
 import UIKit
 import FBPVClasses
 
-@IBDesignable
 public class StatusPostTableViewCell : GenericPostTableViewCell {
 
   @IBOutlet public weak var labelDate: UILabel!
