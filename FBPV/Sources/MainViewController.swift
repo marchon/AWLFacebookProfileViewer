@@ -14,7 +14,7 @@ import FBPVClasses
 
 class MainViewController: UIViewController, ErrorReportingProtocol {
 
-  @IBOutlet weak var topView: UserProfile!
+  @IBOutlet weak var topView: UserProfileView!
   @IBOutlet weak var bottomView: UIView!
   @IBOutlet weak var bottomViewSwitcher: UISegmentedControl!
 

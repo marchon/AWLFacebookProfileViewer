@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class UserProfileEmptyOverlayView: NibDesignable {
+public class EmptyUserProfileView: NibDesignable {
 
   override func nibDidLoad() {
     self.nibView.backgroundColor = UIColor.clearColor()

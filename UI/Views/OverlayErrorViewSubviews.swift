@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class BackgroundForOverlayErrorView: IBDesignableView {
+public class OverlayErrorBackgroundView: IBDesignableView {
 
   override func setupNib() {
     self.backgroundColor = UIColor.fromRGB(0xF39600).colorWithAlphaComponent(0.92)
@@ -14,7 +14,7 @@ public class BackgroundForOverlayErrorView: IBDesignableView {
   
 }
 
-public class IconForOverlayErrorView: IBDesignableImageView {
+public class OverlayErrorIconImageView: IBDesignableImageView {
 
   override func setupNib() {
     if self.isUnderLiveViewTarget {

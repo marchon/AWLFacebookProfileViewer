@@ -15,7 +15,7 @@
 		375326D0B9607E310EDD75A2 /* NSDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375326839A79DE2CD78ED098 /* NSDateFormatter.swift */; };
 		3753272F043A29F2A8DC6BEE /* ProfileEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753219C8038AE062CC53CC9 /* ProfileEntity.swift */; };
 		375327E6D0AAA758F50864C7 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532EC9C263E5899B18AC96 /* NSDate.swift */; };
-		3753280F9A9D923F22985153 /* UserProfileEmptyOverlayViewSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753226AF8210C38142C8A50 /* UserProfileEmptyOverlayViewSubviews.swift */; };
+		3753280F9A9D923F22985153 /* EmptyUserProfileViewSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3753226AF8210C38142C8A50 /* EmptyUserProfileViewSubviews.swift */; };
 		375329553D6BD36B02816865 /* FriendEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532B5BAF74887199BAC09F /* FriendEntity.swift */; };
 		37532A0A869EDD952EB97DCD /* NSFetchedResultsChangeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532F59C9395B3E5F4C7F4B /* NSFetchedResultsChangeType.swift */; };
 		37532C19E99F08B3CA22CD6A /* NSURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532D6947F9F0F19529E4A2 /* NSURL.swift */; };
@@ -41,8 +41,8 @@
 		8083DFD51AA12A65009FA37A /* PhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375321942C31AAA7167BB90B /* PhotoPostTableViewCell.swift */; };
 		8083DFD61AA12A65009FA37A /* StatusPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375321CA60DC5D1E9CF571ED /* StatusPostTableViewCell.swift */; };
 		808D45241AA4F7D100727D07 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808D45231AA4F7D100727D07 /* Protocols.swift */; };
-		808FB2801AA512790067C15B /* UserProfileEmptyOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808FB27F1AA512790067C15B /* UserProfileEmptyOverlayView.swift */; };
-		808FB2821AA5129B0067C15B /* UserProfileEmptyOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 808FB2811AA5129B0067C15B /* UserProfileEmptyOverlayView.xib */; };
+		808FB2801AA512790067C15B /* EmptyUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808FB27F1AA512790067C15B /* EmptyUserProfileView.swift */; };
+		808FB2821AA5129B0067C15B /* EmptyUserProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 808FB2811AA5129B0067C15B /* EmptyUserProfileView.xib */; };
 		809FDAC91AA4D78900BEB830 /* OverlayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */; };
 		809FDACB1AA4D7A000BEB830 /* OverlayErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */; };
 		809FDACD1AA4DD7E00BEB830 /* OverlayErrorViewSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FDACC1AA4DD7E00BEB830 /* OverlayErrorViewSubviews.swift */; };
@@ -66,8 +66,8 @@
 		80FBA43B1AA1288200887F25 /* XCTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43A1AA1288200887F25 /* XCTestCase.swift */; };
 		80FBA43F1AA128B600887F25 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43D1AA128B600887F25 /* LoginButton.swift */; };
 		80FBA4401AA128B600887F25 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43E1AA128B600887F25 /* SegmentedControl.swift */; };
-		80FBA4491AA128C100887F25 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4441AA128C100887F25 /* UserProfile.swift */; };
-		80FBA44A1AA128C100887F25 /* UserProfile.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FBA4451AA128C100887F25 /* UserProfile.xib */; };
+		80FBA4491AA128C100887F25 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4441AA128C100887F25 /* UserProfileView.swift */; };
+		80FBA44A1AA128C100887F25 /* UserProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FBA4451AA128C100887F25 /* UserProfileView.xib */; };
 		80FBA44B1AA128C100887F25 /* UserProfileViewSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4461AA128C100887F25 /* UserProfileViewSubviews.swift */; };
 		80FBA4531AA1291500887F25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA44D1AA1291500887F25 /* AppDelegate.swift */; };
 		80FBA4541AA1291500887F25 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA44E1AA1291500887F25 /* FriendsTableViewController.swift */; };
@@ -169,7 +169,7 @@
 		3753219C8038AE062CC53CC9 /* ProfileEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileEntity.swift; sourceTree = "<group>"; };
 		375321CA60DC5D1E9CF571ED /* StatusPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusPostTableViewCell.swift; sourceTree = "<group>"; };
 		37532224F8A1C41A77EBCE53 /* NSError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError.swift; sourceTree = "<group>"; };
-		3753226AF8210C38142C8A50 /* UserProfileEmptyOverlayViewSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileEmptyOverlayViewSubviews.swift; sourceTree = "<group>"; };
+		3753226AF8210C38142C8A50 /* EmptyUserProfileViewSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyUserProfileViewSubviews.swift; sourceTree = "<group>"; };
 		37532272363C8EFC61A18428 /* IBDesignableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBDesignableButton.swift; sourceTree = "<group>"; };
 		37532465DCFF2754FB77D40D /* StoryboardSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardSegues.swift; sourceTree = "<group>"; };
 		37532596ADC21B67531D9149 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -199,8 +199,8 @@
 		807E28721A7AB703005DBF05 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		8083DFD11AA129D1009FA37A /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		808D45231AA4F7D100727D07 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
-		808FB27F1AA512790067C15B /* UserProfileEmptyOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileEmptyOverlayView.swift; sourceTree = "<group>"; };
-		808FB2811AA5129B0067C15B /* UserProfileEmptyOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileEmptyOverlayView.xib; sourceTree = "<group>"; };
+		808FB27F1AA512790067C15B /* EmptyUserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyUserProfileView.swift; sourceTree = "<group>"; };
+		808FB2811AA5129B0067C15B /* EmptyUserProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyUserProfileView.xib; sourceTree = "<group>"; };
 		8099BD891A9E902600DF7225 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayErrorView.swift; sourceTree = "<group>"; };
 		809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayErrorView.xib; sourceTree = "<group>"; };
@@ -228,8 +228,8 @@
 		80FBA43A1AA1288200887F25 /* XCTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestCase.swift; sourceTree = "<group>"; };
 		80FBA43D1AA128B600887F25 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		80FBA43E1AA128B600887F25 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
-		80FBA4441AA128C100887F25 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		80FBA4451AA128C100887F25 /* UserProfile.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfile.xib; sourceTree = "<group>"; };
+		80FBA4441AA128C100887F25 /* UserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
+		80FBA4451AA128C100887F25 /* UserProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileView.xib; sourceTree = "<group>"; };
 		80FBA4461AA128C100887F25 /* UserProfileViewSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewSubviews.swift; sourceTree = "<group>"; };
 		80FBA44D1AA1291500887F25 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80FBA44E1AA1291500887F25 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
@@ -467,13 +467,13 @@
 			children = (
 				80FBA43D1AA128B600887F25 /* LoginButton.swift */,
 				80BACFAC1AA28E43000A3093 /* LoadMorePostsButton.swift */,
-				80FBA43E1AA128B600887F25 /* SegmentedControl.swift */,
 				80FE733A1AA35F39006453B6 /* PostDateLabel.swift */,
 				80FE733C1AA35FF0006453B6 /* PostTitleLabel.swift */,
 				80E342321AA38B7E00F9C050 /* PostLinkTitleLabel.swift */,
 				80E342341AA38B9000F9C050 /* PostLinkSubtitleLabel.swift */,
-				37532272363C8EFC61A18428 /* IBDesignableButton.swift */,
+				80FBA43E1AA128B600887F25 /* SegmentedControl.swift */,
 				375327BB69C45DFF72DAE550 /* IBDesignableLabel.swift */,
+				37532272363C8EFC61A18428 /* IBDesignableButton.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -481,20 +481,20 @@
 		80FBA4411AA128C100887F25 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				80FBA4441AA128C100887F25 /* UserProfile.swift */,
-				80FBA4451AA128C100887F25 /* UserProfile.xib */,
+				80FBA4441AA128C100887F25 /* UserProfileView.swift */,
+				80FBA4451AA128C100887F25 /* UserProfileView.xib */,
 				80FBA4461AA128C100887F25 /* UserProfileViewSubviews.swift */,
-				80BACFAE1AA28F9C000A3093 /* WelcomeScreenView.swift */,
-				80BACFB01AA290A9000A3093 /* LoginScreenView.swift */,
-				80BACFB61AA29FDA000A3093 /* LoadingProgressView.swift */,
-				809FDACC1AA4DD7E00BEB830 /* OverlayErrorViewSubviews.swift */,
+				808FB27F1AA512790067C15B /* EmptyUserProfileView.swift */,
+				808FB2811AA5129B0067C15B /* EmptyUserProfileView.xib */,
+				3753226AF8210C38142C8A50 /* EmptyUserProfileViewSubviews.swift */,
 				809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */,
 				809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */,
-				808FB27F1AA512790067C15B /* UserProfileEmptyOverlayView.swift */,
-				808FB2811AA5129B0067C15B /* UserProfileEmptyOverlayView.xib */,
+				809FDACC1AA4DD7E00BEB830 /* OverlayErrorViewSubviews.swift */,
+				80BACFB61AA29FDA000A3093 /* LoadingProgressView.swift */,
+				80BACFB01AA290A9000A3093 /* LoginScreenView.swift */,
+				80BACFAE1AA28F9C000A3093 /* WelcomeScreenView.swift */,
 				37532E51DCEBAC72103DE0B8 /* IBDesignableView.swift */,
 				37532F48136918F472C88935 /* IBDesignableImageView.swift */,
-				3753226AF8210C38142C8A50 /* UserProfileEmptyOverlayViewSubviews.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -509,8 +509,8 @@
 				80FBA44F1AA1291500887F25 /* LoginScreenViewController.swift */,
 				80FBA4521AA1291500887F25 /* WelcomeScreenViewController.swift */,
 				80BACFB41AA29C78000A3093 /* GenericNavigationControllerViewController.swift */,
-				808D45231AA4F7D100727D07 /* Protocols.swift */,
 				37532465DCFF2754FB77D40D /* StoryboardSegues.swift */,
+				808D45231AA4F7D100727D07 /* Protocols.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -713,9 +713,9 @@
 				809FDACB1AA4D7A000BEB830 /* OverlayErrorView.xib in Resources */,
 				80FE73371AA34471006453B6 /* FriendTableViewCell.xib in Resources */,
 				80FE732F1AA343B0006453B6 /* PhotoPostTableViewCell.xib in Resources */,
-				808FB2821AA5129B0067C15B /* UserProfileEmptyOverlayView.xib in Resources */,
+				808FB2821AA5129B0067C15B /* EmptyUserProfileView.xib in Resources */,
 				80FE73311AA343DB006453B6 /* LinkPostTableViewCell.xib in Resources */,
-				80FBA44A1AA128C100887F25 /* UserProfile.xib in Resources */,
+				80FBA44A1AA128C100887F25 /* UserProfileView.xib in Resources */,
 				80FE732D1AA34172006453B6 /* StatusPostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -796,7 +796,7 @@
 				80FE73341AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift in Sources */,
 				80BACFAB1AA262C4000A3093 /* UIView.swift in Sources */,
 				80E342351AA38B9000F9C050 /* PostLinkSubtitleLabel.swift in Sources */,
-				808FB2801AA512790067C15B /* UserProfileEmptyOverlayView.swift in Sources */,
+				808FB2801AA512790067C15B /* EmptyUserProfileView.swift in Sources */,
 				C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */,
 				809FDAC91AA4D78900BEB830 /* OverlayErrorView.swift in Sources */,
 				809FDACD1AA4DD7E00BEB830 /* OverlayErrorViewSubviews.swift in Sources */,
@@ -816,7 +816,7 @@
 				80A9592D1AB21C7200F552FC /* IBDesignableTableViewCell.swift in Sources */,
 				80E342331AA38B7E00F9C050 /* PostLinkTitleLabel.swift in Sources */,
 				8083DFD51AA12A65009FA37A /* PhotoPostTableViewCell.swift in Sources */,
-				80FBA4491AA128C100887F25 /* UserProfile.swift in Sources */,
+				80FBA4491AA128C100887F25 /* UserProfileView.swift in Sources */,
 				80BACFB11AA290A9000A3093 /* LoginScreenView.swift in Sources */,
 				80FE733B1AA35F39006453B6 /* PostDateLabel.swift in Sources */,
 				80BACFB71AA29FDA000A3093 /* LoadingProgressView.swift in Sources */,
@@ -825,7 +825,7 @@
 				37532D397FDAA84C77C8BBBC /* IBDesignableLabel.swift in Sources */,
 				37532EF80BE962E666CFBD95 /* IBDesignableView.swift in Sources */,
 				37532D0EF1BE75498BABF26D /* IBDesignableImageView.swift in Sources */,
-				3753280F9A9D923F22985153 /* UserProfileEmptyOverlayViewSubviews.swift in Sources */,
+				3753280F9A9D923F22985153 /* EmptyUserProfileViewSubviews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

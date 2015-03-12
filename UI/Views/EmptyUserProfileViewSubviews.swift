@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class UserProfileEmptyOverlayImageView: IBDesignableImageView {
+public class EmptyUserProfileCloudImageView: IBDesignableImageView {
 
   override func setupNib() {
     if self.isUnderLiveViewTarget {

@@ -8,22 +8,11 @@
 
 import UIKit
 
-@IBDesignable
-public class UserProfileBackgroundImageView: UIImageView {
+public class UserProfileBackgroundImageView: IBDesignableImageView {
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-
-  func setupNib() {
+  override func setupNib() {
     self.backgroundColor = StyleKit.Palette.baseColor5
     self.clipsToBounds = true
-
 
     if self.isUnderLiveViewTarget {
       var img = IBDesignableHelper.imageNamed("userProfileCover")
@@ -33,9 +22,7 @@ public class UserProfileBackgroundImageView: UIImageView {
   
 }
 
-
-@IBDesignable
-public class UserProfileAvatarImageView: UIImageView {
+public class UserProfileAvatarImageView: IBDesignableImageView {
 
   public override var image: UIImage? {
     didSet {
@@ -47,16 +34,7 @@ public class UserProfileAvatarImageView: UIImageView {
     }
   }
 
-  public override func awakeFromNib() {
-    super.awakeFromNib()
-    self.setupNib()
-  }
-
-  public override func prepareForInterfaceBuilder() {
-    self.setupNib()
-  }
-
-  private func setupNib() {
+  override func setupNib() {
     self.backgroundColor = StyleKit.Palette.baseColor5
     self.layer.borderColor = StyleKit.ProfileView.avatarBorderColor.CGColor
     let radius = 0.5 * max(CGRectGetHeight(self.bounds), CGRectGetWidth(self.bounds))

@@ -6,7 +6,7 @@
 import UIKit
 import FBPVClasses
 
-public class UserProfile : NibDesignable {
+public class UserProfileView: NibDesignable {
 
   @IBOutlet public weak var profileAvatar: UIImageView!
   @IBOutlet public weak var coverPhoto: UIImageView!
@@ -14,8 +14,8 @@ public class UserProfile : NibDesignable {
   @IBOutlet public weak var hometown: UILabel!
   public var loadProfileHandler: (() -> Void)?
 
-  lazy var overlayView: UserProfileEmptyOverlayView = {
-    let view = UserProfileEmptyOverlayView(frame: CGRectZero)
+  lazy var overlayView: EmptyUserProfileView = {
+    let view = EmptyUserProfileView(frame: CGRectZero)
     view.backgroundColor = StyleKit.Palette.baseColor5
     view.setTranslatesAutoresizingMaskIntoConstraints(false)
     return view
