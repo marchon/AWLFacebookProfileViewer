@@ -8,24 +8,33 @@ cd "$CURR_DIR"
 echo ""
 
 SCRIPT_PATH=$CURR_DIR/Scripts/SketchAssetExport.php
+DOC_FILE=$CURR_DIR/Design/FBPV.sketch
+
 if [ -r $SCRIPT_PATH ]; then
-    DOC_FILE=$CURR_DIR/Design/FBPV.sketch
-    ASSETS_DIR=$CURR_DIR/FBPVPrototype/Media.xcassets
-    echo "Removing old files..."
-    find "$ASSETS_DIR" -type d -name '*.imageset' | xargs -I{} rm -rd "{}"
-    php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=iPhone
+    
+    # Real Application
     
     ASSETS_DIR=$CURR_DIR/FBPV/Media.xcassets
     echo "Removing old files..."
     find "$ASSETS_DIR" -type d -name '*.imageset' | xargs -I{} rm -rd "{}"
     php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=Symbols
+    echo ""
     
     ASSETS_DIR=$CURR_DIR/FBPV/Images.xcassets
     echo "Removing old files..."
+    find "$ASSETS_DIR" -type d -name '*.imageset' | xargs -I{} rm -rd "{}"
     php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=AppIcons
     # Removing unneded 1x images
     find "$ASSETS_DIR" -type f -name '*@1x.png' | xargs -I{} rm -f "{}"
+    echo ""
+    
+    # Prototype Application
     cp -fR "$ASSETS_DIR" "$CURR_DIR/FBPVPrototype"
+    
+    ASSETS_DIR=$CURR_DIR/FBPVPrototype/Media.xcassets
+    echo "Removing old files..."
+    find "$ASSETS_DIR" -type d -name '*.imageset' | xargs -I{} rm -rd "{}"
+    php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=iPhone
     
 else
     echo "warning: Unable to find script: $SCRIPT_PATH"
