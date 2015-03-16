@@ -19,7 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		80C3B0271A704E3D0004CBDE /* FacebookProfileViewerPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacebookProfileViewerPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		80C3B0271A704E3D0004CBDE /* FBPVPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBPVPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C3B02B1A704E3D0004CBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80C3B02C1A704E3D0004CBDE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80C3B02E1A704E3D0004CBDE /* ViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllers.swift; sourceTree = "<group>"; };
@@ -54,7 +54,7 @@
 		80C3B0281A704E3D0004CBDE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				80C3B0271A704E3D0004CBDE /* FacebookProfileViewerPrototype.app */,
+				80C3B0271A704E3D0004CBDE /* FBPVPrototype.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -87,9 +87,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		80C3B0261A704E3D0004CBDE /* FacebookProfileViewerPrototype */ = {
+		80C3B0261A704E3D0004CBDE /* FBPVPrototype */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 80C3B0461A704E3D0004CBDE /* Build configuration list for PBXNativeTarget "FacebookProfileViewerPrototype" */;
+			buildConfigurationList = 80C3B0461A704E3D0004CBDE /* Build configuration list for PBXNativeTarget "FBPVPrototype" */;
 			buildPhases = (
 				80C3B0231A704E3D0004CBDE /* Sources */,
 				80C3B0241A704E3D0004CBDE /* Frameworks */,
@@ -99,9 +99,9 @@
 			);
 			dependencies = (
 			);
-			name = FacebookProfileViewerPrototype;
+			name = FBPVPrototype;
 			productName = FacebookProfileViewerPrototype;
-			productReference = 80C3B0271A704E3D0004CBDE /* FacebookProfileViewerPrototype.app */;
+			productReference = 80C3B0271A704E3D0004CBDE /* FBPVPrototype.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -131,7 +131,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80C3B0261A704E3D0004CBDE /* FacebookProfileViewerPrototype */,
+				80C3B0261A704E3D0004CBDE /* FBPVPrototype */,
 			);
 		};
 /* End PBXProject section */
@@ -294,7 +294,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		80C3B0461A704E3D0004CBDE /* Build configuration list for PBXNativeTarget "FacebookProfileViewerPrototype" */ = {
+		80C3B0461A704E3D0004CBDE /* Build configuration list for PBXNativeTarget "FBPVPrototype" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				80C3B0471A704E3D0004CBDE /* Debug */,
