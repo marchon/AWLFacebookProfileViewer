@@ -36,6 +36,13 @@ public class StyleKitExport {
         }
     }
 
+    // LayerStyle: "UI: Selected TableViewCell Background"
+    public class uiSelectedTableViewCellBackground {
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0xF2F2F2)
+        }
+    }
+
     // LayerStyle: "UI: TableView Background"
     public class uiTableViewBackground {
         public class var fillColor: UIColor {
@@ -46,7 +53,7 @@ public class StyleKitExport {
     // LayerTextStyle: "Post: Date"
     public class postDate {
         public class var font: UIFont {
-            return UIFont(name: "OpenSans", size: 22)!
+            return UIFont(name: "OpenSans", size: 22 / 2.000000)!
         }
         public class var textColor: UIColor {
             return UIColor(red: 0.271518, green: 0.707377, blue: 0.655574, alpha: 1.000000)
@@ -56,10 +63,20 @@ public class StyleKitExport {
     // LayerTextStyle: "Post: Title"
     public class postTitle {
         public class var font: UIFont {
-            return UIFont(name: "OpenSans", size: 26)!
+            return UIFont(name: "OpenSans", size: 26 / 2.000000)!
         }
         public class var textColor: UIColor {
             return UIColor(red: 0.258238, green: 0.258238, blue: 0.258238, alpha: 1.000000)
+        }
+    }
+
+    // LayerTextStyle: "UI: TableView Pull To Load Label"
+    public class uiTableViewPullToLoadLabel {
+        public class var font: UIFont {
+            return UIFont(name: "OpenSans-Light", size: 34 / 2.000000)!
+        }
+        public class var textColor: UIColor {
+            return UIColor(red: 0.513725, green: 0.513725, blue: 0.513725, alpha: 1.000000)
         }
     }
 

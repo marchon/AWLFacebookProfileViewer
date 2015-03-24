@@ -36,7 +36,7 @@ public class UserProfileAvatarImageView: IBDesignableImageView {
 
   override func setupNib() {
     self.backgroundColor = StyleKit.Palette.baseColor5
-    self.layer.borderColor = StyleKit.ProfileView.avatarBorderColor.CGColor
+    self.layer.borderColor = StyleKitExport.profileViewAvatarOutline.borderColor.CGColor
     let radius = 0.5 * max(CGRectGetHeight(self.bounds), CGRectGetWidth(self.bounds))
     self.layer.cornerRadius = radius
     self.clipsToBounds = true

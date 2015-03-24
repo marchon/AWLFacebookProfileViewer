@@ -18,11 +18,11 @@ public class FriendTableViewCell : IBDesignableTableViewCell {
   }
 
   override func setupNib() {
-    self.backgroundColor = StyleKit.TableView.cellBackgroundColor
+    self.backgroundColor = StyleKitExport.uiTableViewBackground.fillColor
     self.contentView.backgroundColor = UIColor.clearColor()
     self.textLabel?.backgroundColor = UIColor.clearColor()
     self.selectedBackgroundView = UIView()
-    self.selectedBackgroundView.backgroundColor = StyleKit.TableView.selectedCellBackgroundColor
+    self.selectedBackgroundView.backgroundColor = StyleKitExport.uiSelectedTableViewCellBackground.fillColor
   }
 
 }

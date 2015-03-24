@@ -50,6 +50,7 @@ class SketchStyleKitExporter  {
      */
     private $log;
     private $styleKitBuilder;
+    public static $designScaleFactor = 2.0;
 
     function __construct($sketchFile, $outputFile) {
         $this->sketchFile = $sketchFile;
@@ -483,7 +484,7 @@ T;
 
     public function build() {
         $font = str_replace('{font_name}', $this->name, StyleKitFont::$templateFont);
-        $font = str_replace('{font_size}', $this->size, $font);
+        $font = str_replace('{font_size}', sprintf("%s / %f", $this->size, SketchStyleKitExporter::$designScaleFactor), $font);
         return $font;
     }
 }

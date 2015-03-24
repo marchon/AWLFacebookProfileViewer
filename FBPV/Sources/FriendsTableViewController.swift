@@ -39,11 +39,11 @@ class FriendsTableViewController : UITableViewController, NSFetchedResultsContro
   private var tableViewBackgroundView: UIView = {
     var view = UILabel()
     view.text = "No data is currently available\nPlease pull down to refresh"
-    view.textColor = StyleKit.TableView.pullToLoadLabelColor
+    view.textColor = StyleKitExport.uiTableViewPullToLoadLabel.textColor
     view.numberOfLines = 2
     view.textAlignment = NSTextAlignment.Center
-    view.font = StyleKit.TableView.pullToLoadLabelFont
-    view.backgroundColor = StyleKit.TableView.backgroundColor
+    view.font = StyleKitExport.uiTableViewPullToLoadLabel.font
+    view.backgroundColor = StyleKitExport.uiTableViewBackground.fillColor
     view.sizeToFit()
     return view
     }()
@@ -100,7 +100,7 @@ extension FriendsTableViewController {
   }
 
   private func configureAppearance() {
-    self.tableView.backgroundColor = StyleKit.TableView.backgroundColor
+    self.tableView.backgroundColor = StyleKitExport.uiTableViewBackground.fillColor
     self.refreshControl?.backgroundColor = StyleKit.Palette.baseColor4
     self.refreshControl?.tintColor = UIColor.whiteColor()
   }
