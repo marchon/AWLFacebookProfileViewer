@@ -56,7 +56,7 @@
 		80BACFB71AA29FDA000A3093 /* LoadingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFB61AA29FDA000A3093 /* LoadingProgressView.swift */; };
 		80C3B05E1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05C1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld */; };
 		80C3B0631A70506A0004CBDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0611A70506A0004CBDE /* Main.storyboard */; };
-		80C3B0651A70506A0004CBDE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0641A70506A0004CBDE /* Images.xcassets */; };
+		80C3B0651A70506A0004CBDE /* AppIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0641A70506A0004CBDE /* AppIcons.xcassets */; };
 		80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0661A70506A0004CBDE /* LaunchScreen.xib */; };
 		80CDE7BD1A8E242A00499B4E /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDE7BC1A8E242A00499B4E /* CoreDataHelper.swift */; };
 		80CFEE961A7E986F00D47E62 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFEE941A7E947B00D47E62 /* AppState.swift */; };
@@ -218,7 +218,7 @@
 		80C3B0591A70506A0004CBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		80C3B05D1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FacebookProfileViewer.xcdatamodel; sourceTree = "<group>"; };
 		80C3B0621A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		80C3B0641A70506A0004CBDE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		80C3B0641A70506A0004CBDE /* AppIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppIcons.xcassets; sourceTree = "<group>"; };
 		80C3B0671A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80CDE7BC1A8E242A00499B4E /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		80CFEE941A7E947B00D47E62 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -426,7 +426,7 @@
 				80FBA44C1AA1291500887F25 /* Sources */,
 				80C3B0591A70506A0004CBDE /* Info.plist */,
 				C5AD127E1A97485700B1DE89 /* Settings.bundle */,
-				80C3B0641A70506A0004CBDE /* Images.xcassets */,
+				80C3B0641A70506A0004CBDE /* AppIcons.xcassets */,
 				80FF71321A9A9E54005715BA /* Media.xcassets */,
 				80BACFA81AA25EA1000A3093 /* IBSupport.xcassets */,
 				8099BD891A9E902600DF7225 /* Common.xcconfig */,
@@ -739,7 +739,7 @@
 				80FF714E1A9AAD0D005715BA /* OpenSans-Regular.ttf in Resources */,
 				80FF714F1A9AAD0D005715BA /* OpenSans-Semibold.ttf in Resources */,
 				C5A31F431A9B4DAB00CC89D6 /* Media.xcassets in Resources */,
-				80C3B0651A70506A0004CBDE /* Images.xcassets in Resources */,
+				80C3B0651A70506A0004CBDE /* AppIcons.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

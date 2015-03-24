@@ -20,7 +20,7 @@ if [ -r $SCRIPT_PATH ]; then
     php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=Symbols
     echo ""
     
-    ASSETS_DIR=$CURR_DIR/FBPV/Images.xcassets
+    ASSETS_DIR=$CURR_DIR/FBPV/AppIcons.xcassets
     echo "Removing old files..."
     find "$ASSETS_DIR" -type d -name '*.imageset' | xargs -I{} rm -rd "{}"
     php $SCRIPT_PATH -i "$DOC_FILE" -o "$ASSETS_DIR" --page=AppIcons

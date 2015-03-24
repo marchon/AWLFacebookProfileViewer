@@ -3,17 +3,17 @@
         {
             "idiom": "universal",
             "scale": "1x",
-            "filename": "Friends@1x.png"
+            "filename": "Main: Posts@1x.png"
         },
         {
             "idiom": "universal",
             "scale": "2x",
-            "filename": "Friends@2x.png"
+            "filename": "Main: Posts@2x.png"
         },
         {
             "idiom": "universal",
             "scale": "3x",
-            "filename": "Friends@3x.png"
+            "filename": "Main: Posts@3x.png"
         }
     ],
     "info": {
