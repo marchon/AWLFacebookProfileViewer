@@ -8,11 +8,11 @@ import UIKit
 public class GenericPostTableViewCell : IBDesignableTableViewCell {
 
   override func setupNib() {
-    self.backgroundColor = StyleKitExport.uiTableViewBackground.fillColor
+    self.backgroundColor = SketchStyleKit.uiTableViewBackground.fillColor
     self.contentView.backgroundColor = UIColor.clearColor()
     self.textLabel?.backgroundColor = UIColor.clearColor()
     self.selectedBackgroundView = UIView()
-    self.selectedBackgroundView.backgroundColor = StyleKitExport.uiSelectedTableViewCellBackground.fillColor
+    self.selectedBackgroundView.backgroundColor = SketchStyleKit.uiSelectedTableViewCellBackground.fillColor
     self.layoutMargins = UIEdgeInsetsZero
     self.preservesSuperviewLayoutMargins = false
   }

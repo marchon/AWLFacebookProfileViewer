@@ -11,7 +11,7 @@ import UIKit
 public class LoadingProgressView: IBDesignableView {
 
   override func setupNib() {
-    self.backgroundColor = StyleKitExport.uiPopup.fillColor
+    self.backgroundColor = SketchStyleKit.uiPopup.fillColor
     self.layer.cornerRadius = 15
 //    self.layer.borderWidth = 1
 //    self.layer.borderColor = StyleKit.PopupViews.popupViewBorderColor.CGColor

@@ -16,7 +16,7 @@ public class LoginButton: IBDesignableButton {
   }
 
   override func setupNib() {
-    self.backgroundColor = StyleKitExport.paletteColor4Fill.fillColor
+    self.backgroundColor = SketchStyleKit.paletteColor4Fill.fillColor
   }
 
 }

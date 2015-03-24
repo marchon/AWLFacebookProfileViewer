@@ -16,7 +16,7 @@ public class UserProfileView: NibDesignable {
 
   lazy var overlayView: EmptyUserProfileView = {
     let view = EmptyUserProfileView(frame: CGRectZero)
-    view.backgroundColor = StyleKitExport.paletteColor5Fill.fillColor
+    view.backgroundColor = SketchStyleKit.paletteColor5Fill.fillColor
     view.setTranslatesAutoresizingMaskIntoConstraints(false)
     return view
     }()

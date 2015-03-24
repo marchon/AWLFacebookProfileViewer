@@ -9,7 +9,7 @@ echo ""
 
 SCRIPT_PATH=$CURR_DIR/Scripts/SketchStyleKitExport.php
 DOC_FILE=$CURR_DIR/Design/FBPV.sketch
-STYLEKIT_FILE=$CURR_DIR/UI/StyleKitExport.swift
+STYLEKIT_FILE=$CURR_DIR/UI/SketchStyleKit.swift
 
 if [ -r $SCRIPT_PATH ]; then
     php $SCRIPT_PATH -i "$DOC_FILE" -o "$STYLEKIT_FILE"

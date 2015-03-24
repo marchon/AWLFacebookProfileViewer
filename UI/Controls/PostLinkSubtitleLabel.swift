@@ -8,7 +8,7 @@ import UIKit
 public class PostLinkSubtitleLabel : IBDesignableLabel {
 
   override func setupNib() {
-    self.textColor = StyleKitExport.postLinkSubtitle.textColor
+    self.textColor = SketchStyleKit.postLinkSubtitle.textColor
   }
   
 }

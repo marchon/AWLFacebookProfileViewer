@@ -8,10 +8,10 @@ import UIKit
 public class LoadMorePostsButton: IBDesignableButton {
   
   override func setupNib() {
-    self.backgroundColor = StyleKitExport.paletteColor4Fill.fillColor
+    self.backgroundColor = SketchStyleKit.paletteColor4Fill.fillColor
     self.tintColor = UIColor.whiteColor()
-    //    let img1 = UIImage.imageFromColor(StyleKitExport.paletteColor4Fill.fillColor, size: CGSizeMake(1, 1))
-    //    let img2 = UIImage.imageFromColor(StyleKitExport.paletteColor4Fill.fillColor.darkerColorForColor(), size: CGSizeMake(1, 1))
+    //    let img1 = UIImage.imageFromColor(SketchStyleKit.paletteColor4Fill.fillColor, size: CGSizeMake(1, 1))
+    //    let img2 = UIImage.imageFromColor(SketchStyleKit.paletteColor4Fill.fillColor.darkerColorForColor(), size: CGSizeMake(1, 1))
     //    self.buttonLoadMore.setBackgroundImage(img1, forState: UIControlState.Normal)
     //    self.buttonLoadMore.setBackgroundImage(img1, forState: UIControlState.Disabled)
     //    self.buttonLoadMore.setBackgroundImage(img2, forState: UIControlState.Highlighted)

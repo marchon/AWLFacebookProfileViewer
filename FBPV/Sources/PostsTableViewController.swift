@@ -56,11 +56,11 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
   private var tableViewBackgroundView: UIView = {
     var view = UILabel()
     view.text = "No data is currently available\nPlease pull down to refresh"
-    view.textColor = StyleKitExport.uiTableViewPullToLoadLabel.textColor
+    view.textColor = SketchStyleKit.uiTableViewPullToLoadLabel.textColor
     view.numberOfLines = 2
     view.textAlignment = NSTextAlignment.Center
-    view.font = StyleKitExport.uiTableViewPullToLoadLabel.font
-    view.backgroundColor = StyleKitExport.uiTableViewBackground.fillColor
+    view.font = SketchStyleKit.uiTableViewPullToLoadLabel.font
+    view.backgroundColor = SketchStyleKit.uiTableViewBackground.fillColor
     view.sizeToFit()
     return view
   }()
@@ -138,8 +138,8 @@ extension PostsTableViewController {
   }
 
   private func configureAppearance() {
-    self.tableView.backgroundColor = StyleKitExport.uiTableViewBackground.fillColor
-    self.refreshControl?.backgroundColor = StyleKitExport.paletteColor4Fill.fillColor
+    self.tableView.backgroundColor = SketchStyleKit.uiTableViewBackground.fillColor
+    self.refreshControl?.backgroundColor = SketchStyleKit.paletteColor4Fill.fillColor
     self.refreshControl?.tintColor = UIColor.whiteColor()
   }
 

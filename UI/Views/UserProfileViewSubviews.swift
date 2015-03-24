@@ -11,7 +11,7 @@ import UIKit
 public class UserProfileBackgroundImageView: IBDesignableImageView {
 
   override func setupNib() {
-    self.backgroundColor = StyleKitExport.paletteColor5Fill.fillColor
+    self.backgroundColor = SketchStyleKit.paletteColor5Fill.fillColor
     self.clipsToBounds = true
 
     if self.isUnderLiveViewTarget {
@@ -35,8 +35,8 @@ public class UserProfileAvatarImageView: IBDesignableImageView {
   }
 
   override func setupNib() {
-    self.backgroundColor = StyleKitExport.paletteColor5Fill.fillColor
-    self.layer.borderColor = StyleKitExport.profileViewAvatarOutline.borderColor.CGColor
+    self.backgroundColor = SketchStyleKit.paletteColor5Fill.fillColor
+    self.layer.borderColor = SketchStyleKit.profileViewAvatarOutline.borderColor.CGColor
     let radius = 0.5 * max(CGRectGetHeight(self.bounds), CGRectGetWidth(self.bounds))
     self.layer.cornerRadius = radius
     self.clipsToBounds = true

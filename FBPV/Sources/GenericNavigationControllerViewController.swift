@@ -14,7 +14,7 @@ class GenericNavigationControllerViewController: UINavigationController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationBar.tintColor = UIColor.whiteColor()
-    self.navigationBar.barTintColor = StyleKitExport.paletteColor4Fill.fillColor
+    self.navigationBar.barTintColor = SketchStyleKit.paletteColor4Fill.fillColor
   }
 
   override func segueForUnwindingToViewController(toViewController: UIViewController, fromViewController: UIViewController, identifier: String?) -> UIStoryboardSegue {
