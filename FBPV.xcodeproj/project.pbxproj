@@ -107,6 +107,7 @@
 		C5A31F431A9B4DAB00CC89D6 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80FF71321A9A9E54005715BA /* Media.xcassets */; };
 		C5A750701A80E1930089703F /* FacebookProfileLoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */; };
 		C5AD127F1A97485700B1DE89 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C5AD127E1A97485700B1DE89 /* Settings.bundle */; };
+		C5BAB5F61AC180950086ED6C /* StyleKitExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BAB5F41AC17FFF0086ED6C /* StyleKitExport.swift */; };
 		C5F235571A935B0E00D8D28C /* CoreDataHelperPostsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F235561A935B0E00D8D28C /* CoreDataHelperPostsTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -269,6 +270,7 @@
 		C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FacebookProfileLoadManagerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C5AD127E1A97485700B1DE89 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		C5BAB5F41AC17FFF0086ED6C /* StyleKitExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKitExport.swift; sourceTree = "<group>"; };
 		C5F235561A935B0E00D8D28C /* CoreDataHelperPostsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CoreDataHelperPostsTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
@@ -363,6 +365,7 @@
 		803313731A74661500E54701 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				C5BAB5F31AC17FDD0086ED6C /* Generated */,
 				375323871085C478C71CD8D6 /* Cells */,
 				80FBA43C1AA128B600887F25 /* Controls */,
 				8083DFD01AA129D1009FA37A /* Extensions */,
@@ -547,6 +550,14 @@
 				80FF71451A9AAAF2005715BA /* OpenSans-SemiboldItalic.ttf */,
 			);
 			path = "open-sans";
+			sourceTree = "<group>";
+		};
+		C5BAB5F31AC17FDD0086ED6C /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				C5BAB5F41AC17FFF0086ED6C /* StyleKitExport.swift */,
+			);
+			name = Generated;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -825,6 +836,7 @@
 				37532D397FDAA84C77C8BBBC /* IBDesignableLabel.swift in Sources */,
 				37532EF80BE962E666CFBD95 /* IBDesignableView.swift in Sources */,
 				37532D0EF1BE75498BABF26D /* IBDesignableImageView.swift in Sources */,
+				C5BAB5F61AC180950086ED6C /* StyleKitExport.swift in Sources */,
 				3753280F9A9D923F22985153 /* EmptyUserProfileViewSubviews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

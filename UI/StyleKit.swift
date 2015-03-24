@@ -70,16 +70,4 @@ public class StyleKit {
     
   }
 
-  public class PopupViews {
-
-    public class var popupViewBackgroundColor: UIColor {
-      return StyleKit.Palette.baseColor4.colorWithAlphaComponent(0.9)
-    }
-
-//    public class var popupViewBorderColor: UIColor {
-//      return UIColor.fromRGB(0x6F6F6F)
-//    }
-
-  }
-
 }

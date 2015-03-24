@@ -120,7 +120,6 @@ class SketchStyleKitExporter  {
 class StyleKitBuilder {
 
     private static $template = <<<HEADER
-//
 // File: {file_name}
 //
 // NOTE:
@@ -129,13 +128,11 @@ class StyleKitBuilder {
 
 import UIKit
 
-private extension UIColor {
-  class func fromRGB(hex: Int) -> UIColor {
+func UIColorFromRGB(hex: Int) -> UIColor {
     let R = CGFloat((hex & 0xFF0000) >> 16) / 255.0
     let G = CGFloat((hex & 0xFF00) >> 8) / 255.0
     let B = CGFloat(hex & 0xFF) / 255.0
     return UIColor(red: R, green: G, blue: B, alpha: 1.0)
-  }
 }
 HEADER;
 
@@ -245,9 +242,15 @@ T;
      * @return string
      */
     public function getFunctionName() {
-        // Replace unsafe characters
         $safeName = str_ireplace(' ', '', trim($this->name));
-        $safeName = str_ireplace(':', '', $safeName);
+        $nameComponents = explode(":", $safeName);
+        if(count($nameComponents) > 1) {
+            $category = $nameComponents[0];
+            if (ctype_upper($category)) {
+                $nameComponents[0] = strtolower($category);
+            }
+        }
+        $safeName = implode('', $nameComponents);
         $safeName = strtolower(substr($safeName, 0, 1)).substr($safeName, 1, strlen($safeName) - 1);
         return $safeName;
     }
@@ -277,7 +280,7 @@ T;
         foreach($this->fills as $fill) {
             $classMembers .= $fill->build();
         }
-        if(count($this->borders) > 0) {
+        if(count($this->fills) > 0 && count($this->borders) > 0) {
             $classMembers .= "\n";
         }
         foreach($this->borders as $border) {
@@ -414,19 +417,19 @@ abstract class StyleKitColorRGBAMode {
 class StyleKitColor {
 
     protected static $templateHexColor = <<<T
-public var {member_name}: UIColor {
-    return UIColor.fromRGB(0x{hex_code})
+public class var {member_name}: UIColor {
+    return UIColorFromRGB(0x{hex_code})
 }
 T;
 
     protected static $templateRGBAColor = <<<T
-public var {member_name}: UIColor {
+public class var {member_name}: UIColor {
     return UIColor(red: {red} / 255.0, green: {green} / 255.0, blue: {blue} / 255.0, alpha: {alpha})
 }
 T;
 
     protected static $templateRGBANSColor = <<<T
-public var {member_name}: UIColor {
+public class var {member_name}: UIColor {
     return UIColor(red: {red}, green: {green}, blue: {blue}, alpha: {alpha})
 }
 T;
@@ -465,7 +468,7 @@ T;
 class StyleKitFont {
 
     protected static $templateFont = <<<T
-public var font: UIFont {
+public class var font: UIFont {
     return UIFont(name: "{font_name}", size: {font_size})!
 }
 T;
