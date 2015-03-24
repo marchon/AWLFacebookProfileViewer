@@ -103,7 +103,6 @@
 		C58C7BE81A7FD36E007E3996 /* FacebookProfileLoadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */; };
 		C5921A2E1A920E6600298543 /* CoreDataHelperFriendsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5921A2D1A920E6600298543 /* CoreDataHelperFriendsTests.swift */; };
 		C5921A301A923BBA00298543 /* Reflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5921A2F1A923BBA00298543 /* Reflection.swift */; };
-		C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */; };
 		C5A31F431A9B4DAB00CC89D6 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80FF71321A9A9E54005715BA /* Media.xcassets */; };
 		C5A750701A80E1930089703F /* FacebookProfileLoadManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */; };
 		C5AD127F1A97485700B1DE89 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C5AD127E1A97485700B1DE89 /* Settings.bundle */; };
@@ -267,7 +266,6 @@
 		C58C7BE71A7FD36E007E3996 /* FacebookProfileLoadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookProfileLoadManager.swift; sourceTree = "<group>"; };
 		C5921A2D1A920E6600298543 /* CoreDataHelperFriendsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CoreDataHelperFriendsTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C5921A2F1A923BBA00298543 /* Reflection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reflection.swift; sourceTree = "<group>"; };
-		C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		C5A7506F1A80E1930089703F /* FacebookProfileLoadManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FacebookProfileLoadManagerTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		C5AD127E1A97485700B1DE89 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		C5BAB5F41AC17FFF0086ED6C /* StyleKitExport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKitExport.swift; sourceTree = "<group>"; };
@@ -372,7 +370,6 @@
 				80FBA4411AA128C100887F25 /* Views */,
 				803313751A74661500E54701 /* Info.plist */,
 				807E28661A7A58A3005DBF05 /* NibDesignable.swift */,
-				C5A31F3F1A9B3CB400CC89D6 /* StyleKit.swift */,
 				80BACFA61AA259ED000A3093 /* IBDesignableHelper.swift */,
 			);
 			path = UI;
@@ -808,7 +805,6 @@
 				80BACFAB1AA262C4000A3093 /* UIView.swift in Sources */,
 				80E342351AA38B9000F9C050 /* PostLinkSubtitleLabel.swift in Sources */,
 				808FB2801AA512790067C15B /* EmptyUserProfileView.swift in Sources */,
-				C5A31F401A9B3CB400CC89D6 /* StyleKit.swift in Sources */,
 				809FDAC91AA4D78900BEB830 /* OverlayErrorView.swift in Sources */,
 				809FDACD1AA4DD7E00BEB830 /* OverlayErrorViewSubviews.swift in Sources */,
 				807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */,

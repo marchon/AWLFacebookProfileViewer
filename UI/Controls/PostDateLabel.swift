@@ -8,7 +8,7 @@ import UIKit
 public class PostDateLabel : IBDesignableLabel {
 
   override func setupNib() {
-    self.textColor = StyleKit.Palette.baseColor4.darkerColor
+    self.textColor = StyleKitExport.paletteColor4Fill.fillColor
   }
 
 }

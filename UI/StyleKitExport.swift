@@ -22,6 +22,41 @@ public class StyleKitExport {
         }
     }
 
+    // LayerStyle: "Palette: Color 1 Fill"
+    public class paletteColor1Fill {
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0xEF1945)
+        }
+    }
+
+    // LayerStyle: "Palette: Color 2 Fill"
+    public class paletteColor2Fill {
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0xF39600)
+        }
+    }
+
+    // LayerStyle: "Palette: Color 3 Fill"
+    public class paletteColor3Fill {
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0xE9F1DE)
+        }
+    }
+
+    // LayerStyle: "Palette: Color 4 Fill"
+    public class paletteColor4Fill {
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0x44D3C2)
+        }
+    }
+
+    // LayerStyle: "Palette: Color 5 Fill"
+    public class paletteColor5Fill {
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0x2B8FB3)
+        }
+    }
+
     // LayerStyle: "ProfileView: Avatar Outline"
     public class profileViewAvatarOutline {
         public class var borderColor: UIColor {

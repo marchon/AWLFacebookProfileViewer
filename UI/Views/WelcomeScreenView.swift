@@ -8,7 +8,7 @@ import UIKit
 public class WelcomeScreenView: IBDesignableView {
 
   override func setupNib() {
-    self.backgroundColor = StyleKit.Palette.baseColor5
+    self.backgroundColor = StyleKitExport.paletteColor5Fill.fillColor
   }
 
 }
