@@ -1,6 +1,5 @@
 <?php
 
-include('Logger.php');
 $logger = Logger::getLogger("main");
 $logger->info("Starting...");
 
@@ -37,6 +36,18 @@ function usageString() {
     $usage = "Usage: php " . basename(__FILE__) . ' -i <document> -o <path> [ --page=<string> ]';
 
     return $usage . "\n";
+}
+
+class Logger {
+    private $name = '';
+    function info($msg) {echo "[I] [$this->name] $msg\n";}
+    function error($msg) {echo "[E] [$this->name] $msg\n";}
+    private function __construct($name) {
+        $this->name = $name;
+    }
+    public static function getLogger($name) {
+        return new Logger($name);
+    }
 }
 
 class SketchExporter {
@@ -297,7 +308,6 @@ class Image {
         return $this->scale;
     }
 }
-
 
 class ImageSet {
 
