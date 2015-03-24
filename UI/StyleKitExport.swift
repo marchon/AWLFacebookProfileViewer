@@ -60,6 +60,26 @@ public class StyleKitExport {
         }
     }
 
+    // LayerTextStyle: "Post: Link Subtitle"
+    public class postLinkSubtitle {
+        public class var font: UIFont {
+            return UIFont(name: "OpenSans-Light", size: 24 / 2.000000)!
+        }
+        public class var textColor: UIColor {
+            return UIColor(red: 0.169861, green: 0.562523, blue: 0.702936, alpha: 1.000000)
+        }
+    }
+
+    // LayerTextStyle: "Post: Link Title"
+    public class postLinkTitle {
+        public class var font: UIFont {
+            return UIFont(name: "OpenSans", size: 24 / 2.000000)!
+        }
+        public class var textColor: UIColor {
+            return UIColor(red: 0.484455, green: 0.484455, blue: 0.484455, alpha: 1.000000)
+        }
+    }
+
     // LayerTextStyle: "Post: Title"
     public class postTitle {
         public class var font: UIFont {
