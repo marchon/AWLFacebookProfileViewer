@@ -66,7 +66,6 @@ OTHER_CFLAGS_Test    = $(inherited)
 
 // Language C
 GCC_C_LANGUAGE_STANDARD         = gnu11
-GCC_PREFIX_HEADER               = Sources/$(PRODUCT_NAME)-Prefix.h
 
 // Language C++
 CLANG_CXX_LANGUAGE_STANDARD     = gnu++0x

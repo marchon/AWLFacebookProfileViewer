@@ -21,8 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   private var isUnderTestingMode: Bool {
     #if TEST
       return true
+    #else
+      return false
     #endif
-    return false
   }
 
   private var rootViewController: UIViewController? {

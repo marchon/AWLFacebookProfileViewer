@@ -33,7 +33,7 @@ class FriendsTableViewController : UITableViewController, NSFetchedResultsContro
     return fetchedResultController
     }()
 
-  private var tableViewSeparatorStileDefault = UITableViewCellSeparatorStyle.SingleLine
+  private var tableViewSeparatorStyleDefault = UITableViewCellSeparatorStyle.SingleLine
 
   // FIXME: This is Copy/Paste code from PostsTableViewController
   private var tableViewBackgroundView: UIView = {
@@ -54,7 +54,7 @@ extension FriendsTableViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.tableView.registerNib(UINib.nibForClass(FriendTableViewCell.self), forCellReuseIdentifier: "friendCell")
-    self.tableViewSeparatorStileDefault = self.tableView.separatorStyle
+    self.tableViewSeparatorStyleDefault = self.tableView.separatorStyle
     self.refreshControl = UIRefreshControl()
     self.refreshControl?.addTarget(self, action: Selector("doFetchFriends:"), forControlEvents: UIControlEvents.ValueChanged)
     self.configureAppearance()
@@ -110,7 +110,7 @@ extension FriendsTableViewController {
       self.tableView.separatorStyle = UITableViewCellSeparatorStyle.None
       self.tableView.backgroundView = self.tableViewBackgroundView
     } else {
-      self.tableView.separatorStyle = self.tableViewSeparatorStileDefault
+      self.tableView.separatorStyle = self.tableViewSeparatorStyleDefault
       self.tableView.backgroundView = nil
     }
   }
