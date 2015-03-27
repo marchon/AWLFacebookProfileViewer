@@ -125,6 +125,26 @@ public class SketchStyleKit {
         }
     }
 
+    // LayerTextStyle: "Profile: Location"
+    public class profileLocation {
+        public class var font: UIFont {
+            return UIFont(name: "OpenSans", size: 28 / 2.000000)!
+        }
+        public class var textColor: UIColor {
+            return UIColor(red: 1.000000, green: 1.000000, blue: 1.000000, alpha: 1.000000)
+        }
+    }
+
+    // LayerTextStyle: "Profile: Title"
+    public class profileTitle {
+        public class var font: UIFont {
+            return UIFont(name: "OpenSans", size: 40 / 2.000000)!
+        }
+        public class var textColor: UIColor {
+            return UIColor(red: 1.000000, green: 1.000000, blue: 1.000000, alpha: 1.000000)
+        }
+    }
+
     // LayerTextStyle: "UI: TableView Pull To Load Label"
     public class uiTableViewPullToLoadLabel {
         public class var font: UIFont {

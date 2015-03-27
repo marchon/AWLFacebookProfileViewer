@@ -48,3 +48,17 @@ public class UserProfileAvatarImageView: IBDesignableImageView {
   }
   
 }
+
+public class UserProfileNameLabel: IBDesignableLabel {
+  override func setupNib() {
+    self.textColor = SketchStyleKit.profileTitle.textColor
+    self.font = SketchStyleKit.profileTitle.font
+  }
+}
+
+public class UserProfileLocationLabel: IBDesignableLabel {
+  override func setupNib() {
+    self.textColor = SketchStyleKit.profileLocation.textColor
+    self.font = SketchStyleKit.profileLocation.font
+  }
+}
