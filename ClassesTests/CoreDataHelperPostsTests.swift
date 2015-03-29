@@ -14,7 +14,7 @@ class CoreDataHelperPostsTests : XCTestCase {
     super.tearDown()
     var moc = CoreDataHelper.sharedInstance().managedObjectContext!
     var request = CoreDataHelper.Posts.sharedInstance.fetchRequestForAllRecordsSortedByCreatedDate
-    var records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    var records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
     for result in records! {
       moc.deleteObject(result)
     }
@@ -52,7 +52,7 @@ class CoreDataHelperPostsTests : XCTestCase {
     
     // All records sorted by created date
     request = CoreDataHelper.Posts.sharedInstance.fetchRequestForAllRecordsSortedByCreatedDate
-    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 3)
     XCTAssertTrue(records!.first! == p3)
@@ -62,7 +62,7 @@ class CoreDataHelperPostsTests : XCTestCase {
     
     // Records matching ID sorted by ID
     request = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsMatchingIds(["ID 3", "ID 2", "ID X"])
-    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 2)
     XCTAssertTrue(records!.first! == p2)
@@ -89,7 +89,7 @@ class CoreDataHelperPostsTests : XCTestCase {
     let p5 = makeEntityWithNumber(5, type: "a")
     CoreDataHelper.Posts.addOrUpdateRecordsWithEntities([p5, p4])
     request = CoreDataHelper.Posts.sharedInstance.fetchRequestForAllRecordsSortedByCreatedDate
-    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 5)
   }
@@ -114,7 +114,7 @@ class CoreDataHelperPostsTests : XCTestCase {
     p5.id = "ID 3"
     CoreDataHelper.Posts.addOrUpdateRecordsWithEntities([p5, p4])
     request = CoreDataHelper.Posts.sharedInstance.fetchRequestForAllRecordsSortedByCreatedDate
-    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 4)
     XCTAssertTrue(records!.first!.id == "ID 3")
@@ -141,7 +141,7 @@ class CoreDataHelperPostsTests : XCTestCase {
     var records: [PostEntity]?
 
     request = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsWithoutPreviewImage
-    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 1)
     XCTAssertTrue(records!.first! == p1)
@@ -164,7 +164,7 @@ class CoreDataHelperPostsTests : XCTestCase {
     var records: [PostEntity]?
     
     request = CoreDataHelper.Posts.sharedInstance.fetchRequestForOldestPost
-    records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 1)
     XCTAssertTrue(records!.first!.id == "ID 1")

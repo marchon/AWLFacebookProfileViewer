@@ -14,7 +14,7 @@ class CoreDataHelperProfileTests: XCTestCase {
   func testProfileActions() {
     var moc = CoreDataHelper.sharedInstance().managedObjectContext!
     var request = CoreDataHelper.Profile.sharedInstance.fetchRequestForProfile
-    var results = CoreDataHelper.Profile.fetchRecordsAndLogError(request)
+    var results = CoreDataHelper.fetchRecordsAndLogError(request, ProfileEntity.self)
     XCTAssertNotNil(results)
     XCTAssertTrue(results!.count == 0)
     
@@ -22,7 +22,7 @@ class CoreDataHelperProfileTests: XCTestCase {
     p.userName = "Profile 1"
     moc.insertObject(p)
     CoreDataHelper.sharedInstance().saveContext()
-    results = CoreDataHelper.Profile.fetchRecordsAndLogError(request)
+    results = CoreDataHelper.fetchRecordsAndLogError(request, ProfileEntity.self)
     XCTAssertNotNil(results)
     XCTAssertTrue(results!.count == 1)
     XCTAssertTrue(results!.first! == p)

@@ -14,7 +14,7 @@ class CoreDataHelperFriendsTests : XCTestCase {
     super.tearDown()
     var moc = CoreDataHelper.sharedInstance().managedObjectContext!
     var request = CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName
-    var records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    var records = CoreDataHelper.fetchRecordsAndLogError(request, FriendEntity.self)
     for result in records! {
       moc.deleteObject(result)
     }
@@ -53,7 +53,7 @@ class CoreDataHelperFriendsTests : XCTestCase {
     
     // Records with missed avatar
     request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsWithoutAvatarImage
-    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, FriendEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 1)
     XCTAssertTrue(records!.first! == f2)
@@ -80,7 +80,7 @@ class CoreDataHelperFriendsTests : XCTestCase {
     
     // All records sorted by name
     request = CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName
-    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, FriendEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 3)
     XCTAssertTrue(records!.first! == f1)
@@ -89,7 +89,7 @@ class CoreDataHelperFriendsTests : XCTestCase {
     
     // Records for requested names
     request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsMatchingNames(["User 1", "User 2", "User X"])
-    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, FriendEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 2)
     XCTAssertTrue(records!.first! == f1)
@@ -97,7 +97,7 @@ class CoreDataHelperFriendsTests : XCTestCase {
     
     // Records not matching requested names
     request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsNotMatchingNames(["User 1", "User 2", "User X"])
-    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, FriendEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 1)
     XCTAssertTrue(records!.first! == f3)
@@ -121,7 +121,7 @@ class CoreDataHelperFriendsTests : XCTestCase {
     
     // All records sorted by name
     request = CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName
-    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, FriendEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 1)
     XCTAssertTrue(records!.first! == f3)
@@ -150,7 +150,7 @@ class CoreDataHelperFriendsTests : XCTestCase {
     
     // All records sorted by name
     request = CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName
-    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, FriendEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 5)
     XCTAssertTrue(records![2] == f3Updated)
@@ -177,7 +177,7 @@ class CoreDataHelperFriendsTests : XCTestCase {
     
     // All records sorted by name
     request = CoreDataHelper.Friends.sharedInstance.fetchRequestForAllRecordsSortedByName
-    records = CoreDataHelper.Friends.fetchRecordsAndLogError(request)
+    records = CoreDataHelper.fetchRecordsAndLogError(request, FriendEntity.self)
     XCTAssertNotNil(records)
     XCTAssertTrue(records!.count == 5)
   }
