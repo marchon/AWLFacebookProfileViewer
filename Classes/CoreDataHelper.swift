@@ -94,7 +94,32 @@ public class CoreDataHelper {
       }
     }
   }
-  
+
+  public class func deleteAllEntities(name: String) {
+    let fetchRequest = NSFetchRequest(entityName: name)
+    fetchRequest.includesPropertyValues = false
+    if let results = self.fetchRecordsAndLogError(fetchRequest, NSManagedObject.self) {
+      if results.count <= 0 {
+        return
+      }
+      let moc = CoreDataHelper.sharedInstance().managedObjectContext!
+      for result in results {
+        moc.deleteObject(result)
+      }
+      CoreDataHelper.sharedInstance().saveContext()
+    }
+  }
+
+  public class func fetchRecordsAndLogError<T:AnyObject>(request: NSFetchRequest, _:T.Type) -> [T]? {
+    var e: NSError?
+    if let fetchResults = CoreDataHelper.sharedInstance().managedObjectContext?.executeFetchRequest(request, error: &e) {
+      return fetchResults as? [T]
+    } else {
+      logError(e)
+      return nil
+    }
+  }
+
   public class Profile {
     
     public class var sharedInstance: CoreDataHelper.Profile {
@@ -117,16 +142,7 @@ public class CoreDataHelper {
       var fetchRequest = NSFetchRequest(entityName: entityName)
       return fetchRequest
       }()
-    
-    public class func fetchRecordsAndLogError(request: NSFetchRequest) -> [ProfileEntity]? {
-      var e: NSError?
-      if let fetchResults = CoreDataHelper.sharedInstance().managedObjectContext?.executeFetchRequest(request, error: &e) {
-        return fetchResults as? [ProfileEntity]
-      } else {
-        logError(e)
-        return nil
-      }
-    }
+
   }
   
   public class Posts {
@@ -247,17 +263,7 @@ public class CoreDataHelper {
       
       return entityInstance
     }
-    
-    public class func fetchRecordsAndLogError(request: NSFetchRequest) -> [PostEntity]? {
-      var e: NSError?
-      if let fetchResults = CoreDataHelper.sharedInstance().managedObjectContext?.executeFetchRequest(request, error: &e) {
-        return fetchResults as? [PostEntity]
-      } else {
-        logError(e)
-        return nil
-      }
-    }
-    
+
     public class func addOrUpdateRecordsWithEntities(entities: [PostEntity]) -> [PostEntity] {
       if entities.count <= 0 {
         return []
@@ -273,7 +279,7 @@ public class CoreDataHelper {
       }
       
       let fetchRequest = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsMatchingIds(ids)
-      var fetchResults = CoreDataHelper.Posts.fetchRecordsAndLogError(fetchRequest)
+      var fetchResults = CoreDataHelper.fetchRecordsAndLogError(fetchRequest, PostEntity.self)
       if fetchResults == nil {
         return []
       }
@@ -401,7 +407,7 @@ public class CoreDataHelper {
       }
       
       let fetchRequest = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsMatchingNames(names)
-      var fetchResults = CoreDataHelper.Friends.fetchRecordsAndLogError(fetchRequest)
+      var fetchResults = CoreDataHelper.fetchRecordsAndLogError(fetchRequest, FriendEntity.self)
       if fetchResults == nil {
         return []
       }
@@ -469,7 +475,7 @@ public class CoreDataHelper {
     
     public class func deleteRecordsNotMatchingNames(names: [String]) {
       let request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsNotMatchingNames(names)
-      if let results = CoreDataHelper.Friends.fetchRecordsAndLogError(request) {
+      if let results = CoreDataHelper.fetchRecordsAndLogError(request, FriendEntity.self) {
         if results.count <= 0 {
           return
         }
@@ -478,16 +484,6 @@ public class CoreDataHelper {
           moc.deleteObject(result)
         }
         CoreDataHelper.sharedInstance().saveContext()
-      }
-    }
-    
-    public class func fetchRecordsAndLogError(request: NSFetchRequest) -> [FriendEntity]? {
-      var e: NSError?
-      if let fetchResults = CoreDataHelper.sharedInstance().managedObjectContext?.executeFetchRequest(request, error: &e) {
-        return fetchResults as? [FriendEntity]
-      } else {
-        logError(e)
-        return nil
       }
     }
     

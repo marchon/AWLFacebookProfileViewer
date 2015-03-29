@@ -33,6 +33,7 @@
 		803313891A74661500E54701 /* FBPVUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803313721A74661500E54701 /* FBPVUI.framework */; };
 		8033138A1A74661500E54701 /* FBPVUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803313721A74661500E54701 /* FBPVUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8033139E1A746AE600E54701 /* FacebookEndpointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */; };
+		8034CBF11AC782FA0074F973 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034CBF01AC782FA0074F973 /* GenericTableViewController.swift */; };
 		807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E28661A7A58A3005DBF05 /* NibDesignable.swift */; };
 		807E28731A7AB703005DBF05 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E28721A7AB703005DBF05 /* Logging.swift */; };
 		8083DFD21AA129D1009FA37A /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8083DFD11AA129D1009FA37A /* UIColor.swift */; };
@@ -195,6 +196,7 @@
 		803313721A74661500E54701 /* FBPVUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FBPVUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		803313751A74661500E54701 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookEndpointManager.swift; sourceTree = "<group>"; };
+		8034CBF01AC782FA0074F973 /* GenericTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericTableViewController.swift; sourceTree = "<group>"; };
 		807E28661A7A58A3005DBF05 /* NibDesignable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibDesignable.swift; sourceTree = "<group>"; };
 		807E28721A7AB703005DBF05 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		8083DFD11AA129D1009FA37A /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 			children = (
 				80FBA44D1AA1291500887F25 /* AppDelegate.swift */,
 				80FBA4501AA1291500887F25 /* MainViewController.swift */,
+				8034CBF01AC782FA0074F973 /* GenericTableViewController.swift */,
 				80FBA44E1AA1291500887F25 /* FriendsTableViewController.swift */,
 				80FBA4511AA1291500887F25 /* PostsTableViewController.swift */,
 				80FBA44F1AA1291500887F25 /* LoginScreenViewController.swift */,
@@ -842,6 +845,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8034CBF11AC782FA0074F973 /* GenericTableViewController.swift in Sources */,
 				80FBA4531AA1291500887F25 /* AppDelegate.swift in Sources */,
 				80FBA4571AA1291500887F25 /* PostsTableViewController.swift in Sources */,
 				80BACFB51AA29C78000A3093 /* GenericNavigationControllerViewController.swift in Sources */,

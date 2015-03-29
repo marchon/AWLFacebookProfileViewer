@@ -78,7 +78,7 @@ extension MainViewController {
     }
 
     var request = CoreDataHelper.Profile.sharedInstance.fetchRequestForProfile
-    var fetchResults = CoreDataHelper.Profile.fetchRecordsAndLogError(request)
+    var fetchResults = CoreDataHelper.fetchRecordsAndLogError(request, ProfileEntity.self)
     if let results = fetchResults {
       if results.count == 0 {
         fetchProfileFromServer() // Profile not yet fetched from server
@@ -99,7 +99,7 @@ extension MainViewController {
         var request = CoreDataHelper.Profile.sharedInstance.fetchRequestForProfile
         var shouldInsert = true
         var entityInstance = CoreDataHelper.Profile.makeEntityInstance()
-        if var fetchResults = CoreDataHelper.Profile.fetchRecordsAndLogError(request) {
+        if var fetchResults = CoreDataHelper.fetchRecordsAndLogError(request, ProfileEntity.self) {
           if fetchResults.count > 0 {
             entityInstance = fetchResults.first!
             shouldInsert = false

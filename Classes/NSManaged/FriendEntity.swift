@@ -29,6 +29,10 @@ public class FriendEntity: NSManagedObject, DebugPrintable, Equatable {
     properties.append(Reflection.Property(key: kFriendEntityKeyAvatarPictureData, value: self.avatarPictureData == nil ? "null" : "\(self.avatarPictureData!.length) bytes"))
     return Reflection.propertiesToString(properties, multiline: true)
   }
+
+  public class var entityName: String {
+    return FriendEntity.description().componentsSeparatedByString(".").last!
+  }
 }
 
 public func ==(lhs: FriendEntity, rhs: FriendEntity) -> Bool {

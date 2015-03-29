@@ -8,9 +8,8 @@ import FBPVClasses
 import FBPVUI
 import CoreData
 
-class PostsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate, ErrorReportingProtocol {
+class PostsTableViewController : GenericTableViewController, NSFetchedResultsControllerDelegate, ErrorReportingProtocol {
 
-  private var notificationObserver: NSObjectProtocol?
   private var tableFooterView: UIView!
   
   var shouldShowLoadMorePostsCell = false
@@ -64,6 +63,14 @@ class PostsTableViewController : UITableViewController, NSFetchedResultsControll
     view.sizeToFit()
     return view
   }()
+
+  #if DEBUG
+  override func handleDebugAction(action: String) {
+    if action == "erasePosts" {
+      CoreDataHelper.deleteAllEntities(PostEntity.entityName)
+    }
+  }
+  #endif
 }
 
 extension PostsTableViewController {
@@ -125,7 +132,7 @@ extension PostsTableViewController {
     log.verbose("Will load more posts")
     var moc = CoreDataHelper.sharedInstance().managedObjectContext!
     var request = CoreDataHelper.Posts.sharedInstance.fetchRequestForOldestPost
-    var records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    var records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
     if let theRecords = records {
         if theRecords.count > 0 {
             let theRecord = theRecords.first!
@@ -176,7 +183,7 @@ extension PostsTableViewController {
         self.fetchLatestPostsFromServer()
       } else {
         let request = CoreDataHelper.Posts.sharedInstance.fetchRequestForRecordsWithoutPreviewImage
-        if let fetchResults = CoreDataHelper.Posts.fetchRecordsAndLogError(request) {
+        if let fetchResults = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self) {
           self.fetchMissedPreviewPictures(fetchResults)
         }
       }
@@ -216,7 +223,7 @@ extension PostsTableViewController {
     log.verbose("Will load recent posts")
     var moc = CoreDataHelper.sharedInstance().managedObjectContext!
     var request = CoreDataHelper.Posts.sharedInstance.fetchRequestForNewestPost
-    var records = CoreDataHelper.Posts.fetchRecordsAndLogError(request)
+    var records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
     if let theRecords = records {
       if theRecords.count > 0 {
         let theRecord = theRecords.first!

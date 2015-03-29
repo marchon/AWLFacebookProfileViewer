@@ -8,10 +8,8 @@ import FBPVClasses
 import FBPVUI
 import CoreData
 
-class FriendsTableViewController : UITableViewController, NSFetchedResultsControllerDelegate, ErrorReportingProtocol {
+class FriendsTableViewController : GenericTableViewController, NSFetchedResultsControllerDelegate, ErrorReportingProtocol {
 
-  private var notificationObserver: NSObjectProtocol?
-  
   lazy private var log: Logger = {
     return Logger.getLogger("fTvC")
     }()
@@ -47,6 +45,14 @@ class FriendsTableViewController : UITableViewController, NSFetchedResultsContro
     view.sizeToFit()
     return view
     }()
+
+  #if DEBUG
+  override func handleDebugAction(action: String) {
+    if action == "eraseFriends" {
+      CoreDataHelper.deleteAllEntities(FriendEntity.entityName)
+    }
+  }
+  #endif
 }
 
 extension FriendsTableViewController {
@@ -68,7 +74,7 @@ extension FriendsTableViewController {
           self.fetchUsersFromServerIfNeeded()
         }
     }
-    
+
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
     if !self.fetchedResultsController.performFetch(&theFetchError) {
@@ -179,7 +185,7 @@ extension FriendsTableViewController {
         self.fetchFriendsFromServer()
       } else {
         let request = CoreDataHelper.Friends.sharedInstance.fetchRequestForRecordsWithoutAvatarImage
-        if let fetchResults = CoreDataHelper.Friends.fetchRecordsAndLogError(request) {
+        if let fetchResults = CoreDataHelper.fetchRecordsAndLogError(request, FriendEntity.self) {
           self.fetchMissedAvatarPictures(fetchResults)
         }
       }

@@ -56,6 +56,10 @@ public class PostEntity: NSManagedObject, DebugPrintable, Equatable {
     properties.append(Reflection.Property(key: kPostEntityKeyDescription, value: self.desc ?? "null"))
     return Reflection.propertiesToString(properties, multiline: true)
   }
+
+  public class var entityName: String {
+    return PostEntity.description().componentsSeparatedByString(".").last!
+  }
 }
 
 public func ==(lhs: PostEntity, rhs: PostEntity) -> Bool {
