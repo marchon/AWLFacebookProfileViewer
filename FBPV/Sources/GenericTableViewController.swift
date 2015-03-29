@@ -18,7 +18,7 @@ class GenericTableViewController: UITableViewController {
   override func didMoveToParentViewController(parent: UIViewController?) {
     super.didMoveToParentViewController(parent)
     #if DEBUG
-      self.debugNotificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(AppDelegateDebugCommandNotification, object: nil,
+      self.debugNotificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(RemoteDebugServer.ActionNotification, object: nil,
         queue: NSOperationQueue.mainQueue()) { (n: NSNotification!) -> Void in
           if let action = n.userInfo?["action"] as? String {
             self.handleDebugAction(action)
