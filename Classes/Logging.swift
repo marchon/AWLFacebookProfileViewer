@@ -4,6 +4,7 @@
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
+import NSLoggerClient
 
 private extension UIColor {
   var foregroundConsoleColor: String {
@@ -105,6 +106,8 @@ struct ColorLog {
     var separatorLocation       = ";"
     var separatorLocationBegin  = "<"
     var separatorLocationEnd    = ">"
+
+//    LogMessageRaw(theMessage)
 
     if isEnabledXcodeColors && isXcodeIDE {
       theFunction = theFunction.stringAttributedForTerminalOutput(foregroundColor: colorLocation, backgroundColor: nil)

@@ -1,0 +1,3 @@
+[submodule "Vendor/NSLogger"]
+	path = Vendor/NSLogger
+    url=https://github.com/fpillet/NSLogger.git

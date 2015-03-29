@@ -26,12 +26,15 @@
 		37532DB3E31FE65B805B14BA /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532596ADC21B67531D9149 /* UIImage.swift */; };
 		37532DE9F98552A8C392E866 /* IBDesignableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532272363C8EFC61A18428 /* IBDesignableButton.swift */; };
 		37532EF80BE962E666CFBD95 /* IBDesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37532E51DCEBAC72103DE0B8 /* IBDesignableView.swift */; };
+		801707AA1AC8A9D300A7CD1E /* FBPVClasses.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FBPVClasses.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		801707AE1AC8B53700A7CD1E /* LoggerClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B16D891AC8A69B0033725B /* LoggerClient.m */; settings = {COMPILER_FLAGS = "-Wno-gnu-zero-variadic-macro-arguments -Wno-pedantic -Wno-sign-conversion"; }; };
+		801707AF1AC8B5DB00A7CD1E /* NSLoggerClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80B16D6C1AC8A6300033725B /* NSLoggerClient.framework */; };
+		801707B11AC8B6E400A7CD1E /* FBPVUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803313721A74661500E54701 /* FBPVUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		801707B21AC8B6E400A7CD1E /* NSLoggerClient.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80B16D6C1AC8A6300033725B /* NSLoggerClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		803313581A74660100E54701 /* FBPVClasses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FBPVClasses.framework */; };
 		803313611A74660100E54701 /* FacebookEndpointManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803313601A74660100E54701 /* FacebookEndpointManagerTests.swift */; };
 		803313641A74660100E54701 /* FBPVClasses.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FBPVClasses.framework */; };
-		803313651A74660100E54701 /* FBPVClasses.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8033134D1A74660100E54701 /* FBPVClasses.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		803313891A74661500E54701 /* FBPVUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 803313721A74661500E54701 /* FBPVUI.framework */; };
-		8033138A1A74661500E54701 /* FBPVUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 803313721A74661500E54701 /* FBPVUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8033139E1A746AE600E54701 /* FacebookEndpointManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8033139D1A746AE600E54701 /* FacebookEndpointManager.swift */; };
 		8034CBF11AC782FA0074F973 /* GenericTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8034CBF01AC782FA0074F973 /* GenericTableViewController.swift */; };
 		807E28671A7A58A3005DBF05 /* NibDesignable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807E28661A7A58A3005DBF05 /* NibDesignable.swift */; };
@@ -43,11 +46,21 @@
 		8083DFD61AA12A65009FA37A /* StatusPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375321CA60DC5D1E9CF571ED /* StatusPostTableViewCell.swift */; };
 		808D45241AA4F7D100727D07 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808D45231AA4F7D100727D07 /* Protocols.swift */; };
 		808FB2801AA512790067C15B /* EmptyUserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808FB27F1AA512790067C15B /* EmptyUserProfileView.swift */; };
-		808FB2821AA5129B0067C15B /* EmptyUserProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 808FB2811AA5129B0067C15B /* EmptyUserProfileView.xib */; };
 		809FDAC91AA4D78900BEB830 /* OverlayErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */; };
-		809FDACB1AA4D7A000BEB830 /* OverlayErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */; };
 		809FDACD1AA4DD7E00BEB830 /* OverlayErrorViewSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 809FDACC1AA4DD7E00BEB830 /* OverlayErrorViewSubviews.swift */; };
 		80A9592D1AB21C7200F552FC /* IBDesignableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A9592C1AB21C7200F552FC /* IBDesignableTableViewCell.swift */; };
+		80B16D711AC8A6300033725B /* NSLoggerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B16D701AC8A6300033725B /* NSLoggerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80B16D8C1AC8A6A80033725B /* LoggerClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B16D881AC8A69B0033725B /* LoggerClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80B16D8D1AC8A6A80033725B /* LoggerCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B16D8A1AC8A69B0033725B /* LoggerCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		80B596451AC8B93D003C2DCD /* TestingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B596471AC8B93D003C2DCD /* TestingView.xib */; };
+		80B596481AC8B994003C2DCD /* OverlayErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B5964A1AC8B994003C2DCD /* OverlayErrorView.xib */; };
+		80B5964B1AC8B99B003C2DCD /* EmptyUserProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B5964D1AC8B99B003C2DCD /* EmptyUserProfileView.xib */; };
+		80B5964E1AC8B99F003C2DCD /* UserProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B596501AC8B99F003C2DCD /* UserProfileView.xib */; };
+		80B596511AC8B9A6003C2DCD /* StatusPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B596531AC8B9A6003C2DCD /* StatusPostTableViewCell.xib */; };
+		80B596541AC8B9AA003C2DCD /* PhotoPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B596561AC8B9AA003C2DCD /* PhotoPostTableViewCell.xib */; };
+		80B596571AC8B9AE003C2DCD /* LinkPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B596591AC8B9AE003C2DCD /* LinkPostTableViewCell.xib */; };
+		80B5965A1AC8B9B2003C2DCD /* LinkWithoutPhotoPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B5965C1AC8B9B2003C2DCD /* LinkWithoutPhotoPostTableViewCell.xib */; };
+		80B5965D1AC8B9B5003C2DCD /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80B5965F1AC8B9B5003C2DCD /* FriendTableViewCell.xib */; };
 		80BACFA91AA26196000A3093 /* IBDesignableHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFA61AA259ED000A3093 /* IBDesignableHelper.swift */; };
 		80BACFAB1AA262C4000A3093 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFAA1AA262C4000A3093 /* UIView.swift */; };
 		80BACFAD1AA28E43000A3093 /* LoadMorePostsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFAC1AA28E43000A3093 /* LoadMorePostsButton.swift */; };
@@ -60,7 +73,6 @@
 		80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0661A70506A0004CBDE /* LaunchScreen.xib */; };
 		80CDE7BD1A8E242A00499B4E /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDE7BC1A8E242A00499B4E /* CoreDataHelper.swift */; };
 		80CFEE961A7E986F00D47E62 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFEE941A7E947B00D47E62 /* AppState.swift */; };
-		80D3277B1AC81569001601FC /* TestingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D3277A1AC81569001601FC /* TestingView.xib */; };
 		80D4F5911AC612CA00E2783A /* FacebookProfileViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05C1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld */; };
 		80D731C81AC80F7D00C687E1 /* RemoteDebugServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D731C71AC80F7D00C687E1 /* RemoteDebugServer.swift */; };
 		80E342331AA38B7E00F9C050 /* PostLinkTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E342321AA38B7E00F9C050 /* PostLinkTitleLabel.swift */; };
@@ -70,7 +82,6 @@
 		80FBA43F1AA128B600887F25 /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43D1AA128B600887F25 /* LoginButton.swift */; };
 		80FBA4401AA128B600887F25 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA43E1AA128B600887F25 /* SegmentedControl.swift */; };
 		80FBA4491AA128C100887F25 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4441AA128C100887F25 /* UserProfileView.swift */; };
-		80FBA44A1AA128C100887F25 /* UserProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FBA4451AA128C100887F25 /* UserProfileView.xib */; };
 		80FBA44B1AA128C100887F25 /* UserProfileViewSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4461AA128C100887F25 /* UserProfileViewSubviews.swift */; };
 		80FBA4531AA1291500887F25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA44D1AA1291500887F25 /* AppDelegate.swift */; };
 		80FBA4541AA1291500887F25 /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA44E1AA1291500887F25 /* FriendsTableViewController.swift */; };
@@ -78,12 +89,7 @@
 		80FBA4561AA1291500887F25 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4501AA1291500887F25 /* MainViewController.swift */; };
 		80FBA4571AA1291500887F25 /* PostsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4511AA1291500887F25 /* PostsTableViewController.swift */; };
 		80FBA4581AA1291500887F25 /* WelcomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FBA4521AA1291500887F25 /* WelcomeScreenViewController.swift */; };
-		80FE732D1AA34172006453B6 /* StatusPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE732C1AA34172006453B6 /* StatusPostTableViewCell.xib */; };
-		80FE732F1AA343B0006453B6 /* PhotoPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE732E1AA343B0006453B6 /* PhotoPostTableViewCell.xib */; };
-		80FE73311AA343DB006453B6 /* LinkPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE73301AA343DB006453B6 /* LinkPostTableViewCell.xib */; };
 		80FE73341AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE73321AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift */; };
-		80FE73351AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE73331AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib */; };
-		80FE73371AA34471006453B6 /* FriendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80FE73361AA34471006453B6 /* FriendTableViewCell.xib */; };
 		80FE73391AA34801006453B6 /* UINib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE73381AA34801006453B6 /* UINib.swift */; };
 		80FE733B1AA35F39006453B6 /* PostDateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE733A1AA35F39006453B6 /* PostDateLabel.swift */; };
 		80FE733D1AA35FF0006453B6 /* PostTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80FE733C1AA35FF0006453B6 /* PostTitleLabel.swift */; };
@@ -142,12 +148,12 @@
 			remoteGlobalIDString = 8033134C1A74660100E54701;
 			remoteInfo = FacebookProfileViewerClasses;
 		};
-		C54D82D21A853661006A71EF /* PBXContainerItemProxy */ = {
+		80B16D8E1AC8A7210033725B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 80C3B04D1A70506A0004CBDE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8033134C1A74660100E54701;
-			remoteInfo = FacebookProfileViewerClasses;
+			remoteGlobalIDString = 80B16D6B1AC8A6300033725B;
+			remoteInfo = NSLoggerClient;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -158,8 +164,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8033138A1A74661500E54701 /* FBPVUI.framework in Embed Frameworks */,
-				803313651A74660100E54701 /* FBPVClasses.framework in Embed Frameworks */,
+				801707B11AC8B6E400A7CD1E /* FBPVUI.framework in Embed Frameworks */,
+				801707B21AC8B6E400A7CD1E /* NSLoggerClient.framework in Embed Frameworks */,
+				801707AA1AC8A9D300A7CD1E /* FBPVClasses.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -204,12 +211,26 @@
 		8083DFD11AA129D1009FA37A /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		808D45231AA4F7D100727D07 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		808FB27F1AA512790067C15B /* EmptyUserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyUserProfileView.swift; sourceTree = "<group>"; };
-		808FB2811AA5129B0067C15B /* EmptyUserProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyUserProfileView.xib; sourceTree = "<group>"; };
 		8099BD891A9E902600DF7225 /* Common.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayErrorView.swift; sourceTree = "<group>"; };
-		809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayErrorView.xib; sourceTree = "<group>"; };
 		809FDACC1AA4DD7E00BEB830 /* OverlayErrorViewSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayErrorViewSubviews.swift; sourceTree = "<group>"; };
 		80A9592C1AB21C7200F552FC /* IBDesignableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBDesignableTableViewCell.swift; sourceTree = "<group>"; };
+		80B16D6C1AC8A6300033725B /* NSLoggerClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NSLoggerClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80B16D6F1AC8A6300033725B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80B16D701AC8A6300033725B /* NSLoggerClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLoggerClient.h; sourceTree = "<group>"; };
+		80B16D881AC8A69B0033725B /* LoggerClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerClient.h; sourceTree = "<group>"; };
+		80B16D891AC8A69B0033725B /* LoggerClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoggerClient.m; sourceTree = "<group>"; };
+		80B16D8A1AC8A69B0033725B /* LoggerCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoggerCommon.h; sourceTree = "<group>"; };
+		80B16D8B1AC8A69B0033725B /* NSLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSLogger.h; sourceTree = "<group>"; };
+		80B596461AC8B93D003C2DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TestingView.xib; sourceTree = "<group>"; };
+		80B596491AC8B994003C2DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OverlayErrorView.xib; sourceTree = "<group>"; };
+		80B5964C1AC8B99B003C2DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EmptyUserProfileView.xib; sourceTree = "<group>"; };
+		80B5964F1AC8B99F003C2DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UserProfileView.xib; sourceTree = "<group>"; };
+		80B596521AC8B9A6003C2DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/StatusPostTableViewCell.xib; sourceTree = "<group>"; };
+		80B596551AC8B9AA003C2DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PhotoPostTableViewCell.xib; sourceTree = "<group>"; };
+		80B596581AC8B9AE003C2DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LinkPostTableViewCell.xib; sourceTree = "<group>"; };
+		80B5965B1AC8B9B2003C2DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LinkWithoutPhotoPostTableViewCell.xib; sourceTree = "<group>"; };
+		80B5965E1AC8B9B5003C2DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FriendTableViewCell.xib; sourceTree = "<group>"; };
 		80BACFA61AA259ED000A3093 /* IBDesignableHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IBDesignableHelper.swift; sourceTree = "<group>"; };
 		80BACFA81AA25EA1000A3093 /* IBSupport.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = IBSupport.xcassets; sourceTree = "<group>"; };
 		80BACFAA1AA262C4000A3093 /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
@@ -226,7 +247,6 @@
 		80C3B0671A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80CDE7BC1A8E242A00499B4E /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		80CFEE941A7E947B00D47E62 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		80D3277A1AC81569001601FC /* TestingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestingView.xib; sourceTree = "<group>"; };
 		80D731C71AC80F7D00C687E1 /* RemoteDebugServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteDebugServer.swift; sourceTree = "<group>"; };
 		80E342321AA38B7E00F9C050 /* PostLinkTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PostLinkTitleLabel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80E342341AA38B9000F9C050 /* PostLinkSubtitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PostLinkSubtitleLabel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -235,7 +255,6 @@
 		80FBA43D1AA128B600887F25 /* LoginButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LoginButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80FBA43E1AA128B600887F25 /* SegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		80FBA4441AA128C100887F25 /* UserProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserProfileView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		80FBA4451AA128C100887F25 /* UserProfileView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileView.xib; sourceTree = "<group>"; };
 		80FBA4461AA128C100887F25 /* UserProfileViewSubviews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserProfileViewSubviews.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80FBA44D1AA1291500887F25 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		80FBA44E1AA1291500887F25 /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FriendsTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -243,12 +262,7 @@
 		80FBA4501AA1291500887F25 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		80FBA4511AA1291500887F25 /* PostsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PostsTableViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80FBA4521AA1291500887F25 /* WelcomeScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScreenViewController.swift; sourceTree = "<group>"; };
-		80FE732C1AA34172006453B6 /* StatusPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusPostTableViewCell.xib; sourceTree = "<group>"; };
-		80FE732E1AA343B0006453B6 /* PhotoPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoPostTableViewCell.xib; sourceTree = "<group>"; };
-		80FE73301AA343DB006453B6 /* LinkPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkPostTableViewCell.xib; sourceTree = "<group>"; };
 		80FE73321AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkWithoutPhotoPostTableViewCell.swift; sourceTree = "<group>"; };
-		80FE73331AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LinkWithoutPhotoPostTableViewCell.xib; sourceTree = "<group>"; };
-		80FE73361AA34471006453B6 /* FriendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FriendTableViewCell.xib; sourceTree = "<group>"; };
 		80FE73381AA34801006453B6 /* UINib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINib.swift; sourceTree = "<group>"; };
 		80FE733A1AA35F39006453B6 /* PostDateLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PostDateLabel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80FE733C1AA35FF0006453B6 /* PostTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PostTitleLabel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -283,6 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				801707AF1AC8B5DB00A7CD1E /* NSLoggerClient.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +310,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		8033136E1A74661500E54701 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80B16D681AC8A6300033725B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -317,16 +339,16 @@
 			isa = PBXGroup;
 			children = (
 				37532D5B4C8CB43D1B745708 /* FriendTableViewCell.swift */,
-				80FE73361AA34471006453B6 /* FriendTableViewCell.xib */,
+				80B5965F1AC8B9B5003C2DCD /* FriendTableViewCell.xib */,
 				80E342361AA38C9300F9C050 /* GenericPostTableViewCell.swift */,
 				80FE73321AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.swift */,
-				80FE73331AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib */,
+				80B5965C1AC8B9B2003C2DCD /* LinkWithoutPhotoPostTableViewCell.xib */,
 				37532CE7757DCE1861B0C7D4 /* LinkPostTableViewCell.swift */,
-				80FE73301AA343DB006453B6 /* LinkPostTableViewCell.xib */,
+				80B596591AC8B9AE003C2DCD /* LinkPostTableViewCell.xib */,
 				375321942C31AAA7167BB90B /* PhotoPostTableViewCell.swift */,
-				80FE732E1AA343B0006453B6 /* PhotoPostTableViewCell.xib */,
+				80B596561AC8B9AA003C2DCD /* PhotoPostTableViewCell.xib */,
 				375321CA60DC5D1E9CF571ED /* StatusPostTableViewCell.swift */,
-				80FE732C1AA34172006453B6 /* StatusPostTableViewCell.xib */,
+				80B596531AC8B9A6003C2DCD /* StatusPostTableViewCell.xib */,
 				80A9592C1AB21C7200F552FC /* IBDesignableTableViewCell.swift */,
 			);
 			path = Cells;
@@ -401,6 +423,28 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		80B16D6D1AC8A6300033725B /* NSLoggerClient */ = {
+			isa = PBXGroup;
+			children = (
+				80B16D871AC8A65B0033725B /* Vendor/NSLogger */,
+				80B16D701AC8A6300033725B /* NSLoggerClient.h */,
+				80B16D6F1AC8A6300033725B /* Info.plist */,
+			);
+			path = NSLoggerClient;
+			sourceTree = "<group>";
+		};
+		80B16D871AC8A65B0033725B /* Vendor/NSLogger */ = {
+			isa = PBXGroup;
+			children = (
+				80B16D881AC8A69B0033725B /* LoggerClient.h */,
+				80B16D891AC8A69B0033725B /* LoggerClient.m */,
+				80B16D8A1AC8A69B0033725B /* LoggerCommon.h */,
+				80B16D8B1AC8A69B0033725B /* NSLogger.h */,
+			);
+			name = Vendor/NSLogger;
+			path = "../Vendor/NSLogger/Client Logger/iOS";
+			sourceTree = "<group>";
+		};
 		80C3B04C1A70506A0004CBDE = {
 			isa = PBXGroup;
 			children = (
@@ -409,6 +453,7 @@
 				8033134E1A74660100E54701 /* Classes */,
 				8033135D1A74660100E54701 /* ClassesTests */,
 				80FF71381A9AAAF2005715BA /* Vendor */,
+				80B16D6D1AC8A6300033725B /* NSLoggerClient */,
 				80C3B0561A70506A0004CBDE /* Products */,
 			);
 			indentWidth = 2;
@@ -422,6 +467,7 @@
 				8033134D1A74660100E54701 /* FBPVClasses.framework */,
 				803313571A74660100E54701 /* FBPVClassesTests.xctest */,
 				803313721A74661500E54701 /* FBPVUI.framework */,
+				80B16D6C1AC8A6300033725B /* NSLoggerClient.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -439,7 +485,7 @@
 				80C3B05C1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld */,
 				80C3B0661A70506A0004CBDE /* LaunchScreen.xib */,
 				80C3B0611A70506A0004CBDE /* Main.storyboard */,
-				80D3277A1AC81569001601FC /* TestingView.xib */,
+				80B596471AC8B93D003C2DCD /* TestingView.xib */,
 			);
 			path = FBPV;
 			sourceTree = "<group>";
@@ -489,13 +535,13 @@
 			isa = PBXGroup;
 			children = (
 				80FBA4441AA128C100887F25 /* UserProfileView.swift */,
-				80FBA4451AA128C100887F25 /* UserProfileView.xib */,
+				80B596501AC8B99F003C2DCD /* UserProfileView.xib */,
 				80FBA4461AA128C100887F25 /* UserProfileViewSubviews.swift */,
 				808FB27F1AA512790067C15B /* EmptyUserProfileView.swift */,
-				808FB2811AA5129B0067C15B /* EmptyUserProfileView.xib */,
+				80B5964D1AC8B99B003C2DCD /* EmptyUserProfileView.xib */,
 				3753226AF8210C38142C8A50 /* EmptyUserProfileViewSubviews.swift */,
 				809FDAC81AA4D78900BEB830 /* OverlayErrorView.swift */,
-				809FDACA1AA4D7A000BEB830 /* OverlayErrorView.xib */,
+				80B5964A1AC8B994003C2DCD /* OverlayErrorView.xib */,
 				809FDACC1AA4DD7E00BEB830 /* OverlayErrorViewSubviews.swift */,
 				80BACFB61AA29FDA000A3093 /* LoadingProgressView.swift */,
 				80BACFB01AA290A9000A3093 /* LoginScreenView.swift */,
@@ -583,6 +629,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		80B16D691AC8A6300033725B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80B16D711AC8A6300033725B /* NSLoggerClient.h in Headers */,
+				80B16D8C1AC8A6A80033725B /* LoggerClient.h in Headers */,
+				80B16D8D1AC8A6A80033725B /* LoggerCommon.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -598,6 +654,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				80B16D8F1AC8A7210033725B /* PBXTargetDependency */,
 			);
 			name = FBPVClasses;
 			productName = FacebookProfileViewerClasses;
@@ -635,11 +692,28 @@
 			buildRules = (
 			);
 			dependencies = (
-				C54D82D31A853661006A71EF /* PBXTargetDependency */,
 			);
 			name = FBPVUI;
 			productName = FacebookProfileViewerUI;
 			productReference = 803313721A74661500E54701 /* FBPVUI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		80B16D6B1AC8A6300033725B /* NSLoggerClient */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80B16D851AC8A6300033725B /* Build configuration list for PBXNativeTarget "NSLoggerClient" */;
+			buildPhases = (
+				80B16D671AC8A6300033725B /* Sources */,
+				80B16D681AC8A6300033725B /* Frameworks */,
+				80B16D691AC8A6300033725B /* Headers */,
+				80B16D6A1AC8A6300033725B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NSLoggerClient;
+			productName = NSLoggerClient;
+			productReference = 80B16D6C1AC8A6300033725B /* NSLoggerClient.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		80C3B0541A70506A0004CBDE /* FBPV */ = {
@@ -681,6 +755,9 @@
 					803313711A74661500E54701 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
+					80B16D6B1AC8A6300033725B = {
+						CreatedOnToolsVersion = 6.3;
+					};
 					80C3B0541A70506A0004CBDE = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
@@ -703,6 +780,7 @@
 				8033134C1A74660100E54701 /* FBPVClasses */,
 				803313561A74660100E54701 /* FBPVClassesTests */,
 				803313711A74661500E54701 /* FBPVUI */,
+				80B16D6B1AC8A6300033725B /* NSLoggerClient */,
 			);
 		};
 /* End PBXProject section */
@@ -726,14 +804,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80FE73351AA34420006453B6 /* LinkWithoutPhotoPostTableViewCell.xib in Resources */,
-				809FDACB1AA4D7A000BEB830 /* OverlayErrorView.xib in Resources */,
-				80FE73371AA34471006453B6 /* FriendTableViewCell.xib in Resources */,
-				80FE732F1AA343B0006453B6 /* PhotoPostTableViewCell.xib in Resources */,
-				808FB2821AA5129B0067C15B /* EmptyUserProfileView.xib in Resources */,
-				80FE73311AA343DB006453B6 /* LinkPostTableViewCell.xib in Resources */,
-				80FBA44A1AA128C100887F25 /* UserProfileView.xib in Resources */,
-				80FE732D1AA34172006453B6 /* StatusPostTableViewCell.xib in Resources */,
+				80B5965A1AC8B9B2003C2DCD /* LinkWithoutPhotoPostTableViewCell.xib in Resources */,
+				80B596481AC8B994003C2DCD /* OverlayErrorView.xib in Resources */,
+				80B5965D1AC8B9B5003C2DCD /* FriendTableViewCell.xib in Resources */,
+				80B596541AC8B9AA003C2DCD /* PhotoPostTableViewCell.xib in Resources */,
+				80B5964B1AC8B99B003C2DCD /* EmptyUserProfileView.xib in Resources */,
+				80B596571AC8B9AE003C2DCD /* LinkPostTableViewCell.xib in Resources */,
+				80B5964E1AC8B99F003C2DCD /* UserProfileView.xib in Resources */,
+				80B596511AC8B9A6003C2DCD /* StatusPostTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80B16D6A1AC8A6300033725B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -744,7 +829,7 @@
 				C5AD127F1A97485700B1DE89 /* Settings.bundle in Resources */,
 				80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */,
 				80C3B0631A70506A0004CBDE /* Main.storyboard in Resources */,
-				80D3277B1AC81569001601FC /* TestingView.xib in Resources */,
+				80B596451AC8B93D003C2DCD /* TestingView.xib in Resources */,
 				80FF71461A9AAD0D005715BA /* Apache License.txt in Resources */,
 				80FF71501A9AAD0D005715BA /* OpenSans-SemiboldItalic.ttf in Resources */,
 				80FF714A1A9AAD0D005715BA /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -848,6 +933,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		80B16D671AC8A6300033725B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				801707AE1AC8B53700A7CD1E /* LoggerClient.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80C3B0511A70506A0004CBDE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -889,14 +982,86 @@
 			target = 8033134C1A74660100E54701 /* FBPVClasses */;
 			targetProxy = 80493E961A8D4CAC00BDE2B8 /* PBXContainerItemProxy */;
 		};
-		C54D82D31A853661006A71EF /* PBXTargetDependency */ = {
+		80B16D8F1AC8A7210033725B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8033134C1A74660100E54701 /* FBPVClasses */;
-			targetProxy = C54D82D21A853661006A71EF /* PBXContainerItemProxy */;
+			target = 80B16D6B1AC8A6300033725B /* NSLoggerClient */;
+			targetProxy = 80B16D8E1AC8A7210033725B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		80B596471AC8B93D003C2DCD /* TestingView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80B596461AC8B93D003C2DCD /* Base */,
+			);
+			name = TestingView.xib;
+			sourceTree = "<group>";
+		};
+		80B5964A1AC8B994003C2DCD /* OverlayErrorView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80B596491AC8B994003C2DCD /* Base */,
+			);
+			name = OverlayErrorView.xib;
+			sourceTree = "<group>";
+		};
+		80B5964D1AC8B99B003C2DCD /* EmptyUserProfileView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80B5964C1AC8B99B003C2DCD /* Base */,
+			);
+			name = EmptyUserProfileView.xib;
+			sourceTree = "<group>";
+		};
+		80B596501AC8B99F003C2DCD /* UserProfileView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80B5964F1AC8B99F003C2DCD /* Base */,
+			);
+			name = UserProfileView.xib;
+			sourceTree = "<group>";
+		};
+		80B596531AC8B9A6003C2DCD /* StatusPostTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80B596521AC8B9A6003C2DCD /* Base */,
+			);
+			name = StatusPostTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		80B596561AC8B9AA003C2DCD /* PhotoPostTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80B596551AC8B9AA003C2DCD /* Base */,
+			);
+			name = PhotoPostTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		80B596591AC8B9AE003C2DCD /* LinkPostTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80B596581AC8B9AE003C2DCD /* Base */,
+			);
+			name = LinkPostTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		80B5965C1AC8B9B2003C2DCD /* LinkWithoutPhotoPostTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80B5965B1AC8B9B2003C2DCD /* Base */,
+			);
+			name = LinkWithoutPhotoPostTableViewCell.xib;
+			sourceTree = "<group>";
+		};
+		80B5965F1AC8B9B5003C2DCD /* FriendTableViewCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80B5965E1AC8B9B5003C2DCD /* Base */,
+			);
+			name = FriendTableViewCell.xib;
+			sourceTree = "<group>";
+		};
 		80C3B0611A70506A0004CBDE /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -989,6 +1154,66 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		80B16D7F1AC8A6300033725B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = NSLoggerClient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		80B16D801AC8A6300033725B /* Test */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = NSLoggerClient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Test;
+		};
+		80B16D811AC8A6300033725B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = NSLoggerClient/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1122,6 +1347,16 @@
 				8033138C1A74661500E54701 /* Debug */,
 				C58C7BE61A7FBEC1007E3996 /* Test */,
 				8033138D1A74661500E54701 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80B16D851AC8A6300033725B /* Build configuration list for PBXNativeTarget "NSLoggerClient" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80B16D7F1AC8A6300033725B /* Debug */,
+				80B16D801AC8A6300033725B /* Test */,
+				80B16D811AC8A6300033725B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

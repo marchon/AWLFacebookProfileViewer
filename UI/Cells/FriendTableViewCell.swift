@@ -4,7 +4,6 @@
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
-import FBPVClasses
 
 public class FriendTableViewCell : IBDesignableTableViewCell {
 
