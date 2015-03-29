@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   #if DEBUG
   var remoteDebugServer: RemoteDebugServer!
+  var debugNotificationObserver: NSObjectProtocol?
   #endif
 
   private var isUnderTestingMode: Bool {
@@ -31,15 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   private var rootViewController: UIViewController? {
     if self.isUnderTestingMode {
-      let ctrl = UIViewController()
-      ctrl.view.backgroundColor = UIColor.darkGrayColor()
-      let label = UILabel(frame: ctrl.view.bounds)
-      label.text = "Testing..."
-      label.textAlignment = NSTextAlignment.Center
-      label.font = UIFont.systemFontOfSize(28)
-      label.textColor = UIColor.whiteColor()
-      ctrl.view.addSubview(label)
-      return ctrl
+      return UIViewController(nibName: "TestingView", bundle: NSBundle(forClass: AppDelegate.self))
     } else {
       var storyBoardName = "Main"
       let storyboard = UIStoryboard(name: storyBoardName, bundle: nil)
@@ -74,15 +67,6 @@ extension AppDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool {
 
     #if DEBUG
-      if let envValue = NSProcessInfo.processInfo().environment["AWLEraseCustomDefaults"] as? String {
-        if envValue == "YES" {
-          logVerbose("Forced defaults cleanup")
-          AppState.eraseCustomDefaults()
-        }
-      }
-    #endif
-
-    #if DEBUG
       logDebug("Main bundle URL: \(NSBundle.mainBundle().bundleURL)")
       logDebug("Documents directory URL: \(NSFileManager.applicationDocumentsDirectory)")
     #endif
@@ -107,6 +91,12 @@ extension AppDelegate {
     #if DEBUG
       self.remoteDebugServer = RemoteDebugServer()
       self.remoteDebugServer.start()
+      self.debugNotificationObserver = NSNotificationCenter.defaultCenter().addObserverForName(RemoteDebugServer.ActionNotification,
+        object: nil, queue: NSOperationQueue.mainQueue()) { (n: NSNotification!) -> Void in
+          if let action = n.userInfo?["action"] as? String {
+            self.handleDebugAction(action)
+          }
+      }
     #endif
 
     return true
@@ -149,5 +139,16 @@ extension AppDelegate {
     CoreDataHelper.sharedInstance().saveContext()
   }
 
+}
+
+
+extension AppDelegate {
+  #if DEBUG
+  func handleDebugAction(action: String) {
+    if action == "eraseCustomDefaults" {
+      AppState.eraseCustomDefaults()
+    }
+  }
+  #endif
 }
 

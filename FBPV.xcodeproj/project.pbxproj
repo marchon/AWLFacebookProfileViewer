@@ -60,6 +60,7 @@
 		80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0661A70506A0004CBDE /* LaunchScreen.xib */; };
 		80CDE7BD1A8E242A00499B4E /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CDE7BC1A8E242A00499B4E /* CoreDataHelper.swift */; };
 		80CFEE961A7E986F00D47E62 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CFEE941A7E947B00D47E62 /* AppState.swift */; };
+		80D3277B1AC81569001601FC /* TestingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80D3277A1AC81569001601FC /* TestingView.xib */; };
 		80D4F5911AC612CA00E2783A /* FacebookProfileViewer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 80C3B05C1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld */; };
 		80D731C81AC80F7D00C687E1 /* RemoteDebugServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D731C71AC80F7D00C687E1 /* RemoteDebugServer.swift */; };
 		80E342331AA38B7E00F9C050 /* PostLinkTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80E342321AA38B7E00F9C050 /* PostLinkTitleLabel.swift */; };
@@ -225,6 +226,7 @@
 		80C3B0671A70506A0004CBDE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		80CDE7BC1A8E242A00499B4E /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		80CFEE941A7E947B00D47E62 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		80D3277A1AC81569001601FC /* TestingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestingView.xib; sourceTree = "<group>"; };
 		80D731C71AC80F7D00C687E1 /* RemoteDebugServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteDebugServer.swift; sourceTree = "<group>"; };
 		80E342321AA38B7E00F9C050 /* PostLinkTitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PostLinkTitleLabel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80E342341AA38B9000F9C050 /* PostLinkSubtitleLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PostLinkSubtitleLabel.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -437,6 +439,7 @@
 				80C3B05C1A70506A0004CBDE /* FacebookProfileViewer.xcdatamodeld */,
 				80C3B0661A70506A0004CBDE /* LaunchScreen.xib */,
 				80C3B0611A70506A0004CBDE /* Main.storyboard */,
+				80D3277A1AC81569001601FC /* TestingView.xib */,
 			);
 			path = FBPV;
 			sourceTree = "<group>";
@@ -741,6 +744,7 @@
 				C5AD127F1A97485700B1DE89 /* Settings.bundle in Resources */,
 				80C3B0681A70506A0004CBDE /* LaunchScreen.xib in Resources */,
 				80C3B0631A70506A0004CBDE /* Main.storyboard in Resources */,
+				80D3277B1AC81569001601FC /* TestingView.xib in Resources */,
 				80FF71461A9AAD0D005715BA /* Apache License.txt in Resources */,
 				80FF71501A9AAD0D005715BA /* OpenSans-SemiboldItalic.ttf in Resources */,
 				80FF714A1A9AAD0D005715BA /* OpenSans-ExtraBoldItalic.ttf in Resources */,
@@ -946,7 +950,7 @@
 				INFOPLIST_FILE = ClassesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FacebookProfileViewer.app/FacebookProfileViewer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FBPV.app/FBPV";
 			};
 			name = Debug;
 		};
@@ -960,7 +964,7 @@
 				INFOPLIST_FILE = ClassesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FacebookProfileViewer.app/FacebookProfileViewer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FBPV.app/FBPV";
 			};
 			name = Release;
 		};
@@ -1073,7 +1077,7 @@
 				INFOPLIST_FILE = ClassesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FacebookProfileViewer.app/FacebookProfileViewer";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FBPV.app/FBPV";
 			};
 			name = Test;
 		};
