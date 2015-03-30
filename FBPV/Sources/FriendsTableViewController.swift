@@ -10,10 +10,6 @@ import CoreData
 
 class FriendsTableViewController : GenericTableViewController, NSFetchedResultsControllerDelegate, ErrorReportingProtocol {
 
-  lazy private var log: Logger = {
-    return Logger.getLogger("fTvC")
-    }()
-
   lazy private var friendsLoadManager: FacebookFriendsLoadManager = {
     return FacebookFriendsLoadManager()
     }()
@@ -78,9 +74,9 @@ extension FriendsTableViewController {
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
     if !self.fetchedResultsController.performFetch(&theFetchError) {
-      log.error(theFetchError!)
+      logErrorData(theFetchError!)
     } else {
-      log.debug("Found \(self.fetchedResultsController.fetchedObjects?.count ?? -1) friend records in database.")
+      logDebugData("Found \(self.fetchedResultsController.fetchedObjects?.count ?? -1) friend records in database.")
     }
     
     self.fetchUsersFromServerIfNeeded()
@@ -142,7 +138,7 @@ extension FriendsTableViewController {
 
   private func fetchMissedAvatarPictures(entities: [FriendEntity]) {
     if entities.count > 0 {
-      log.verbose("Will fetch \(entities.count) missed avatar images.")
+      logVerboseNetwork("Will fetch \(entities.count) missed avatar images.")
     }
     for theItem in entities {
       if theItem.avatarPictureIsSilhouette {
@@ -180,7 +176,7 @@ extension FriendsTableViewController {
 
     if let theDate = AppState.Friends.lastFetchDate {
       let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600
-      log.debug("Elapsed hours from last update: \(elapsedHoursFromLastUpdate)")
+      logDebugModel("Elapsed hours from last update: \(elapsedHoursFromLastUpdate)")
       if elapsedHoursFromLastUpdate > 24 { // FIXME: Time should be confugurable.
         self.fetchFriendsFromServer()
       } else {
@@ -222,7 +218,7 @@ extension FriendsTableViewController {
             }
             entityInstances.append(entityInstance)
           } else {
-            self.log.error(NSError.errorForIncompleteDictionary(itemDictionary))
+            logErrorNetwork(NSError.errorForIncompleteDictionary(itemDictionary))
           }
         }
         CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({
@@ -239,7 +235,7 @@ extension FriendsTableViewController {
       },
       failure: {(error: NSError) -> Void in
         UIApplication.sharedApplication().hideNetworkActivityIndicator()
-        self.log.error(error.securedDescription)
+        logErrorNetwork(error.securedDescription)
         dispatch_async(dispatch_get_main_queue(), {
           if let rc = self.refreshControl {
             rc.endRefreshing()
@@ -249,7 +245,7 @@ extension FriendsTableViewController {
       ,
       completion: {
         UIApplication.sharedApplication().hideNetworkActivityIndicator()
-        self.log.verbose("Friends fetch completed.")
+        logVerboseNetwork("Friends fetch completed.")
         AppState.Friends.lastFetchDate = NSDate()
 
         dispatch_async(dispatch_get_main_queue(), {
@@ -286,7 +282,7 @@ extension FriendsTableViewController {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let object = fetchedResultsController.objectAtIndexPath(indexPath) as! FriendEntity
-    log.debug("Associated object of selected cell: \(object.debugDescription)")
+    logDebugView("Associated object of selected cell: \(object.debugDescription)")
   }
 }
 
@@ -301,7 +297,7 @@ extension FriendsTableViewController {
 
   func controller(controller: NSFetchedResultsController, didChangeObject: AnyObject,
     atIndexPath: NSIndexPath?, forChangeType: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-      log.verbose("Object did changed for \(forChangeType.stringValue): \((didChangeObject as! FriendEntity).userName)")
+      logVerboseData("Object did changed for \(forChangeType.stringValue): \((didChangeObject as! FriendEntity).userName)")
       switch forChangeType {
       case .Insert:
         self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)

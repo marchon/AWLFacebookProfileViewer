@@ -13,10 +13,6 @@ class PostsTableViewController : GenericTableViewController, NSFetchedResultsCon
   private var tableFooterView: UIView!
   
   var shouldShowLoadMorePostsCell = false
-  
-  lazy private var log: Logger = {
-    return Logger.getLogger("PTvc")
-    }()
 
   lazy private var postsLoadManager: FacebookPostsLoadManager = {
     return FacebookPostsLoadManager()
@@ -101,9 +97,9 @@ extension PostsTableViewController {
     self.fetchedResultsController.delegate = self
     var theFetchError: NSError?
     if !self.fetchedResultsController.performFetch(&theFetchError) {
-      log.error(theFetchError!)
+      logErrorData(theFetchError!)
     } else {
-      log.debug("Found \(self.fetchedResultsController.fetchedObjects?.count ?? -1) post records in database.")
+      logDebugData("Found \(self.fetchedResultsController.fetchedObjects?.count ?? -1) post records in database.")
     }
     
     self.fetchPostsFromServerIfNeeded()
@@ -129,7 +125,7 @@ extension PostsTableViewController {
   }
   
   @IBAction func doFetchOldPosts(sender: AnyObject) {
-    log.verbose("Will load more posts")
+    logVerboseData("Will load more posts")
     var moc = CoreDataHelper.sharedInstance().managedObjectContext!
     var request = CoreDataHelper.Posts.sharedInstance.fetchRequestForOldestPost
     var records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
@@ -137,7 +133,7 @@ extension PostsTableViewController {
         if theRecords.count > 0 {
             let theRecord = theRecords.first!
             let oldPostDate = theRecord.createdDate
-            log.debug("Date of oldest post: \(oldPostDate)")
+            logDebugData("Date of oldest post: \(oldPostDate)")
             self.fetchPostsFromServer(since: nil, until: oldPostDate)
         }
     }
@@ -178,7 +174,7 @@ extension PostsTableViewController {
 
     if let theDate = AppState.Posts.lastFetchDate {
       let elapsedHoursFromLastUpdate = NSDate().timeIntervalSinceDate(theDate) / 3600.0
-      log.debug("Elapsed hours from last update: \(elapsedHoursFromLastUpdate)")
+      logDebugModel("Elapsed hours from last update: \(elapsedHoursFromLastUpdate)")
       if elapsedHoursFromLastUpdate > 24 { // FIXME: Time should be confugurable.
         self.fetchLatestPostsFromServer()
       } else {
@@ -195,7 +191,7 @@ extension PostsTableViewController {
 
   private func fetchMissedPreviewPictures(entities: [PostEntity]) {
     if entities.count > 0 {
-      log.verbose("Will fetch \(entities.count) missed preview images.")
+      logVerboseNetwork("Will fetch \(entities.count) missed preview images.")
     }
     for theItem in entities {
       if let urlString = theItem.pictureURL {
@@ -220,7 +216,7 @@ extension PostsTableViewController {
   }
 
   private func fetchLatestPostsFromServer() {
-    log.verbose("Will load recent posts")
+    logVerboseData("Will load recent posts")
     var moc = CoreDataHelper.sharedInstance().managedObjectContext!
     var request = CoreDataHelper.Posts.sharedInstance.fetchRequestForNewestPost
     var records = CoreDataHelper.fetchRecordsAndLogError(request, PostEntity.self)
@@ -228,7 +224,7 @@ extension PostsTableViewController {
       if theRecords.count > 0 {
         let theRecord = theRecords.first!
         let thePostDate = theRecord.createdDate
-        log.debug("Date of newest post: \(thePostDate)")
+        logDebugData("Date of newest post: \(thePostDate)")
         self.fetchPostsFromServer(since: thePostDate, until: nil)
       }
     }
@@ -243,7 +239,7 @@ extension PostsTableViewController {
           if let entityInstance = CoreDataHelper.Posts.makeEntityInstanceFromJSON(itemDictionsry) {
             entityInstances.append(entityInstance)
           } else {
-            self.log.error(NSError.errorForIncompleteDictionary(itemDictionsry))
+            logErrorNetwork(NSError.errorForIncompleteDictionary(itemDictionsry))
           }
         }
         CoreDataHelper.sharedInstance().managedObjectContext!.performBlock({
@@ -259,7 +255,7 @@ extension PostsTableViewController {
       },
       failure: { (error: NSError) -> Void in
         UIApplication.sharedApplication().hideNetworkActivityIndicator()
-        self.log.error(error.securedDescription)
+        logErrorNetwork(error.securedDescription)
         dispatch_async(dispatch_get_main_queue(), {
           if let rc = self.refreshControl {
             rc.endRefreshing()
@@ -269,7 +265,7 @@ extension PostsTableViewController {
       },
       completion: { (lastPageReached: Bool) -> Void in
         UIApplication.sharedApplication().hideNetworkActivityIndicator()
-        self.log.debug("Posts fetch completed.")
+        logDebugNetwork("Posts fetch completed.")
         AppState.Posts.lastFetchDate = NSDate()
         dispatch_async(dispatch_get_main_queue(), {
           if let rc = self.refreshControl {
@@ -378,7 +374,7 @@ extension PostsTableViewController {
   func controller(controller: NSFetchedResultsController, didChangeObject: AnyObject,
     atIndexPath: NSIndexPath?, forChangeType: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
       let post = didChangeObject as! PostEntity
-      log.verbose("Object did changed for \(forChangeType.stringValue): id=\(post.id); createdDate=\(post.createdDate); type=\(post.type)" + (post.title != nil ? "; title=\(post.title!)" : ""))
+      logVerboseData("Object did changed for \(forChangeType.stringValue): id=\(post.id); createdDate=\(post.createdDate); type=\(post.type)" + (post.title != nil ? "; title=\(post.title!)" : ""))
       switch forChangeType {
       case .Insert:
         self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Automatic)

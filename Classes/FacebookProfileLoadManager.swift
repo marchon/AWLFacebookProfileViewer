@@ -16,16 +16,12 @@ public class FacebookProfileLoadManager {
     public var userProfile: NSDictionary!
   }
 
-  lazy private var log: Logger = {
-    return Logger.getLogger("FpLM")
-    }()
-
   var cbSuccess: SuccessCallback!
   var cbFailure: FailureCallback!
   var executionState: (isAvatarLoaded: Bool, isProfileLoaded: Bool) = (false, false) {
     didSet {
       if self.executionState.isAvatarLoaded && self.executionState.isProfileLoaded {
-        log.debug("Operation completed")
+        logDebugNetwork("Operation completed")
         self.cbSuccess(self.fetchResults)
       }
     }
@@ -48,7 +44,7 @@ public class FacebookProfileLoadManager {
     self.executionState = (false, false)
     if let avatarPctureURL = backendManager.fetchUserPictureURL() {
         if let profileInfoURL = backendManager.fetchUserProfileInformationURL() {
-          log.debug("Operation started")
+          logDebugNetwork("Operation started")
           self.fetchAvatarPictureURL(avatarPctureURL)
           self.fetchUserProfile(profileInfoURL)
         } else {
@@ -60,7 +56,7 @@ public class FacebookProfileLoadManager {
   }
 
   private func fetchAvatarPictureURL(url: NSURL) {
-    log.verbose("Fetching avatar picture url: \(url)")
+    logVerboseNetwork("Fetching avatar picture url: \(url)")
     var task = self.backendManager.fetchFacebookGraphAPITask(url,
       success: { (json: NSDictionary) -> Void in
         let keyPathURL = "data.url"
@@ -81,7 +77,7 @@ public class FacebookProfileLoadManager {
   }
 
   private func fetchAvatarPictureData(url: NSURL) {
-    log.verbose("Fetching avatar picture data: \(url)")
+    logVerboseNetwork("Fetching avatar picture data: \(url)")
     var task = self.backendManager.dataDownloadTask(url,
       success: { (data: NSData) -> Void in
         self.fetchResults.avatarPictureImageData = data
@@ -95,7 +91,7 @@ public class FacebookProfileLoadManager {
   }
 
   private func fetchUserProfile(url: NSURL) {
-    log.verbose("Fetching user profile: \(url)")
+    logVerboseNetwork("Fetching user profile: \(url)")
     var task = self.backendManager.fetchFacebookGraphAPITask(url,
       success: { (json: NSDictionary) -> Void in
         let keyPathCover = "cover.source"
@@ -118,7 +114,7 @@ public class FacebookProfileLoadManager {
   }
 
   private func fetchCoverPhoto(url: NSURL) {
-    log.verbose("Fetching cover photo: \(url)")
+    logVerboseNetwork("Fetching cover photo: \(url)")
     var task = self.backendManager.dataDownloadTask(url,
       success: { (data: NSData) -> Void in
         self.fetchResults.coverPhotoImageData = data

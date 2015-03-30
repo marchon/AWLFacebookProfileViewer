@@ -66,6 +66,7 @@ extension AppDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject:AnyObject]?) -> Bool {
 
+    logMarker("Starting application...")
     #if DEBUG
       logDebug("Main bundle URL: \(NSBundle.mainBundle().bundleURL)")
       logDebug("Documents directory URL: \(NSFileManager.applicationDocumentsDirectory)")

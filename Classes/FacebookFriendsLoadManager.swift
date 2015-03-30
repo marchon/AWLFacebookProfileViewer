@@ -14,10 +14,6 @@ public class FacebookFriendsLoadManager {
   private var cbFailure:    FailureCallback!
   private var cbCompletion: CompletionCallback!
 
-  lazy private var log: Logger = {
-    return Logger.getLogger("FfLM")
-    }()
-
   lazy var backendManager: FacebookEndpointManager = {
     return FacebookEndpointManager()
     }()
@@ -30,7 +26,7 @@ public class FacebookFriendsLoadManager {
     self.cbFailure = failure
     self.cbCompletion = completion
     if let URL = self.backendManager.fetchFriendsURL() {
-      log.verbose("Starting operation...")
+      logVerboseNetwork("Starting operation...")
       self.performFetchTask(URL)
     } else {
       cbFailure(NSError.errorForUninitializedURL())
@@ -38,14 +34,14 @@ public class FacebookFriendsLoadManager {
   }
 
   private func performFetchTask(taskURL: NSURL!) {
-    log.debug("Starting fetch from URL: \(taskURL)")
+    logVerboseNetwork("Starting fetch from URL: \(taskURL)")
       var task = self.backendManager.fetchFacebookGraphAPITask(taskURL,
         success: {
           (json: NSDictionary) -> Void in
 
           let keyData = "data"
           if let theFriends = json.valueForKey(keyData) as? [NSDictionary] {
-            self.log.debug("Got \(theFriends.count) records.")
+            logDebugNetwork("Got \(theFriends.count) records.")
             self.cbSuccess(theFriends)
           } else {
             self.cbFailure(NSError.errorForMissedAttribute(keyData))
@@ -59,7 +55,7 @@ public class FacebookFriendsLoadManager {
               self.cbFailure(NSError.errorForUninitializedURL())
             }
           } else {
-            self.log.debug("Friends load completed.")
+            logDebugNetwork("Friends load completed.")
             self.cbCompletion()
           }
         },

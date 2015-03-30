@@ -27,10 +27,6 @@ class MainViewController: UIViewController, ErrorReportingProtocol {
     }
   }
 
-  lazy private var log: Logger = {
-    return Logger.getLogger("M-VC")
-    }()
-
   lazy private var profileLoadManager: FacebookProfileLoadManager = {
     return FacebookProfileLoadManager()
     }()
@@ -83,7 +79,7 @@ extension MainViewController {
       if results.count == 0 {
         fetchProfileFromServer() // Profile not yet fetched from server
       } else {
-        log.debug("Found \(results.count) profile records in database.")
+        logDebugData("Found \(results.count) profile records in database.")
         var profileRecord = results.first!
         updateProfileInformation(profileRecord)
       }
@@ -120,7 +116,7 @@ extension MainViewController {
       }
       }, failure: { (error: NSError) -> Void in
         UIApplication.sharedApplication().hideNetworkActivityIndicator()
-        self.log.error(error.securedDescription)
+        logErrorNetwork(error.securedDescription)
         self.showErrorDialog(error)
     })
   }

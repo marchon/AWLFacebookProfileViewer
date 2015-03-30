@@ -77,7 +77,7 @@ extension LoginScreenViewController {
   func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
     if let redirectURI = self.redirectURI, let requestURLString = request.URL!.absoluteString {
       if requestURLString.hasPrefix(redirectURI) {
-        logDebug("Redirect interrupted: \(request.URL)")
+        logDebugNetwork("Redirect interrupted: \(request.URL)")
         if let token = accessTokenFromURL(request.URL!) {
           dispatch_async(dispatch_get_main_queue(),
             { [weak self] () -> Void in
@@ -87,7 +87,7 @@ extension LoginScreenViewController {
             }
           )
         } else if let error = errorFromURL(request.URL!) {
-          logError(error)
+          logErrorNetwork(error)
           dispatch_async(dispatch_get_main_queue(),
             { [weak self] () -> Void in
               if let this = self, let cb = this.canceled {
@@ -96,7 +96,7 @@ extension LoginScreenViewController {
             }
           )
         } else {
-          logError("Unable to extract access token from URL: \(request.URL)")
+          logErrorNetwork("Unable to extract access token from URL: \(request.URL)")
           assert(false)
         }
         return false
@@ -106,12 +106,12 @@ extension LoginScreenViewController {
   }
 
   func webViewDidStartLoad(webView: UIWebView) {
-    logDebug("Loading...")
+    logVerboseNetwork("Loading...")
     (self.view as! LoginScreenView).loadingStarted()
   }
 
   func webViewDidFinishLoad(webView: UIWebView) {
-    logDebug("Done!")
+    logVerboseNetwork("Done!")
     (self.view as! LoginScreenView).loadingFinished()
   }
 
