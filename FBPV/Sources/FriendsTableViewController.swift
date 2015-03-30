@@ -286,7 +286,7 @@ extension FriendsTableViewController {
 
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     let object = fetchedResultsController.objectAtIndexPath(indexPath) as! FriendEntity
-    logInfo("Associated object of selected cell: \(object.debugDescription)")
+    log.debug("Associated object of selected cell: \(object.debugDescription)")
   }
 }
 

@@ -5,6 +5,7 @@
 
 import UIKit
 import QuartzCore
+import FBPVClasses
 
 public class GenericStoryboardSegue : UIStoryboardSegue {
   public var unwinding: Bool = false
@@ -29,7 +30,7 @@ public class CrossDissolveStoryboardSegue : GenericStoryboardSegue {
         nc.pushViewController(destinationController, animated: false)
       }
     } else {
-      println("Seems like navigation controller is missed")
+      logWarn("Seems like navigation controller is missed")
     }
     
   }
@@ -49,7 +50,7 @@ public class SwitchStoryboardSegue : GenericStoryboardSegue {
         nc.pushViewController(destinationController, animated: false)
       }
     } else {
-      println("Seems like navigation controller is missed")
+      logWarn("Seems like navigation controller is missed")
     }
 
   }

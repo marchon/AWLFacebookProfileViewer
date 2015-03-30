@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit.UIDevice
+import FBPVClasses
 
 #if DEBUG
 
@@ -67,12 +68,12 @@ import UIKit.UIDevice
     }
 
     func netServiceDidStop(sender: NSNetService) {
-      println("Service stopped.")
+      logVerbose("Service stopped.")
       self.closeStreams()
     }
 
     func netServiceDidPublish(sender: NSNetService) {
-      println("Service published.")
+      logVerbose("Service published.")
     }
 
     func netService(sender: NSNetService, didAcceptConnectionWithInputStream inputStream: NSInputStream, outputStream: NSOutputStream) {
@@ -119,16 +120,16 @@ import UIKit.UIDevice
           if msg.length > 0 {
             var e: NSError?
             if let JSON = NSJSONSerialization.JSONObjectWithData(msg, options: NSJSONReadingOptions.allZeros, error: &e) as? NSDictionary {
-              println(JSON)
+              logDebug("Got remote message: \(JSON)")
               NSNotificationCenter.defaultCenter().postNotificationName(RemoteDebugServer.ActionNotification, object: nil, userInfo: JSON as [NSObject : AnyObject])
             } else {
-              println(e)
+              logError(e)
             }
           }
         }
 
       case NSStreamEvent.ErrorOccurred:
-        println(aStream.streamError)
+        logError(aStream.streamError)
 
       case NSStreamEvent.EndEncountered:
         self.closeStreams()
