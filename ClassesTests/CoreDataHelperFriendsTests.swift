@@ -1,5 +1,5 @@
-/// File: CoreDataHelperTests.swift
-/// Project: FacebookProfileViewer
+/// File: CoreDataHelperFriendsTests.swift
+/// Project: FBPV
 /// Author: Created by Volodymyr Gorlov on 16.02.15.
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 

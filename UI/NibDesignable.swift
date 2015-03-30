@@ -1,5 +1,5 @@
 /// File: NibDesignable.swift
-/// Project: Investor
+/// Project: FBPV
 /// Author: Created by Vlad Gorlov on 2014.09.12.
 /// Copyright: Copyright (c) 2014 WaveLabs. All rights reserved.
 

@@ -1,5 +1,5 @@
 /// File: FacebookFriendsLoadManager.swift
-/// Project: FacebookProfileViewer
+/// Project: FBPV
 /// Author: Created by Volodymyr Gorlov on 03.02.15.
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 

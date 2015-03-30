@@ -1,10 +1,7 @@
-//
-//  GenericTableViewController.swift
-//  FBPV
-//
-//  Created by Vlad Gorlov on 29.03.15.
-//  Copyright (c) 2015 WaveLabs. All rights reserved.
-//
+/// File: GenericTableViewController.swift
+/// Project: FBPV
+/// Author: Created by Vlad Gorlov on 29.03.15.
+/// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
 

@@ -1,10 +1,7 @@
-//
-//  AppDelegate.swift
-//  FacebookProfileViewer
-//
-//  Created by Vlad Gorlov on 21.01.15.
-//  Copyright (c) 2015 WaveLabs. All rights reserved.
-//
+/// File: AppDelegate.swift
+/// Project: FBPV
+/// Author: Created by Vlad Gorlov on 21.01.15.
+/// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
 import CoreData

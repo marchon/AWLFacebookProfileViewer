@@ -209,10 +209,10 @@
             </objects>
             <point key="canvasLocation" x="540" y="871"/>
         </scene>
-        <!--Generic Navigation Controller View Controller-->
+        <!--Generic Navigation View Controller-->
         <scene sceneID="fb6-Fl-owA">
             <objects>
-                <navigationController storyboardIdentifier="welcomeScreenRootController" navigationBarHidden="YES" id="djE-6o-e9M" customClass="GenericNavigationControllerViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="welcomeScreenRootController" navigationBarHidden="YES" id="djE-6o-e9M" customClass="GenericNavigationViewController" customModule="FBPV" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="pN2-bk-B5x">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

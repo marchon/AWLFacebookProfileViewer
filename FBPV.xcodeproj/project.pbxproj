@@ -66,7 +66,7 @@
 		80BACFAD1AA28E43000A3093 /* LoadMorePostsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFAC1AA28E43000A3093 /* LoadMorePostsButton.swift */; };
 		80BACFAF1AA28F9C000A3093 /* WelcomeScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFAE1AA28F9C000A3093 /* WelcomeScreenView.swift */; };
 		80BACFB11AA290A9000A3093 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFB01AA290A9000A3093 /* LoginScreenView.swift */; };
-		80BACFB51AA29C78000A3093 /* GenericNavigationControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFB41AA29C78000A3093 /* GenericNavigationControllerViewController.swift */; };
+		80BACFB51AA29C78000A3093 /* GenericNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFB41AA29C78000A3093 /* GenericNavigationViewController.swift */; };
 		80BACFB71AA29FDA000A3093 /* LoadingProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80BACFB61AA29FDA000A3093 /* LoadingProgressView.swift */; };
 		80C3B0631A70506A0004CBDE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0611A70506A0004CBDE /* Main.storyboard */; };
 		80C3B0651A70506A0004CBDE /* AppIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80C3B0641A70506A0004CBDE /* AppIcons.xcassets */; };
@@ -237,7 +237,7 @@
 		80BACFAC1AA28E43000A3093 /* LoadMorePostsButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LoadMorePostsButton.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80BACFAE1AA28F9C000A3093 /* WelcomeScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = WelcomeScreenView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80BACFB01AA290A9000A3093 /* LoginScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
-		80BACFB41AA29C78000A3093 /* GenericNavigationControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GenericNavigationControllerViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		80BACFB41AA29C78000A3093 /* GenericNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GenericNavigationViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80BACFB61AA29FDA000A3093 /* LoadingProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = LoadingProgressView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		80C3B0551A70506A0004CBDE /* FBPV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FBPV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80C3B0591A70506A0004CBDE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -562,7 +562,7 @@
 				80FBA4511AA1291500887F25 /* PostsTableViewController.swift */,
 				80FBA44F1AA1291500887F25 /* LoginScreenViewController.swift */,
 				80FBA4521AA1291500887F25 /* WelcomeScreenViewController.swift */,
-				80BACFB41AA29C78000A3093 /* GenericNavigationControllerViewController.swift */,
+				80BACFB41AA29C78000A3093 /* GenericNavigationViewController.swift */,
 				37532465DCFF2754FB77D40D /* StoryboardSegues.swift */,
 				808D45231AA4F7D100727D07 /* Protocols.swift */,
 				80D731C71AC80F7D00C687E1 /* RemoteDebugServer.swift */,
@@ -646,6 +646,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8033136A1A74660100E54701 /* Build configuration list for PBXNativeTarget "FBPVClasses" */;
 			buildPhases = (
+				80FB791B1ACA0AA000A670EB /* Check File Headers */,
 				803313481A74660100E54701 /* Sources */,
 				803313491A74660100E54701 /* Frameworks */,
 				8033134A1A74660100E54701 /* Headers */,
@@ -665,6 +666,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8033136C1A74660100E54701 /* Build configuration list for PBXNativeTarget "FBPVClassesTests" */;
 			buildPhases = (
+				80FB791C1ACA0ACF00A670EB /* Check File Headers */,
 				803313531A74660100E54701 /* Sources */,
 				803313541A74660100E54701 /* Frameworks */,
 				803313551A74660100E54701 /* Resources */,
@@ -684,6 +686,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8033138B1A74661500E54701 /* Build configuration list for PBXNativeTarget "FBPVUI" */;
 			buildPhases = (
+				80FB791E1ACA0B4D00A670EB /* Check File Headers */,
 				8033136D1A74661500E54701 /* Sources */,
 				8033136E1A74661500E54701 /* Frameworks */,
 				8033136F1A74661500E54701 /* Headers */,
@@ -702,6 +705,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80B16D851AC8A6300033725B /* Build configuration list for PBXNativeTarget "NSLoggerClient" */;
 			buildPhases = (
+				80FB791F1ACA0B6F00A670EB /* Check File Headers */,
 				80B16D671AC8A6300033725B /* Sources */,
 				80B16D681AC8A6300033725B /* Frameworks */,
 				80B16D691AC8A6300033725B /* Headers */,
@@ -720,6 +724,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80C3B0771A70506A0004CBDE /* Build configuration list for PBXNativeTarget "FBPV" */;
 			buildPhases = (
+				80EA05A21ACA042A00CFFFB1 /* Check File Headers */,
 				80C3B0511A70506A0004CBDE /* Sources */,
 				80C3B0521A70506A0004CBDE /* Frameworks */,
 				80C3B0531A70506A0004CBDE /* Resources */,
@@ -848,6 +853,79 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		80EA05A21ACA042A00CFFFB1 /* Check File Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check File Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash ${SRCROOT}/Scripts/CheckFileHeaders.command ${SRCROOT}/FBPV ${PROJECT_NAME}";
+		};
+		80FB791B1ACA0AA000A670EB /* Check File Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check File Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash ${SRCROOT}/Scripts/CheckFileHeaders.command ${SRCROOT}/Classes ${PROJECT_NAME}";
+		};
+		80FB791C1ACA0ACF00A670EB /* Check File Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check File Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash ${SRCROOT}/Scripts/CheckFileHeaders.command ${SRCROOT}/ClassesTests ${PROJECT_NAME}";
+		};
+		80FB791E1ACA0B4D00A670EB /* Check File Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check File Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash ${SRCROOT}/Scripts/CheckFileHeaders.command ${SRCROOT}/UI ${PROJECT_NAME}";
+		};
+		80FB791F1ACA0B6F00A670EB /* Check File Headers */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check File Headers";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash ${SRCROOT}/Scripts/CheckFileHeaders.command ${SRCROOT}/NSLoggerClient ${PROJECT_NAME}";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		803313481A74660100E54701 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -948,7 +1026,7 @@
 				8034CBF11AC782FA0074F973 /* GenericTableViewController.swift in Sources */,
 				80FBA4531AA1291500887F25 /* AppDelegate.swift in Sources */,
 				80FBA4571AA1291500887F25 /* PostsTableViewController.swift in Sources */,
-				80BACFB51AA29C78000A3093 /* GenericNavigationControllerViewController.swift in Sources */,
+				80BACFB51AA29C78000A3093 /* GenericNavigationViewController.swift in Sources */,
 				808D45241AA4F7D100727D07 /* Protocols.swift in Sources */,
 				80FBA4561AA1291500887F25 /* MainViewController.swift in Sources */,
 				80FBA4541AA1291500887F25 /* FriendsTableViewController.swift in Sources */,

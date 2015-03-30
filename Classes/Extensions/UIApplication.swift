@@ -1,5 +1,5 @@
 /// File: UIApplication.swift
-/// Project: FacebookProfileViewer
+/// Project: FBPV
 /// Author: Created by Volodymyr Gorlov on 20.02.15.
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 

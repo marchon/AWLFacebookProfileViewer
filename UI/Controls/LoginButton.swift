@@ -1,10 +1,7 @@
-//
-//  LoginButton.swift
-//  FBPV
-//
-//  Created by Volodymyr Gorlov on 27.02.15.
-//  Copyright (c) 2015 WaveLabs. All rights reserved.
-//
+/// File: LoginButton.swift
+/// Project: FBPV
+/// Author: Created by Volodymyr Gorlov on 27.02.15.
+/// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
 

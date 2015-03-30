@@ -1,5 +1,5 @@
 /// File: NSDateFormatter.swift
-/// Project: FacebookProfileViewer
+/// Project: FBPV
 /// Author: Created by Vlad Gorlov on 10.02.15.
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 

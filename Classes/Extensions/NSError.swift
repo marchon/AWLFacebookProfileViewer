@@ -1,5 +1,5 @@
-/// File: Errors.swift
-/// Project: FacebookProfileViewer
+/// File: NSError.swift
+/// Project: FBPV
 /// Author: Created by Vlad Gorlov on 04.02.15.
 /// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 

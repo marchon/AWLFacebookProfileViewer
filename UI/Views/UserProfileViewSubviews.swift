@@ -1,10 +1,7 @@
-//
-//  UserProfileBackgroundImageView.swift
-//  FacebookProfileViewer
-//
-//  Created by Vlad Gorlov on 23.02.15.
-//  Copyright (c) 2015 WaveLabs. All rights reserved.
-//
+/// File: UserProfileViewSubviews.swift
+/// Project: FBPV
+/// Author: Created by Vlad Gorlov on 23.02.15.
+/// Copyright: Copyright (c) 2015 WaveLabs. All rights reserved.
 
 import UIKit
 
