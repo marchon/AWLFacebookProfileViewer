@@ -10,6 +10,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreenBackground" translatesAutoresizingMaskIntoConstraints="NO" id="T8A-Vi-M8M">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconAppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Ewy-bA-rcZ">
                     <rect key="frame" x="95" y="136" width="130" height="106"/>
                     <constraints>
@@ -18,10 +21,13 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.16986057162284851" green="0.56252288818359375" blue="0.70293575525283813" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="Ewy-bA-rcZ" secondAttribute="centerX" id="4M4-nl-i91"/>
+                <constraint firstAttribute="bottom" secondItem="T8A-Vi-M8M" secondAttribute="bottom" id="BR8-Bi-InA"/>
+                <constraint firstItem="T8A-Vi-M8M" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Cta-kF-xn3"/>
                 <constraint firstItem="Ewy-bA-rcZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="136" id="UGI-4H-jfd"/>
+                <constraint firstItem="T8A-Vi-M8M" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ZC5-kh-WWb"/>
+                <constraint firstAttribute="trailing" secondItem="T8A-Vi-M8M" secondAttribute="trailing" id="xcs-sy-EDc"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -30,5 +36,6 @@
     </objects>
     <resources>
         <image name="iconAppLogo" width="108" height="102"/>
+        <image name="launchScreenBackground" width="12" height="12"/>
     </resources>
 </document>

@@ -15,6 +15,20 @@ func UIColorFromRGB(hex: Int) -> UIColor {
 
 public class SketchStyleKit {
     
+    // LayerStyle: "Control: Segmented Fill"
+    public class controlSegmentedFill {
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0x44D3C2)
+        }
+    }
+
+    // LayerStyle: "Control: Segmented Stroke"
+    public class controlSegmentedStroke {
+        public class var borderColor: UIColor {
+            return UIColorFromRGB(0x44D3C2)
+        }
+    }
+
     // LayerStyle: "Icon: Background"
     public class iconBackground {
         public class var fillColor: UIColor {
