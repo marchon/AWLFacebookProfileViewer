@@ -33,7 +33,10 @@ public class SegmentedControl: UISegmentedControl {
     self.setDividerImage(imgDevider, forLeftSegmentState: UIControlState.Normal, rightSegmentState: UIControlState.Selected, barMetrics: UIBarMetrics.Default)
     self.setDividerImage(imgDevider, forLeftSegmentState: UIControlState.Selected, rightSegmentState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
     self.setDividerImage(imgDevider, forLeftSegmentState: UIControlState.Normal, rightSegmentState: UIControlState.Normal, barMetrics: UIBarMetrics.Default)
-    self.tintColor = UIColor.whiteColor()
+    self.tintColor = SketchStyleKit.controlSegmentTitle.fillColor
+    let textAttributes = [NSFontAttributeName: SketchStyleKit.controlSegmentTitle.font, NSForegroundColorAttributeName: SketchStyleKit.controlSegmentTitle.fillColor]
+    self.setTitleTextAttributes(textAttributes, forState: UIControlState.Normal)
+    self.setTitleTextAttributes(textAttributes, forState: UIControlState.Selected)
   }
 
 }

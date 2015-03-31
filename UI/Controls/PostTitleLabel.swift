@@ -8,7 +8,7 @@ import UIKit
 public class PostTitleLabel : IBDesignableLabel {
 
   override func setupNib() {
-    self.textColor = SketchStyleKit.postTitle.textColor
+    self.textColor = SketchStyleKit.postTitle.fillColor
   }
   
 }

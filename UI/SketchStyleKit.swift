@@ -99,13 +99,33 @@ public class SketchStyleKit {
         }
     }
 
+    // LayerTextStyle: "Cell: Friend Name"
+    public class cellFriendName {
+        public class var font: UIFont {
+            return UIFont(name: "OpenSans", size: 30 / 2.000000)!
+        }
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0x343434)
+        }
+    }
+
+    // LayerTextStyle: "Control: Segment Title"
+    public class controlSegmentTitle {
+        public class var font: UIFont {
+            return UIFont(name: "OpenSans", size: 24 / 2.000000)!
+        }
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0xFFFFFF)
+        }
+    }
+
     // LayerTextStyle: "Post: Date"
     public class postDate {
         public class var font: UIFont {
             return UIFont(name: "OpenSans", size: 22 / 2.000000)!
         }
-        public class var textColor: UIColor {
-            return UIColor(red: 0.271518, green: 0.707377, blue: 0.655574, alpha: 1.000000)
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0x45B4A7)
         }
     }
 
@@ -114,8 +134,8 @@ public class SketchStyleKit {
         public class var font: UIFont {
             return UIFont(name: "OpenSans-Light", size: 24 / 2.000000)!
         }
-        public class var textColor: UIColor {
-            return UIColor(red: 0.169861, green: 0.562523, blue: 0.702936, alpha: 1.000000)
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0x2B8FB3)
         }
     }
 
@@ -134,8 +154,8 @@ public class SketchStyleKit {
         public class var font: UIFont {
             return UIFont(name: "OpenSans", size: 26 / 2.000000)!
         }
-        public class var textColor: UIColor {
-            return UIColor(red: 0.258238, green: 0.258238, blue: 0.258238, alpha: 1.000000)
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0x424242)
         }
     }
 
@@ -144,8 +164,8 @@ public class SketchStyleKit {
         public class var font: UIFont {
             return UIFont(name: "OpenSans", size: 28 / 2.000000)!
         }
-        public class var textColor: UIColor {
-            return UIColor(red: 1.000000, green: 1.000000, blue: 1.000000, alpha: 1.000000)
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0xFFFFFF)
         }
     }
 
@@ -154,8 +174,8 @@ public class SketchStyleKit {
         public class var font: UIFont {
             return UIFont(name: "OpenSans", size: 40 / 2.000000)!
         }
-        public class var textColor: UIColor {
-            return UIColor(red: 1.000000, green: 1.000000, blue: 1.000000, alpha: 1.000000)
+        public class var fillColor: UIColor {
+            return UIColorFromRGB(0xFFFFFF)
         }
     }
 
